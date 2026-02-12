@@ -100,16 +100,17 @@ body{
 .btn-ghost{background:transparent;color:var(--text);padding:15px 28px;border-radius:var(--radius);font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--border);transition:all .25s;display:inline-flex;align-items:center;gap:8px}
 .btn-ghost:hover{border-color:var(--primary);color:var(--primary-bright)}
 
-/* Hero demo card — Star Wars crawl (JS driven) */
+/* Hero demo card — auto scroll */
 .hero-demo{position:relative}
 .demo-card{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;height:420px}
 .demo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#a78bfa,#f472b6);z-index:3}
-.demo-card-fade-top{position:absolute;top:3px;left:0;right:0;height:56px;background:linear-gradient(rgba(17,24,39,.98) 30%,transparent);z-index:2;pointer-events:none}
-.demo-card-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(17,24,39,.98) 70%);z-index:2;pointer-events:none}
+.demo-fade-top{position:absolute;top:3px;left:0;right:0;height:50px;background:linear-gradient(rgba(17,24,39,1) 20%,transparent);z-index:2;pointer-events:none}
+.demo-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(transparent,rgba(17,24,39,1) 80%);z-index:2;pointer-events:none}
 .demo-card-header{position:absolute;top:14px;left:22px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--text);z-index:4}
 .demo-dot{width:9px;height:9px;border-radius:50%;background:var(--success)}
-.demo-scroll-area{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden}
-.demo-scroll-content{padding:50px 22px 40px;will-change:transform}
+.demo-scroll-box{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:scroll;-ms-overflow-style:none;scrollbar-width:none}
+.demo-scroll-box::-webkit-scrollbar{display:none}
+.demo-scroll-inner{padding:48px 22px 48px}
 .demo-label{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:8px}
 .label-q{background:rgba(59,130,246,.18);color:var(--primary-bright)}
 .label-a{background:rgba(34,197,94,.15);color:var(--success)}
@@ -122,14 +123,10 @@ body{
 .demo-a-block .body-text{font-size:13px;color:var(--muted);line-height:1.85}
 .demo-a-block .key-concept{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:rgba(96,165,250,.4);text-underline-offset:2px}
 .demo-a-block .formula{color:var(--accent);font-weight:700;font-size:13px;margin-top:16px;display:block}
-.demo-pause-hint{position:absolute;bottom:10px;right:16px;z-index:4;font-size:10px;color:rgba(136,146,164,.5);pointer-events:none}
 @media(max-width:768px){
   .demo-card{height:340px}
-  .demo-scroll-content{padding:46px 18px 30px}
-  .demo-pause-hint{display:none}
+  .demo-scroll-inner{padding:44px 18px 44px}
 }
-@keyframes dotBounce{to{transform:translateY(-5px);opacity:.3}}
-@keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:768px){
   .hero{padding:90px 0 40px;min-height:auto}
@@ -352,10 +349,10 @@ body{
     <div class="hero-demo">
       <div class="demo-card">
         <div class="demo-card-header"><span class="demo-dot"></span> Key Trend AI 튜터</div>
-        <div class="demo-card-fade-top"></div>
-        <div class="demo-card-fade-bottom"></div>
-        <div class="demo-scroll-area">
-          <div class="demo-scroll-content">
+        <div class="demo-fade-top"></div>
+        <div class="demo-fade-bottom"></div>
+        <div class="demo-scroll-box" id="demoScroll">
+          <div class="demo-scroll-inner">
 
             <div class="demo-q-block">
               <span class="demo-label label-q">질문</span>
@@ -395,7 +392,6 @@ body{
 
           </div>
         </div>
-        <div class="demo-pause-hint">hover to pause</div>
       </div>
     </div>
   </div>
@@ -696,67 +692,37 @@ const obs=new IntersectionObserver((entries)=>{
 },{threshold:.15,rootMargin:'0px 0px -40px 0px'})
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
 
-// Star Wars crawl — JS driven for cross-browser compatibility
+// Demo auto-scroll (scrollTop — works on all browsers)
 ;(function(){
-  const card=document.querySelector('.demo-card')
-  const content=document.querySelector('.demo-scroll-content')
-  if(!card||!content) return
+  var box=document.getElementById('demoScroll')
+  if(!box) return
+  var speed=1
+  var paused=false
+  var pauseEnd=0
 
-  let paused=false
-  let pos=0
-  let waitTimer=0
-  const SPEED=0.6 // pixels per frame (~36px/sec
-  const PAUSE_AT_START=90 // frames to wait at start (~1.5s)
-  const PAUSE_AT_END=120 // frames to wait at end (~2s)
+  box.addEventListener('mouseenter',function(){paused=true})
+  box.addEventListener('mouseleave',function(){paused=false})
+  box.addEventListener('touchstart',function(){paused=true},{passive:true})
+  box.addEventListener('touchend',function(){paused=false},{passive:true})
 
-  // hover pause (PC only)
-  card.addEventListener('mouseenter',()=>{paused=true})
-  card.addEventListener('mouseleave',()=>{paused=false})
-  // touch pause (mobile)
-  card.addEventListener('touchstart',()=>{paused=true},{passive:true})
-  card.addEventListener('touchend',()=>{paused=false},{passive:true})
-
-  function tick(){
+  function step(){
     if(!paused){
-      const cardH=card.offsetHeight
-      const contentH=content.scrollHeight
-      const maxScroll=contentH-cardH+60
-
-      if(waitTimer>0){
-        waitTimer--
-      }else{
-        if(pos<=0&&waitTimer===0){
-          // just started or just reset — brief pause
-          waitTimer=PAUSE_AT_START
-        }else{
-          pos+=SPEED
-          if(pos>=maxScroll){
-            // reached end — pause then reset
-            waitTimer=PAUSE_AT_END
-            pos=-1 // flag for reset
-          }
-        }
-      }
-
-      if(pos===-1&&waitTimer===0){
-        pos=0
-        content.style.transform='translateY('+card.offsetHeight+'px)'
-        requestAnimationFrame(tick)
+      var now=Date.now()
+      if(now<pauseEnd){
+        requestAnimationFrame(step)
         return
       }
-
-      if(pos<=0){
-        content.style.transform='translateY('+card.offsetHeight+'px)'
-      }else{
-        content.style.transform='translateY('+(cardH-pos)+'px)'
+      var maxScroll=box.scrollHeight-box.clientHeight
+      if(maxScroll<=0){requestAnimationFrame(step);return}
+      box.scrollTop+=speed
+      if(box.scrollTop>=maxScroll){
+        pauseEnd=now+2000
+        setTimeout(function(){box.scrollTop=0;pauseEnd=Date.now()+1000},2000)
       }
     }
-    requestAnimationFrame(tick)
+    requestAnimationFrame(step)
   }
-
-  // start off-screen
-  content.style.transform='translateY('+card.offsetHeight+'px)'
-  requestAnimationFrame(tick)
+  requestAnimationFrame(step)
 })()
 
 // Mobile sticky CTA show/hide
