@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Trend - 수능 영어 AI 튜터</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+--white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;--accent-glow:#6366f133;
+--mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+--grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+--grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.7}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 0;transition:all .3s}
+nav.scrolled{background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:22px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--accent);color:white!important;padding:8px 20px;border-radius:8px;font-weight:600;transition:all .2s}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px)}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.15) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,.1) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;padding:120px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:6px 16px;border-radius:100px;font-size:13px;color:var(--accent2);margin-bottom:24px;animation:fadeUp .8s ease}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--mint);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:'Outfit';font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.15;margin-bottom:20px;animation:fadeUp .8s ease .1s both}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:18px;color:var(--gray);line-height:1.8;margin-bottom:36px;animation:fadeUp .8s ease .2s both;max-width:500px}
+.hero-actions{display:flex;gap:16px;animation:fadeUp .8s ease .3s both;flex-wrap:wrap}
+.btn-primary{background:var(--grad1);color:white;padding:14px 32px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px;border:none;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(99,102,241,.4)}
+.btn-secondary{background:transparent;color:var(--white);padding:14px 32px;border-radius:12px;text-decoration:none;font-weight:600;font-size:16px;border:1px solid rgba(148,163,184,.3);transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent2)}
+.hero-visual{position:relative;animation:fadeUp 1s ease .4s both}
+.hero-card{background:var(--grad2);border:1px solid rgba(99,102,241,.2);border-radius:20px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-weight:700;font-size:15px}
+.card-header .dot{width:10px;height:10px;border-radius:50%;background:var(--mint)}
+.chat-msg{padding:12px 16px;border-radius:12px;margin-bottom:10px;font-size:14px;animation:slideIn .5s ease both}
+.chat-user{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.2);margin-left:40px;animation-delay:.8s}
+.chat-bot{background:rgba(30,41,59,.8);border:1px solid rgba(51,65,85,.5);margin-right:40px;animation-delay:1.2s}
+.chat-bot strong{color:var(--accent2)}
+.typing{display:flex;gap:4px;padding:12px 16px;animation:slideIn .5s ease 1.6s both}
+.typing span{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:bounce .6s infinite alternate}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{to{transform:translateY(-6px);opacity:.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+/* Stats bar */
+.stats-bar{max-width:1200px;margin:-20px auto 0;padding:0 24px;position:relative;z-index:2}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.15);border-radius:16px;overflow:hidden}
+.stat-item{background:rgba(15,23,42,.9);padding:28px 20px;text-align:center;backdrop-filter:blur(10px)}
+.stat-num{font-family:'Outfit';font-size:32px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:13px;color:var(--gray);margin-top:4px}
+
+/* ===== PAIN SECTION ===== */
+.pain{padding:120px 24px;position:relative}
+.pain-inner{max-width:900px;margin:0 auto;text-align:center}
+.section-tag{font-size:13px;font-weight:600;color:var(--accent2);text-transform:uppercase;letter-spacing:3px;margin-bottom:16px}
+.pain h2{font-family:'Outfit';font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:48px;line-height:1.3}
+.pain h2 em{font-style:normal;color:var(--coral)}
+.pain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pain-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:32px 24px;text-align:left;transition:all .3s}
+.pain-card:hover{border-color:var(--coral);transform:translateY(-4px)}
+.pain-icon{font-size:32px;margin-bottom:16px}
+.pain-card h3{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--coral)}
+.pain-card p{font-size:14px;color:var(--gray);line-height:1.7}
+
+/* ===== FEATURES ===== */
+.features{padding:120px 24px;position:relative}
+.features::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:1000px;height:1000px;background:radial-gradient(circle,rgba(99,102,241,.06) 0%,transparent 60%);pointer-events:none}
+.features-inner{max-width:1200px;margin:0 auto}
+.features-head{text-align:center;margin-bottom:64px}
+.features h2{font-family:'Outfit';font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:16px}
+.features h2 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.features-sub{color:var(--gray);font-size:17px;max-width:600px;margin:0 auto}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.feature-card{background:rgba(30,41,59,.4);border:1px solid rgba(51,65,85,.4);border-radius:20px;padding:36px;transition:all .4s;position:relative;overflow:hidden}
+.feature-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 16px 48px rgba(99,102,241,.15)}
+.feature-card::after{content:'';position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,rgba(99,102,241,.08),transparent);pointer-events:none}
+.feature-num{font-family:'Outfit';font-size:48px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.3;margin-bottom:8px}
+.feature-card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+.feature-card p{font-size:14px;color:var(--gray);line-height:1.8}
+.feature-tag{display:inline-block;margin-top:16px;padding:4px 12px;border-radius:6px;font-size:12px;font-weight:600}
+.tag-ai{background:rgba(99,102,241,.15);color:var(--accent2)}
+.tag-db{background:rgba(52,211,153,.15);color:var(--mint)}
+
+/* ===== HOW IT WORKS ===== */
+.how{padding:120px 24px;background:rgba(30,41,59,.3)}
+.how-inner{max-width:1000px;margin:0 auto;text-align:center}
+.how h2{font-family:'Outfit';font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:64px}
+.how h2 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative}
+.steps::before{content:'';position:absolute;top:48px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,var(--accent),var(--coral),var(--amber));opacity:.3}
+.step{text-align:center;position:relative}
+.step-circle{width:96px;height:96px;border-radius:50%;background:var(--grad2);border:2px solid rgba(99,102,241,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:40px;position:relative;z-index:1;transition:all .3s}
+.step:hover .step-circle{border-color:var(--accent);box-shadow:0 0 32px rgba(99,102,241,.3);transform:scale(1.05)}
+.step h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.step p{font-size:14px;color:var(--gray)}
+
+/* ===== COMPARE ===== */
+.compare{padding:120px 24px}
+.compare-inner{max-width:900px;margin:0 auto}
+.compare h2{text-align:center;font-family:'Outfit';font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:48px}
+.compare h2 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.compare-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:16px;border:1px solid rgba(51,65,85,.5)}
+.compare-table th,.compare-table td{padding:16px 20px;text-align:center;font-size:14px}
+.compare-table thead th{background:rgba(30,41,59,.8);color:var(--gray);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.compare-table thead th:last-child{background:rgba(99,102,241,.15);color:var(--accent2)}
+.compare-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray)}
+.compare-table tbody td:first-child{text-align:left;font-weight:600;color:var(--white)}
+.compare-table tbody td:last-child{color:var(--mint);font-weight:600}
+.compare-table tbody tr:hover{background:rgba(99,102,241,.05)}
+.x-mark{color:#ef4444}
+.o-mark{color:var(--mint)}
+
+/* ===== PRICING ===== */
+.pricing{padding:120px 24px;position:relative}
+.pricing::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center,rgba(99,102,241,.08) 0%,transparent 60%);pointer-events:none}
+.pricing-inner{max-width:900px;margin:0 auto;text-align:center}
+.pricing h2{font-family:'Outfit';font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:12px}
+.pricing h2 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pricing-sub{color:var(--gray);margin-bottom:48px;font-size:17px}
+.pricing-toggle{display:inline-flex;background:rgba(30,41,59,.8);border:1px solid rgba(51,65,85,.5);border-radius:12px;padding:4px;margin-bottom:40px}
+.pricing-toggle button{padding:10px 24px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:var(--gray);font-family:inherit}
+.pricing-toggle button.active{background:var(--accent);color:white}
+.pricing-toggle .save-badge{background:var(--mint);color:var(--dark);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.plan{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:20px;padding:40px 32px;text-align:left;transition:all .3s;position:relative}
+.plan.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(99,102,241,.15)}
+.plan.featured::before{content:'BEST';position:absolute;top:-12px;right:24px;background:var(--grad1);color:white;padding:4px 16px;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:1px}
+.plan-name{font-size:14px;font-weight:600;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.plan-price{font-family:'Outfit';font-size:42px;font-weight:800;margin-bottom:4px}
+.plan-price small{font-size:16px;font-weight:400;color:var(--gray)}
+.plan-period{font-size:13px;color:var(--gray);margin-bottom:24px}
+.plan-features{list-style:none;margin-bottom:32px}
+.plan-features li{padding:8px 0;font-size:14px;color:var(--gray);display:flex;align-items:flex-start;gap:10px}
+.plan-features li::before{content:'✓';color:var(--mint);font-weight:700;flex-shrink:0}
+.plan-features li.highlight{color:var(--white);font-weight:600}
+.plan-btn{display:block;width:100%;padding:14px;border-radius:12px;text-align:center;font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:inherit}
+.plan-btn-primary{background:var(--grad1);color:white}
+.plan-btn-primary:hover{box-shadow:0 8px 32px rgba(99,102,241,.4);transform:translateY(-2px)}
+.plan-btn-outline{background:transparent;color:var(--white);border:1px solid rgba(148,163,184,.3)}
+.plan-btn-outline:hover{border-color:var(--accent)}
+
+/* ===== FAQ ===== */
+.faq{padding:120px 24px;background:rgba(30,41,59,.3)}
+.faq-inner{max-width:700px;margin:0 auto}
+.faq h2{text-align:center;font-family:'Outfit';font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:48px}
+.faq-item{border-bottom:1px solid rgba(51,65,85,.4);overflow:hidden}
+.faq-q{padding:20px 0;font-weight:600;font-size:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .2s}
+.faq-q:hover{color:var(--accent2)}
+.faq-q::after{content:'+';font-size:24px;color:var(--accent);transition:transform .3s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;color:var(--gray);font-size:14px;line-height:1.8}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
+
+/* ===== CTA ===== */
+.final-cta{padding:120px 24px;text-align:center;position:relative}
+.final-cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.final-cta h2{font-family:'Outfit';font-size:clamp(28px,4vw,48px);font-weight:800;margin-bottom:16px;line-height:1.2}
+.final-cta h2 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.final-cta p{color:var(--gray);font-size:18px;margin-bottom:36px}
+
+/* ===== FOOTER ===== */
+footer{padding:48px 24px;border-top:1px solid rgba(51,65,85,.3);text-align:center;color:var(--gray);font-size:13px}
+footer a{color:var(--accent2);text-decoration:none}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+.hero-inner{grid-template-columns:1fr;text-align:center}
+.hero-sub{margin:0 auto 36px}
+.hero-actions{justify-content:center}
+.hero-visual{order:-1}
+.stats-inner{grid-template-columns:repeat(2,1fr)}
+.pain-cards{grid-template-columns:1fr}
+.feature-grid{grid-template-columns:1fr}
+.steps{grid-template-columns:1fr;gap:48px}
+.steps::before{display:none}
+.plans{grid-template-columns:1fr}
+.nav-links{display:none}
+.compare-table{font-size:12px}
+.compare-table th,.compare-table td{padding:10px 8px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+<div class="nav-inner">
+<a href="#" class="logo">🔑 <span>Key Trend</span></a>
+<div class="nav-links">
+<a href="#features">기능</a>
+<a href="#pricing">가격</a>
+<a href="#faq">FAQ</a>
+<a href="#start" class="nav-cta">무료 체험 →</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-text">
+<div class="hero-badge"><span></span>2,600+ 수능 유형별 문항 보유</div>
+<h1>수능 영어 1등급,<br><em>AI가 24시간</em><br>옆에서 코칭</h1>
+<p class="hero-sub">해설을 읽어도 이해가 안 될 때, 바로 물어보세요.<br>AI 튜터가 지금 보고 있는 문제를 즉시 분석해드립니다.</p>
+<div class="hero-actions">
+<a href="#start" class="btn-primary">지금 시작하기 →</a>
+<a href="#features" class="btn-secondary">어떻게 작동하나요?</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="hero-card">
+<div class="card-header"><span class="dot"></span> Key Trend AI 튜터</div>
+<div class="chat-msg chat-user">이 빈칸 문제에서 왜 ①번이 아니라 ③번이 정답이야?</div>
+<div class="chat-msg chat-bot"><strong>보기 분석:</strong><br>①번 hostile conditions는 본문의 'challenging'과 유사하지만, 빈칸 뒤 문맥에서 요구하는 것은 '생명 지지 환경의 재정의'입니다. ③번이 정답인 이유는...</div>
+<div class="typing"><span></span><span></span><span></span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+<div class="stats-inner">
+<div class="stat-item"><div class="stat-num">2,600+</div><div class="stat-label">수능 유형별 문항</div></div>
+<div class="stat-item"><div class="stat-num">9단계</div><div class="stat-label">문항별 상세 해설</div></div>
+<div class="stat-item"><div class="stat-num">24시간</div><div class="stat-label">AI 튜터 질문 가능</div></div>
+<div class="stat-item"><div class="stat-num">1,862</div><div class="stat-label">수능 필수 어휘 수록</div></div>
+</div>
+</div>
+
+<!-- PAIN -->
+<section class="pain">
+<div class="pain-inner">
+<div class="section-tag">왜 Key Trend인가</div>
+<h2>혼자 공부하면서<br><em>이런 경험</em> 해본 적 없나요?</h2>
+<div class="pain-cards">
+<div class="pain-card">
+<div class="pain-icon">😤</div>
+<h3>해설 읽어도 이해 안 됨</h3>
+<p>정답 해설은 있는데, 왜 내가 고른 답이 틀렸는지는 설명이 없다. 누군가에게 물어보고 싶은데...</p>
+</div>
+<div class="pain-card">
+<div class="pain-icon">⏰</div>
+<h3>질문할 곳이 없음</h3>
+<p>선생님한테 물어보려면 내일까지 기다려야 하고, 인강 Q&A는 답변이 3일 걸린다.</p>
+</div>
+<div class="pain-card">
+<div class="pain-icon">📚</div>
+<h3>문제집은 한 번 풀면 끝</h3>
+<p>1만원 넘는 문제집 사서 한 번 풀면 끝. 더 풀고 싶으면 또 사야 한다.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+<div class="features-inner">
+<div class="features-head">
+<div class="section-tag">핵심 기능</div>
+<h2>수능 영어에 <em>필요한 모든 것</em></h2>
+<p class="features-sub">문제 풀기부터 해설, 질문, 어휘까지 하나의 플랫폼에서</p>
+</div>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="feature-num">01</div>
+<h3>수능 유형별 문제은행</h3>
+<p>빈칸추론 900+, 글의 순서 500, 문장 삽입 500, 제목 유형 500, 어법 200 등 총 2,600+ 문항을 끊임없이 풀 수 있습니다. 계속 업데이트됩니다.</p>
+<span class="feature-tag tag-db">📦 DB 기반</span>
+</div>
+<div class="feature-card">
+<div class="feature-num">02</div>
+<h3>9단계 상세 해설</h3>
+<p>모든 문항에 대해 정답 근거, 오답 분석, 핵심 구문, 어휘 정리까지 9단계로 체계적으로 해설합니다. 혼자서도 완벽히 이해할 수 있습니다.</p>
+<span class="feature-tag tag-db">📦 콘텐츠 제공</span>
+</div>
+<div class="feature-card">
+<div class="feature-num">03</div>
+<h3>AI 튜터 즉시 질문</h3>
+<p>문제를 풀다가 이해 안 되는 부분이 있으면 바로 AI에게 질문하세요. 지금 보고 있는 문제를 자동으로 인식하고 맥락에 맞는 답변을 즉시 제공합니다.</p>
+<span class="feature-tag tag-ai">🤖 AI 실시간</span>
+</div>
+<div class="feature-card">
+<div class="feature-num">04</div>
+<h3>단어장 & 퀴즈</h3>
+<p>수능 필수 어휘 1,862개 + 내가 모르는 단어를 저장하고 5지선다 퀴즈로 반복 학습. 어원 기반 설명으로 단어를 네트워크로 기억합니다.</p>
+<span class="feature-tag tag-ai">🤖 AI + DB</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+<div class="how-inner">
+<div class="section-tag">사용 방법</div>
+<h2><em>3단계</em>로 시작하세요</h2>
+<div class="steps">
+<div class="step">
+<div class="step-circle">📝</div>
+<h3>문제 풀기</h3>
+<p>수능 유형별 문제를 선택하고<br>실전처럼 풀어봅니다</p>
+</div>
+<div class="step">
+<div class="step-circle">💬</div>
+<h3>AI에게 질문</h3>
+<p>이해 안 되는 부분을 바로 질문<br>AI가 해당 문제를 분석해 답변</p>
+</div>
+<div class="step">
+<div class="step-circle">🏆</div>
+<h3>실력 완성</h3>
+<p>단어장 저장, 퀴즈 복습으로<br>취약점을 완벽히 보완</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare">
+<div class="compare-inner">
+<div class="section-tag">비교</div>
+<h2>왜 <em>Key Trend</em>인가?</h2>
+<table class="compare-table">
+<thead>
+<tr><th></th><th>문제집</th><th>인강</th><th>Key Trend</th></tr>
+</thead>
+<tbody>
+<tr><td>문항 수</td><td class="x-mark">~200개</td><td class="x-mark">기출 위주</td><td class="o-mark">2,600+개</td></tr>
+<tr><td>해설 질문 가능</td><td class="x-mark">✗ 불가</td><td class="x-mark">Q&A 3일 대기</td><td class="o-mark">✓ 즉시 응답</td></tr>
+<tr><td>현재 문제 인식</td><td class="x-mark">✗</td><td class="x-mark">✗</td><td class="o-mark">✓ 자동 인식</td></tr>
+<tr><td>단어 학습</td><td class="x-mark">별도 구매</td><td class="x-mark">별도 구매</td><td class="o-mark">✓ 포함</td></tr>
+<tr><td>24시간 이용</td><td class="o-mark">✓</td><td class="o-mark">✓</td><td class="o-mark">✓</td></tr>
+<tr><td>월 비용</td><td>₩15,000~</td><td>₩50,000~</td><td class="o-mark">₩9,900~</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+<div class="pricing-inner">
+<div class="section-tag">가격</div>
+<h2>나에게 맞는 <em>플랜</em>을 선택하세요</h2>
+<p class="pricing-sub">문제집 한 권 가격으로 AI 튜터까지</p>
+<div class="pricing-toggle">
+<button class="active" onclick="togglePlan('monthly')">월간</button>
+<button onclick="togglePlan('yearly')">연간 <span class="save-badge">25% 할인</span></button>
+</div>
+<div class="plans">
+<div class="plan">
+<div class="plan-name">Standard</div>
+<div class="plan-price" data-monthly="₩9,900" data-yearly="₩89,000">₩9,900<small>/월</small></div>
+<div class="plan-period" data-monthly="" data-yearly="연간 결제 시 ₩7,417/월 (₩29,800 절약)"></div>
+<ul class="plan-features">
+<li>전체 문제 콘텐츠 (2,600+문항)</li>
+<li>9단계 상세 해설</li>
+<li>단어 뜻 질문 300회/월</li>
+<li class="highlight">복잡한 질문 100회/월</li>
+<li>단어장 & 퀴즈 무제한</li>
+<li>수능 어휘 1,862개</li>
+</ul>
+<button class="plan-btn plan-btn-outline" onclick="location.href='#start'">Standard 시작하기</button>
+</div>
+<div class="plan featured">
+<div class="plan-name">Premium</div>
+<div class="plan-price" data-monthly="₩14,900" data-yearly="₩134,000">₩14,900<small>/월</small></div>
+<div class="plan-period" data-monthly="" data-yearly="연간 결제 시 ₩11,167/월 (₩44,800 절약)"></div>
+<ul class="plan-features">
+<li>전체 문제 콘텐츠 (2,600+문항)</li>
+<li>9단계 상세 해설</li>
+<li>단어 뜻 질문 300회/월</li>
+<li class="highlight">복잡한 질문 250회/월</li>
+<li>단어장 & 퀴즈 무제한</li>
+<li>수능 어휘 1,862개</li>
+</ul>
+<button class="plan-btn plan-btn-primary" onclick="location.href='#start'">Premium 시작하기 →</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+<div class="faq-inner">
+<h2>자주 묻는 질문</h2>
+<div class="faq-item">
+<div class="faq-q">AI 튜터는 어떻게 작동하나요?</div>
+<div class="faq-a">문제 페이지 안에 있는 AI 챗봇이 현재 보고 있는 문제의 지문, 선택지, 해설을 자동으로 인식합니다. 질문만 입력하면 해당 문제에 대한 맞춤 답변을 즉시 제공합니다.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">질문 횟수가 부족하면 어떻게 하나요?</div>
+<div class="faq-a">충전팩을 구매하여 추가 질문 횟수를 확보할 수 있습니다. 30회(₩2,900), 80회(₩5,900), 200회(₩12,900) 팩이 있습니다. 자주 부족하다면 Premium 플랜이 더 경제적입니다.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">문제는 계속 추가되나요?</div>
+<div class="faq-a">네, 지속적으로 새로운 유형별 문제가 업데이트됩니다. 현재 빈칸추론, 글의 순서, 문장 삽입, 제목, 어법 등 주요 유형을 모두 포함하고 있으며, 더 많은 유형이 추가될 예정입니다.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">환불이 가능한가요?</div>
+<div class="faq-a">월간 구독은 구독 후 7일 이내에 콘텐츠 이용 이력이 없는 경우 전액 환불이 가능합니다. 연간 구독은 첫 14일 이내에 환불 요청이 가능합니다.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">모바일에서도 사용할 수 있나요?</div>
+<div class="faq-a">네, 모든 기기에서 사용 가능합니다. PC, 태블릿, 스마트폰 어디서든 문제를 풀고 AI 튜터에게 질문할 수 있습니다.</div>
+</div>
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="start">
+<h2>수능 영어, 더 이상<br><em>혼자 고민하지 마세요</em></h2>
+<p>지금 시작하면 2,600+ 문항과 AI 튜터를 바로 만날 수 있습니다</p>
+<a href="#" class="btn-primary" style="font-size:18px;padding:16px 40px">무료 체험 시작하기 →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Key Trend. All rights reserved. | <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a> | <a href="#">문의하기</a></p>
+</footer>
+
+<script>
+// Nav scroll effect
+window.addEventListener('scroll',()=>{
+document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)
+})
+
+// FAQ toggle
+document.querySelectorAll('.faq-q').forEach(q=>{
+q.addEventListener('click',()=>{
+q.parentElement.classList.toggle('open')
+})
+})
+
+// Pricing toggle
+function togglePlan(type){
+document.querySelectorAll('.pricing-toggle button').forEach(b=>b.classList.remove('active'))
+event.target.classList.add('active')
+document.querySelectorAll('.plan-price').forEach(el=>{
+if(type==='yearly'){
+el.innerHTML=el.dataset.yearly+'<small>/년</small>'
+}else{
+el.innerHTML=el.dataset.monthly+'<small>/월</small>'
+}
+})
+document.querySelectorAll('.plan-period').forEach(el=>{
+el.textContent=type==='yearly'?el.dataset.yearly:el.dataset.monthly
+})
+}
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(e=>{
+if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}
+})
+},{threshold:0.1})
+document.querySelectorAll('.pain-card,.feature-card,.step,.stat-item').forEach(el=>{
+el.style.opacity=0;el.style.transform='translateY(30px)';el.style.transition='all .6s ease'
+observer.observe(el)
+})
+</script>
+</body>
+</html>
