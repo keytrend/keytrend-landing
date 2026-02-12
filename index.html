@@ -100,23 +100,49 @@ body{
 .btn-ghost{background:transparent;color:var(--text);padding:15px 28px;border-radius:var(--radius);font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--border);transition:all .25s;display:inline-flex;align-items:center;gap:8px}
 .btn-ghost:hover{border-color:var(--primary);color:var(--primary-bright)}
 
-/* Hero demo card */
+/* Hero demo card — Star Wars crawl */
 .hero-demo{position:relative}
-.demo-card{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;max-height:420px}
-.demo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#a78bfa,#f472b6);z-index:2}
-.demo-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(17,24,39,.95) 70%);z-index:1;pointer-events:none}
-.demo-header{display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--text)}
+.demo-card{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;height:420px}
+.demo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#a78bfa,#f472b6);z-index:3}
+.demo-card-fade-top{position:absolute;top:3px;left:0;right:0;height:56px;background:linear-gradient(rgba(17,24,39,.98) 30%,transparent);z-index:2;pointer-events:none}
+.demo-card-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(17,24,39,.98) 70%);z-index:2;pointer-events:none}
+.demo-card-header{position:absolute;top:14px;left:22px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--text);z-index:4}
 .demo-dot{width:9px;height:9px;border-radius:50%;background:var(--success)}
-.demo-msg{padding:11px 15px;border-radius:12px;margin-bottom:9px;font-size:13px;line-height:1.75;opacity:0;animation:msgIn .5s ease forwards}
-.demo-user{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.18);margin-left:32px;animation-delay:.6s}
-.demo-bot{background:var(--surface);border:1px solid var(--border);margin-right:0;animation-delay:1s}
-.demo-bot em{font-style:normal;color:var(--primary-bright);font-weight:600}
-.demo-bot .step-title{color:var(--primary-bright);font-weight:700;font-size:13px;margin-top:10px;display:block}
-.demo-bot .step-time{color:var(--accent);font-size:11px;font-weight:600}
-.demo-bot .key-concept{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:rgba(96,165,250,.4);text-underline-offset:2px}
-.demo-more{position:absolute;bottom:12px;left:0;right:0;text-align:center;z-index:2;opacity:0;animation:msgIn .4s ease 2s forwards}
-.demo-more span{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);color:var(--primary-bright);font-size:12px;font-weight:600;padding:5px 16px;border-radius:100px}
-@media(max-width:768px){.demo-card{max-height:360px}}
+.demo-scroll-area{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden}
+.demo-scroll-content{animation:starCrawl 30s linear infinite;padding:50px 22px 420px}
+.demo-card:hover .demo-scroll-content{animation-play-state:paused}
+@keyframes starCrawl{
+  0%{transform:translateY(420px)}
+  5%{transform:translateY(420px)}
+  92%{transform:translateY(calc(-100% + 420px))}
+  97%{transform:translateY(calc(-100% + 420px))}
+  100%{transform:translateY(420px)}
+}
+.demo-label{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:8px}
+.label-q{background:rgba(59,130,246,.18);color:var(--primary-bright)}
+.label-a{background:rgba(34,197,94,.15);color:var(--success)}
+.demo-q-block{text-align:left;padding-left:14px;border-left:3px solid var(--primary);margin-bottom:20px}
+.demo-q-text{font-size:14px;font-weight:600;color:var(--text);line-height:1.75}
+.demo-a-block{text-align:left;padding-left:14px;border-left:3px solid var(--success)}
+.demo-a-block .a-title{font-size:15px;font-weight:700;color:var(--primary-bright);margin-bottom:10px}
+.demo-a-block .step-title{color:var(--primary-bright);font-weight:700;font-size:13px;margin-top:16px;margin-bottom:4px;display:block}
+.demo-a-block .step-time{color:var(--accent);font-size:11px;font-weight:600}
+.demo-a-block .body-text{font-size:13px;color:var(--muted);line-height:1.85}
+.demo-a-block .key-concept{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:rgba(96,165,250,.4);text-underline-offset:2px}
+.demo-a-block .formula{color:var(--accent);font-weight:700;font-size:13px;margin-top:16px;display:block}
+.demo-pause-hint{position:absolute;bottom:10px;right:16px;z-index:4;font-size:10px;color:rgba(136,146,164,.5);pointer-events:none}
+@media(max-width:768px){
+  .demo-card{height:340px}
+  .demo-scroll-content{padding:46px 18px 340px}
+  @keyframes starCrawl{
+    0%{transform:translateY(340px)}
+    5%{transform:translateY(340px)}
+    92%{transform:translateY(calc(-100% + 340px))}
+    97%{transform:translateY(calc(-100% + 340px))}
+    100%{transform:translateY(340px)}
+  }
+  .demo-pause-hint{display:none}
+}
 @keyframes dotBounce{to{transform:translateY(-5px);opacity:.3}}
 @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
@@ -340,31 +366,51 @@ body{
     </div>
     <div class="hero-demo">
       <div class="demo-card">
-        <div class="demo-header"><span class="demo-dot"></span> Key Trend AI 튜터</div>
-        <div class="demo-msg demo-user">이 문제를 가장 정확하고 빠르게 풀 수 있는 풀이법을 설명해줘</div>
-        <div class="demo-msg demo-bot">
-          <em>가장 빠르고 정확한 풀이법</em>
-          <span class="step-title">1단계: 빈칸 문장의 구조 파악 <span class="step-time">(5초)</span></span>
-          빈칸 문장을 보세요:<br>
-          "<span class="key-concept">not by A, but by ____</span>": 이 구조가 보이면 즉시 다음을 찾으세요:<br>
-          • A = enhanced computational capacity of neurons (뉴런의 계산 능력)<br>
-          • 빈칸 = A와 <span class="key-concept">대조되는 개념</span>
-          <span class="step-title">2단계: 지문 전체의 핵심 소재 확인 <span class="step-time">(10초)</span></span>
-          지문을 훑으면서 <span class="key-concept">반복되는 행위</span>를 찾으세요:<br>
-          • "clearance" (청소/제거)<br>
-          • "flushed away" (씻어냄)<br>
-          • "waste removal" (노폐물 제거)<br><br>
-          → 이 글의 주제 = <span class="key-concept">노폐물을 치우는 시스템</span>
-          <span class="step-title">3단계: 정답의 조건 설정 <span class="step-time">(3초)</span></span>
-          빈칸에 들어갈 답은:<br>
-          📌 1. "계산 능력"이 <span class="key-concept">아닌</span> 것<br>
-          📌 2. "노폐물 제거"를 <span class="key-concept">포괄적으로</span> 표현한 것
-          <span class="step-title">4단계: 선택지 제거 <span class="step-time">(7초)</span></span>
-          • ①②④: 구체적인 방법/수단만 언급 (X)<br>
-          • ③: "computational capacity"로 지문이 부정한 내용 (X)<br>
-          • ⑤: <span class="key-concept">waste removal systems의 efficiency</span> → 전체 시스템의 본질을 담은 유일한 선택지 (O)
+        <div class="demo-card-header"><span class="demo-dot"></span> Key Trend AI 튜터</div>
+        <div class="demo-card-fade-top"></div>
+        <div class="demo-card-fade-bottom"></div>
+        <div class="demo-scroll-area">
+          <div class="demo-scroll-content">
+
+            <div class="demo-q-block">
+              <span class="demo-label label-q">질문</span>
+              <div class="demo-q-text">이 문제를 가장 정확하고 빠르게 풀 수 있는 풀이법을 설명해줘</div>
+            </div>
+
+            <div class="demo-a-block">
+              <span class="demo-label label-a">답변</span>
+              <div class="a-title">가장 빠르고 정확한 풀이법</div>
+              <div class="body-text">
+                <span class="step-title">1단계: 빈칸 문장의 구조 파악 <span class="step-time">(5초)</span></span>
+                빈칸 문장을 보세요:<br>
+                "<span class="key-concept">not by A, but by ____</span>": 이 구조가 보이면 즉시 다음을 찾으세요:<br>
+                • A = enhanced computational capacity of neurons (뉴런의 계산 능력)<br>
+                • 빈칸 = A와 <span class="key-concept">대조되는 개념</span>
+
+                <span class="step-title">2단계: 지문 전체의 핵심 소재 확인 <span class="step-time">(10초)</span></span>
+                지문을 훑으면서 <span class="key-concept">반복되는 행위</span>를 찾으세요:<br>
+                • "clearance" (청소/제거)<br>
+                • "flushed away" (씻어냄)<br>
+                • "waste removal" (노폐물 제거)<br><br>
+                → 이 글의 주제 = <span class="key-concept">노폐물을 치우는 시스템</span>
+
+                <span class="step-title">3단계: 정답의 조건 설정 <span class="step-time">(3초)</span></span>
+                빈칸에 들어갈 답은:<br>
+                📌 1. "계산 능력"이 <span class="key-concept">아닌</span> 것<br>
+                📌 2. "노폐물 제거"를 <span class="key-concept">포괄적으로</span> 표현한 것
+
+                <span class="step-title">4단계: 선택지 제거 <span class="step-time">(7초)</span></span>
+                • ①②④: 구체적인 방법/수단만 언급 (X)<br>
+                • ③: "computational capacity"로 지문이 부정한 내용 (X)<br>
+                • ⑤: <span class="key-concept">waste removal systems의 efficiency</span> → 전체 시스템의 본질을 담은 유일한 선택지 (O)
+
+                <span class="formula">핵심 공식: "not A but B" 구조 + 반복 키워드 (clearance/removal)</span>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div class="demo-more"><span>↓ 답변이 계속됩니다</span></div>
+        <div class="demo-pause-hint">hover to pause</div>
       </div>
     </div>
   </div>
