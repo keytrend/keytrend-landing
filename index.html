@@ -100,7 +100,7 @@ body{
 .btn-ghost{background:transparent;color:var(--text);padding:15px 28px;border-radius:var(--radius);font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--border);transition:all .25s;display:inline-flex;align-items:center;gap:8px}
 .btn-ghost:hover{border-color:var(--primary);color:var(--primary-bright)}
 
-/* Hero demo card — Star Wars crawl */
+/* Hero demo card — Star Wars crawl (JS driven) */
 .hero-demo{position:relative}
 .demo-card{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;height:420px}
 .demo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#a78bfa,#f472b6);z-index:3}
@@ -109,15 +109,7 @@ body{
 .demo-card-header{position:absolute;top:14px;left:22px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--text);z-index:4}
 .demo-dot{width:9px;height:9px;border-radius:50%;background:var(--success)}
 .demo-scroll-area{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden}
-.demo-scroll-content{animation:starCrawl 30s linear infinite;padding:50px 22px 420px}
-.demo-card:hover .demo-scroll-content{animation-play-state:paused}
-@keyframes starCrawl{
-  0%{transform:translateY(420px)}
-  5%{transform:translateY(420px)}
-  92%{transform:translateY(calc(-100% + 420px))}
-  97%{transform:translateY(calc(-100% + 420px))}
-  100%{transform:translateY(420px)}
-}
+.demo-scroll-content{padding:50px 22px 40px;will-change:transform}
 .demo-label{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:8px}
 .label-q{background:rgba(59,130,246,.18);color:var(--primary-bright)}
 .label-a{background:rgba(34,197,94,.15);color:var(--success)}
@@ -133,14 +125,7 @@ body{
 .demo-pause-hint{position:absolute;bottom:10px;right:16px;z-index:4;font-size:10px;color:rgba(136,146,164,.5);pointer-events:none}
 @media(max-width:768px){
   .demo-card{height:340px}
-  .demo-scroll-content{padding:46px 18px 340px}
-  @keyframes starCrawl{
-    0%{transform:translateY(340px)}
-    5%{transform:translateY(340px)}
-    92%{transform:translateY(calc(-100% + 340px))}
-    97%{transform:translateY(calc(-100% + 340px))}
-    100%{transform:translateY(340px)}
-  }
+  .demo-scroll-content{padding:46px 18px 30px}
   .demo-pause-hint{display:none}
 }
 @keyframes dotBounce{to{transform:translateY(-5px);opacity:.3}}
@@ -710,6 +695,69 @@ const obs=new IntersectionObserver((entries)=>{
   })
 },{threshold:.15,rootMargin:'0px 0px -40px 0px'})
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+
+// Star Wars crawl — JS driven for cross-browser compatibility
+;(function(){
+  const card=document.querySelector('.demo-card')
+  const content=document.querySelector('.demo-scroll-content')
+  if(!card||!content) return
+
+  let paused=false
+  let pos=0
+  let waitTimer=0
+  const SPEED=0.6 // pixels per frame (~36px/sec
+  const PAUSE_AT_START=90 // frames to wait at start (~1.5s)
+  const PAUSE_AT_END=120 // frames to wait at end (~2s)
+
+  // hover pause (PC only)
+  card.addEventListener('mouseenter',()=>{paused=true})
+  card.addEventListener('mouseleave',()=>{paused=false})
+  // touch pause (mobile)
+  card.addEventListener('touchstart',()=>{paused=true},{passive:true})
+  card.addEventListener('touchend',()=>{paused=false},{passive:true})
+
+  function tick(){
+    if(!paused){
+      const cardH=card.offsetHeight
+      const contentH=content.scrollHeight
+      const maxScroll=contentH-cardH+60
+
+      if(waitTimer>0){
+        waitTimer--
+      }else{
+        if(pos<=0&&waitTimer===0){
+          // just started or just reset — brief pause
+          waitTimer=PAUSE_AT_START
+        }else{
+          pos+=SPEED
+          if(pos>=maxScroll){
+            // reached end — pause then reset
+            waitTimer=PAUSE_AT_END
+            pos=-1 // flag for reset
+          }
+        }
+      }
+
+      if(pos===-1&&waitTimer===0){
+        pos=0
+        content.style.transform='translateY('+card.offsetHeight+'px)'
+        requestAnimationFrame(tick)
+        return
+      }
+
+      if(pos<=0){
+        content.style.transform='translateY('+card.offsetHeight+'px)'
+      }else{
+        content.style.transform='translateY('+(cardH-pos)+'px)'
+      }
+    }
+    requestAnimationFrame(tick)
+  }
+
+  // start off-screen
+  content.style.transform='translateY('+card.offsetHeight+'px)'
+  requestAnimationFrame(tick)
+})()
 
 // Mobile sticky CTA show/hide
 let lastScroll=0
