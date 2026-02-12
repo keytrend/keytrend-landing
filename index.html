@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -59,8 +59,8 @@ body{
 .nav-logo i{font-size:22px;font-style:normal}
 .nav-logo span{color:var(--primary-bright)}
 .nav-menu{display:flex;gap:20px;align-items:center}
-.nav-menu a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
-.nav-menu a:hover{color:var(--white)}
+.nav-menu a{color:#ffffff;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-menu a:hover{color:var(--primary-bright)}
 .nav-cta-btn{background:var(--primary);color:white!important;padding:9px 22px;border-radius:var(--radius-sm);font-weight:700;font-size:13px;transition:all .25s;border:none;cursor:pointer}
 .nav-cta-btn:hover{background:var(--primary-bright);transform:translateY(-1px);box-shadow:0 6px 20px rgba(59,130,246,.35)}
 .nav-login-btn{border:1px solid var(--border);padding:7px 18px;border-radius:var(--radius-sm);font-weight:600;font-size:13px;transition:all .2s}
@@ -240,7 +240,7 @@ body{
 .plan-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:38px 30px;text-align:center;transition:all .3s;position:relative}
 .plan-card.best{border-color:var(--primary);box-shadow:0 0 40px var(--primary-glow)}
 .plan-card.best::before{content:'BEST';position:absolute;top:-11px;right:22px;background:linear-gradient(135deg,var(--primary),#6366f1);color:white;padding:4px 14px;border-radius:8px;font-family:var(--font-en);font-size:11px;font-weight:800;letter-spacing:1px}
-.plan-name{font-family:var(--font-en);font-size:13px;font-weight:700;color:var(--primary-bright);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.plan-name{font-family:var(--font-kr);font-size:15px;font-weight:700;color:var(--primary-bright);letter-spacing:1px;margin-bottom:8px}
 .plan-price{font-family:var(--font-en);font-size:38px;font-weight:800;margin-bottom:4px}
 .plan-price sub{font-size:15px;font-weight:400;color:var(--muted)}
 .plan-period{font-size:13px;color:var(--muted);margin-bottom:22px;min-height:18px}
@@ -248,6 +248,9 @@ body{
 .plan-list li{padding:7px 0;font-size:14px;color:var(--muted);display:flex;align-items:flex-start;gap:9px;justify-content:center}
 .plan-list li::before{content:'✓';color:var(--success);font-weight:800;flex-shrink:0;margin-top:1px}
 .plan-list li.em{color:var(--text);font-weight:600}
+.plan-list li.em-hot{color:#ff6b6b;font-weight:800;font-size:15px}
+.plan-list li.em-hot::before{color:#ff6b6b}
+.plan-period .save-highlight{color:#ff6b6b;font-weight:800;font-size:14px}
 .plan-btn{display:block;width:100%;padding:14px;border-radius:var(--radius-sm);text-align:center;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:var(--font-kr);transition:all .25s}
 .plan-btn-fill{background:linear-gradient(135deg,var(--primary),#6366f1);color:white}
 .plan-btn-fill:hover{box-shadow:0 8px 28px rgba(59,130,246,.35);transform:translateY(-2px)}
@@ -428,7 +431,6 @@ body{
 <!-- PAIN -->
 <section class="section">
   <div class="container section-center">
-    <div class="section-tag">Why Key Trend</div>
     <h2 class="section-title">혼자 공부하면서<br>이런 경험 해본 적 없나요?</h2>
     <div class="pain-cards">
       <div class="pain-card reveal">
@@ -453,7 +455,6 @@ body{
 <!-- FEATURES -->
 <section class="section" id="features">
   <div class="container section-center">
-    <div class="section-tag">Features</div>
     <h2 class="section-title">수능 영어에 <span class="hl">필요한 모든 것</span></h2>
     <p class="section-desc">문제 풀기부터 해설, 질문, 어휘까지 하나의 플랫폼에서</p>
     <div class="feature-grid">
@@ -488,7 +489,6 @@ body{
 <!-- HOW IT WORKS -->
 <section class="section how-bg">
   <div class="container section-center">
-    <div class="section-tag">How It Works</div>
     <h2 class="section-title"><span class="hl">3단계</span>로 시작하세요</h2>
     <div class="steps-grid">
       <div class="step-item reveal">
@@ -513,7 +513,6 @@ body{
 <!-- COMPARE -->
 <section class="section">
   <div class="container section-center">
-    <div class="section-tag">Compare</div>
     <h2 class="section-title">왜 <span class="hl">Key Trend</span>인가?</h2>
     <div class="compare-wrap">
       <table class="compare-table">
@@ -526,7 +525,7 @@ body{
           <tr><td>문제 인식</td><td class="om">✓ 자동 인식</td><td class="xm">✗</td><td class="xm">✗</td></tr>
           <tr><td>단어 학습</td><td class="om">✓ 포함</td><td class="xm">별도 구매</td><td class="xm">별도 구매</td></tr>
           <tr><td>24시간</td><td class="om">✓</td><td class="om">✓</td><td class="om">✓</td></tr>
-          <tr><td>월 비용</td><td class="om">₩9,900~</td><td>₩15,000~</td><td>₩50,000~</td></tr>
+          <tr><td>월 비용</td><td class="om">9,900원~</td><td>15,000원~</td><td>50,000원~</td></tr>
         </tbody>
       </table>
     </div>
@@ -536,7 +535,6 @@ body{
 <!-- REVIEWS -->
 <section class="section how-bg">
   <div class="container section-center">
-    <div class="section-tag">Reviews</div>
     <h2 class="section-title">실제 <span class="hl">사용 후기</span></h2>
     <p class="section-desc">Key Trend로 성적을 올린 학생들의 이야기</p>
     <div class="reviews-grid">
@@ -583,7 +581,6 @@ body{
 <!-- PRICING -->
 <section class="section" id="pricing">
   <div class="container section-center">
-    <div class="section-tag">Pricing</div>
     <h2 class="section-title">나에게 맞는 <span class="hl">플랜</span>을 선택하세요</h2>
     <p class="section-desc" style="margin-bottom:36px">문제집 한 권 가격으로 AI 튜터까지</p>
     <div class="pricing-toggle">
@@ -592,9 +589,9 @@ body{
     </div>
     <div class="plans-grid">
       <div class="plan-card">
-        <div class="plan-name">Standard</div>
-        <div class="plan-price" data-m="₩9,900" data-y="₩89,000">₩9,900<sub>/월</sub></div>
-        <div class="plan-period" data-m="" data-y="연간 결제 시 ₩7,417/월 (₩29,800 절약)"></div>
+        <div class="plan-name">기본형</div>
+        <div class="plan-price" data-m="9,900원" data-y="89,000원">9,900원<sub>/월</sub></div>
+        <div class="plan-period" data-m="" data-y="연간 결제 시 7,417원/월 (29,800원 절약)"></div>
         <ul class="plan-list">
           <li>전체 문제 콘텐츠 (2,600+문항)</li>
           <li>9단계 상세 해설</li>
@@ -603,21 +600,21 @@ body{
           <li>단어장 & 퀴즈 무제한</li>
           <li>수능 어휘 1,862개</li>
         </ul>
-        <button class="plan-btn plan-btn-line" onclick="location.href='#start'">Standard 시작하기</button>
+        <button class="plan-btn plan-btn-line" onclick="location.href='#start'">기본형 시작하기</button>
       </div>
       <div class="plan-card best">
-        <div class="plan-name">Premium</div>
-        <div class="plan-price" data-m="₩14,900" data-y="₩134,000">₩14,900<sub>/월</sub></div>
-        <div class="plan-period" data-m="" data-y="연간 결제 시 ₩11,167/월 (₩44,800 절약)"></div>
+        <div class="plan-name">고급형</div>
+        <div class="plan-price" data-m="14,900원" data-y="134,000원">14,900원<sub>/월</sub></div>
+        <div class="plan-period" data-m="" data-y="연간 결제 시 11,167원/월 (<span class='save-highlight'>44,800원 절약</span>)"></div>
         <ul class="plan-list">
           <li>전체 문제 콘텐츠 (2,600+문항)</li>
           <li>9단계 상세 해설</li>
           <li>단어 뜻 질문 300회/월</li>
-          <li class="em">복잡한 질문 250회/월</li>
+          <li class="em-hot">복잡한 질문 250회/월</li>
           <li>단어장 & 퀴즈 무제한</li>
           <li>수능 어휘 1,862개</li>
         </ul>
-        <button class="plan-btn plan-btn-fill" onclick="location.href='#start'">Premium 시작하기 →</button>
+        <button class="plan-btn plan-btn-fill" onclick="location.href='#start'">고급형 시작하기 →</button>
       </div>
     </div>
   </div>
@@ -626,7 +623,6 @@ body{
 <!-- FAQ -->
 <section class="section faq-bg" id="faq">
   <div class="container section-center">
-    <div class="section-tag">FAQ</div>
     <h2 class="section-title">자주 묻는 질문</h2>
     <div class="faq-list">
       <div class="faq-item">
@@ -635,7 +631,7 @@ body{
       </div>
       <div class="faq-item">
         <div class="faq-q">질문 횟수가 부족하면 어떻게 하나요?</div>
-        <div class="faq-a">충전팩을 구매하여 추가 질문 횟수를 확보할 수 있습니다. 30회(₩2,900), 80회(₩5,900), 200회(₩12,900) 팩이 있습니다. 자주 부족하다면 Premium 플랜이 더 경제적입니다.</div>
+        <div class="faq-a">충전팩을 구매하여 추가 질문 횟수를 확보할 수 있습니다. 30회(2,900원), 80회(5,900원), 200회(12,900원) 팩이 있습니다. 자주 부족하다면 고급형 플랜이 더 경제적입니다.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">문제는 계속 추가되나요?</div>
@@ -703,7 +699,7 @@ function togglePlan(type,btn){
     el.innerHTML=val+'<sub>'+unit+'</sub>'
   })
   document.querySelectorAll('.plan-period').forEach(el=>{
-    el.textContent=type==='yearly'?el.dataset.y:el.dataset.m
+    el.innerHTML=type==='yearly'?el.dataset.y:el.dataset.m
   })
 }
 
