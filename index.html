@@ -102,18 +102,21 @@ body{
 
 /* Hero demo card */
 .hero-demo{position:relative}
-.demo-card{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden}
-.demo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#a78bfa,#f472b6)}
+.demo-card{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;max-height:420px}
+.demo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#a78bfa,#f472b6);z-index:2}
+.demo-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(17,24,39,.95) 70%);z-index:1;pointer-events:none}
 .demo-header{display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--text)}
 .demo-dot{width:9px;height:9px;border-radius:50%;background:var(--success)}
-.demo-msg{padding:11px 15px;border-radius:12px;margin-bottom:9px;font-size:13px;line-height:1.7;opacity:0;animation:msgIn .5s ease forwards}
+.demo-msg{padding:11px 15px;border-radius:12px;margin-bottom:9px;font-size:13px;line-height:1.75;opacity:0;animation:msgIn .5s ease forwards}
 .demo-user{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.18);margin-left:32px;animation-delay:.6s}
-.demo-bot{background:var(--surface);border:1px solid var(--border);margin-right:24px;animation-delay:1s}
+.demo-bot{background:var(--surface);border:1px solid var(--border);margin-right:0;animation-delay:1s}
 .demo-bot em{font-style:normal;color:var(--primary-bright);font-weight:600}
-.demo-typing{display:flex;gap:5px;padding:11px 15px;opacity:0;animation:msgIn .4s ease 1.5s forwards}
-.demo-typing span{width:7px;height:7px;background:var(--primary);border-radius:50%;animation:dotBounce .6s infinite alternate}
-.demo-typing span:nth-child(2){animation-delay:.12s}
-.demo-typing span:nth-child(3){animation-delay:.24s}
+.demo-bot .step-title{color:var(--primary-bright);font-weight:700;font-size:13px;margin-top:10px;display:block}
+.demo-bot .step-time{color:var(--accent);font-size:11px;font-weight:600}
+.demo-bot .key-concept{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:rgba(96,165,250,.4);text-underline-offset:2px}
+.demo-more{position:absolute;bottom:12px;left:0;right:0;text-align:center;z-index:2;opacity:0;animation:msgIn .4s ease 2s forwards}
+.demo-more span{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);color:var(--primary-bright);font-size:12px;font-weight:600;padding:5px 16px;border-radius:100px}
+@media(max-width:768px){.demo-card{max-height:360px}}
 @keyframes dotBounce{to{transform:translateY(-5px);opacity:.3}}
 @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
@@ -338,9 +341,30 @@ body{
     <div class="hero-demo">
       <div class="demo-card">
         <div class="demo-header"><span class="demo-dot"></span> Key Trend AI 튜터</div>
-        <div class="demo-msg demo-user">이 빈칸 문제에서 왜 ①번이 아니라 ③번이 정답이야?</div>
-        <div class="demo-msg demo-bot"><em>보기 분석:</em><br>①번 hostile conditions는 본문의 'challenging'과 유사하지만, 빈칸 뒤 문맥에서 요구하는 것은 '생명 지지 환경의 재정의'입니다. ③번이 정답인 이유는...</div>
-        <div class="demo-typing"><span></span><span></span><span></span></div>
+        <div class="demo-msg demo-user">이 문제를 가장 정확하고 빠르게 풀 수 있는 풀이법을 설명해줘</div>
+        <div class="demo-msg demo-bot">
+          <em>가장 빠르고 정확한 풀이법</em>
+          <span class="step-title">1단계: 빈칸 문장의 구조 파악 <span class="step-time">(5초)</span></span>
+          빈칸 문장을 보세요:<br>
+          "<span class="key-concept">not by A, but by ____</span>": 이 구조가 보이면 즉시 다음을 찾으세요:<br>
+          • A = enhanced computational capacity of neurons (뉴런의 계산 능력)<br>
+          • 빈칸 = A와 <span class="key-concept">대조되는 개념</span>
+          <span class="step-title">2단계: 지문 전체의 핵심 소재 확인 <span class="step-time">(10초)</span></span>
+          지문을 훑으면서 <span class="key-concept">반복되는 행위</span>를 찾으세요:<br>
+          • "clearance" (청소/제거)<br>
+          • "flushed away" (씻어냄)<br>
+          • "waste removal" (노폐물 제거)<br><br>
+          → 이 글의 주제 = <span class="key-concept">노폐물을 치우는 시스템</span>
+          <span class="step-title">3단계: 정답의 조건 설정 <span class="step-time">(3초)</span></span>
+          빈칸에 들어갈 답은:<br>
+          📌 1. "계산 능력"이 <span class="key-concept">아닌</span> 것<br>
+          📌 2. "노폐물 제거"를 <span class="key-concept">포괄적으로</span> 표현한 것
+          <span class="step-title">4단계: 선택지 제거 <span class="step-time">(7초)</span></span>
+          • ①②④: 구체적인 방법/수단만 언급 (X)<br>
+          • ③: "computational capacity"로 지문이 부정한 내용 (X)<br>
+          • ⑤: <span class="key-concept">waste removal systems의 efficiency</span> → 전체 시스템의 본질을 담은 유일한 선택지 (O)
+        </div>
+        <div class="demo-more"><span>↓ 답변이 계속됩니다</span></div>
       </div>
     </div>
   </div>
