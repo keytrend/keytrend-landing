@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -210,6 +210,29 @@ body{
 .xm{color:var(--danger)}
 .om{color:var(--success)}
 
+/* ===== QUIZ PROMO ===== */
+.quiz-promo{position:relative;overflow:hidden}
+.quiz-promo-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center;padding:56px 32px;background:linear-gradient(135deg,rgba(34,197,94,.04),rgba(59,130,246,.04),rgba(34,197,94,.06));border:1px solid rgba(34,197,94,.25);border-radius:20px}
+.quiz-promo-inner::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:3px;background:linear-gradient(90deg,var(--success),var(--primary-bright),var(--success));border-radius:0 0 4px 4px}
+.quiz-promo-emoji{font-size:48px;margin-bottom:16px;display:block}
+.quiz-promo-title{font-family:var(--font-en);font-size:clamp(24px,4vw,36px);font-weight:800;margin-bottom:14px;letter-spacing:-.01em}
+.quiz-promo-title .hl-quiz{background:linear-gradient(135deg,var(--success),var(--primary-bright),var(--success));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.quiz-promo-sub{font-size:19px;font-weight:800;color:var(--accent);margin-bottom:12px;letter-spacing:.3px}
+.quiz-promo-sub .free-tag{display:inline-block;background:var(--accent);color:var(--bg);padding:3px 12px;border-radius:6px;font-size:13px;font-weight:800;margin-left:6px;vertical-align:middle;animation:freeShine 2.5s ease infinite}
+@keyframes freeShine{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.75;transform:scale(1.04)}}
+.quiz-promo-desc{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.8}
+.quiz-promo-stats{display:flex;justify-content:center;gap:36px;margin-bottom:30px;flex-wrap:wrap}
+.quiz-promo-stat{text-align:center}
+.quiz-promo-stat-num{font-family:var(--font-en);font-size:28px;font-weight:800;color:var(--primary-bright)}
+.quiz-promo-stat-label{font-size:12px;color:var(--muted);margin-top:2px}
+.btn-quiz{background:linear-gradient(135deg,var(--success),#16a34a);color:white;padding:16px 40px;border-radius:var(--radius);font-weight:700;font-size:16px;text-decoration:none;border:none;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-kr);box-shadow:0 4px 16px rgba(34,197,94,.25)}
+.btn-quiz:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(34,197,94,.35)}
+@media(max-width:768px){
+  .quiz-promo-inner{padding:40px 20px}
+  .quiz-promo-stats{gap:24px}
+  .quiz-promo-stat-num{font-size:24px}
+}
+
 /* ===== TESTIMONIALS ===== */
 .reviews-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:52px}
 @media(min-width:768px){.reviews-grid{grid-template-columns:repeat(3,1fr);gap:22px}}
@@ -310,14 +333,7 @@ body{
 .reveal-d2{transition-delay:.2s}
 .reveal-d3{transition-delay:.3s}
 
-/* ===== FONT LICENSE COMMENT ===== */
-/* 
-  Sora: SIL Open Font License 1.1 — 상업적 무료 사용 가능
-  https://fonts.google.com/specimen/Sora
-  
-  Noto Sans KR: SIL Open Font License 1.1 — 상업적 무료 사용 가능
-  https://fonts.google.com/specimen/Noto+Sans+KR
-*/
+/* Sora: SIL OFL 1.1 — 상업적 무료 | Noto Sans KR: SIL OFL 1.1 — 상업적 무료 */
 </style>
 </head>
 <body>
@@ -528,6 +544,24 @@ body{
           <tr><td>월 비용</td><td class="om">9,900원~</td><td>15,000원~</td><td>50,000원~</td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ PROMO -->
+<section class="section quiz-promo">
+  <div class="container">
+    <div class="quiz-promo-inner reveal">
+      <span class="quiz-promo-emoji">🎯</span>
+      <h2 class="quiz-promo-title"><span class="hl-quiz">수능 필수 어휘 퀴즈</span></h2>
+      <div class="quiz-promo-sub">전국 수험생 누구나 평생 무료!! <span class="free-tag">FREE</span></div>
+      <p class="quiz-promo-desc">회원가입 없이 지금 바로 시작하세요.<br>수능 필수 어휘 1,862개를 5지선다 퀴즈로 반복 학습할 수 있습니다.</p>
+      <div class="quiz-promo-stats">
+        <div class="quiz-promo-stat"><div class="quiz-promo-stat-num">1,862</div><div class="quiz-promo-stat-label">수능 필수 어휘</div></div>
+        <div class="quiz-promo-stat"><div class="quiz-promo-stat-num">5지선다</div><div class="quiz-promo-stat-label">객관식 퀴즈</div></div>
+        <div class="quiz-promo-stat"><div class="quiz-promo-stat-num">∞</div><div class="quiz-promo-stat-label">횟수 제한 없음</div></div>
+      </div>
+      <a href="#" class="btn-quiz">퀴즈 풀기 →</a>
     </div>
   </div>
 </section>
