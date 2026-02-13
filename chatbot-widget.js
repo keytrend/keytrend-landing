@@ -16,7 +16,7 @@
   // ========== 설정 ==========
   var CONFIG = {
     // ★ 실제 Render 서버 URL로 변경하세요
-    API_URL: 'https://english-exam-chatbot.onrender.com',
+    API_URL: 'https://key-trend-chatbot.onrender.com',
     MAX_FREE_TRIES: 3,
     STORAGE_KEY: 'kt_landing_tries',
     STORAGE_DATE_KEY: 'kt_landing_date'
@@ -204,8 +204,8 @@
       '<p>오늘의 무료 체험을 모두 사용했습니다.<br><br>',
       '✅ <strong>단어 퀴즈</strong>는 무제한 무료입니다!<br>',
       '퀴즈로 어휘력을 키워보세요.</p>',
-      '<a href="#start" class="kt-cta-btn" onclick="window.ktChatClose()">무료 가입하고 매월 15회 받기</a><br>',
-      '<a href="#" class="kt-quiz-link">🎯 무료 어휘 퀴즈 풀기 →</a>'
+      '<a href="https://keytrend.thinkific.com/users/sign_up" target="_blank" class="kt-cta-btn">무료 가입하고 매월 15회 받기</a><br>',
+      '<a href="https://keytrend.thinkific.com" target="_blank" class="kt-quiz-link">🎯 무료 어휘 퀴즈 풀기 →</a>'
     ].join('');
     chatBody.appendChild(limitDiv);
     chatBody.scrollTop = chatBody.scrollHeight;
@@ -222,11 +222,17 @@
       })
     })
     .then(function(res) {
+      if (res.status === 429) {
+        // 서버에서 횟수 초과 → 프론트엔드도 0으로 맞춤
+        localStorage.setItem(CONFIG.STORAGE_KEY, '0');
+        callback({ limitReached: true }, null);
+        return;
+      }
       if (!res.ok) throw new Error('서버 응답 오류: ' + res.status);
       return res.json();
     })
     .then(function(data) {
-      callback(null, data.reply || data.response || '응답을 받지 못했습니다.');
+      if (data) callback(null, data.reply || data.response || '응답을 받지 못했습니다.');
     })
     .catch(function(err) {
       callback(err, null);
@@ -260,6 +266,16 @@
       document.getElementById('ktSendBtn').disabled = false;
 
       if (err) {
+        // 서버에서 횟수 초과 감지
+        if (err.limitReached) {
+          addBotMsg(
+            '무료 체험 횟수를 모두 사용했습니다!<br><br>' +
+            '<strong>무료 가입</strong>하시면 매월 15회 단어 질문이 가능합니다.'
+          );
+          updateTriesDisplay();
+          showLimitReached();
+          return;
+        }
         addBotMsg('죄송합니다. 일시적인 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.');
         return;
       }
