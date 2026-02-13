@@ -205,7 +205,7 @@
       '✅ <strong>단어 퀴즈</strong>는 무제한 무료입니다!<br>',
       '퀴즈로 어휘력을 키워보세요.</p>',
       '<a href="https://keytrend.thinkific.com/users/sign_up" target="_blank" class="kt-cta-btn">무료 가입하고 매월 15회 받기</a><br>',
-      '<a href="https://keytrend.thinkific.com" target="_blank" class="kt-quiz-link">🎯 무료 어휘 퀴즈 풀기 →</a>'
+      '<a href="https://keytrend.thinkific.com/courses/vocab-quiz" target="_blank" class="kt-quiz-link">🎯 무료 수능 단어 퀴즈 풀기 →</a>'
     ].join('');
     chatBody.appendChild(limitDiv);
     chatBody.scrollTop = chatBody.scrollHeight;
