@@ -16,7 +16,7 @@
   // ========== 설정 ==========
   var CONFIG = {
     // ★ 실제 Render 서버 URL로 변경하세요
-    API_URL: 'https://key-trend-chatbot.onrender.com',
+    API_URL: 'https://english-exam-chatbot.onrender.com',
     MAX_FREE_TRIES: 3,
     STORAGE_KEY: 'kt_landing_tries',
     STORAGE_DATE_KEY: 'kt_landing_date'
