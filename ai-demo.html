@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Trend - AI 튜터 실제 시연</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+--white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;--accent-glow:#6366f133;
+--mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+--grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+--grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.7}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 0;transition:all .3s}
+nav.scrolled{background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:22px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--accent);color:white!important;padding:8px 20px;border-radius:8px;font-weight:600;transition:all .2s}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px)}
+
+/* ===== HERO ===== */
+.hero{padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:700px;height:700px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(168,85,247,.08) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:6px 16px;border-radius:100px;font-size:13px;color:var(--accent2);margin-bottom:24px;animation:fadeUp .8s ease}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--mint);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:'Outfit';font-size:clamp(28px,4.5vw,48px);font-weight:800;line-height:1.2;margin-bottom:16px;animation:fadeUp .8s ease .1s both}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:17px;color:var(--gray);line-height:1.8;margin-bottom:0;animation:fadeUp .8s ease .2s both;max-width:650px;margin-left:auto;margin-right:auto}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== PASSAGE SECTION ===== */
+.passage-section{padding:40px 24px 80px;position:relative}
+.passage-inner{max-width:900px;margin:0 auto}
+.section-tag{font-size:13px;font-weight:600;color:var(--accent2);text-transform:uppercase;letter-spacing:3px;margin-bottom:16px;text-align:center}
+
+.passage-card{background:var(--grad2);border:1px solid rgba(99,102,241,.2);border-radius:20px;padding:40px;position:relative;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.3)}
+.passage-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+
+.passage-label{display:inline-flex;align-items:center;gap:8px;background:rgba(244,114,182,.12);border:1px solid rgba(244,114,182,.25);padding:5px 14px;border-radius:8px;font-size:12px;font-weight:700;color:var(--coral);margin-bottom:20px;letter-spacing:.5px}
+
+.passage-instruction{font-size:15px;font-weight:700;color:var(--white);margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(51,65,85,.4)}
+
+.passage-text{font-size:14.5px;color:#cbd5e1;line-height:2;margin-bottom:28px;text-align:justify;word-break:keep-all}
+.passage-text .blank{display:inline;background:rgba(99,102,241,.15);border:1px dashed rgba(99,102,241,.4);border-radius:4px;padding:2px 16px;color:var(--accent2);font-weight:600;white-space:nowrap}
+
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:12px;border:1px solid rgba(51,65,85,.4);background:rgba(30,41,59,.5);transition:all .3s;cursor:default}
+.choice:hover{border-color:rgba(99,102,241,.3);background:rgba(99,102,241,.06)}
+.choice-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:rgba(99,102,241,.15);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--accent2)}
+.choice.correct{border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.08)}
+.choice.correct .choice-num{background:rgba(52,211,153,.2);color:var(--mint)}
+.choice-text{font-size:14px;color:var(--gray);line-height:1.6;padding-top:3px}
+.choice.correct .choice-text{color:var(--mint);font-weight:600}
+
+/* ===== DEMO SECTION ===== */
+.demo-section{padding:80px 24px}
+.demo-inner{max-width:900px;margin:0 auto}
+.demo-header{text-align:center;margin-bottom:60px}
+.demo-header h2{font-family:'Outfit';font-size:clamp(24px,3.5vw,38px);font-weight:800;margin-bottom:12px;line-height:1.3}
+.demo-header h2 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.demo-header p{color:var(--gray);font-size:16px;max-width:600px;margin:0 auto}
+
+/* Question cards */
+.question-card{margin-bottom:48px;background:rgba(30,41,59,.4);border:1px solid rgba(51,65,85,.4);border-radius:20px;overflow:hidden;transition:all .4s}
+.question-card:hover{border-color:rgba(99,102,241,.25);box-shadow:0 16px 48px rgba(99,102,241,.08)}
+
+.question-header{padding:24px 28px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(51,65,85,.3)}
+.q-number{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:var(--grad1);display:flex;align-items:center;justify-content:center;font-family:'Outfit';font-size:18px;font-weight:800;color:white}
+.q-meta{flex:1}
+.q-category{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px}
+.cat-analysis{color:var(--coral)}
+.cat-strategy{color:var(--amber)}
+.cat-grammar{color:var(--mint)}
+.cat-compare{color:var(--accent2)}
+.q-text{font-size:15px;font-weight:600;color:var(--white);line-height:1.5}
+
+.video-container{padding:20px;background:rgba(15,23,42,.6)}
+.video-wrapper{position:relative;width:100%;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+
+/* YouTube iframe styling */
+.video-wrapper iframe{width:100%;height:100%;border:none;border-radius:12px;display:block}
+
+/* Placeholder overlay (shown when no YouTube ID yet) */
+.video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(15,23,42,.9);border:2px dashed rgba(99,102,241,.25);border-radius:12px;pointer-events:none;transition:opacity .3s}
+.video-placeholder.hidden{opacity:0;pointer-events:none}
+.play-icon{width:64px;height:64px;border-radius:50%;background:rgba(99,102,241,.2);border:2px solid rgba(99,102,241,.4);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.play-icon svg{width:24px;height:24px;fill:var(--accent2);margin-left:3px}
+.video-placeholder span{font-size:13px;color:var(--gray)}
+
+.question-footer{padding:16px 28px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray);border-top:1px solid rgba(51,65,85,.2)}
+.question-footer .tag{padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600}
+.tag-ai-badge{background:rgba(99,102,241,.12);color:var(--accent2)}
+.tag-context{background:rgba(52,211,153,.12);color:var(--mint)}
+
+/* ===== TOC / Jump Navigation ===== */
+.toc{padding:0 24px 60px}
+.toc-inner{max-width:900px;margin:0 auto}
+.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.toc-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.3);text-decoration:none;color:var(--gray);font-size:13px;transition:all .2s;cursor:pointer}
+.toc-item:hover{border-color:var(--accent);color:var(--white);background:rgba(99,102,241,.06)}
+.toc-num{flex-shrink:0;width:28px;height:28px;border-radius:8px;background:var(--grad1);display:flex;align-items:center;justify-content:center;font-family:'Outfit';font-size:12px;font-weight:800;color:white}
+.toc-label{line-height:1.4;flex:1}
+
+/* ===== CTA ===== */
+.final-cta{padding:80px 24px 100px;text-align:center;position:relative}
+.final-cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(99,102,241,.1) 0%,transparent 60%);pointer-events:none}
+.final-cta h2{font-family:'Outfit';font-size:clamp(24px,3.5vw,40px);font-weight:800;margin-bottom:12px;line-height:1.2}
+.final-cta h2 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.final-cta p{color:var(--gray);font-size:17px;margin-bottom:32px}
+.btn-primary{background:var(--grad1);color:white;padding:14px 32px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px;border:none;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(99,102,241,.4)}
+
+/* ===== FOOTER ===== */
+footer{padding:48px 24px;border-top:1px solid rgba(51,65,85,.3);text-align:center;color:var(--gray);font-size:13px}
+footer a{color:var(--accent2);text-decoration:none}
+
+/* ===== Scroll reveal ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+.passage-card{padding:24px 18px}
+.passage-text{font-size:13.5px;line-height:1.9}
+.choice{padding:12px 14px}
+.question-header{padding:18px 20px;flex-direction:column;align-items:flex-start;gap:10px}
+.q-number{width:36px;height:36px;border-radius:10px;font-size:15px}
+.video-container{padding:14px}
+.toc-grid{grid-template-columns:1fr}
+.nav-links{display:none}
+.question-footer{padding:14px 20px;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+<div class="nav-inner">
+<a href="https://www.keytrend.co.kr" class="logo">🔑 <span>Key Trend</span></a>
+<div class="nav-links">
+<a href="https://www.keytrend.co.kr#features">기능</a>
+<a href="https://www.keytrend.co.kr#pricing">가격</a>
+<a href="https://www.keytrend.co.kr#faq">FAQ</a>
+<a href="https://keytrend.thinkific.com/users/sign_up" class="nav-cta">무료 체험 →</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-badge"><span></span>AI 튜터 실제 시연</div>
+<h1>이런 질문을 하면<br><em>AI가 이렇게 답합니다</em></h1>
+<p class="hero-sub">수능 빈칸추론 문제 하나를 놓고, 학생들이 실제로 할 수 있는<br>10가지 질문과 AI 튜터의 답변을 직접 확인하세요.</p>
+</div>
+</section>
+
+<!-- PASSAGE -->
+<section class="passage-section">
+<div class="passage-inner">
+<div class="section-tag">시연 문제</div>
+<div class="passage-card reveal">
+<div class="passage-label">📝 빈칸추론</div>
+<div class="passage-instruction">다음 빈칸에 들어갈 말로 가장 적절한 것을 고르시오.</div>
+<div class="passage-text">
+The accumulation of metabolic waste within neural tissue exposes a striking oversight in our understanding of cognitive decline. When examining this process, a striking pattern emerges: the brain possesses no conventional lymphatic drainage, yet somehow maintains remarkably clean interstitial spaces during healthy periods. Take the case where cerebrospinal fluid flows along perivascular channels surrounding blood vessels, driven by arterial pulsations and facilitated through specialized water channels on support cell membranes. If this hydraulic clearance operates efficiently, toxic protein aggregates are flushed away before they can form the pathological deposits characteristic of degenerative conditions. In contrast, disrupting these fluid dynamics through sleep deprivation or vascular dysfunction rapidly leads to measurable accumulation of neurotoxic species. Thus, the sophisticated cognitive architecture we possess today was created not by enhanced computational capacity of neurons, but by <span class="blank">_________________________</span>. Picture a scenario in which intellectual performance deteriorates not from neuronal death itself, but from gradual suffocation under uncleared debris.
+</div>
+<div class="choices">
+<div class="choice">
+<div class="choice-num">①</div>
+<div class="choice-text">preventing toxic protein aggregates from forming pathological deposits</div>
+</div>
+<div class="choice">
+<div class="choice-num">②</div>
+<div class="choice-text">hydraulic clearance along perivascular channels surrounding blood vessels</div>
+</div>
+<div class="choice">
+<div class="choice-num">③</div>
+<div class="choice-text">enhanced synaptic plasticity and neuronal computational processing capacity</div>
+</div>
+<div class="choice">
+<div class="choice-num">④</div>
+<div class="choice-text">specialized water channels facilitating cerebrospinal fluid transport mechanisms</div>
+</div>
+<div class="choice correct">
+<div class="choice-num">⑤</div>
+<div class="choice-text">the relentless mechanical efficiency of waste removal systems</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TOC: Question Jump Links -->
+<section class="toc">
+<div class="toc-inner">
+<div class="section-tag">질문 목록</div>
+<div class="toc-grid">
+<a class="toc-item" href="#q1"><div class="toc-num">1</div><div class="toc-label">4번이 오답인 이유</div></a>
+<a class="toc-item" href="#q2"><div class="toc-num">2</div><div class="toc-label">not A but B 핵심 대조</div></a>
+<a class="toc-item" href="#q3"><div class="toc-num">3</div><div class="toc-label">정답 암시 표현 정리</div></a>
+<a class="toc-item" href="#q4"><div class="toc-num">4</div><div class="toc-label">최적화된 풀이 방법</div></a>
+<a class="toc-item" href="#q5"><div class="toc-num">5</div><div class="toc-label">2번이 오답인 이유</div></a>
+<a class="toc-item" href="#q6"><div class="toc-num">6</div><div class="toc-label">지문 구문 분석</div></a>
+<a class="toc-item" href="#q7"><div class="toc-num">7</div><div class="toc-label">지문 문법 분석</div></a>
+<a class="toc-item" href="#q8"><div class="toc-num">8</div><div class="toc-label">빈칸추론 최적 풀이법</div></a>
+<a class="toc-item" href="#q9"><div class="toc-num">9</div><div class="toc-label">보기 1번 vs 4번 차이</div></a>
+<a class="toc-item" href="#q10"><div class="toc-num">10</div><div class="toc-label">마지막 문장과 정답 관계</div></a>
+</div>
+</div>
+</section>
+
+<!-- DEMO VIDEOS -->
+<section class="demo-section">
+<div class="demo-inner">
+<div class="demo-header">
+<div class="section-tag">AI 튜터 시연</div>
+<h2>학생들의 <em>10가지 질문</em>,<br>AI는 이렇게 답합니다</h2>
+<p>각 영상에서 AI 튜터가 실시간으로 답변을 생성하는 과정을 확인하세요</p>
+</div>
+
+<!-- Q1 -->
+<div class="question-card reveal" id="q1">
+<div class="question-header">
+<div class="q-number">1</div>
+<div class="q-meta">
+<div class="q-category cat-analysis">오답 분석</div>
+<div class="q-text">4번이 오답인 이유를 쉽게 자세하게 설명해주세요.</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="Omq2Qs1auZs">
+
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 문맥 인식 답변</span>
+</div>
+</div>
+
+<!-- Q2 -->
+<div class="question-card reveal" id="q2">
+<div class="question-header">
+<div class="q-number">2</div>
+<div class="q-meta">
+<div class="q-category cat-analysis">구조 분석</div>
+<div class="q-text">지문에서 'not A but B' 구조가 강조하는 핵심 대조는 무엇인가요?</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="eWybJ2GLu74">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 문맥 인식 답변</span>
+</div>
+</div>
+
+<!-- Q3 -->
+<div class="question-card reveal" id="q3">
+<div class="question-header">
+<div class="q-number">3</div>
+<div class="q-meta">
+<div class="q-category cat-strategy">풀이 전략</div>
+<div class="q-text">지문에서 정답을 암시하는 표현을 모두 알려주세요.</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="iuJQ-It31kU">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 문맥 인식 답변</span>
+</div>
+</div>
+
+<!-- Q4 -->
+<div class="question-card reveal" id="q4">
+<div class="question-header">
+<div class="q-number">4</div>
+<div class="q-meta">
+<div class="q-category cat-strategy">풀이 전략</div>
+<div class="q-text">이 문제를 정확하고 쉽게 풀 수 있는 가장 최적화된 방법을 알려줘.</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="fB2zk6m5b1k">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 문맥 인식 답변</span>
+</div>
+</div>
+
+<!-- Q5 -->
+<div class="question-card reveal" id="q5">
+<div class="question-header">
+<div class="q-number">5</div>
+<div class="q-meta">
+<div class="q-category cat-analysis">오답 분석</div>
+<div class="q-text">2번 선택지가 지문의 표현을 그대로 사용했는데도 오답인 이유는 무엇인가요?</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="srJLzRdlyP0">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 문맥 인식 답변</span>
+</div>
+</div>
+
+<!-- Q6 -->
+<div class="question-card reveal" id="q6">
+<div class="question-header">
+<div class="q-number">6</div>
+<div class="q-meta">
+<div class="q-category cat-grammar">구문 분석</div>
+<div class="q-text">지문에 나타난 구문에 대해서 설명해주세요.</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="Rw7btqmz3G8">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 구문 해설</span>
+</div>
+</div>
+
+<!-- Q7 -->
+<div class="question-card reveal" id="q7">
+<div class="question-header">
+<div class="q-number">7</div>
+<div class="q-meta">
+<div class="q-category cat-grammar">문법 분석</div>
+<div class="q-text">지문에 나타난 문법에 대해서 설명해주세요.</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="wiAEjnerzgo">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 문법 해설</span>
+</div>
+</div>
+
+<!-- Q8 -->
+<div class="question-card reveal" id="q8">
+<div class="question-header">
+<div class="q-number">8</div>
+<div class="q-meta">
+<div class="q-category cat-strategy">풀이 전략</div>
+<div class="q-text">빈칸추론 문제를 푸는 최적의 풀이법은?</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="YNuh2jrSMck">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 유형별 전략</span>
+</div>
+</div>
+
+<!-- Q9 -->
+<div class="question-card reveal" id="q9">
+<div class="question-header">
+<div class="q-number">9</div>
+<div class="q-meta">
+<div class="q-category cat-compare">보기 비교</div>
+<div class="q-text">보기 1번과 4번의 차이점은?</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="QaB1eiVQxqE">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 선택지 비교</span>
+</div>
+</div>
+
+<!-- Q10 -->
+<div class="question-card reveal" id="q10">
+<div class="question-header">
+<div class="q-number">10</div>
+<div class="q-meta">
+<div class="q-category cat-analysis">근거 분석</div>
+<div class="q-text">"intellectual performance deteriorates not from neuronal death itself, but from gradual suffocation under uncleared debris"가 정답 ⑤번을 뒷받침하는 근거인가요?</div>
+</div>
+</div>
+<div class="video-container">
+<div class="video-wrapper" data-youtube="1xDSEZ2dLvM">
+<div class="video-placeholder">
+<div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+<span>영상 준비 중</span>
+</div>
+</div>
+</div>
+<div class="question-footer">
+<span class="tag tag-ai-badge">🤖 AI 실시간 분석</span>
+<span class="tag tag-context">📎 문맥 인식 답변</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+<h2>이 모든 질문을<br><em>직접 해보세요</em></h2>
+<p>2,600+ 문항에 대해 AI 튜터가 즉시 답변합니다</p>
+<a href="https://keytrend.thinkific.com/users/sign_up" class="btn-primary" style="font-size:18px;padding:16px 40px">무료 체험 시작하기 →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Key Trend. All rights reserved. | <a href="https://www.keytrend.co.kr">홈으로 돌아가기</a> | <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{
+document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)
+})
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(e=>{
+if(e.isIntersecting) e.target.classList.add('visible')
+})
+},{threshold:0.08})
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
+
+// Auto-inject YouTube iframes when data-youtube has a value
+document.querySelectorAll('.video-wrapper[data-youtube]').forEach(wrapper=>{
+const ytId=wrapper.getAttribute('data-youtube').trim()
+const placeholder=wrapper.querySelector('.video-placeholder')
+if(ytId){
+// Create YouTube iframe
+const iframe=document.createElement('iframe')
+iframe.src=`https://www.youtube-nocookie.com/embed/${ytId}?rel=0&modestbranding=1`
+iframe.title='AI 튜터 시연 영상'
+iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+iframe.allowFullscreen=true
+wrapper.insertBefore(iframe,placeholder)
+placeholder.classList.add('hidden')
+}
+})
+</script>
+</body>
+</html>
