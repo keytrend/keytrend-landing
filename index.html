@@ -324,6 +324,32 @@ body{
 .chatbot-container{display:none !important}
 .chatbot-container.open{display:flex !important}
 #chatbot-toggle-btn{display:flex !important;z-index:10000 !important}
+/* ===== CHECKOUT ===== */
+.checkout{padding:100px 24px;text-align:center;position:relative}
+@media(min-width:768px){.checkout{padding:120px 32px}}
+.checkout::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,var(--primary-glow),transparent 60%);pointer-events:none}
+.checkout h2{font-family:var(--font-en);font-size:clamp(26px,4.5vw,46px);font-weight:800;margin-bottom:20px;line-height:1.4;position:relative;word-break:keep-all}
+.checkout>p{color:var(--muted);font-size:17px;margin-bottom:36px;position:relative}
+.checkout-box{max-width:440px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:36px;text-align:left;position:relative;z-index:1}
+.checkout-box h3{font-size:20px;font-weight:700;margin-bottom:20px;text-align:center}
+.checkout-tabs{display:flex;gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:24px}
+.checkout-tabs button{flex:1;padding:10px;border:none;background:var(--bg3);color:var(--muted);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-kr)}
+.checkout-tabs button.active{background:var(--primary);color:white}
+.co-field{margin-bottom:16px}
+.co-field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+.co-field input,.co-field select{width:100%;padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:15px;font-family:var(--font-kr);outline:none;transition:border .2s}
+.co-field input:focus,.co-field select:focus{border-color:var(--primary)}
+.co-field select option{background:var(--bg2)}
+.co-plan-display{background:var(--bg);border:1px solid var(--primary);border-radius:12px;padding:16px;text-align:center;margin-bottom:20px}
+.co-plan-display .plan-name-display{font-size:13px;color:var(--primary-bright);letter-spacing:2px;margin-bottom:4px}
+.co-plan-display .plan-price-display{font-family:var(--font-en);font-size:32px;font-weight:800}
+.co-btn{width:100%;padding:14px;border:none;border-radius:var(--radius-sm);font-size:16px;font-weight:700;cursor:pointer;font-family:var(--font-kr);transition:all .2s}
+.co-btn-primary{background:linear-gradient(135deg,#3b82f6,#6366f1);color:white}
+.co-btn-primary:hover{box-shadow:0 8px 24px rgba(59,130,246,.35);transform:translateY(-2px)}
+.co-btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.co-msg{padding:10px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
+.co-msg.error{display:block;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171}
+.co-msg.success{display:block;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#22c55e}
 /* DEMO BANNER */
 .demo-banner{padding:20px 24px 80px;text-align:center}
 .demo-banner a{display:inline-flex;align-items:center;gap:10px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);padding:20px 40px;border-radius:100px;text-decoration:none;color:#818cf8;font-size:clamp(16px,2.2vw,26px);font-weight:700;transition:all .3s;text-align:center}
@@ -627,7 +653,7 @@ body{
           <li>챗봇 기능: 복잡한 질문 100회/월</li>
           <li>수능 어휘 4,605개 (퀴즈 무제한)</li> 
         </ul>
-        <button class="plan-btn plan-btn-line" onclick="location.href='#start'">기본형 시작하기</button>
+        <button class="plan-btn plan-btn-line" onclick="selectPlan('standard')">기본형 시작하기</button>
       </div>
       <div class="plan-card best">
         <div class="plan-name">고급형</div>
@@ -640,7 +666,7 @@ body{
           <li class="em-hot">챗봇 기능: 복잡한 질문 250회/월</li>
           <li>수능 어휘 4,605개 (퀴즈 무제한)</li> 
         </ul>
-        <button class="plan-btn plan-btn-fill" onclick="location.href='#start'">고급형 시작하기 →</button>
+        <button class="plan-btn plan-btn-fill" onclick="selectPlan('premium')">고급형 시작하기 →</button>
       </div>
     </div>
   </div>
@@ -675,11 +701,52 @@ body{
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta" id="start">
-  <h2>수능 영어, 더 이상<br><span class="hl">혼자 고민하지 마세요</span></h2>
-  <p>지금 시작하면 2,600+ 문항과 AI 튜터를 바로 만날 수 있습니다</p>
-  <a href="#" class="btn-main">무료 체험 시작하기 →</a>
+<!-- CHECKOUT -->
+<section class="checkout" id="start">
+<h2>수능 영어, 더 이상<br><span class="hl">혼자 고민하지 마세요</span></h2>
+<p>지금 시작하면 2,600+ 문항과 AI 튜터를 바로 만날 수 있습니다</p>
+<div class="checkout-box" id="co-box">
+    <div id="co-auth">
+        <h3 id="co-auth-title">로그인</h3>
+        <div class="checkout-tabs">
+            <button class="active" onclick="switchAuthTab('login')">로그인</button>
+            <button onclick="switchAuthTab('signup')">회원가입</button>
+        </div>
+        <div id="co-auth-msg" class="co-msg"></div>
+        <div class="co-field">
+            <label>이메일</label>
+            <input type="email" id="co-email" placeholder="이메일 입력">
+        </div>
+        <div class="co-field">
+            <label>비밀번호</label>
+            <input type="password" id="co-password" placeholder="비밀번호 입력">
+        </div>
+        <div class="co-field" id="co-name-field" style="display:none">
+            <label>이름</label>
+            <input type="text" id="co-name" placeholder="이름 입력">
+        </div>
+        <button class="co-btn co-btn-primary" id="co-auth-btn" onclick="doAuth()">로그인</button>
+    </div>
+    <div id="co-payment" style="display:none">
+        <h3>플랜 선택 & 결제</h3>
+        <div id="co-pay-msg" class="co-msg"></div>
+        <div class="co-field">
+            <label>플랜</label>
+            <select id="co-plan" onchange="updateCheckoutPrice()">
+                <option value="standard_monthly">기본형 월간 - ₩9,900</option>
+                <option value="standard_yearly">기본형 연간 - ₩89,000</option>
+                <option value="premium_monthly">고급형 월간 - ₩14,900</option>
+                <option value="premium_yearly">고급형 연간 - ₩134,000</option>
+            </select>
+        </div>
+        <div class="co-plan-display">
+            <div class="plan-name-display" id="co-display-name">기본형 월간</div>
+            <div class="plan-price-display" id="co-display-price">₩9,900</div>
+        </div>
+        <button class="co-btn co-btn-primary" id="co-pay-btn" onclick="startCheckoutPayment()">결제하기</button>
+        <div class="co-toggle"><span id="co-user-email" style="color:#9ba3b5"></span></div>
+    </div>
+</div>
 </section>
 
 <!-- FOOTER -->
@@ -784,6 +851,18 @@ window.addEventListener('scroll',()=>{
 mobileCta.style.transform='translateY(100%)'
 mobileCta.style.opacity='0'
 mobileCta.style.transition='all .3s ease'
+</script>
+<script src="https://lite.payapp.kr/public/api/v2/payapp-lite.js"></script>
+<script>
+const API_BASE='https://english-exam-chatbot.onrender.com';
+let coToken=null,coAuthMode='login',coPayAppUserId='';
+const CO_PRICES={standard_monthly:{amount:'₩9,900',label:'기본형 월간'},standard_yearly:{amount:'₩89,000',label:'기본형 연간'},premium_monthly:{amount:'₩14,900',label:'고급형 월간'},premium_yearly:{amount:'₩134,000',label:'고급형 연간'}};
+(async function(){try{const r=await fetch(API_BASE+'/api/payment/plans');const d=await r.json();if(d.payapp&&d.payapp.userid)coPayAppUserId=d.payapp.userid;}catch(e){}})();
+function selectPlan(t){var y=document.querySelector('.pricing-toggle button:last-child').classList.contains('active');var k=t+'_'+(y?'yearly':'monthly');document.getElementById('start').scrollIntoView({behavior:'smooth'});setTimeout(function(){if(coToken){document.getElementById('co-plan').value=k;updateCheckoutPrice();}else{window._pendingPlan=k;}},500);}
+function switchAuthTab(m){coAuthMode=m;document.querySelectorAll('.checkout-tabs button').forEach(function(b){b.classList.remove('active')});event.target.classList.add('active');document.getElementById('co-name-field').style.display=m==='signup'?'block':'none';document.getElementById('co-auth-btn').textContent=m==='signup'?'회원가입':'로그인';document.getElementById('co-auth-title').textContent=m==='signup'?'회원가입':'로그인';document.getElementById('co-auth-msg').className='co-msg';}
+async function doAuth(){var e=document.getElementById('co-email').value,p=document.getElementById('co-password').value,n=document.getElementById('co-name').value,msg=document.getElementById('co-auth-msg'),btn=document.getElementById('co-auth-btn');if(!e||!p){msg.className='co-msg error';msg.textContent='이메일과 비밀번호를 입력하세요.';return;}if(coAuthMode==='signup'&&!n){msg.className='co-msg error';msg.textContent='이름을 입력하세요.';return;}btn.disabled=true;btn.textContent='처리 중...';try{var ep=coAuthMode==='signup'?'/api/auth/signup':'/api/auth/login';var bd=coAuthMode==='signup'?{email:e,password:p,name:n}:{email:e,password:p};var res=await fetch(API_BASE+ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(bd)});var data=await res.json();if(data.success||data.token){coToken=data.token;document.getElementById('co-auth').style.display='none';document.getElementById('co-payment').style.display='block';document.getElementById('co-user-email').textContent=e+' 로 로그인됨';if(window._pendingPlan){document.getElementById('co-plan').value=window._pendingPlan;updateCheckoutPrice();window._pendingPlan=null;}}else{msg.className='co-msg error';msg.textContent=data.error||'로그인 실패';}}catch(x){msg.className='co-msg error';msg.textContent='서버 연결 오류';}btn.disabled=false;btn.textContent=coAuthMode==='signup'?'회원가입':'로그인';}
+function updateCheckoutPrice(){var v=document.getElementById('co-plan').value;document.getElementById('co-display-name').textContent=CO_PRICES[v].label;document.getElementById('co-display-price').textContent=CO_PRICES[v].amount;}
+async function startCheckoutPayment(){var s=document.getElementById('co-plan').value.split('_'),pt=s[0],bc=s[1],btn=document.getElementById('co-pay-btn'),msg=document.getElementById('co-pay-msg');btn.disabled=true;btn.textContent='결제 준비 중...';msg.className='co-msg';try{var res=await fetch(API_BASE+'/api/payment/prepare',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+coToken},body:JSON.stringify({plan_type:pt,billing_cycle:bc})});var data=await res.json();if(!data.success){msg.className='co-msg error';msg.textContent='결제 준비 실패: '+(data.error||'');btn.disabled=false;btn.textContent='결제하기';return;}var p=data.payapp_params;PayApp.setDefault('userid',coPayAppUserId);PayApp.setDefault('shopname','Key Trend');PayApp.setParam('goodname',p.goodname);PayApp.setParam('price',p.price);PayApp.setParam('feedbackurl',p.feedbackurl);PayApp.setParam('returnurl',p.returnurl||'https://www.keytrend.co.kr/payment/complete/');PayApp.setParam('var1',p.var1);PayApp.setParam('var2',p.var2);PayApp.setParam('checkretry','y');PayApp.setParam('smsuse','n');PayApp.setParam('redirectpay','1');PayApp.setParam('skip_cstpage','y');PayApp.payrequest();}catch(x){msg.className='co-msg error';msg.textContent='오류: '+x.message;}btn.disabled=false;btn.textContent='결제하기';}
 </script>
 <script src="https://english-exam-chatbot.onrender.com/chatbot-widget-v3.js"></script>
 </body>
