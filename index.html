@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -701,7 +701,7 @@ body{
       <div style="background:rgba(30,41,59,.5);border:1px solid rgba(251,191,36,.25);border-radius:16px;padding:32px 24px;text-align:center;position:relative;">
         <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1e1b4b;padding:3px 12px;border-radius:8px;font-size:11px;font-weight:700;">BIG 보상</div>
         <div style="font-size:14px;color:#fbbf24;font-weight:700;margin-bottom:8px;">2단계</div>
-        <div style="font-size:20px;font-weight:800;margin-bottom:4px;">친구가 유료 구독</div>
+        <div style="font-size:20px;font-weight:800;margin-bottom:4px;">친구(피추천인 B)가 유료 구독</div>
         <div style="color:#888;font-size:14px;margin-bottom:20px;">결제하면 큰 보상!</div>
         <div style="display:flex;gap:12px;justify-content:center;">
           <div style="background:rgba(99,102,241,.12);border-radius:10px;padding:12px 16px;flex:1;">
@@ -758,10 +758,10 @@ body{
     <!-- Step 0: Thinkific 가입 확인 -->
     <div id="co-step0">
         <h3>시작하기</h3>
-        <p style="color:#9ba3b5;font-size:14px;margin-bottom:20px;line-height:1.7;">Key Trend는 <strong style="color:#60a5fa">Thinkific</strong> 플랫폼에서 코스를 제공합니다.<br>먼저 Thinkific 회원가입이 필요합니다.</p>
+        <p style="color:#9ba3b5;font-size:14px;margin-bottom:20px;line-height:1.7;">Key Trend를 이용하려면 먼저 회원가입이 필요합니다.</p>
         <div style="display:flex;flex-direction:column;gap:12px;">
-            <button class="co-btn co-btn-primary" onclick="document.getElementById('co-step0').style.display='none';document.getElementById('co-auth').style.display='block';">이미 Thinkific에 가입했어요 ✓</button>
-            <a href="https://keytrend.thinkific.com/users/sign_up" target="_blank" class="co-btn" style="display:block;text-align:center;background:transparent;border:1px solid rgba(99,102,241,.4);color:#818cf8;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;">Thinkific 회원가입하기 →</a>
+            <button class="co-btn co-btn-primary" onclick="document.getElementById('co-step0').style.display='none';document.getElementById('co-auth').style.display='block';">이미 회원가입했어요 ✓</button>
+            <a href="https://keytrend.thinkific.com/users/sign_up" target="_blank" class="co-btn" style="display:block;text-align:center;background:transparent;border:1px solid rgba(99,102,241,.4);color:#818cf8;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;">회원가입하기 →</a>
             <p style="color:#666;font-size:12px;text-align:center;margin-top:4px;">회원가입 후 이 페이지로 돌아와 아래 버튼을 눌러주세요</p>
             <button class="co-btn" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#9ba3b5;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;" onclick="document.getElementById('co-step0').style.display='none';document.getElementById('co-auth').style.display='block';">가입 완료했어요, 다음 단계로 →</button>
         </div>
@@ -770,11 +770,11 @@ body{
     <div id="co-auth" style="display:none">
         <h3 id="co-auth-title">이메일 확인 & 결제</h3>
         <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px;color:#9ba3b5;line-height:1.6;">
-            💡 <strong style="color:#60a5fa">Thinkific에서 가입한 이메일</strong>을 그대로 입력하세요.
+            💡 <strong style="color:#60a5fa">회원가입 시 사용한 이메일</strong>을 그대로 입력하세요.
         </div>
         <div id="co-auth-msg" class="co-msg"></div>
         <div class="co-field">
-            <label>이메일 (Thinkific 가입 이메일)</label>
+            <label>이메일</label>
             <input type="email" id="co-email" placeholder="이메일 입력">
         </div>
         <div class="co-field">
