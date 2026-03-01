@@ -707,25 +707,17 @@ body{
 <p>지금 시작하면 2,600+ 문항과 AI 튜터를 바로 만날 수 있습니다</p>
 <div class="checkout-box" id="co-box">
     <div id="co-auth">
-        <h3 id="co-auth-title">로그인</h3>
-        <div class="checkout-tabs">
-            <button class="active" onclick="switchAuthTab('login')">로그인</button>
-            <button onclick="switchAuthTab('signup')">회원가입</button>
+        <h3 id="co-auth-title">이메일 확인 & 결제</h3>
+        <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px;color:#9ba3b5;line-height:1.6;">
+            💡 <strong style="color:#60a5fa">Thinkific 가입 이메일</strong>과 동일한 이메일을 입력하세요.<br>
+            아직 가입하지 않았다면 <a href="https://keytrend.thinkific.com/users/sign_in" target="_blank" style="color:#60a5fa;font-weight:700;">먼저 Thinkific에서 가입</a>해주세요.
         </div>
         <div id="co-auth-msg" class="co-msg"></div>
         <div class="co-field">
-            <label>이메일</label>
+            <label>이메일 (Thinkific 가입 이메일)</label>
             <input type="email" id="co-email" placeholder="이메일 입력">
         </div>
-        <div class="co-field">
-            <label>비밀번호</label>
-            <input type="password" id="co-password" placeholder="비밀번호 입력">
-        </div>
-        <div class="co-field" id="co-name-field" style="display:none">
-            <label>이름</label>
-            <input type="text" id="co-name" placeholder="이름 입력">
-        </div>
-        <button class="co-btn co-btn-primary" id="co-auth-btn" onclick="doAuth()">로그인</button>
+        <button class="co-btn co-btn-primary" id="co-auth-btn" onclick="doAuth()">다음 →</button>
     </div>
     <div id="co-payment" style="display:none">
         <h3>플랜 선택 & 결제</h3>
@@ -855,12 +847,11 @@ mobileCta.style.transition='all .3s ease'
 <script src="https://lite.payapp.kr/public/api/v2/payapp-lite.js"></script>
 <script>
 const API_BASE='https://english-exam-chatbot.onrender.com';
-let coToken=null,coAuthMode='login',coPayAppUserId='';
+let coToken=null,coPayAppUserId='';
 const CO_PRICES={standard_monthly:{amount:'₩9,900',label:'기본형 월간'},standard_yearly:{amount:'₩89,000',label:'기본형 연간'},premium_monthly:{amount:'₩14,900',label:'고급형 월간'},premium_yearly:{amount:'₩134,000',label:'고급형 연간'}};
 (async function(){try{const r=await fetch(API_BASE+'/api/payment/plans');const d=await r.json();if(d.payapp&&d.payapp.userid)coPayAppUserId=d.payapp.userid;}catch(e){}})();
 function selectPlan(t){var y=document.querySelector('.pricing-toggle button:last-child').classList.contains('active');var k=t+'_'+(y?'yearly':'monthly');document.getElementById('start').scrollIntoView({behavior:'smooth'});setTimeout(function(){if(coToken){document.getElementById('co-plan').value=k;updateCheckoutPrice();}else{window._pendingPlan=k;}},500);}
-function switchAuthTab(m){coAuthMode=m;document.querySelectorAll('.checkout-tabs button').forEach(function(b){b.classList.remove('active')});event.target.classList.add('active');document.getElementById('co-name-field').style.display=m==='signup'?'block':'none';document.getElementById('co-auth-btn').textContent=m==='signup'?'회원가입':'로그인';document.getElementById('co-auth-title').textContent=m==='signup'?'회원가입':'로그인';document.getElementById('co-auth-msg').className='co-msg';}
-async function doAuth(){var e=document.getElementById('co-email').value,p=document.getElementById('co-password').value,n=document.getElementById('co-name').value,msg=document.getElementById('co-auth-msg'),btn=document.getElementById('co-auth-btn');if(!e||!p){msg.className='co-msg error';msg.textContent='이메일과 비밀번호를 입력하세요.';return;}if(coAuthMode==='signup'&&!n){msg.className='co-msg error';msg.textContent='이름을 입력하세요.';return;}btn.disabled=true;btn.textContent='처리 중...';try{var ep=coAuthMode==='signup'?'/api/auth/signup':'/api/auth/login';var bd=coAuthMode==='signup'?{email:e,password:p,name:n}:{email:e,password:p};var res=await fetch(API_BASE+ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(bd)});var data=await res.json();if(data.success||data.token){coToken=data.token;document.getElementById('co-auth').style.display='none';document.getElementById('co-payment').style.display='block';document.getElementById('co-user-email').textContent=e+' 로 로그인됨';if(window._pendingPlan){document.getElementById('co-plan').value=window._pendingPlan;updateCheckoutPrice();window._pendingPlan=null;}}else{msg.className='co-msg error';msg.textContent=data.error||'로그인 실패';}}catch(x){msg.className='co-msg error';msg.textContent='서버 연결 오류';}btn.disabled=false;btn.textContent=coAuthMode==='signup'?'회원가입':'로그인';}
+async function doAuth(){var e=document.getElementById('co-email').value.trim(),msg=document.getElementById('co-auth-msg'),btn=document.getElementById('co-auth-btn');if(!e){msg.className='co-msg error';msg.textContent='이메일을 입력하세요.';return;}var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!emailRegex.test(e)){msg.className='co-msg error';msg.textContent='올바른 이메일 형식이 아닙니다.';return;}btn.disabled=true;btn.textContent='확인 중...';try{var res=await fetch(API_BASE+'/api/auth/thinkific',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,name:e.split('@')[0]})});var data=await res.json();if(data.success&&data.token){coToken=data.token;document.getElementById('co-auth').style.display='none';document.getElementById('co-payment').style.display='block';document.getElementById('co-user-email').textContent=e;if(window._pendingPlan){document.getElementById('co-plan').value=window._pendingPlan;updateCheckoutPrice();window._pendingPlan=null;}}else{msg.className='co-msg error';msg.textContent=data.error||'인증 실패';}}catch(x){msg.className='co-msg error';msg.textContent='서버 연결 오류. 잠시 후 다시 시도해주세요.';}btn.disabled=false;btn.textContent='다음 →';}
 function updateCheckoutPrice(){var v=document.getElementById('co-plan').value;document.getElementById('co-display-name').textContent=CO_PRICES[v].label;document.getElementById('co-display-price').textContent=CO_PRICES[v].amount;}
 async function startCheckoutPayment(){var s=document.getElementById('co-plan').value.split('_'),pt=s[0],bc=s[1],btn=document.getElementById('co-pay-btn'),msg=document.getElementById('co-pay-msg');btn.disabled=true;btn.textContent='결제 준비 중...';msg.className='co-msg';try{var res=await fetch(API_BASE+'/api/payment/prepare',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+coToken},body:JSON.stringify({plan_type:pt,billing_cycle:bc})});var data=await res.json();if(!data.success){msg.className='co-msg error';msg.textContent='결제 준비 실패: '+(data.error||'');btn.disabled=false;btn.textContent='결제하기';return;}var p=data.payapp_params;PayApp.setDefault('userid',coPayAppUserId);PayApp.setDefault('shopname','Key Trend');PayApp.setParam('goodname',p.goodname);PayApp.setParam('price',p.price);PayApp.setParam('feedbackurl',p.feedbackurl);PayApp.setParam('returnurl',p.returnurl||'https://www.keytrend.co.kr/payment/complete/');PayApp.setParam('var1',p.var1);PayApp.setParam('var2',p.var2);PayApp.setParam('checkretry','y');PayApp.setParam('smsuse','n');PayApp.setParam('redirectpay','1');PayApp.setParam('skip_cstpage','y');PayApp.payrequest();}catch(x){msg.className='co-msg error';msg.textContent='오류: '+x.message;}btn.disabled=false;btn.textContent='결제하기';}
 </script>
