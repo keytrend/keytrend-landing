@@ -672,6 +672,55 @@ body{
   </div>
 </section>
 
+<!-- REFERRAL (Dropbox-style 2단계) -->
+<section class="section" id="referral" style="background: linear-gradient(135deg, rgba(99,102,241,.06) 0%, rgba(168,85,247,.06) 100%);">
+  <div class="container section-center">
+    <div class="section-tag">친구 초대 보상</div>
+    <h2 class="section-title">친구와 함께 공부하면<br><span style="color:#6366f1">'복잡한 질문' 횟수</span>를 추가로 더 제공받아요</h2>
+    <p style="color:#888;margin-bottom:48px;font-size:16px;">내가 친구를 추천하면 나와 친구 양쪽 모두 보상</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto;">
+      <!-- 1단계 -->
+      <div style="background:rgba(30,41,59,.5);border:1px solid rgba(99,102,241,.25);border-radius:16px;padding:32px 24px;text-align:center;">
+        <div style="font-size:14px;color:#818cf8;font-weight:700;margin-bottom:8px;">1단계</div>
+        <div style="font-size:20px;font-weight:800;margin-bottom:4px;">친구가 무료 가입하는 경우</div>
+        <div style="color:#888;font-size:14px;margin-bottom:20px;">가입만 해도 바로 보상!</div>
+        <div style="display:flex;gap:12px;justify-content:center;">
+          <div style="background:rgba(99,102,241,.12);border-radius:10px;padding:12px 16px;flex:1;">
+            <div style="font-size:11px;color:#888;">나(추천인 A)</div>
+            <div style="font-size:22px;font-weight:800;color:#6366f1;">+5회</div>
+            <div style="font-size:11px;color:#888;">복잡한 질문 충전</div>
+          </div>
+          <div style="background:rgba(52,211,153,.12);border-radius:10px;padding:12px 16px;flex:1;">
+            <div style="font-size:11px;color:#888;">친구(피추천인 B)</div>
+            <div style="font-size:22px;font-weight:800;color:#34d399;">+3회</div>
+            <div style="font-size:11px;color:#888;">복잡한 질문 충전</div>
+          </div>
+        </div>
+      </div>
+      <!-- 2단계 -->
+      <div style="background:rgba(30,41,59,.5);border:1px solid rgba(251,191,36,.25);border-radius:16px;padding:32px 24px;text-align:center;position:relative;">
+        <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1e1b4b;padding:3px 12px;border-radius:8px;font-size:11px;font-weight:700;">BIG 보상</div>
+        <div style="font-size:14px;color:#fbbf24;font-weight:700;margin-bottom:8px;">2단계</div>
+        <div style="font-size:20px;font-weight:800;margin-bottom:4px;">친구(피추천인 B)가 유료 구독</div>
+        <div style="color:#888;font-size:14px;margin-bottom:20px;">결제하면 큰 보상!</div>
+        <div style="display:flex;gap:12px;justify-content:center;">
+          <div style="background:rgba(99,102,241,.12);border-radius:10px;padding:12px 16px;flex:1;">
+            <div style="font-size:11px;color:#888;">나(추천인 A)</div>
+            <div style="font-size:22px;font-weight:800;color:#6366f1;">+30회</div>
+            <div style="font-size:11px;color:#888;">복잡한 질문 충전</div>
+          </div>
+          <div style="background:rgba(52,211,153,.12);border-radius:10px;padding:12px 16px;flex:1;">
+            <div style="font-size:11px;color:#888;">친구(피추천인 B)</div>
+            <div style="font-size:18px;font-weight:800;color:#34d399;">20%할인</div>
+            <div style="font-size:11px;color:#888;">첫달 할인 + 복잡한 질문 +10회</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="color:#666;font-size:13px;margin-top:24px;">💡 추천 코드는 회원가입 후 AI 튜터 챗봇에서 확인할 수 있습니다 (1인당 최대 10명 추천)</p>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="section faq-bg" id="faq">
   <div class="container section-center">
@@ -706,19 +755,37 @@ body{
 <h2>수능 영어, 더 이상<br><span class="hl">혼자 고민하지 마세요</span></h2>
 <p>지금 시작하면 2,600+ 문항과 AI 튜터를 바로 만날 수 있습니다</p>
 <div class="checkout-box" id="co-box">
-    <div id="co-auth">
+    <!-- Step 0: Thinkific 가입 확인 -->
+    <div id="co-step0">
+        <h3>시작하기</h3>
+        <p style="color:#9ba3b5;font-size:14px;margin-bottom:20px;line-height:1.7;">Key Trend는 <strong style="color:#60a5fa">Thinkific</strong> 플랫폼에서 코스를 제공합니다.<br>먼저 Thinkific 회원가입이 필요합니다.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+            <button class="co-btn co-btn-primary" onclick="document.getElementById('co-step0').style.display='none';document.getElementById('co-auth').style.display='block';">이미 Thinkific에 가입했어요 ✓</button>
+            <a href="https://keytrend.thinkific.com/users/sign_up" target="_blank" class="co-btn" style="display:block;text-align:center;background:transparent;border:1px solid rgba(99,102,241,.4);color:#818cf8;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;">Thinkific 회원가입하기 →</a>
+            <p style="color:#666;font-size:12px;text-align:center;margin-top:4px;">회원가입 후 이 페이지로 돌아와 아래 버튼을 눌러주세요</p>
+            <button class="co-btn" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#9ba3b5;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;" onclick="document.getElementById('co-step0').style.display='none';document.getElementById('co-auth').style.display='block';">가입 완료했어요, 다음 단계로 →</button>
+        </div>
+    </div>
+    <!-- Step 1: 이메일 확인 -->
+    <div id="co-auth" style="display:none">
         <h3 id="co-auth-title">이메일 확인 & 결제</h3>
         <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px;color:#9ba3b5;line-height:1.6;">
-            💡 <strong style="color:#60a5fa">Thinkific 가입 이메일</strong>과 동일한 이메일을 입력하세요.<br>
-            아직 가입하지 않았다면 <a href="https://keytrend.thinkific.com/users/sign_in" target="_blank" style="color:#60a5fa;font-weight:700;">먼저 Thinkific에서 가입</a>해주세요.
+            💡 <strong style="color:#60a5fa">Thinkific에서 가입한 이메일</strong>을 그대로 입력하세요.
         </div>
         <div id="co-auth-msg" class="co-msg"></div>
         <div class="co-field">
             <label>이메일 (Thinkific 가입 이메일)</label>
             <input type="email" id="co-email" placeholder="이메일 입력">
         </div>
+        <div class="co-field">
+            <label>추천 코드 (선택사항)</label>
+            <input type="text" id="co-referral" placeholder="추천 코드가 있으면 입력" maxlength="8" style="text-transform:uppercase;">
+            <div id="co-referral-msg" style="font-size:12px;margin-top:4px;color:#888;"></div>
+        </div>
         <button class="co-btn co-btn-primary" id="co-auth-btn" onclick="doAuth()">다음 →</button>
+        <p style="color:#666;font-size:12px;text-align:center;margin-top:12px;cursor:pointer;" onclick="document.getElementById('co-auth').style.display='none';document.getElementById('co-step0').style.display='block';">← 아직 가입 안 했어요</p>
     </div>
+    <!-- Step 2: 결제 -->
     <div id="co-payment" style="display:none">
         <h3>플랜 선택 & 결제</h3>
         <div id="co-pay-msg" class="co-msg"></div>
@@ -850,8 +917,10 @@ const API_BASE='https://english-exam-chatbot.onrender.com';
 let coToken=null,coPayAppUserId='';
 const CO_PRICES={standard_monthly:{amount:'₩9,900',label:'기본형 월간'},standard_yearly:{amount:'₩89,000',label:'기본형 연간'},premium_monthly:{amount:'₩14,900',label:'고급형 월간'},premium_yearly:{amount:'₩134,000',label:'고급형 연간'}};
 (async function(){try{const r=await fetch(API_BASE+'/api/payment/plans');const d=await r.json();if(d.payapp&&d.payapp.userid)coPayAppUserId=d.payapp.userid;}catch(e){}})();
+// 추천 코드 URL 파라미터 처리 (?ref=CODE)
+(function(){var params=new URLSearchParams(window.location.search);var refCode=params.get('ref');if(refCode){var step0=document.getElementById('co-step0');var coAuth=document.getElementById('co-auth');if(step0)step0.style.display='none';if(coAuth)coAuth.style.display='block';var refInput=document.getElementById('co-referral');if(refInput){refInput.value=refCode.toUpperCase();document.getElementById('co-referral-msg').innerHTML='<span style="color:#34d399">✓ 추천 링크로 접속! 가입하면 AI 질문 +3회 보너스</span>';}setTimeout(function(){document.getElementById('start').scrollIntoView({behavior:'smooth'});},500);}})();
 function selectPlan(t){var y=document.querySelector('.pricing-toggle button:last-child').classList.contains('active');var k=t+'_'+(y?'yearly':'monthly');document.getElementById('start').scrollIntoView({behavior:'smooth'});setTimeout(function(){if(coToken){document.getElementById('co-plan').value=k;updateCheckoutPrice();}else{window._pendingPlan=k;}},500);}
-async function doAuth(){var e=document.getElementById('co-email').value.trim(),msg=document.getElementById('co-auth-msg'),btn=document.getElementById('co-auth-btn');if(!e){msg.className='co-msg error';msg.textContent='이메일을 입력하세요.';return;}var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!emailRegex.test(e)){msg.className='co-msg error';msg.textContent='올바른 이메일 형식이 아닙니다.';return;}btn.disabled=true;btn.textContent='확인 중...';try{var res=await fetch(API_BASE+'/api/auth/thinkific',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,name:e.split('@')[0]})});var data=await res.json();if(data.success&&data.token){coToken=data.token;document.getElementById('co-auth').style.display='none';document.getElementById('co-payment').style.display='block';document.getElementById('co-user-email').textContent=e;if(window._pendingPlan){document.getElementById('co-plan').value=window._pendingPlan;updateCheckoutPrice();window._pendingPlan=null;}}else{msg.className='co-msg error';msg.textContent=data.error||'인증 실패';}}catch(x){msg.className='co-msg error';msg.textContent='서버 연결 오류. 잠시 후 다시 시도해주세요.';}btn.disabled=false;btn.textContent='다음 →';}
+async function doAuth(){var e=document.getElementById('co-email').value.trim(),refCode=(document.getElementById('co-referral').value||'').trim().toUpperCase(),msg=document.getElementById('co-auth-msg'),btn=document.getElementById('co-auth-btn');if(!e){msg.className='co-msg error';msg.textContent='이메일을 입력하세요.';return;}var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!emailRegex.test(e)){msg.className='co-msg error';msg.textContent='올바른 이메일 형식이 아닙니다.';return;}btn.disabled=true;btn.textContent='확인 중...';try{var body={email:e,name:e.split('@')[0]};if(refCode)body.referral_code=refCode;var res=await fetch(API_BASE+'/api/auth/thinkific',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});var data=await res.json();if(data.success&&data.token){coToken=data.token;document.getElementById('co-auth').style.display='none';document.getElementById('co-payment').style.display='block';document.getElementById('co-user-email').textContent=e;if(data.is_new_user&&refCode){document.getElementById('co-pay-msg').innerHTML='<span style="color:#34d399">✓ 추천 코드 적용! AI 질문 +3회 보너스 지급됨</span>';document.getElementById('co-pay-msg').className='co-msg';}if(window._pendingPlan){document.getElementById('co-plan').value=window._pendingPlan;updateCheckoutPrice();window._pendingPlan=null;}}else{msg.className='co-msg error';msg.textContent=data.error||'인증 실패';}}catch(x){msg.className='co-msg error';msg.textContent='서버 연결 오류. 잠시 후 다시 시도해주세요.';}btn.disabled=false;btn.textContent='다음 →';}
 function updateCheckoutPrice(){var v=document.getElementById('co-plan').value;document.getElementById('co-display-name').textContent=CO_PRICES[v].label;document.getElementById('co-display-price').textContent=CO_PRICES[v].amount;}
 async function startCheckoutPayment(){var s=document.getElementById('co-plan').value.split('_'),pt=s[0],bc=s[1],btn=document.getElementById('co-pay-btn'),msg=document.getElementById('co-pay-msg');btn.disabled=true;btn.textContent='결제 준비 중...';msg.className='co-msg';try{var res=await fetch(API_BASE+'/api/payment/prepare',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+coToken},body:JSON.stringify({plan_type:pt,billing_cycle:bc})});var data=await res.json();if(!data.success){msg.className='co-msg error';msg.textContent='결제 준비 실패: '+(data.error||'');btn.disabled=false;btn.textContent='결제하기';return;}var p=data.payapp_params;PayApp.setDefault('userid',coPayAppUserId);PayApp.setDefault('shopname','Key Trend');PayApp.setParam('goodname',p.goodname);PayApp.setParam('price',p.price);PayApp.setParam('feedbackurl',p.feedbackurl);PayApp.setParam('returnurl',p.returnurl||'https://www.keytrend.co.kr/payment/complete/');PayApp.setParam('var1',p.var1);PayApp.setParam('var2',p.var2);PayApp.setParam('checkretry','y');PayApp.setParam('smsuse','n');PayApp.setParam('redirectpay','1');PayApp.setParam('skip_cstpage','y');PayApp.payrequest();}catch(x){msg.className='co-msg error';msg.textContent='오류: '+x.message;}btn.disabled=false;btn.textContent='결제하기';}
 </script>
