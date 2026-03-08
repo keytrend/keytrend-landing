@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>이용약관 - Key Trend</title>
+<meta name="description" content="Key Trend 이용약관">
+<meta name="theme-color" content="#0b1120">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b1120;
+  --bg2:#111827;
+  --bg3:#1a2332;
+  --surface:#1e293b;
+  --border:#2a3a4e;
+  --text:#ffffff;
+  --muted:#9ba3b5;
+  --primary:#3b82f6;
+  --primary-bright:#60a5fa;
+  --primary-glow:rgba(59,130,246,.15);
+  --accent:#f59e0b;
+  --success:#22c55e;
+  --font-en:'Sora', sans-serif;
+  --font-kr:'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  --radius:14px;
+  --radius-sm:10px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-kr);background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 0;background:rgba(11,17,32,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+@media(min-width:768px){.nav-inner{padding:0 32px}}
+.nav-logo{font-family:var(--font-en);font-weight:800;font-size:20px;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-.5px}
+.nav-logo i{font-size:22px;font-style:normal}
+.nav-logo span{color:var(--primary-bright)}
+.nav-back{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;display:flex;align-items:center;gap:6px}
+.nav-back:hover{color:var(--primary-bright)}
+
+/* CONTENT */
+.terms-hero{padding:120px 20px 40px;text-align:center;position:relative}
+.terms-hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(circle,var(--primary-glow),transparent 70%);pointer-events:none}
+.terms-hero h1{font-family:var(--font-en);font-size:clamp(28px,5vw,42px);font-weight:800;margin-bottom:12px;position:relative}
+.terms-hero h1 .hl{background:linear-gradient(135deg,var(--primary-bright),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.terms-hero p{color:var(--muted);font-size:15px;position:relative}
+
+.terms-wrap{max-width:800px;margin:0 auto;padding:40px 20px 100px}
+@media(min-width:768px){.terms-wrap{padding:40px 32px 120px}}
+
+.terms-section{margin-bottom:48px}
+.terms-section h2{font-family:var(--font-en);font-size:20px;font-weight:700;color:var(--primary-bright);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.terms-section h2 .num{background:linear-gradient(135deg,var(--primary),#6366f1);color:white;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0}
+
+.terms-section h3{font-size:16px;font-weight:700;color:var(--text);margin:20px 0 10px}
+
+.terms-section p,.terms-section li{font-size:14px;color:var(--muted);line-height:1.85}
+.terms-section p{margin-bottom:12px}
+.terms-section ul,.terms-section ol{padding-left:20px;margin-bottom:14px}
+.terms-section li{margin-bottom:6px}
+.terms-section li::marker{color:var(--primary-bright)}
+
+.terms-section .sub-item{padding-left:16px;border-left:2px solid var(--border);margin:8px 0 8px 4px}
+.terms-section .sub-item p{margin-bottom:6px}
+
+/* TABLE */
+.terms-table-wrap{overflow-x:auto;margin:16px 0 20px;border-radius:var(--radius-sm);border:1px solid var(--border)}
+.terms-table{width:100%;border-collapse:collapse;min-width:400px}
+.terms-table th,.terms-table td{padding:12px 14px;text-align:center;font-size:13px;border-bottom:1px solid var(--border)}
+.terms-table thead th{background:var(--bg2);color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.5px}
+.terms-table tbody td{color:var(--muted)}
+.terms-table tbody td:first-child{text-align:left;font-weight:600;color:var(--text)}
+.terms-table tbody tr:last-child td{border-bottom:none}
+.terms-table tbody tr:hover{background:rgba(59,130,246,.03)}
+.terms-table .highlight{color:var(--primary-bright);font-weight:700}
+
+.terms-note{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:var(--radius-sm);padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.8;margin:12px 0 16px}
+.terms-note strong{color:var(--primary-bright)}
+
+/* FOOTER */
+.footer{padding:36px 20px;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:12px}
+.footer a{color:var(--primary-bright);text-decoration:none;margin:0 8px}
+
+/* BACK TO TOP */
+.back-top{display:inline-flex;align-items:center;gap:6px;color:var(--primary-bright);text-decoration:none;font-size:14px;font-weight:600;margin-top:32px;transition:all .2s}
+.back-top:hover{color:var(--text);transform:translateY(-2px)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://www.keytrend.co.kr" class="nav-logo"><i>🔑</i> Key <span>Trend</span></a>
+    <a href="https://www.keytrend.co.kr" class="nav-back">← 홈으로 돌아가기</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="terms-hero">
+  <h1><span class="hl">이용약관</span></h1>
+  <p>시행일: 2026년 3월 1일</p>
+</div>
+
+<!-- CONTENT -->
+<div class="terms-wrap">
+
+  <!-- 1. 용어 정의 -->
+  <div class="terms-section">
+    <h2><span class="num">1</span> 용어 정의</h2>
+    <p><strong>1.1 회사:</strong> 키 트렌드 (Key Trend)</p>
+    <p><strong>1.2 서비스:</strong> 회사가 인터넷을 통해 제공하는 다음의 서비스를 말합니다.</p>
+    <ul>
+      <li>수능 영어 유형별 문제 콘텐츠 (빈칸추론, 글의 순서, 문장 삽입, 제목, 어법 등)</li>
+      <li>유형별 상세 해설</li>
+      <li>AI 튜터 챗봇 (질문 응답 서비스)</li>
+      <li>수능 필수 어휘 단어장 및 퀴즈</li>
+      <li>기타 회사가 추가로 제공하는 학습 관련 서비스</li>
+    </ul>
+    <p><strong>1.3 웹사이트:</strong> 회사가 서비스를 제공하는 인터넷 사이트 (https://www.keytrend.co.kr 및 https://keytrend.thinkific.com)</p>
+    <p><strong>1.4 회원:</strong> 본 약관에 동의하고 회원가입을 완료한 이용자</p>
+    <p><strong>1.5 유료 회원:</strong> 회사가 제공하는 구독 플랜에 결제를 완료하고 유료 서비스를 이용하는 회원</p>
+    <p><strong>1.6 무료 회원:</strong> 회원가입 후 결제를 하지 않은 상태의 회원으로, 회사가 정한 범위 내에서 제한된 서비스를 이용할 수 있는 회원</p>
+    <p><strong>1.7 AI 튜터 챗봇:</strong> 회사가 제공하는 인공지능 기반 질문 응답 서비스로, 회원이 학습 중 궁금한 사항을 질문하면 AI가 즉시 답변을 제공하는 서비스</p>
+    <p><strong>1.8 구독 플랜:</strong> 회사가 제공하는 유료 서비스 이용 단위로, 기본형과 고급형으로 구분되며 각각 월간 및 연간 결제 옵션이 있음</p>
+    <p><strong>1.9 질문 횟수:</strong> AI 튜터 챗봇 이용 시 월별로 제공되는 질문 가능 횟수로, 구독 플랜에 따라 차등 제공됨</p>
+  </div>
+
+  <!-- 2. 목적 및 범위 -->
+  <div class="terms-section">
+    <h2><span class="num">2</span> 목적 및 범위</h2>
+    <p>2.1 본 약관은 회사가 제공하는 수능 영어 학습 서비스 및 AI 튜터 챗봇 서비스의 이용 조건, 회사와 회원 간의 권리 및 의무, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+    <p>2.2 본 약관은 서비스에 회원으로 가입한 모든 이용자에게 적용됩니다.</p>
+    <p>2.3 본 약관에 명시되지 않은 사항은 관계 법령(전자상거래 등에서의 소비자보호에 관한 법률, 콘텐츠산업 진흥법 등)의 규정에 따릅니다.</p>
+  </div>
+
+  <!-- 3. 약관의 효력과 변경 -->
+  <div class="terms-section">
+    <h2><span class="num">3</span> 약관의 효력과 변경</h2>
+    <p>3.1 본 약관은 회사가 웹사이트를 통해 공지함으로써 효력이 발생합니다.</p>
+    <p>3.2 회사는 합리적인 사유가 있을 때 관련 법령에 위배되지 않는 범위 내에서 약관을 변경할 수 있으며, 변경된 약관은 웹사이트를 통해 공지합니다.</p>
+    <p>3.3 약관이 변경될 경우 회사는 변경 내용을 시행일 7일 전부터 웹사이트에 공지합니다. 다만, 회원에게 불리한 내용의 변경인 경우에는 30일 전부터 공지합니다.</p>
+    <p>3.4 회원이 변경된 약관에 동의하지 않는 경우, 회원은 서비스 이용을 중단하고 탈퇴할 수 있습니다. 변경된 약관의 시행일 이후에도 서비스를 계속 이용하는 경우에는 약관의 변경에 동의한 것으로 봅니다.</p>
+  </div>
+
+  <!-- 4. 서비스 이용 계약 -->
+  <div class="terms-section">
+    <h2><span class="num">4</span> 서비스 이용 계약</h2>
+    <p>4.1 서비스 이용 계약은 이용자가 본 약관의 내용에 동의한 후 회원가입을 신청하고, 회사가 이를 승낙함으로써 성립합니다.</p>
+    <p>4.2 회원가입을 신청하는 이용자는 회사가 요청하는 정보(이메일 주소, 비밀번호, 이름 등)를 정확하게 제공하여야 합니다.</p>
+    <p>4.3 회사는 다음 각 호에 해당하는 이용 신청에 대하여 승낙을 거부하거나 사후에 이용 계약을 해지할 수 있습니다.</p>
+    <div class="sub-item">
+      <p>가) 타인의 명의를 도용하여 신청한 경우</p>
+      <p>나) 이용 신청 시 필수 정보를 허위로 기재한 경우</p>
+      <p>다) 만 14세 미만의 아동이 법정대리인의 동의 없이 신청한 경우</p>
+      <p>라) 서비스의 정상적인 운영을 방해하거나 방해할 목적으로 신청한 경우</p>
+      <p>마) 기타 관련 법령에 위배되거나 회사가 정한 이용 조건을 충족하지 않는 경우</p>
+    </div>
+  </div>
+
+  <!-- 5. 서비스 내용 -->
+  <div class="terms-section">
+    <h2><span class="num">5</span> 서비스 내용</h2>
+    <h3>5.1 무료 서비스</h3>
+    <p>회원가입 후 결제 없이 이용 가능한 서비스</p>
+    <ul>
+      <li>AI 튜터 챗봇 체험: 단어 뜻 질문 3회 제공</li>
+      <li>기타 회사가 별도로 정하는 무료 콘텐츠</li>
+    </ul>
+
+    <h3>5.2 유료 서비스</h3>
+    <p>구독 플랜 결제 후 이용 가능한 서비스</p>
+    <ul>
+      <li>전체 수능 영어 유형별 문제 콘텐츠 무제한 이용 (2,600+ 문항)</li>
+      <li>문항별 9단계 상세 해설</li>
+      <li>AI 튜터 챗봇 질문 (구독 플랜에 따라 횟수 차등 제공)</li>
+      <li>수능 필수 어휘 단어장 (4,605개) 및 5지선다 퀴즈</li>
+      <li>구독 기간 중 추가되는 신규 콘텐츠</li>
+    </ul>
+
+    <h3>5.3 구독 플랜 및 질문 횟수</h3>
+    <div class="terms-table-wrap">
+      <table class="terms-table">
+        <thead>
+          <tr><th>플랜</th><th>월간 요금</th><th>연간 요금</th><th>단어 뜻 질문</th><th>복잡한 질문</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>기본형</td><td>₩9,900/월</td><td>₩89,000/년</td><td>300회/월</td><td class="highlight">100회/월</td></tr>
+          <tr><td>고급형</td><td>₩14,900/월</td><td>₩134,000/년</td><td>300회/월</td><td class="highlight">250회/월</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="terms-note">
+      <strong>단어 뜻 질문:</strong> 영어 단어의 뜻, 발음, 품사 등을 묻는 간단한 질문<br>
+      <strong>복잡한 질문:</strong> 문제 풀이, 문법 설명, 지문 분석 등 상세한 답변이 필요한 질문<br><br>
+      • 질문 횟수는 매월 1일에 초기화됩니다<br>
+      • 미사용 질문 횟수는 다음 달로 이월되지 않습니다
+    </div>
+
+    <h3>5.4 충전팩</h3>
+    <p>월별 질문 횟수가 부족한 경우 별도 구매 가능</p>
+    <div class="terms-table-wrap">
+      <table class="terms-table">
+        <thead>
+          <tr><th>충전팩</th><th>가격</th><th>복잡한 질문 추가</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>30회</td><td>₩2,900</td><td class="highlight">+30회</td></tr>
+          <tr><td>80회</td><td>₩5,900</td><td class="highlight">+80회</td></tr>
+          <tr><td>200회</td><td>₩12,900</td><td class="highlight">+200회</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="terms-note">충전팩으로 추가된 질문 횟수는 구독 기간 동안 유효합니다.</div>
+
+    <p>5.5 회사는 서비스의 품질 향상을 위해 사전 공지 후 서비스 내용, 플랜 구성, 가격 등을 변경할 수 있습니다.</p>
+  </div>
+
+  <!-- 6. 결제 및 이용 기간 -->
+  <div class="terms-section">
+    <h2><span class="num">6</span> 결제 및 이용 기간</h2>
+    <p>6.1 유료 서비스의 결제는 회사가 지정한 결제 수단(PayApp 등)을 통해 이루어집니다.</p>
+    <p>6.2 월간 구독: 결제일로부터 30일간 유효합니다.</p>
+    <p>6.3 연간 구독: 결제일로부터 365일간 유효합니다.</p>
+    <p>6.4 구독 기간이 만료되면 유료 서비스 이용이 자동으로 중지되며, 회원은 무료 회원 상태로 전환됩니다.</p>
+    <p>6.5 구독 갱신을 원하는 경우, 회원은 만료 전에 재결제하여야 합니다.</p>
+  </div>
+
+  <!-- 7. 환불 정책 -->
+  <div class="terms-section">
+    <h2><span class="num">7</span> 환불 정책</h2>
+    <p>7.1 <strong>월간 구독 환불:</strong> 구독 결제 후 7일 이내에 콘텐츠 이용 이력(문제 풀기, AI 질문 등)이 없는 경우 전액 환불이 가능합니다.</p>
+    <p>7.2 <strong>연간 구독 환불:</strong> 구독 결제 후 14일 이내에 환불 요청이 가능합니다. 이 경우 이용 일수에 해당하는 금액을 일할 계산하여 공제한 후 환불합니다.</p>
+    <p>7.3 <strong>충전팩 환불:</strong> 충전팩 구매 후 사용한 질문 횟수가 없는 경우에 한하여 환불이 가능합니다.</p>
+    <p>7.4 다음의 경우에는 환불이 제한됩니다.</p>
+    <div class="sub-item">
+      <p>가) 환불 요청 기간(월간 7일, 연간 14일)이 경과한 경우</p>
+      <p>나) 콘텐츠 이용 이력이 있는 경우 (월간 구독)</p>
+      <p>다) 회원의 귀책사유로 서비스 이용이 제한된 경우</p>
+      <p>라) 무료로 제공받은 서비스(추천 보상 등)에 대한 환불 요청인 경우</p>
+    </div>
+    <p>7.5 환불 신청은 이메일(keytrend777@gmail.com)을 통해 접수하며, 환불 처리는 신청일로부터 영업일 기준 7일 이내에 완료됩니다.</p>
+  </div>
+
+  <!-- 8. 친구 추천 보상 -->
+  <div class="terms-section">
+    <h2><span class="num">8</span> 친구 추천 보상 (레퍼럴 프로그램)</h2>
+    <p>8.1 회원은 자신의 고유 추천 코드를 통해 다른 이용자를 추천할 수 있으며, 추천 보상은 다음과 같습니다.</p>
+
+    <h3>1단계 — 친구가 무료 가입</h3>
+    <div class="terms-table-wrap">
+      <table class="terms-table">
+        <thead><tr><th>대상</th><th>보상 내용</th></tr></thead>
+        <tbody>
+          <tr><td>추천인 (나)</td><td class="highlight">복잡한 질문 +5회</td></tr>
+          <tr><td>피추천인 (친구)</td><td class="highlight">복잡한 질문 +3회</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2단계 — 친구가 유료 구독</h3>
+    <div class="terms-table-wrap">
+      <table class="terms-table">
+        <thead><tr><th>대상</th><th>보상 내용</th></tr></thead>
+        <tbody>
+          <tr><td>추천인 (나)</td><td class="highlight">복잡한 질문 +30회</td></tr>
+          <tr><td>피추천인 (친구)</td><td class="highlight">첫 달 20% 할인 + 복잡한 질문 +10회</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>8.2 추천 보상은 1인당 최대 10명까지 적용됩니다.</p>
+    <p>8.3 부정한 방법(자기 추천, 허위 계정 등)으로 보상을 획득한 경우, 회사는 해당 보상을 취소하고 서비스 이용을 제한할 수 있습니다.</p>
+    <p>8.4 회사는 추천 보상의 내용을 사전 공지 후 변경할 수 있습니다.</p>
+  </div>
+
+  <!-- 9. 서비스의 제공 및 중단 -->
+  <div class="terms-section">
+    <h2><span class="num">9</span> 서비스의 제공 및 중단</h2>
+    <p>9.1 서비스는 연중무휴, 1일 24시간 제공을 원칙으로 합니다.</p>
+    <p>9.2 다음의 경우 서비스 제공이 일시적으로 중단될 수 있습니다.</p>
+    <div class="sub-item">
+      <p>가) 시스템 정기점검, 서버 교체 및 업그레이드 등 기술적 필요가 있는 경우</p>
+      <p>나) 천재지변, 정전, 서비스 설비의 장애 등 불가항력적 사유가 발생한 경우</p>
+      <p>다) 전기통신사업법에 규정된 기간통신사업자가 서비스를 중지한 경우</p>
+    </div>
+    <p>9.3 서비스 중단이 예정된 경우 회사는 사전에 웹사이트를 통해 공지합니다. 다만, 불가항력적 사유로 사전 공지가 불가능한 경우에는 사후에 공지합니다.</p>
+    <p>9.4 회사는 서비스 중단으로 인하여 회원에게 발생한 손해에 대하여 고의 또는 중대한 과실이 없는 한 책임을 지지 않습니다.</p>
+  </div>
+
+  <!-- 10. AI 튜터 챗봇 관련 특별 사항 -->
+  <div class="terms-section">
+    <h2><span class="num">10</span> AI 튜터 챗봇 관련 특별 사항</h2>
+    <p>10.1 AI 튜터 챗봇은 인공지능 기술을 기반으로 한 학습 보조 도구이며, 제공되는 답변의 정확성을 100% 보장하지 않습니다.</p>
+    <p>10.2 AI 튜터 챗봇의 답변은 참고 자료로만 활용하여야 하며, 최종적인 학습 판단은 회원 본인의 책임 하에 이루어져야 합니다.</p>
+    <p>10.3 AI 튜터 챗봇 이용 시 다음의 행위는 금지됩니다.</p>
+    <div class="sub-item">
+      <p>가) 학습 목적 외의 부적절한 질문 (욕설, 비방, 성적 콘텐츠 요청 등)</p>
+      <p>나) AI 챗봇의 응답을 상업적 목적으로 무단 복제 및 배포하는 행위</p>
+      <p>다) 자동화된 도구를 이용하여 대량의 질문을 발송하는 행위</p>
+      <p>라) 시스템의 정상적인 운영을 방해하는 행위</p>
+    </div>
+    <p>10.4 위 금지 행위가 확인된 경우, 회사는 해당 회원의 질문 횟수를 차감하거나 서비스 이용을 제한할 수 있습니다.</p>
+  </div>
+
+  <!-- 11. 회원의 의무 -->
+  <div class="terms-section">
+    <h2><span class="num">11</span> 회원의 의무</h2>
+    <p>11.1 회원은 회원가입 시 정확한 정보를 제공하여야 하며, 변경 사항이 있을 경우 즉시 수정하여야 합니다.</p>
+    <p>11.2 회원의 아이디와 비밀번호에 관한 모든 관리 책임은 회원에게 있으며, 이를 타인에게 양도하거나 대여할 수 없습니다.</p>
+    <p>11.3 회원은 자신의 아이디가 부정하게 사용된 것을 발견한 경우, 즉시 회사에 통보하여야 합니다.</p>
+    <p>11.4 회원은 다음의 행위를 하여서는 안 됩니다.</p>
+    <div class="sub-item">
+      <p>가) 타인의 개인정보를 도용하는 행위</p>
+      <p>나) 회사의 서비스를 이용하여 얻은 정보를 회사의 사전 승낙 없이 상업적으로 이용하거나 타인에게 제공하는 행위</p>
+      <p>다) 회사의 지적재산권을 침해하는 행위</p>
+      <p>라) 회사 또는 타인의 명예를 손상시키거나 업무를 방해하는 행위</p>
+      <p>마) 서비스의 안정적 운영을 방해하는 일체의 행위</p>
+    </div>
+  </div>
+
+  <!-- 12. 회사의 의무 -->
+  <div class="terms-section">
+    <h2><span class="num">12</span> 회사의 의무</h2>
+    <p>12.1 회사는 관련 법령과 본 약관이 정하는 바에 따라 지속적이고 안정적으로 서비스를 제공할 의무가 있습니다.</p>
+    <p>12.2 회사는 회원의 개인정보를 보호하기 위해 개인정보처리방침을 수립하고 이를 준수합니다.</p>
+    <p>12.3 회사는 회원의 개인정보를 본인의 동의 없이 타인에게 제공하지 않습니다. 다만, 관련 법령에 의하여 국가기관의 요구가 있는 경우에는 예외로 합니다.</p>
+    <p>12.4 회사는 회원으로부터 제기되는 의견이나 불만이 정당하다고 인정할 경우 즉시 처리합니다. 즉시 처리가 곤란한 경우에는 사유와 처리 일정을 회원에게 통보합니다.</p>
+  </div>
+
+  <!-- 13. 지적재산권 -->
+  <div class="terms-section">
+    <h2><span class="num">13</span> 지적재산권</h2>
+    <p>13.1 서비스에 포함된 모든 콘텐츠(문제, 해설, 어휘 데이터, AI 응답 등)의 저작권 및 지적재산권은 회사에 귀속됩니다.</p>
+    <p>13.2 회원은 서비스를 통해 제공받은 콘텐츠를 학습 목적으로만 이용할 수 있으며, 이를 복제, 전송, 출판, 배포, 방송 등의 방법으로 이용하거나 제3자에게 제공할 수 없습니다.</p>
+    <p>13.3 회원이 본 조항을 위반하여 회사에 손해를 끼친 경우, 회원은 그 손해를 배상할 책임이 있습니다.</p>
+  </div>
+
+  <!-- 14. 서비스 이용 제한 및 계약 해지 -->
+  <div class="terms-section">
+    <h2><span class="num">14</span> 서비스 이용 제한 및 계약 해지</h2>
+    <p>14.1 회사는 회원이 다음에 해당하는 행위를 한 경우 사전 통지 없이 서비스 이용을 제한하거나 이용 계약을 해지할 수 있습니다.</p>
+    <div class="sub-item">
+      <p>가) 타인의 아이디 및 비밀번호를 도용한 경우</p>
+      <p>나) 서비스의 정상적인 운영을 고의로 방해한 경우</p>
+      <p>다) 동일인이 다른 아이디로 중복 가입한 경우</p>
+      <p>라) 콘텐츠를 무단으로 복제 및 배포한 경우</p>
+      <p>마) 공공질서 및 미풍양속에 반하는 행위를 한 경우</p>
+      <p>바) 기타 관련 법령이나 본 약관에 위배되는 경우</p>
+    </div>
+    <p>14.2 회원은 언제든지 서비스 탈퇴를 요청할 수 있으며, 회사는 즉시 처리합니다. 탈퇴 시 회원의 개인정보는 개인정보처리방침에 따라 처리됩니다.</p>
+    <p>14.3 탈퇴한 회원의 미사용 질문 횟수 및 구독 잔여 기간에 대해서는 별도의 보상이 제공되지 않습니다. 다만, 환불 정책(제7조)에 해당하는 경우에는 환불을 신청할 수 있습니다.</p>
+  </div>
+
+  <!-- 15. 면책 조항 -->
+  <div class="terms-section">
+    <h2><span class="num">15</span> 면책 조항</h2>
+    <p>15.1 회사는 천재지변, 전쟁, 기간통신사업자의 서비스 중지 등 불가항력적 사유로 서비스를 제공할 수 없는 경우에는 책임이 면제됩니다.</p>
+    <p>15.2 회사는 회원의 귀책사유로 인한 서비스 이용의 장애에 대하여 책임을 지지 않습니다.</p>
+    <p>15.3 회사는 AI 튜터 챗봇이 제공하는 답변의 정확성, 완전성, 신뢰성에 대하여 보증하지 않으며, 해당 답변을 근거로 한 회원의 판단이나 행위에 대하여 책임을 지지 않습니다.</p>
+    <p>15.4 회사는 회원이 서비스를 이용하여 기대하는 학습 효과나 성적 향상을 보장하지 않습니다.</p>
+  </div>
+
+  <!-- 16. 분쟁 해결 -->
+  <div class="terms-section">
+    <h2><span class="num">16</span> 분쟁 해결</h2>
+    <p>16.1 회사와 회원 간에 발생한 분쟁에 관하여는 대한민국 법을 적용합니다.</p>
+    <p>16.2 서비스 이용과 관련하여 회사와 회원 간에 분쟁이 발생한 경우, 양 당사자는 분쟁의 해결을 위해 성실히 협의합니다.</p>
+    <p>16.3 협의가 이루어지지 않을 경우, 양 당사자는 민사소송법에 따른 관할 법원에 소송을 제기할 수 있습니다.</p>
+  </div>
+
+  <!-- 17. 고객 문의 -->
+  <div class="terms-section">
+    <h2><span class="num">17</span> 고객 문의</h2>
+    <p>서비스 이용 관련 문의사항은 아래로 연락해주시기 바랍니다.</p>
+    <div class="terms-note">
+      <strong>이메일:</strong> keytrend777@gmail.com<br>
+      <strong>웹사이트:</strong> https://www.keytrend.co.kr
+    </div>
+  </div>
+
+  <!-- 부칙 -->
+  <div class="terms-section">
+    <h2><span class="num">附</span> 부칙</h2>
+    <p>(시행일) 본 약관은 2026년 3월 1일부터 시행합니다.</p>
+  </div>
+
+  <a href="#" class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ 맨 위로 돌아가기</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 Key Trend. All rights reserved.<a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="mailto:keytrend777@gmail.com">문의하기</a></p>
+  <p>06775 서울 서초구 마방로 10길 25 트윈타워A동 521 대표: 박철 사업자등록증 번호: 541-04-02021</p>
+  <p>통신판매업 제 2021-서울서초-1962호 개인정보보호책임자: 박철(keytrend777@gmail.com)</p>
+</footer>
+
+</body>
+</html>
