@@ -69,7 +69,7 @@ body{
 /* Mobile hamburger */
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--white)}
 .nav-toggle svg{width:24px;height:24px}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(11,17,32,.97);backdrop-filter:blur(20px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(11,17,32,.97);backdrop-filter:blur(20px);z-index:1001;flex-direction:column;align-items:center;justify-content:center;gap:32px}
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:var(--white);font-size:20px;font-weight:600;text-decoration:none}
 .mobile-menu-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--white);font-size:28px;cursor:pointer;padding:8px}
@@ -924,60 +924,6 @@ async function doAuth(){var e=document.getElementById('co-email').value.trim(),r
 function updateCheckoutPrice(){var v=document.getElementById('co-plan').value;document.getElementById('co-display-name').textContent=CO_PRICES[v].label;document.getElementById('co-display-price').textContent=CO_PRICES[v].amount;}
 async function startCheckoutPayment(){var s=document.getElementById('co-plan').value.split('_'),pt=s[0],bc=s[1],btn=document.getElementById('co-pay-btn'),msg=document.getElementById('co-pay-msg');btn.disabled=true;btn.textContent='결제 준비 중...';msg.className='co-msg';try{var res=await fetch(API_BASE+'/api/payment/prepare',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+coToken},body:JSON.stringify({plan_type:pt,billing_cycle:bc})});var data=await res.json();if(!data.success){msg.className='co-msg error';msg.textContent='결제 준비 실패: '+(data.error||'');btn.disabled=false;btn.textContent='결제하기';return;}var p=data.payapp_params;PayApp.setDefault('userid',coPayAppUserId);PayApp.setDefault('shopname','Key Trend');PayApp.setParam('goodname',p.goodname);PayApp.setParam('price',p.price);PayApp.setParam('feedbackurl',p.feedbackurl);PayApp.setParam('returnurl',p.returnurl||'https://www.keytrend.co.kr/payment/complete/');PayApp.setParam('var1',p.var1);PayApp.setParam('var2',p.var2);PayApp.setParam('checkretry','y');PayApp.setParam('smsuse','n');PayApp.setParam('redirectpay','1');PayApp.setParam('skip_cstpage','y');PayApp.payrequest();}catch(x){msg.className='co-msg error';msg.textContent='오류: '+x.message;}btn.disabled=false;btn.textContent='결제하기';}
 </script>
-// ===== 모바일 메뉴 =====
-(function() {
-  // 햄버거 버튼 생성
-  var nav = document.querySelector('.nav-inner');
-  if (!nav) return;
-
-  var menuBtn = document.createElement('button');
-  menuBtn.id = 'mobile-menu-btn';
-  menuBtn.innerHTML = '&#9776;';
-  menuBtn.style.cssText = 'display:none;background:none;border:none;color:white;font-size:24px;cursor:pointer;';
-  nav.appendChild(menuBtn);
-
-  // 모바일 오버레이 메뉴 생성
-  var overlay = document.createElement('div');
-  overlay.id = 'mobile-nav-overlay';
-  overlay.style.cssText = 'display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;flex-direction:column;align-items:center;justify-content:center;';
-  overlay.innerHTML = `
-    <button id="mobile-close-btn" style="position:absolute;top:20px;right:20px;background:none;border:none;color:white;font-size:28px;cursor:pointer;">✕</button>
-    <a href="#features" style="color:white;font-size:22px;text-decoration:none;margin:16px 0;" onclick="closeMobileMenu()">기능</a>
-    <a href="#" style="color:white;font-size:22px;text-decoration:none;margin:16px 0;" onclick="closeMobileMenu()">코스</a>
-    <a href="#pricing" style="color:white;font-size:22px;text-decoration:none;margin:16px 0;" onclick="closeMobileMenu()">구독신청</a>
-    <a href="#" style="color:white;font-size:22px;text-decoration:none;margin:16px 0;" onclick="closeMobileMenu()">수능정보</a>
-    <a href="#faq" style="color:white;font-size:22px;text-decoration:none;margin:16px 0;" onclick="closeMobileMenu()">FAQ</a>
-    <a href="#" style="color:white;font-size:22px;text-decoration:none;margin:16px 0;" onclick="closeMobileMenu()">연락처</a>
-    <a href="https://keytrend.thinkific.com/users/sign_in" style="color:white;font-size:22px;text-decoration:none;margin:16px 0;" onclick="closeMobileMenu()">로그인</a>
-    <a href="https://keytrend.thinkific.com/users/sign_up" style="display:inline-block;margin-top:24px;padding:14px 40px;background:#6366f1;color:white;border-radius:12px;font-size:18px;font-weight:700;text-decoration:none;" onclick="closeMobileMenu()">회원가입 →</a>
-  `;
-  document.body.appendChild(overlay);
-
-  function openMobileMenu() {
-    overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMobileMenu() {
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  window.closeMobileMenu = closeMobileMenu;
-
-  menuBtn.addEventListener('click', openMobileMenu);
-  document.getElementById('mobile-close-btn').addEventListener('click', closeMobileMenu);
-
-  // 반응형: 768px 이하에서만 햄버거 표시
-  function checkSize() {
-    if (window.innerWidth <= 768) {
-      menuBtn.style.display = 'block';
-    } else {
-      menuBtn.style.display = 'none';
-      closeMobileMenu();
-    }
-  }
-  window.addEventListener('resize', checkSize);
-  checkSize();
-})();
 <script src="https://english-exam-chatbot.onrender.com/chatbot-widget-v4.js"></script>
 </body>
 </html>
