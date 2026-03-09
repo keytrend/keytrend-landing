@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인정보처리방침 - Key Trend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.8;min-height:100vh}
+
+/* ===== HEADER ===== */
+.site-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:24px 40px;
+  border-bottom:1px solid rgba(99,102,241,.12);
+  position:sticky;top:0;z-index:100;
+  background:rgba(15,23,42,.92);backdrop-filter:blur(16px);
+}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.back-link{color:var(--gray);text-decoration:none;font-size:14px;font-weight:500;display:flex;align-items:center;gap:6px;transition:color .2s}
+.back-link:hover{color:var(--accent2)}
+
+/* ===== MAIN CONTENT ===== */
+.content-wrap{max-width:780px;margin:0 auto;padding:64px 32px 100px}
+
+/* Title */
+.page-title{text-align:center;margin-bottom:12px}
+.page-title h1{font-family:'Outfit';font-size:clamp(36px,5vw,52px);font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.page-subtitle{text-align:center;color:var(--gray);font-size:14px;margin-bottom:60px}
+
+/* Section */
+.section{margin-bottom:52px}
+.section-title{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:20px;padding-bottom:14px;
+  border-bottom:1px solid rgba(99,102,241,.15);
+}
+.section-num{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--grad1);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Outfit';font-weight:800;font-size:14px;
+  color:white;flex-shrink:0;
+}
+.section-title h2{font-size:20px;font-weight:700;color:var(--white)}
+
+/* Content blocks */
+.text-block{color:#cbd5e1;font-size:15px;line-height:1.95;margin-bottom:14px}
+.text-block strong{color:var(--white);font-weight:600}
+
+.sub-section{margin-bottom:20px}
+.sub-title{font-size:15px;font-weight:700;color:var(--accent2);margin-bottom:8px}
+
+.info-table{width:100%;border-collapse:separate;border-spacing:0;margin:16px 0;overflow:hidden;border-radius:12px;border:1px solid rgba(51,65,85,.6)}
+.info-table th,.info-table td{padding:13px 18px;font-size:14px;text-align:left}
+.info-table th{background:rgba(30,41,59,.9);color:var(--gray);font-weight:600;font-size:13px;border-bottom:1px solid rgba(51,65,85,.5)}
+.info-table td{background:rgba(15,23,42,.6);color:#cbd5e1;border-bottom:1px solid rgba(51,65,85,.25)}
+.info-table tr:last-child td{border-bottom:none}
+.info-table td:first-child{color:var(--white);font-weight:500;white-space:nowrap}
+
+ul.dot-list{padding-left:0;list-style:none;margin:8px 0}
+ul.dot-list li{padding:5px 0 5px 20px;position:relative;color:#cbd5e1;font-size:14px;line-height:1.8}
+ul.dot-list li::before{content:'•';position:absolute;left:4px;color:var(--accent2)}
+
+.highlight-box{
+  background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.2);
+  border-radius:12px;padding:20px 24px;margin:16px 0;
+}
+.highlight-box p{color:#cbd5e1;font-size:14px;line-height:1.9}
+.highlight-box strong{color:var(--accent2)}
+
+/* Contact card */
+.contact-card{
+  background:rgba(30,41,59,.5);border:1px solid rgba(99,102,241,.25);
+  border-radius:16px;padding:32px;margin-top:48px;text-align:center;
+}
+.contact-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.contact-card p{color:var(--gray);font-size:14px;margin-bottom:4px}
+.contact-card a{color:var(--accent2);text-decoration:none;font-weight:600}
+.contact-card a:hover{text-decoration:underline}
+
+/* Footer */
+footer{
+  border-top:1px solid rgba(51,65,85,.3);
+  padding:32px;text-align:center;
+  color:var(--gray);font-size:13px;
+}
+footer a{color:var(--accent2);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* Divider */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.2),transparent);margin:32px 0}
+
+@media(max-width:640px){
+  .site-header{padding:18px 20px}
+  .content-wrap{padding:40px 20px 80px}
+  .info-table th,.info-table td{padding:10px 12px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="index.html" class="logo">🔑 <span>Key Trend</span></a>
+  <a href="index.html" class="back-link">← 홈으로 돌아가기</a>
+</header>
+
+<!-- CONTENT -->
+<main class="content-wrap">
+  <div class="page-title">
+    <h1>개인정보처리방침</h1>
+  </div>
+  <p class="page-subtitle">시행일: 2026년 3월 1일 &nbsp;|&nbsp; 최종 수정: 2026년 3월 1일</p>
+
+  <!-- 1 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">1</div>
+      <h2>개인정보처리방침의 목적</h2>
+    </div>
+    <p class="text-block">
+      키 트렌드(이하 "회사")는 <strong>개인정보보호법</strong> 및 관련 법령에 따라 이용자의 개인정보를 보호하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 본 개인정보처리방침을 수립·공개합니다.
+    </p>
+    <p class="text-block">
+      본 방침은 <strong>https://www.keytrend.co.kr</strong> 및 <strong>https://keytrend.thinkific.com</strong>에서 제공하는 수능 영어 AI 튜터 서비스 전반에 적용됩니다.
+    </p>
+  </div>
+
+  <!-- 2 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">2</div>
+      <h2>수집하는 개인정보 항목 및 수집 방법</h2>
+    </div>
+
+    <div class="sub-section">
+      <p class="sub-title">2.1 수집 항목</p>
+      <table class="info-table">
+        <thead>
+          <tr><th>수집 목적</th><th>수집 항목</th><th>필수 여부</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>회원 가입 및 서비스 이용</td><td>이메일 주소, 이름(닉네임), 비밀번호</td><td>필수</td></tr>
+          <tr><td>결제 및 구독 관리</td><td>결제수단 정보(카드사명, 부분 카드번호), 결제 승인 내역</td><td>필수</td></tr>
+          <tr><td>서비스 이용 기록</td><td>AI 질문 이용 횟수, 학습 진행 데이터, 오답 기록, 저장 단어</td><td>자동 수집</td></tr>
+          <tr><td>서비스 개선 및 통계</td><td>접속 IP, 브라우저 종류, 접속 시간, 기기 정보</td><td>자동 수집</td></tr>
+          <tr><td>고객 문의 응대</td><td>이메일 주소, 문의 내용</td><td>선택</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section">
+      <p class="sub-title">2.2 수집 방법</p>
+      <ul class="dot-list">
+        <li>회원가입 및 서비스 이용 과정에서 이용자가 직접 입력</li>
+        <li>Thinkific 플랫폼을 통한 계정 생성 시 자동 연동</li>
+        <li>PayApp 결제 시스템을 통한 결제 정보 수집</li>
+        <li>서비스 이용 과정에서 자동으로 생성·수집 (쿠키, 로그 기록 등)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">3</div>
+      <h2>개인정보의 수집 및 이용 목적</h2>
+    </div>
+    <p class="text-block">회사는 수집한 개인정보를 다음의 목적에 한하여 이용합니다.</p>
+    <ul class="dot-list">
+      <li><strong>서비스 제공:</strong> 수능 영어 문제 콘텐츠, AI 튜터 챗봇, 어휘 학습 서비스 제공</li>
+      <li><strong>회원 관리:</strong> 회원 식별, 가입 의사 확인, 본인 확인, 불량 회원 제재, 공지사항 전달</li>
+      <li><strong>결제 및 구독 관리:</strong> 유료 서비스 결제 처리, 구독 플랜 적용, 환불 처리</li>
+      <li><strong>AI 서비스 개인화:</strong> 이용자별 질문 잔여 횟수 관리, 학습 이력 기반 맞춤 응답 제공</li>
+      <li><strong>서비스 개선:</strong> 접속 빈도 파악, 이용자 서비스 이용에 관한 통계 분석</li>
+      <li><strong>마케팅 및 광고:</strong> 이용자 동의 하에 이벤트·프로모션 정보 제공 (선택 동의)</li>
+      <li><strong>고객 지원:</strong> 불만 처리, 분쟁 조정을 위한 기록 보존</li>
+    </ul>
+  </div>
+
+  <!-- 4 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">4</div>
+      <h2>개인정보의 보유 및 이용 기간</h2>
+    </div>
+    <p class="text-block">이용자의 개인정보는 수집·이용 목적이 달성된 후에는 지체 없이 파기합니다. 단, 아래의 경우에는 명시한 기간 동안 보존합니다.</p>
+
+    <div class="sub-section">
+      <p class="sub-title">4.1 회사 내부 방침에 의한 보존</p>
+      <table class="info-table">
+        <thead>
+          <tr><th>보존 항목</th><th>보존 기간</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>회원 가입 및 계정 정보</td><td>회원 탈퇴 시까지</td></tr>
+          <tr><td>결제 및 구독 내역</td><td>결제일로부터 5년</td></tr>
+          <tr><td>서비스 이용 기록 (학습 데이터)</td><td>회원 탈퇴 후 1년</td></tr>
+          <tr><td>고객 문의 내역</td><td>문의 접수일로부터 3년</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section">
+      <p class="sub-title">4.2 관계 법령에 의한 보존</p>
+      <table class="info-table">
+        <thead>
+          <tr><th>관련 법령</th><th>보존 항목</th><th>보존 기간</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>전자상거래 등에서의 소비자보호에 관한 법률</td><td>계약·청약 철회 기록</td><td>5년</td></tr>
+          <tr><td>전자상거래 등에서의 소비자보호에 관한 법률</td><td>대금 결제 및 재화 공급 기록</td><td>5년</td></tr>
+          <tr><td>전자상거래 등에서의 소비자보호에 관한 법률</td><td>소비자 불만·분쟁 처리 기록</td><td>3년</td></tr>
+          <tr><td>통신비밀보호법</td><td>로그인 기록</td><td>3개월</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">5</div>
+      <h2>개인정보의 제3자 제공</h2>
+    </div>
+    <p class="text-block">회사는 원칙적으로 이용자의 개인정보를 외부에 제공하지 않습니다. 다만 다음의 경우에는 예외로 합니다.</p>
+    <ul class="dot-list">
+      <li>이용자가 사전에 동의한 경우</li>
+      <li>법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</li>
+    </ul>
+    <div class="highlight-box">
+      <p>회사는 <strong>Anthropic(Claude AI API)</strong>을 통해 AI 튜터 응답을 생성하며, 이 과정에서 이용자가 입력한 질문 내용이 처리될 수 있습니다. Anthropic의 API는 입력 데이터를 모델 학습에 사용하지 않으며, Anthropic의 개인정보처리방침이 별도로 적용됩니다.</p>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">6</div>
+      <h2>개인정보 처리 위탁</h2>
+    </div>
+    <p class="text-block">회사는 서비스 제공을 위해 아래와 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
+    <table class="info-table">
+      <thead>
+        <tr><th>수탁 업체</th><th>위탁 업무 내용</th><th>보유·이용 기간</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Thinkific Labs Inc.</td><td>코스 플랫폼 운영, 회원 계정 관리</td><td>회원 탈퇴 시까지</td></tr>
+        <tr><td>스마트로 (PayApp)</td><td>결제 처리 및 정산</td><td>결제일로부터 5년</td></tr>
+        <tr><td>Supabase Inc.</td><td>데이터베이스 및 서버 인프라 운영</td><td>회원 탈퇴 시까지</td></tr>
+        <tr><td>Render Services Inc.</td><td>서버 호스팅 및 운영</td><td>서비스 이용 기간</td></tr>
+        <tr><td>Resend Inc.</td><td>이메일 발송 서비스</td><td>발송 완료 후 즉시 파기</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 7 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">7</div>
+      <h2>이용자의 권리와 행사 방법</h2>
+    </div>
+    <p class="text-block">이용자는 언제든지 다음의 권리를 행사할 수 있습니다.</p>
+    <ul class="dot-list">
+      <li><strong>개인정보 열람 요청:</strong> 회사가 보유한 본인의 개인정보를 열람할 수 있습니다.</li>
+      <li><strong>개인정보 정정·삭제 요청:</strong> 개인정보가 부정확하거나 수집 목적이 달성된 경우 정정 또는 삭제를 요청할 수 있습니다.</li>
+      <li><strong>개인정보 처리 정지 요청:</strong> 개인정보 처리에 동의하지 않거나 철회를 원하는 경우 처리 정지를 요청할 수 있습니다.</li>
+      <li><strong>개인정보 이동 요청:</strong> 이용자의 개인정보를 다른 서비스로 이동할 수 있습니다.</li>
+    </ul>
+    <p class="text-block" style="margin-top:12px">권리 행사는 <strong>keytrend777@gmail.com</strong>으로 서면, 이메일을 통해 하실 수 있으며, 회사는 이에 대해 지체 없이 조치하겠습니다.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">8</div>
+      <h2>개인정보의 파기</h2>
+    </div>
+    <p class="text-block">회사는 개인정보 보유 기간의 경과, 처리 목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.</p>
+
+    <div class="sub-section">
+      <p class="sub-title">8.1 파기 절차</p>
+      <p class="text-block">이용자가 입력한 정보는 목적 달성 후 별도의 DB에 옮겨져 내부 방침 및 관련 법령에 따라 일정 기간 저장된 후 파기됩니다. 법령에 의해 보존이 요구되는 정보는 해당 기간 동안 다른 목적으로 이용되지 않습니다.</p>
+    </div>
+
+    <div class="sub-section">
+      <p class="sub-title">8.2 파기 방법</p>
+      <ul class="dot-list">
+        <li><strong>전자적 파일 형태:</strong> 복구 불가능한 방법으로 영구 삭제</li>
+        <li><strong>종이 문서:</strong> 분쇄기로 분쇄하거나 소각하여 파기</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">9</div>
+      <h2>쿠키의 운용 및 거부</h2>
+    </div>
+    <p class="text-block">회사는 이용자에게 개인화된 서비스를 제공하기 위해 쿠키(cookie)를 사용합니다. 쿠키는 웹사이트를 운영하는 데 이용되는 서버가 이용자의 브라우저에 보내는 소량의 정보이며 이용자의 컴퓨터에 저장됩니다.</p>
+
+    <div class="sub-section">
+      <p class="sub-title">9.1 쿠키 사용 목적</p>
+      <ul class="dot-list">
+        <li>로그인 상태 유지 및 서비스 이용 편의 제공</li>
+        <li>이용자의 학습 진행 상태 저장 (localStorage 포함)</li>
+        <li>서비스 이용 통계 분석 및 개선</li>
+      </ul>
+    </div>
+
+    <div class="sub-section">
+      <p class="sub-title">9.2 쿠키 거부 방법</p>
+      <p class="text-block">이용자는 웹 브라우저의 설정을 통해 쿠키 저장을 거부할 수 있습니다. 단, 쿠키 저장을 거부할 경우 로그인이 필요한 일부 서비스 이용에 불편이 생길 수 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">10</div>
+      <h2>개인정보의 안전성 확보 조치</h2>
+    </div>
+    <p class="text-block">회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다.</p>
+    <ul class="dot-list">
+      <li><strong>관리적 조치:</strong> 개인정보 처리 직원의 최소화 및 교육 실시, 내부 관리 계획 수립·시행</li>
+      <li><strong>기술적 조치:</strong> 개인정보처리 시스템에 대한 접근 권한 관리, HTTPS 암호화 통신, 비밀번호 암호화 저장(bcrypt)</li>
+      <li><strong>물리적 조치:</strong> 데이터베이스(Supabase)에 대한 Row Level Security(RLS) 적용, 외부 접근 제한</li>
+      <li><strong>접근 통제:</strong> 개인정보를 취급하는 데이터베이스 시스템에 대한 접근 권한을 업무 수행에 필요한 최소한으로 제한</li>
+    </ul>
+  </div>
+
+  <!-- 11 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">11</div>
+      <h2>만 14세 미만 아동의 개인정보 보호</h2>
+    </div>
+    <div class="highlight-box">
+      <p>회사의 서비스는 <strong>만 14세 이상</strong>을 대상으로 합니다. 만 14세 미만 아동의 경우 법정대리인(부모 등)의 동의가 필요합니다. 만 14세 미만 아동의 개인정보가 수집된 것을 발견한 경우 즉시 삭제 조치하며, 보호자께서는 <strong>keytrend777@gmail.com</strong>으로 연락 주시기 바랍니다.</p>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">12</div>
+      <h2>개인정보보호 책임자</h2>
+    </div>
+    <p class="text-block">회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 이용자의 불만 처리 및 피해 구제 등을 위하여 아래와 같이 개인정보보호 책임자를 지정하고 있습니다.</p>
+    <table class="info-table">
+      <tbody>
+        <tr><td>성명</td><td>박철</td></tr>
+        <tr><td>직위</td><td>대표</td></tr>
+        <tr><td>이메일</td><td>keytrend777@gmail.com</td></tr>
+        <tr><td>주소</td><td>서울 서초구 마방로 10길 25 트윈타워A동 521</td></tr>
+      </tbody>
+    </table>
+    <p class="text-block" style="margin-top:12px">개인정보 침해에 대한 신고나 상담이 필요하신 경우 아래 기관에 문의하실 수 있습니다.</p>
+    <ul class="dot-list">
+      <li>개인정보분쟁조정위원회: 1833-6972 / www.kopico.go.kr</li>
+      <li>개인정보침해신고센터: 118 / privacy.kisa.or.kr</li>
+      <li>대검찰청 사이버수사과: 1301 / www.spo.go.kr</li>
+      <li>경찰청 사이버수사국: 182 / cyberbureau.police.go.kr</li>
+    </ul>
+  </div>
+
+  <!-- 13 -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-num">13</div>
+      <h2>개인정보처리방침의 변경</h2>
+    </div>
+    <p class="text-block">본 개인정보처리방침은 관련 법령 또는 회사 정책의 변경에 따라 내용이 추가·삭제·수정될 수 있습니다. 변경 사항은 시행일 기준 <strong>7일 전</strong>에 서비스 공지사항 또는 이메일을 통해 공지합니다.</p>
+    <p class="text-block">단, 이용자의 권리에 중요한 변경이 있는 경우에는 시행일 <strong>30일 전</strong>에 미리 고지합니다.</p>
+    <div class="highlight-box">
+      <p>본 방침은 <strong>2026년 3월 1일</strong>부터 시행됩니다.</p>
+    </div>
+  </div>
+
+  <!-- Contact Card -->
+  <div class="contact-card">
+    <h3>개인정보 관련 문의</h3>
+    <p>개인정보 처리에 관한 문의 사항은 아래 이메일로 보내주세요.</p>
+    <p style="margin-top:12px"><a href="mailto:keytrend777@gmail.com">keytrend777@gmail.com</a></p>
+    <p style="margin-top:4px;font-size:13px">평일 09:00 – 18:00 (공휴일 제외)</p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Key Trend. All rights reserved. &nbsp;|&nbsp; <a href="terms.html">이용약관</a> &nbsp;|&nbsp; <a href="privacy.html">개인정보처리방침</a> &nbsp;|&nbsp; <a href="contact.html">문의하기</a></p>
+  <p style="margin-top:8px">06775 서울 서초구 마방로 10길 25 트윈타워A동 521 &nbsp;|&nbsp; 대표: 박철 &nbsp;|&nbsp; 사업자등록번호: 541-04-02021</p>
+  <p style="margin-top:4px">통신판매업 제 2021-서울서초-1962호 &nbsp;|&nbsp; 개인정보보호책임자: 박철(keytrend777@gmail.com)</p>
+</footer>
+
+</body>
+</html>
