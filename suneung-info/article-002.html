@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>최근 5개년 수능 영어 고난도 문항 분석 - Key Trend 수능정보</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);min-height:100vh;line-height:1.8}
+
+nav{background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:16px 0;position:sticky;top:0;z-index:100}
+.nav-inner{max-width:800px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--white)}
+
+.article-wrap{max-width:800px;margin:0 auto;padding:60px 24px 100px}
+
+.article-meta{margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid rgba(51,65,85,.5)}
+.meta-cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.meta-cat{font-size:12px;font-weight:600;padding:3px 12px;border-radius:6px;background:rgba(52,211,153,.15);color:var(--mint)}
+.meta-tag{font-size:12px;padding:3px 10px;border-radius:6px;background:rgba(51,65,85,.4);color:var(--gray)}
+.article-title{font-family:'Outfit';font-size:clamp(22px,4vw,34px);font-weight:800;line-height:1.3;margin-bottom:16px}
+.article-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.article-desc{font-size:15px;color:var(--gray);line-height:1.8;margin-bottom:20px}
+.meta-info{display:flex;gap:16px;font-size:13px;color:var(--slate)}
+
+.content h2{font-family:'Outfit';font-size:20px;font-weight:700;margin:48px 0 16px;padding-left:16px;border-left:3px solid var(--mint);color:var(--white)}
+.content h3{font-size:16px;font-weight:700;margin:28px 0 10px;color:var(--accent2)}
+.content p{font-size:15px;color:rgba(248,250,252,.85);margin-bottom:16px;line-height:1.9}
+.content ul,.content ol{padding-left:24px;margin-bottom:16px}
+.content li{font-size:15px;color:rgba(248,250,252,.8);margin-bottom:8px;line-height:1.8}
+.content strong{color:var(--white)}
+
+.box{border-radius:12px;padding:20px 24px;margin:24px 0;font-size:14px;line-height:1.8}
+.box-key{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);border-left:4px solid var(--mint)}
+.box-key .box-title{font-weight:700;color:var(--mint);margin-bottom:8px;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.box-warn{background:rgba(244,114,182,.08);border:1px solid rgba(244,114,182,.25);border-left:4px solid var(--coral)}
+.box-warn .box-title{font-weight:700;color:var(--coral);margin-bottom:8px;font-size:13px;letter-spacing:1px}
+.box-tip{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);border-left:4px solid var(--accent)}
+.box-tip .box-title{font-weight:700;color:var(--accent2);margin-bottom:8px;font-size:13px;letter-spacing:1px}
+.box-amber{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-left:4px solid var(--amber)}
+.box-amber .box-title{font-weight:700;color:var(--amber);margin-bottom:8px;font-size:13px;letter-spacing:1px}
+
+/* 표 */
+.tbl-wrap{overflow-x:auto;margin:24px 0}
+table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;border:1px solid rgba(51,65,85,.5);font-size:14px}
+thead th{background:rgba(30,41,59,.9);padding:12px 16px;text-align:center;color:var(--gray);font-weight:600;font-size:13px}
+thead th:first-child{text-align:left}
+tbody td{padding:11px 16px;border-top:1px solid rgba(51,65,85,.3);color:rgba(248,250,252,.8);text-align:center;vertical-align:middle}
+tbody td:first-child{text-align:left}
+tbody tr:hover td{background:rgba(99,102,241,.05)}
+.yr-badge{display:inline-block;padding:2px 10px;border-radius:6px;font-size:12px;font-weight:700;background:rgba(99,102,241,.2);color:var(--accent2)}
+.type-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+.type-blank{background:rgba(244,114,182,.15);color:var(--coral)}
+.type-order{background:rgba(251,191,36,.15);color:var(--amber)}
+.type-insert{background:rgba(52,211,153,.15);color:var(--mint)}
+.type-etc{background:rgba(148,163,184,.1);color:var(--gray)}
+
+/* 전략 카드 */
+.strategy-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+@media(max-width:560px){.strategy-grid{grid-template-columns:1fr}}
+.s-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:20px}
+.s-num{font-family:'Outfit';font-size:28px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.s-card h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.s-card p{font-size:13px;color:var(--gray);margin:0;line-height:1.7}
+
+.article-nav{display:flex;justify-content:space-between;margin-top:60px;padding-top:32px;border-top:1px solid rgba(51,65,85,.4)}
+.article-nav a{color:var(--accent2);text-decoration:none;font-size:14px;font-weight:600;transition:color .2s}
+.article-nav a:hover{color:var(--white)}
+
+footer{border-top:1px solid rgba(51,65,85,.3);padding:32px 24px;text-align:center;color:var(--gray);font-size:13px}
+footer a{color:var(--accent2);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="../suneung-info.html" class="nav-back">← 수능정보 목록</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="article-meta">
+    <div class="meta-cats">
+      <span class="meta-cat">📊 수능 출제 경향</span>
+      <span class="meta-tag">고난도 문항</span>
+      <span class="meta-tag">5개년 분석</span>
+      <span class="meta-tag">1등급 전략</span>
+    </div>
+    <h1 class="article-title">최근 5개년 수능 영어<br><em>1등급 변별 문항 심층 분석</em></h1>
+    <p class="article-desc">2021~2025학년도 수능 영어에서 1등급을 가른 핵심 고난도 문항의 패턴을 분석하고, 전략적 학습 방향을 제시합니다.</p>
+    <div class="meta-info">
+      <span>📅 2026.03.14</span>
+      <span>⏱ 읽는 시간 약 10분</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <h2>I. 서론: 절대평가 속 변별력의 핵심</h2>
+    <p>수능 영어는 90점 이상에 1등급을 부여하는 절대평가 체제입니다. 그럼에도 불구하고 매년 1등급 비율은 큰 폭으로 변동합니다. 소수의 고난도 문항이 최상위권 변별에 결정적인 역할을 하기 때문입니다.</p>
+
+    <div class="box box-key">
+      <div class="box-title">📊 1등급 비율 변동 사례</div>
+      <strong>2024학년도</strong> 1등급 비율: <strong style="color:var(--coral)">4.71%</strong> (이례적 고난이도)<br>
+      <strong>2025학년도 9월 모평</strong> 1등급 비율: <strong style="color:var(--mint)">10.94%</strong><br><br>
+      이 극단적인 차이는 소수의 킬러 문항이 등급을 결정하는 구조임을 명확히 보여줍니다.
+    </div>
+
+    <h2>II. 5개년 핵심 고난도 문항 현황</h2>
+    <p>아래 표는 2021~2025학년도 수능에서 <strong>변별력 있는 문항</strong>으로 명시적으로 지목된 문항들을 정리한 것입니다.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>연도</th>
+            <th>문항 번호</th>
+            <th>유형</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="yr-badge">2025</span></td>
+            <td>33번</td>
+            <td><span class="type-badge type-blank">빈칸 추론</span></td>
+            <td>변별력 1위</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2025</span></td>
+            <td>37번</td>
+            <td><span class="type-badge type-order">글의 순서</span></td>
+            <td>변별력 2위</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2024</span></td>
+            <td>33번</td>
+            <td><span class="type-badge type-blank">빈칸 추론</span></td>
+            <td>고난도</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2024</span></td>
+            <td>34번</td>
+            <td><span class="type-badge type-blank">빈칸 추론</span></td>
+            <td>고난도</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2024</span></td>
+            <td>24번</td>
+            <td><span class="type-badge type-etc">제목 파악</span></td>
+            <td>은유 표현 분석 요구</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2023</span></td>
+            <td>34번</td>
+            <td><span class="type-badge type-blank">빈칸 추론</span></td>
+            <td>오답률 1위 (83%)</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2023</span></td>
+            <td>29번</td>
+            <td><span class="type-badge type-etc">어법</span></td>
+            <td>오답률 2위 (71.7%)</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2023</span></td>
+            <td>21번</td>
+            <td><span class="type-badge type-etc">함축 의미 추론</span></td>
+            <td>1등급 결정 문항</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2023</span></td>
+            <td>39번</td>
+            <td><span class="type-badge type-insert">문장 삽입</span></td>
+            <td>1등급 결정 문항</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2022</span></td>
+            <td>38번</td>
+            <td><span class="type-badge type-insert">문장 삽입</span></td>
+            <td>오답률 1위</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2021</span></td>
+            <td>33번</td>
+            <td><span class="type-badge type-blank">빈칸 추론</span></td>
+            <td>고난도</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2021</span></td>
+            <td>34번</td>
+            <td><span class="type-badge type-blank">빈칸 추론</span></td>
+            <td>고난도</td>
+          </tr>
+          <tr>
+            <td><span class="yr-badge">2021</span></td>
+            <td>39번</td>
+            <td><span class="type-badge type-insert">문장 삽입</span></td>
+            <td>고난도</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box box-tip">
+      <div class="box-title">⚡ 핵심 패턴</div>
+      5개년 내내 <strong>빈칸 추론(33·34번)</strong>과 <strong>간접 쓰기(37·38·39번)</strong>가 1등급 변별을 담당하고 있습니다. 이 두 유형이 수능 영어의 '주요 전장'입니다.
+    </div>
+
+    <h2>III. 유형별 난이도 상승 요인 분석</h2>
+
+    <h3>① 빈칸 추론 (33·34번) — 전통적 킬러의 진화</h3>
+    <p>2023학년도 34번은 오답률 83%를 기록했습니다. 빈칸 문장 속 <strong>부정어 처리</strong>가 핵심 함정이었습니다. 2025학년도에는 구조적으로 복잡한 문장의 수는 줄었지만, 대신 <strong>선택지를 더욱 정교하게 구성</strong>하여 변별력을 확보하는 방향으로 진화했습니다.</p>
+
+    <div class="box box-warn">
+      <div class="box-title">⚠️ 난이도 진화 방향</div>
+      <strong>과거:</strong> 해석 자체가 어려운 복잡한 구문 → 읽기도 힘들다<br>
+      <strong>현재:</strong> 지문은 이해되지만, 선택지에서 두 개의 매력적인 오답이 혼란 유발 → 읽히지만 틀린다
+    </div>
+
+    <h3>② 간접 쓰기 (글의 순서·문장 삽입) — 논리와 시간의 이중 함정</h3>
+    <p>2022학년도 38번(문장 삽입)이 오답률 1위를 기록했고, 2023년 39번, 2025년 37번도 핵심 변별 문항이었습니다. 이 유형은 단순한 논리력 테스트를 넘어 <strong>전략적 시간 배분 능력</strong>까지 요구합니다. 한 문항에 과도하게 시간을 쏟으면 뒤따르는 쉬운 문항들을 놓치게 됩니다.</p>
+
+    <h3>③ 준킬러의 부상 — 어법·대의파악의 역습</h3>
+    <p>2023학년도 29번 어법 문제는 오답률 71.7%로 전체 2위를 기록했습니다. 단순 암기가 아닌 <strong>문맥상 주어와 목적어를 파악</strong>해야 하는 '해석 기반 어법' 문제였기 때문입니다. 2024학년도 24번(제목 파악)도 <strong>은유 표현 분석</strong>을 요구하며 고난도 문항에 진입했습니다.</p>
+
+    <h2>IV. '킬러 문항 배제' 정책의 영향 (2024·2025학년도)</h2>
+    <p>2024학년도부터 '킬러 문항 배제' 방침이 적용되었습니다. 그러나 결과는 예상과 달랐습니다.</p>
+
+    <div class="box box-amber">
+      <div class="box-title">🔍 역설적 결과</div>
+      킬러 문항 배제 첫 해인 2024학년도 1등급 비율은 <strong style="color:var(--coral)">4.71%</strong>로, 킬러 문항이 존재했던 2023학년도(7.83%)보다 오히려 낮아졌습니다.<br><br>
+      평가원은 '불공정하게 어려운' 문항을 제거하는 대신, <strong>'공정하지만 어려운'</strong> 문항으로 변별력을 유지했습니다.
+    </div>
+
+    <p>2025학년도에는 지문 난이도가 다소 완화되었지만, 선택지 구성이 더욱 정교해졌습니다. '킬러 유형'인 빈칸 추론(33번)과 글의 순서(37번)는 여전히 최고 변별력 문항으로 선정되었습니다.</p>
+
+    <h2>V. 1등급을 위한 4대 전략</h2>
+
+    <div class="strategy-grid">
+      <div class="s-card">
+        <div class="s-num">01</div>
+        <h4>빈칸·간접쓰기 논리 근거 훈련</h4>
+        <p>'감'이나 '요령'을 버리고, 지문 속 정답의 논리적 근거를 명시적으로 찾는 훈련에 집중합니다.</p>
+      </div>
+      <div class="s-card">
+        <div class="s-num">02</div>
+        <h4>정확한 해석 + 어휘력 강화</h4>
+        <p>맥락에 맞춰 단어 뜻을 적용하는 능력이 정교한 선지 판단과 직결됩니다. 폭넓은 어휘 암기가 필수입니다.</p>
+      </div>
+      <div class="s-card">
+        <div class="s-num">03</div>
+        <h4>준킬러 유형 경시 금지</h4>
+        <p>어법·대의파악도 고난도로 변모할 수 있습니다. 자주 출제되는 어법 사항의 개념과 응용을 꾸준히 학습합니다.</p>
+      </div>
+      <div class="s-card">
+        <div class="s-num">04</div>
+        <h4>전략적 시간 배분 훈련</h4>
+        <p>풀 수 없는 문항을 과감히 넘기는 결단력도 실력입니다. 시간 내 전체 문항 완료를 반복 훈련하세요.</p>
+      </div>
+    </div>
+
+    <div class="box box-key">
+      <div class="box-title">✅ 결론</div>
+      킬러 문항은 사라진 것이 아니라 <strong>진화</strong>했습니다. 빈칸 추론과 간접 쓰기는 여전히 1등급의 주요 전장이며, 난이도의 무게중심이 '해석 불가능한 구문'에서 <strong>'정교한 선지 판단'</strong>으로 이동했습니다. 이에 맞는 훈련 전략이 필요합니다.
+    </div>
+
+  </div>
+
+  <div class="article-nav">
+    <a href="../suneung-info.html">← 목록으로</a>
+    <a href="article-001.html">빈칸추론 풀이법 →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Key Trend. All rights reserved. | <a href="../terms.html">이용약관</a></p>
+</footer>
+
+</body>
+</html>
