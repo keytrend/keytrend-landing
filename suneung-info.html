@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수능정보 - Key Trend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);min-height:100vh}
+
+/* NAV */
+nav{background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:16px 0;position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:22px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:14px;font-weight:500;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--white)}
+
+/* HEADER */
+.page-header{padding:72px 24px 48px;text-align:center;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.page-header h1{font-family:'Outfit';font-size:clamp(32px,5vw,48px);font-weight:800;margin-bottom:12px;position:relative}
+.page-header h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.page-header p{color:var(--gray);font-size:16px;position:relative}
+
+/* CATEGORY TABS */
+.tab-wrap{max-width:1100px;margin:0 auto;padding:0 24px 32px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.tab{padding:8px 20px;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(51,65,85,.7);background:transparent;color:var(--gray);font-family:inherit;transition:all .2s}
+.tab:hover{border-color:var(--accent2);color:var(--accent2)}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ARTICLE GRID */
+.grid-wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.article-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.article-grid{grid-template-columns:1fr}}
+
+/* ARTICLE CARD */
+.article-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:28px 24px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;transition:all .3s;position:relative;overflow:hidden}
+.article-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s}
+.article-card[data-cat="유형별풀이법"]::before{background:linear-gradient(90deg,#6366f1,#a855f7)}
+.article-card[data-cat="수능출제경향"]::before{background:linear-gradient(90deg,#34d399,#059669)}
+.article-card[data-cat="시험전략"]::before{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+.article-card[data-cat="기타정보"]::before{background:linear-gradient(90deg,#f472b6,#ec4899)}
+.article-card:hover{border-color:rgba(99,102,241,.4);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.article-card:hover::before{opacity:1}
+
+.card-cat{font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:6px}
+.cat-유형별풀이법{background:rgba(99,102,241,.15);color:var(--accent2)}
+.cat-수능출제경향{background:rgba(52,211,153,.15);color:var(--mint)}
+.cat-시험전략{background:rgba(251,191,36,.15);color:var(--amber)}
+.cat-기타정보{background:rgba(244,114,182,.15);color:var(--coral)}
+
+.card-tag{font-size:11px;color:var(--gray);background:rgba(51,65,85,.4);padding:2px 8px;border-radius:4px;display:inline-block}
+.card-title{font-size:16px;font-weight:700;line-height:1.5;color:var(--white)}
+.card-desc{font-size:13px;color:var(--gray);line-height:1.7;flex:1}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.card-date{font-size:12px;color:var(--slate)}
+.card-arrow{font-size:14px;color:var(--accent2);font-weight:600;opacity:0;transition:opacity .2s}
+.article-card:hover .card-arrow{opacity:1}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:60px 20px;color:var(--gray);font-size:15px;display:none}
+.empty.show{display:block}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(51,65,85,.3);padding:32px 24px;text-align:center;color:var(--gray);font-size:13px}
+footer a{color:var(--accent2);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="index.html" class="nav-back">← 홈으로 돌아가기</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>수능 <em>정보</em></h1>
+  <p>수능 영어 유형별 풀이법부터 시험 전략까지, 합격에 필요한 모든 정보</p>
+</div>
+
+<!-- 카테고리 탭 -->
+<div class="tab-wrap">
+  <button class="tab active" onclick="filterCat('전체')">전체</button>
+  <button class="tab" onclick="filterCat('수능출제경향')">📊 수능 출제 경향</button>
+  <button class="tab" onclick="filterCat('유형별풀이법')">📘 유형별 풀이법</button>
+  <button class="tab" onclick="filterCat('시험전략')">🎯 시험 전략</button>
+  <button class="tab" onclick="filterCat('기타정보')">📝 기타 정보</button>
+</div>
+
+<!-- 아티클 그리드 -->
+<div class="grid-wrap">
+  <div class="article-grid" id="grid">
+
+    <!-- ====== 여기서부터 글 카드 추가 ====== -->
+
+    <!-- 샘플: 빈칸추론 -->
+    <a href="suneung-info/article-001.html" class="article-card" data-cat="유형별풀이법">
+      <div>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">빈칸추론</span>
+      </div>
+      <div class="card-title">빈칸추론 완전정복 — "not A but B" 구조 공식</div>
+      <div class="card-desc">빈칸추론의 핵심은 반복 키워드와 대조 구조를 파악하는 것입니다. 5단계 풀이 공식으로 정답률을 높이세요.</div>
+      <div class="card-footer">
+        <span class="card-date">2026.03.14</span>
+        <span class="card-arrow">읽기 →</span>
+      </div>
+    </a>
+
+    <!-- 새 글 추가 시 위 카드 블록을 복사해서 아래에 붙여넣기 -->
+    <!-- data-cat 값: 유형별풀이법 / 수능출제경향 / 시험전략 / 기타정보 -->
+
+    <!-- ====== 여기까지 ====== -->
+
+  </div>
+  <div class="empty" id="empty">해당 카테고리의 글이 아직 없습니다.</div>
+</div>
+
+<footer>
+  <p>© 2026 Key Trend. All rights reserved. | <a href="terms.html">이용약관</a> | <a href="#">개인정보처리방침</a></p>
+</footer>
+
+<script>
+function filterCat(cat) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const cards = document.querySelectorAll('.article-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const match = cat === '전체' || card.dataset.cat === cat;
+    card.style.display = match ? 'flex' : 'none';
+    if (match) visible++;
+  });
+  document.getElementById('empty').classList.toggle('show', visible === 0);
+}
+</script>
+</body>
+</html>
