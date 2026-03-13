@@ -240,5 +240,18 @@ footer a{color:var(--accent2);text-decoration:none}
   <p>© 2026 Key Trend. All rights reserved. | <a href="../terms.html">이용약관</a></p>
 </footer>
 
+<script>
+// 우클릭 방지
+document.addEventListener('contextmenu', e => e.preventDefault());
+// 텍스트 드래그 선택 방지
+document.addEventListener('selectstart', e => e.preventDefault());
+// 키보드 복사 단축키 방지 (Ctrl+C, Ctrl+A, F12 등)
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+</script>
 </body>
 </html>
