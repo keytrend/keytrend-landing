@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026학년도 수능 영어 고난도 어휘 100선 — 킬러 지문 핵심 단어 총정리 | Key Trend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.7;user-select:none;-webkit-user-select:none}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:14px 0}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:14px;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+/* HERO */
+.hero{max-width:900px;margin:0 auto;padding:120px 24px 60px}
+.breadcrumb{font-size:13px;color:var(--gray);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.breadcrumb a{color:var(--gray);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--accent2)}
+.breadcrumb span{color:var(--accent2)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:5px 14px;border-radius:100px;font-size:12px;color:var(--accent2);font-weight:600;margin-bottom:16px}
+.hero h1{font-family:'Outfit';font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.25;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--gray);margin-bottom:32px}
+.hero-meta span{display:flex;align-items:center;gap:4px}
+.hero-desc{background:rgba(30,41,59,.6);border:1px solid rgba(99,102,241,.2);border-radius:16px;padding:24px;margin-bottom:48px;font-size:15px;line-height:1.85;color:#cbd5e1}
+.hero-desc strong{color:var(--accent2)}
+
+/* SUMMARY BOX */
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:60px}
+.summary-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:14px;padding:20px;text-align:center}
+.summary-num{font-family:'Outfit';font-size:32px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.summary-label{font-size:13px;color:var(--gray);margin-top:4px}
+
+/* SECTION */
+.section{max-width:900px;margin:0 auto;padding:0 24px 80px}
+.section-title{display:flex;align-items:center;gap:12px;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid rgba(51,65,85,.5)}
+.section-title h2{font-family:'Outfit';font-size:20px;font-weight:700}
+.passage-tag{font-size:12px;font-weight:700;padding:4px 12px;border-radius:6px;background:rgba(99,102,241,.15);color:var(--accent2)}
+.passage-tag.hard{background:rgba(244,114,182,.15);color:var(--coral)}
+.passage-tag.medium{background:rgba(251,191,36,.12);color:var(--amber)}
+.passage-tag.mint{background:rgba(52,211,153,.12);color:var(--mint)}
+
+/* VOCAB TABLE */
+.vocab-grid{display:grid;gap:12px}
+.vocab-card{background:rgba(30,41,59,.4);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:20px 24px;display:grid;grid-template-columns:auto 1fr auto;gap:0 20px;align-items:start;transition:all .3s;position:relative;overflow:hidden}
+.vocab-card:hover{border-color:var(--accent);transform:translateX(4px)}
+.vocab-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad1);opacity:0;transition:opacity .3s}
+.vocab-card:hover::before{opacity:1}
+.vocab-num{font-family:'Outfit';font-size:13px;font-weight:700;color:rgba(99,102,241,.5);min-width:30px;padding-top:2px}
+.vocab-main{}
+.vocab-word{font-family:'Outfit';font-size:18px;font-weight:700;color:var(--white);margin-bottom:3px}
+.vocab-pron{font-size:12px;color:var(--gray);margin-bottom:6px;font-style:italic}
+.vocab-meaning{font-size:14px;color:var(--mint);font-weight:600;margin-bottom:6px}
+.vocab-context{font-size:13px;color:var(--gray);line-height:1.7;border-left:2px solid rgba(99,102,241,.3);padding-left:12px;margin-top:6px}
+.vocab-context em{color:var(--accent2);font-style:normal}
+.vocab-tip{font-size:12px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:8px;padding:8px 12px;color:var(--accent2);margin-top:8px;line-height:1.6}
+.badge-col{display:flex;flex-direction:column;gap:6px;align-items:flex-end;padding-top:2px}
+.badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;white-space:nowrap}
+.badge-3{background:rgba(244,114,182,.15);color:var(--coral)}
+.badge-2{background:rgba(251,191,36,.12);color:var(--amber)}
+.badge-q{background:rgba(52,211,153,.12);color:var(--mint)}
+
+/* PASSAGE INTRO */
+.passage-intro{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:16px 20px;margin-bottom:20px;font-size:13px;color:var(--gray);line-height:1.7}
+.passage-intro strong{color:var(--white)}
+
+/* TIP BOX */
+.tip-box{background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:24px;margin:48px 0;font-size:14px;line-height:1.85;color:#cbd5e1}
+.tip-box h3{font-family:'Outfit';font-size:16px;font-weight:700;color:var(--accent2);margin-bottom:12px}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:all .3s;font-size:20px;border:none;color:white;z-index:50}
+.scroll-top.visible{opacity:1}
+.scroll-top:hover{background:var(--accent2);transform:translateY(-4px)}
+
+/* FOOTER */
+footer{text-align:center;padding:48px 24px;border-top:1px solid rgba(51,65,85,.3);font-size:13px;color:var(--gray)}
+footer a{color:var(--accent2);text-decoration:none}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:all .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+.summary-grid{grid-template-columns:1fr 1fr}
+.vocab-card{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
+.badge-col{flex-direction:row;grid-column:2;grid-row:2;justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="../suneung-info.html" class="nav-back">← 수능 정보 목록</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="/">홈</a> › <a href="../suneung-info.html">수능 정보</a> › <span>기타 정보</span>
+  </div>
+  <div class="cat-badge">📝 기타 정보</div>
+  <h1>2026학년도 수능 영어<br><em>고난도 어휘 100선</em></h1>
+  <div class="hero-meta">
+    <span>📅 2026.03.14</span>
+    <span>📖 18~45번 전 지문</span>
+    <span>⏱ 학습 예상 60분</span>
+    <span>🎯 2026학년도 수능 기출</span>
+  </div>
+  <div class="hero-desc">
+    2026학년도 수능 영어 독해 지문(18~45번) 전체에서 <strong>수험생이 놓치기 쉬운 고난도 어휘 100개</strong>를 엄선했습니다.
+    단순 암기가 아닌, <strong>실제 지문 맥락</strong>과 함께 의미를 익혀 같은 단어가 다른 지문에서 나와도 바로 적용할 수 있도록 구성했습니다.
+    특히 <strong>빈칸·어법·낱말 오류 유형</strong>에서 정답의 핵심 열쇠가 된 단어들을 우선 수록했습니다.
+  </div>
+</div>
+
+<div class="section">
+  <div class="summary-grid reveal">
+    <div class="summary-card">
+      <div class="summary-num">100</div>
+      <div class="summary-label">수록 어휘 수</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-num">18</div>
+      <div class="summary-label">수록 지문 수 (18~45번)</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-num">3점</div>
+      <div class="summary-label">3점 킬러 문항 집중</div>
+    </div>
+  </div>
+
+  <div class="tip-box reveal">
+    <h3>💡 이 자료를 200% 활용하는 법</h3>
+    영어 단어 → 한글 뜻을 외우는 게 아니라, <strong>①지문 맥락 문장을 소리 내어 읽고 → ②어원/연상 팁을 확인 → ③해당 번호 문제를 다시 풀어보는</strong> 3단계를 권장합니다.
+    수능 영어는 단어 단독 테스트가 아닌 <strong>맥락 속 의미 파악</strong>이 핵심이기 때문입니다.
+  </div>
+
+  <!-- ===== 21번: 디지털 플랫폼 / 클라우드워크 ===== -->
+  <div class="section-title reveal">
+    <h2>21번 — 함축 의미 추론 · 디지털 노동 플랫폼</h2>
+    <span class="passage-tag hard">3점 킬러</span>
+  </div>
+  <div class="passage-intro reveal">
+    <strong>"made a lot of work less sticky"</strong>의 함축 의미를 묻는 3점 문항. 클라우드워크(cloudwork)가 지리적 제약을 해제한다는 내용. 정답 ②<em>elevated the spatial flexibility in conducting business</em>를 이해하려면 아래 어휘가 핵심입니다.
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">01</div>
+      <div class="vocab-main">
+        <div class="vocab-word">modularised</div>
+        <div class="vocab-meaning">모듈화된</div>
+        <div class="vocab-context">As work becomes ever more <em>modularised</em> — 업무가 점점 더 모듈화될수록</div>
+        <div class="vocab-tip">💡 module(모듈, 독립 단위) + -ise(동사화) → -d(과거분사형용사). 업무를 잘게 나눠 독립 단위로 만드는 것. standardised, commoditised와 함께 묶어 외우자.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">21번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">02</div>
+      <div class="vocab-main">
+        <div class="vocab-word">commoditised</div>
+        <div class="vocab-meaning">상품화된, 규격화된</div>
+        <div class="vocab-context">ever more <em>commoditised</em> and standardised — 점점 더 상품화되고 표준화될수록</div>
+        <div class="vocab-tip">💡 commodity(상품) + -ise → 서비스나 기술이 차별성을 잃고 표준 상품처럼 취급되는 것. 수능 자주 출제 개념.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">21번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">03</div>
+      <div class="vocab-main">
+        <div class="vocab-word">granularity</div>
+        <div class="vocab-pron">[ɡrænjuˈlærɪti]</div>
+        <div class="vocab-meaning">세분화 정도, 과립상(顆粒狀)</div>
+        <div class="vocab-context">changes the volume and <em>granularity</em> at which geographically non-proximate work can take place</div>
+        <div class="vocab-tip">💡 granule(작은 알갱이) 어원. 업무를 얼마나 잘게 쪼갤 수 있는지를 나타냄. 지문 주석(*granularity: 과립상)으로 출제됨 → 주석 단어도 반드시 확인!</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">21번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">04</div>
+      <div class="vocab-main">
+        <div class="vocab-word">non-proximate</div>
+        <div class="vocab-meaning">지리적으로 가깝지 않은, 원거리의</div>
+        <div class="vocab-context">geographically <em>non-proximate</em> work — 지리적으로 인접하지 않은 업무</div>
+        <div class="vocab-tip">💡 proximate = 인접한, near. non- 접두사로 반의어. approximate(근사치)와 같은 어원 prox-(가깝다).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">21번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">05</div>
+      <div class="vocab-main">
+        <div class="vocab-word">spatial flexibility</div>
+        <div class="vocab-meaning">공간적 유연성</div>
+        <div class="vocab-context">정답 선지: <em>elevated the spatial flexibility</em> in conducting business</div>
+        <div class="vocab-tip">💡 spatial = space(공간)의 형용사형. 21번의 핵심 정답 어휘. "sticky"(고착된) ↔ "flexible"(유연한) 대립 관계를 파악하는 것이 문제 풀이의 핵심.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">21번</span><span class="badge badge-q">정답핵심</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 22번: 스포츠 생태계 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>22번 — 요지 · 스포츠 협쟁(coopetition)</h2>
+    <span class="passage-tag medium">2점</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">06</div>
+      <div class="vocab-main">
+        <div class="vocab-word">coopetition</div>
+        <div class="vocab-pron">[koʊˌɒpɪˈtɪʃən]</div>
+        <div class="vocab-meaning">협쟁 — 협력(cooperation)과 경쟁(competition)의 합성어</div>
+        <div class="vocab-context">A sport ecosystem exists based on the type and rate of <em>coopetition</em> existing.</div>
+        <div class="vocab-tip">💡 수능에서 처음 보는 합성 신조어가 나오면 → 구성 요소 분리. cooperation + competition = coopetition. 이 단어 자체가 주제를 담고 있음.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">22번</span><span class="badge badge-q">주제어</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">07</div>
+      <div class="vocab-main">
+        <div class="vocab-word">simultaneous</div>
+        <div class="vocab-pron">[ˌsɪməlˈteɪniəs]</div>
+        <div class="vocab-meaning">동시의, 동시에 일어나는</div>
+        <div class="vocab-context">the <em>simultaneous</em> pursuit of cooperation and competition</div>
+        <div class="vocab-tip">💡 simul-(같은 때) 어원 → simulate(모의하다), simultaneous. 부사형 simultaneously도 함께.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">22번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">08</div>
+      <div class="vocab-main">
+        <div class="vocab-word">paramount</div>
+        <div class="vocab-pron">[ˈpærəmaʊnt]</div>
+        <div class="vocab-meaning">최고의, 가장 중요한</div>
+        <div class="vocab-context">trust and confidence issues being <em>paramount</em></div>
+        <div class="vocab-tip">💡 para-(위에) + mount(산) → 산 꼭대기 → 최고. "of paramount importance"(최고로 중요한) 표현 덩어리로 외우기.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">22번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">09</div>
+      <div class="vocab-main">
+        <div class="vocab-word">absenteeism</div>
+        <div class="vocab-pron">[ˌæbsənˈtiːɪzəm]</div>
+        <div class="vocab-meaning">결근(율), 결석(율)</div>
+        <div class="vocab-context">reduced <em>absenteeism</em>, less turnover, and lower costs (33번에서도 등장)</div>
+        <div class="vocab-tip">💡 absent(없는) + -eeism(관행/경향). 33번 건물 설계 지문에서도 동일 단어 등장 — 한 어휘가 여러 지문에 쓰이는 패턴 주목.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">22번</span><span class="badge badge-3">33번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 23번: 대중교통 빈도 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>23번 — 주제 · 대중교통 빈도 vs 속도</h2>
+    <span class="passage-tag medium">2점</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">10</div>
+      <div class="vocab-main">
+        <div class="vocab-word">frequency</div>
+        <div class="vocab-meaning">빈도, (운행) 횟수</div>
+        <div class="vocab-context">speed is worthless without <em>frequency</em> — 빈도 없이 속도는 무의미하다</div>
+        <div class="vocab-tip">💡 수능에서 '빈도'보다 '운행 간격(배차 간격)'에 가까운 의미. 글 전체 주제가 이 한 단어에 집약됨. 제목 추론·주제 유형에서 핵심어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">23번</span><span class="badge badge-q">주제핵심</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">11</div>
+      <div class="vocab-main">
+        <div class="vocab-word">span</div>
+        <div class="vocab-meaning">(운행) 시간대, 범위, 기간</div>
+        <div class="vocab-context">transit has to exist when you need it (<em>span</em>), and it needs to be coming soon (frequency)</div>
+        <div class="vocab-tip">💡 지문 내에서 span에 괄호 안 설명이 달려 있음 → 이런 구조는 반드시 정의로 취급. "운행 시간대가 충분한가" vs "배차 간격이 짧은가"의 두 축.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">23번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">12</div>
+      <div class="vocab-main">
+        <div class="vocab-word">wipe out</div>
+        <div class="vocab-meaning">완전히 없애다, 상쇄하다</div>
+        <div class="vocab-context">waiting time will <em>wipe out</em> any time savings from a faster service</div>
+        <div class="vocab-tip">💡 구동사(phrasal verb). 빠른 서비스로 절약한 시간을 대기 시간이 모두 '상쇄'한다는 뜻. erase, cancel out과 동의.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">23번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 24번: 문화오락 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>24번 — 제목 추론 · 문화오락(culturtainment) [3점]</h2>
+    <span class="passage-tag hard">3점 킬러</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">13</div>
+      <div class="vocab-main">
+        <div class="vocab-word">culturtainment</div>
+        <div class="vocab-meaning">문화오락 (culture + entertainment 합성어)</div>
+        <div class="vocab-context">The economic benefit of <em>culturtainment</em> makes it attractive to politicians</div>
+        <div class="vocab-tip">💡 culture + entertainment. 정답 선지 ②"Cash or Soul? When Culture Couples with Entertainment"에서 핵심. 신조어가 제목에 반영됨.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">24번</span><span class="badge badge-q">주제어</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">14</div>
+      <div class="vocab-main">
+        <div class="vocab-word">homogeneous</div>
+        <div class="vocab-pron">[ˌhɒməˈdʒiːniəs]</div>
+        <div class="vocab-meaning">동종의, 균질한, 동일한 성격의</div>
+        <div class="vocab-context">risks culturtainment becoming <em>homogeneous</em> and losing its original 'message'</div>
+        <div class="vocab-tip">💡 homo-(같은) + genus(종류) → 같은 종류. ↔ heterogeneous(이질적인). 상업화 → 획일화 논리 흐름의 핵심어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">24번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">15</div>
+      <div class="vocab-main">
+        <div class="vocab-word">dilution</div>
+        <div class="vocab-pron">[daɪˈluːʃən]</div>
+        <div class="vocab-meaning">희석, (청중·관객의) 분산</div>
+        <div class="vocab-context">could lead to a <em>dilution</em> of audiences</div>
+        <div class="vocab-tip">💡 dilute(희석하다)의 명사형. 청중이 여러 이벤트로 '분산·희석'된다는 뜻. 지문 주석에도 등장(*dilution: 희석).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">24번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">16</div>
+      <div class="vocab-main">
+        <div class="vocab-word">exploitation</div>
+        <div class="vocab-pron">[ˌekspləɪˈteɪʃən]</div>
+        <div class="vocab-meaning">착취, 상업적 이용</div>
+        <div class="vocab-context">delicate in the face of <em>exploitation</em></div>
+        <div class="vocab-tip">💡 exploit(착취하다/이용하다) → exploitation. 문화의 상업적 과도한 이용을 지적. 지문 마지막 문장의 핵심 — 결론부 단어는 주제와 직결.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">24번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">17</div>
+      <div class="vocab-main">
+        <div class="vocab-word">commemoration</div>
+        <div class="vocab-pron">[kəˌmeməˈreɪʃən]</div>
+        <div class="vocab-meaning">기념, 기념행사</div>
+        <div class="vocab-context">develop celebrations and <em>commemorations</em> into larger, high-profile events</div>
+        <div class="vocab-tip">💡 com-(함께) + memor(기억) → 함께 기억하는 행사. memorial(추모의), memorize(암기)와 같은 어원.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">24번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">18</div>
+      <div class="vocab-main">
+        <div class="vocab-word">stakeholder</div>
+        <div class="vocab-meaning">이해관계자</div>
+        <div class="vocab-context">planners and <em>stakeholders</em> will need to balance against potential financial gain</div>
+        <div class="vocab-tip">💡 stake(지분, 이해관계) + holder(보유자). 경영·사회 분야 수능 지문 빈출. shareholder(주주)와 구분 — 주주보다 넓은 개념.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">24번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 29번: 어법 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>29번 — 어법 · 인간의 집단 지식 축적</h2>
+    <span class="passage-tag medium">2점</span>
+  </div>
+  <div class="passage-intro reveal">
+    어법 문제 정답은 ② <strong>being → is</strong>. "The package ... <em>being</em> far too complex"에서 주어-동사 불일치. 어법 문제라도 지문 내용 어휘가 빈칸·낱말 유형에 재활용됨.
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">19</div>
+      <div class="vocab-main">
+        <div class="vocab-word">adaptive</div>
+        <div class="vocab-meaning">적응적인, 환경에 맞추는</div>
+        <div class="vocab-context">solve the <em>adaptive</em> problems that confronted modern humans</div>
+        <div class="vocab-tip">💡 adapt(적응하다) → adaptive. 생물·심리·사회 지문 모두에 자주 등장. "adaptive behavior/strategy/capacity"로 확장.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">29번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">20</div>
+      <div class="vocab-main">
+        <div class="vocab-word">forager</div>
+        <div class="vocab-pron">[ˈfɒrɪdʒər]</div>
+        <div class="vocab-meaning">채집인, 먹이를 구하러 다니는 동물/인간</div>
+        <div class="vocab-context">used by any group of <em>foragers</em> — 어떤 채집인 집단이든</div>
+        <div class="vocab-tip">💡 forage(먹이를 구하러 다니다) 지문 주석 제공. 수렵-채집(hunter-gatherer) 사회 관련 지문에 필수 어휘.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">29번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">21</div>
+      <div class="vocab-main">
+        <div class="vocab-word">inventive</div>
+        <div class="vocab-meaning">창의적인, 발명하는 능력이 있는</div>
+        <div class="vocab-context">greatly exceed the <em>inventive</em> capacities of individuals</div>
+        <div class="vocab-tip">💡 invent(발명하다) → inventive(창의적인). innovative, creative와 유사. 집단 지식이 개인의 창의적 능력을 초월한다는 주제의 핵심어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">29번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 30번: 상황 윤리 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>30번 — 문맥상 낱말 · 상황 윤리 [3점]</h2>
+    <span class="passage-tag hard">3점 킬러</span>
+  </div>
+  <div class="passage-intro reveal">
+    정답 ⑤ <strong>abandon → secure/gain</strong>. "경쟁 우위를 <em>포기하다</em>"가 아닌 "경쟁 우위를 <em>확보하다</em>"가 맥락상 맞음. 문맥상 낱말 문제는 반의어 치환 패턴이 핵심.
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">22</div>
+      <div class="vocab-main">
+        <div class="vocab-word">situational ethics</div>
+        <div class="vocab-meaning">상황 윤리</div>
+        <div class="vocab-context"><em>Situational ethics</em> is an ethical theory that takes into account the context of a situation</div>
+        <div class="vocab-tip">💡 상황에 따라 도덕 판단이 달라진다는 이론. absolute(절대적) moral standards와 대립. 30번 지문 전체의 핵심 개념어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">30번</span><span class="badge badge-q">주제어</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">23</div>
+      <div class="vocab-main">
+        <div class="vocab-word">justifies the means</div>
+        <div class="vocab-meaning">수단을 정당화하다</div>
+        <div class="vocab-context">the end <em>justifies the means</em> — 목적이 수단을 정당화한다</div>
+        <div class="vocab-tip">💡 고전 격언 "The end justifies the means" 그대로 출제. justify(정당화하다)는 단독으로도 빈출. justification(정당화) 명사형도 함께.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">30번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">24</div>
+      <div class="vocab-main">
+        <div class="vocab-word">abandon</div>
+        <div class="vocab-meaning">포기하다, 버리다</div>
+        <div class="vocab-context">to <em>abandon</em> competitive advantages (→ 오답 단어, 맥락상 틀림)</div>
+        <div class="vocab-tip">💡 30번 정답의 핵심: "경쟁 우위를 포기하다"는 문맥에 맞지 않음. secure(확보하다)/gain(얻다)이 적절. 낱말 오류 유형에서 반드시 전체 논리 흐름을 확인.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">30번</span><span class="badge badge-q">오답핵심</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 31번: 곡물 무역 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>31번 — 빈칸 추론 · 초기 곡물 무역회사</h2>
+    <span class="passage-tag medium">2점</span>
+  </div>
+  <div class="passage-intro reveal">
+    정답 ① <strong>profitability</strong>(수익성). 정보가 비밀 유지의 핵심이었던 이유 → 수익성과 직결되기 때문. surplus, deficit, commodity가 함께 출제된 경제 지문.
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">25</div>
+      <div class="vocab-main">
+        <div class="vocab-word">surplus</div>
+        <div class="vocab-pron">[ˈsɜːpləs]</div>
+        <div class="vocab-meaning">잉여, 과잉 공급</div>
+        <div class="vocab-context">active in both <em>surplus</em>-producing and food deficit regions</div>
+        <div class="vocab-tip">💡 sur-(초과) + plus(더). ↔ deficit(부족). 경제 지문 단골 쌍. "trade surplus"(무역 흑자)도 함께 암기.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">31번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">26</div>
+      <div class="vocab-main">
+        <div class="vocab-word">deficit</div>
+        <div class="vocab-pron">[ˈdefɪsɪt]</div>
+        <div class="vocab-meaning">부족, 적자</div>
+        <div class="vocab-context">food <em>deficit</em> regions — 식량 부족 지역</div>
+        <div class="vocab-tip">💡 de-(아래로) + ficit(만들다 fac- 변형) → 필요량 아래. 지문 주석(*deficit: 부족) 제공. ↔ surplus. "budget deficit"(재정 적자).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">31번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">27</div>
+      <div class="vocab-main">
+        <div class="vocab-word">profitability</div>
+        <div class="vocab-pron">[ˌprɒfɪtəˈbɪlɪti]</div>
+        <div class="vocab-meaning">수익성</div>
+        <div class="vocab-context">정답 선지: this information was the key to their <em>profitability</em></div>
+        <div class="vocab-tip">💡 profit(이익) + -ability(가능성). 31번 정답 단어. secrecy(비밀 유지) → 정보 독점 → profitability 논리 연결이 핵심.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">31번</span><span class="badge badge-q">정답</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">28</div>
+      <div class="vocab-main">
+        <div class="vocab-word">commodity</div>
+        <div class="vocab-pron">[kəˈmɒdɪti]</div>
+        <div class="vocab-meaning">상품, 원자재</div>
+        <div class="vocab-context">the rise of <em>commodity</em> exchanges and commodities futures markets</div>
+        <div class="vocab-tip">💡 곡물·금속·석유처럼 표준화된 원자재 상품. "commodity market"(상품 시장), "commodity futures"(상품 선물). 경제 지문 핵심어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">31번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 32번: 글쓰기 스타일 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>32번 — 빈칸 추론 · 효과적인 글쓰기 [3점]</h2>
+    <span class="passage-tag hard">3점 킬러</span>
+  </div>
+  <div class="passage-intro reveal">
+    정답 ⑤ <strong>anticipate the absent reader's response</strong>. 글쓰기에서 독자의 반응을 미리 예상해야 한다는 내용. 핵심어 anticipate와 absent가 정답을 결정함.
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">29</div>
+      <div class="vocab-main">
+        <div class="vocab-word">proportion</div>
+        <div class="vocab-meaning">균형, 적절한 분량</div>
+        <div class="vocab-context">readers expect: clarity, relevance, and <em>proportion</em></div>
+        <div class="vocab-tip">💡 독자가 기대하는 3요소: clarity(명확성) + relevance(관련성) + proportion(적절한 분량). 이 세 단어가 지문의 핵심 구조를 이룸.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">32번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">30</div>
+      <div class="vocab-main">
+        <div class="vocab-word">nonverbal communication</div>
+        <div class="vocab-meaning">비언어적 의사소통</div>
+        <div class="vocab-context">writing does not permit the <em>nonverbal communication</em> and immediate feedback</div>
+        <div class="vocab-tip">💡 non-(부정) + verbal(언어적). 제스처, 표정 등. 글쓰기 vs 대화의 차이점을 설명하는 핵심 대비 개념.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">32번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">31</div>
+      <div class="vocab-main">
+        <div class="vocab-word">anticipate</div>
+        <div class="vocab-pron">[ænˈtɪsɪpeɪt]</div>
+        <div class="vocab-meaning">예상하다, 미리 대처하다</div>
+        <div class="vocab-context">정답 선지: <em>anticipate</em> the absent reader's response</div>
+        <div class="vocab-tip">💡 anti-(앞에) + capere(잡다) → 미리 잡아두다. expect보다 능동적인 대처 의미. anticipation(예상)도 함께.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">32번</span><span class="badge badge-q">정답핵심</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 33번: 건물 설계 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>33번 — 빈칸 추론 · 건물 사용자 참여 설계</h2>
+    <span class="passage-tag medium">2점</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">32</div>
+      <div class="vocab-main">
+        <div class="vocab-word">prospective</div>
+        <div class="vocab-pron">[prəˈspektɪv]</div>
+        <div class="vocab-meaning">미래의, 예비의, 잠재적인</div>
+        <div class="vocab-context">involving <em>prospective</em> building users — 미래 건물 사용자들을 참여시키는 것</div>
+        <div class="vocab-tip">💡 pro-(앞을) + spectare(보다) → 앞을 내다보는 → 미래의. perspective(관점)와 어원 같음. "prospective student"(예비 학생).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">33번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">33</div>
+      <div class="vocab-main">
+        <div class="vocab-word">turnover</div>
+        <div class="vocab-meaning">이직률, 직원 교체율</div>
+        <div class="vocab-context">reduced absenteeism, less <em>turnover</em>, and lower costs</div>
+        <div class="vocab-tip">💡 직원이 얼마나 자주 교체되는가. "high turnover rate"(높은 이직률). 비즈니스 지문 빈출. 33번 결론부의 긍정적 효과 나열 중 하나.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">33번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">34</div>
+      <div class="vocab-main">
+        <div class="vocab-word">consult</div>
+        <div class="vocab-meaning">의견을 구하다, 상담하다</div>
+        <div class="vocab-context">정답 선지: have been <em>consulted</em> in the design process</div>
+        <div class="vocab-tip">💡 33번 정답핵심. "설계 과정에 의견이 반영된" 사람들이 건물에 만족한다는 논리. consultation(협의), consultant(자문가) 파생어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">33번</span><span class="badge badge-q">정답</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 34번: 칸트 / 법 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>34번 — 빈칸 추론 · 칸트와 법의 지배 [3점]</h2>
+    <span class="passage-tag hard">3점 킬러</span>
+  </div>
+  <div class="passage-intro reveal">
+    정답 ③ <strong>understood as a restraint on their freedom</strong>. 칸트의 법 이론 — 이성적 존재가 스스로 선택할 내용을 법이 금지한다면 그것은 자유의 제약이 될 수 없다.
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">35</div>
+      <div class="vocab-main">
+        <div class="vocab-word">benevolence</div>
+        <div class="vocab-pron">[bɪˈnevələns]</div>
+        <div class="vocab-meaning">자비심, 선의</div>
+        <div class="vocab-context">We cannot count on people's <em>benevolence</em> or goodwill</div>
+        <div class="vocab-tip">💡 bene-(좋은) + vol(의지) → 좋은 의지. malevolence(악의)의 반의어. 지문 주석(*benevolence: 자비심) 제공. "benevolent dictator"(자비로운 독재자).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">34번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">36</div>
+      <div class="vocab-main">
+        <div class="vocab-word">embodiment</div>
+        <div class="vocab-pron">[ɪmˈbɒdimənt]</div>
+        <div class="vocab-meaning">구현체, 화신</div>
+        <div class="vocab-context">the law is the <em>embodiment</em> of those political principles</div>
+        <div class="vocab-tip">💡 embody(구현하다) → embodiment. "법은 정치 원칙의 구현체." 36번 시계(clock) 지문의 "a process embodied in a machine"과 같은 어근.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">34번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">37</div>
+      <div class="vocab-main">
+        <div class="vocab-word">conflict-prone</div>
+        <div class="vocab-meaning">갈등을 일으키기 쉬운</div>
+        <div class="vocab-context">man's violent and <em>conflict-prone</em> nature</div>
+        <div class="vocab-tip">💡 prone = ~하기 쉬운. "error-prone"(오류를 범하기 쉬운), "accident-prone"(사고를 잘 내는). 홉스의 인간관 설명에 사용.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">34번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">38</div>
+      <div class="vocab-main">
+        <div class="vocab-word">restraint</div>
+        <div class="vocab-pron">[rɪˈstreɪnt]</div>
+        <div class="vocab-meaning">제약, 억제</div>
+        <div class="vocab-context">정답 선지: the law cannot be understood as a <em>restraint</em> on their freedom</div>
+        <div class="vocab-tip">💡 restrain(억제하다) → restraint. 20번 lyricist 지문에서도 "experienced <em>restraints</em> on the acknowledgement"로 등장. 두 지문에 걸친 어휘.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">34번</span><span class="badge badge-2">20번</span><span class="badge badge-q">정답핵심</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 36~37번: 글의 순서 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>36~37번 — 글의 순서 · 시계와 철학</h2>
+    <span class="passage-tag medium">2점 / 3점</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">39</div>
+      <div class="vocab-main">
+        <div class="vocab-word">iterative</div>
+        <div class="vocab-pron">[ˈɪtərətɪv]</div>
+        <div class="vocab-meaning">반복적인, 순환적인</div>
+        <div class="vocab-context">this too is an <em>iterative</em> process — 이것도 반복적 과정이다</div>
+        <div class="vocab-tip">💡 iterate(반복하다) → iterative. 36번 지문에서 repetitive(반복적인)와 함께 사용. 두 단어의 차이: repetitive는 단순 반복, iterative는 순환 반복.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">36번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">40</div>
+      <div class="vocab-main">
+        <div class="vocab-word">radiocarbon dating</div>
+        <div class="vocab-meaning">방사성 탄소 연대 측정법</div>
+        <div class="vocab-context">The use of <em>radiocarbon dating</em> is another, much longer scale clock</div>
+        <div class="vocab-tip">💡 radio-(방사선) + carbon(탄소) + dating(연대 측정). 36번의 시계 개념 확장 예시. 자연과학 지문에서 dating = 연대를 측정하는 것.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">36번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">41</div>
+      <div class="vocab-main">
+        <div class="vocab-word">empirical</div>
+        <div class="vocab-pron">[ɪmˈpɪrɪkəl]</div>
+        <div class="vocab-meaning">경험적인, 실험에 기반한</div>
+        <div class="vocab-context">it needs to be supplemented by <em>empirical</em> findings and experiments</div>
+        <div class="vocab-tip">💡 37번 핵심어. 철학(비경험적, non-empirical) vs 과학(경험적, empirical)의 대비. 지문 주석(*empirical: 경험의) 제공.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">37번</span><span class="badge badge-q">핵심대비</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">42</div>
+      <div class="vocab-main">
+        <div class="vocab-word">interdisciplinary</div>
+        <div class="vocab-pron">[ˌɪntədɪˈsɪplɪnəri]</div>
+        <div class="vocab-meaning">학제 간의, 여러 학문 분야에 걸친</div>
+        <div class="vocab-context">important for the <em>interdisciplinary</em> efforts of cognitive science</div>
+        <div class="vocab-tip">💡 inter-(사이) + discipline(학문 분야) → 분야 간. cognitive science(인지 과학) 자체가 철학+심리학+신경과학의 학제 간 학문.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">37번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">43</div>
+      <div class="vocab-main">
+        <div class="vocab-word">neuroscience</div>
+        <div class="vocab-pron">[ˈnjʊərəʊˌsaɪəns]</div>
+        <div class="vocab-meaning">신경과학</div>
+        <div class="vocab-context">close collaboration between philosophy and <em>neuroscience</em> is required</div>
+        <div class="vocab-tip">💡 neuro-(신경) + science. 37번의 핵심 주제: 철학과 신경과학의 협업. neuron(뉴런), neurological(신경학적)도 함께.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">37번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">44</div>
+      <div class="vocab-main">
+        <div class="vocab-word">argumentation</div>
+        <div class="vocab-pron">[ˌɑːɡjʊmenˈteɪʃən]</div>
+        <div class="vocab-meaning">논증, 논증 과정</div>
+        <div class="vocab-context">validate concepts through logical thinking and <em>argumentation</em></div>
+        <div class="vocab-tip">💡 argue → argument → argumentation(논증 행위). 철학적 방법론의 핵심어. 37번 (C) 단락에서 non-empirical approach를 설명.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">37번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 38~39번: 문장 삽입 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>38~39번 — 문장 삽입 · 서사와 비디오 게임</h2>
+    <span class="passage-tag medium">2점 / 3점</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">45</div>
+      <div class="vocab-main">
+        <div class="vocab-word">incumbent</div>
+        <div class="vocab-pron">[ɪnˈkʌmbənt]</div>
+        <div class="vocab-meaning">점유자, 현재 자리에 있는 사람/것</div>
+        <div class="vocab-context">the predominant <em>incumbent</em> and a new challenger</div>
+        <div class="vocab-tip">💡 in-(안에) + cumbere(눕다) → 자리를 차지하다. 정치에서는 현직자(incumbent president). 38번에서는 '기존에 자리 잡은 이야기'를 의미.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">38번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">46</div>
+      <div class="vocab-main">
+        <div class="vocab-word">anecdote</div>
+        <div class="vocab-pron">[ˈænɪkdəʊt]</div>
+        <div class="vocab-meaning">일화, 개인적 사례담</div>
+        <div class="vocab-context">rarely a battle between facts and <em>anecdotes</em></div>
+        <div class="vocab-tip">💡 지문 주석(*anecdote: 일화) 제공. 통계(statistics) vs 일화(anecdotes) 대립. 실제로는 두 이야기 간의 싸움이라는 역설적 주장이 핵심.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">38번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">47</div>
+      <div class="vocab-main">
+        <div class="vocab-word">ideology</div>
+        <div class="vocab-pron">[ˌaɪdiˈɒlədʒi]</div>
+        <div class="vocab-meaning">이데올로기, 이념</div>
+        <div class="vocab-context">most likely related with your political <em>ideology</em> — who you are as an individual</div>
+        <div class="vocab-tip">💡 idea + -logy(학문). 38번 마지막 문장의 핵심어 → 삽입 문장의 위치(⑤) 결정에 단서. 이야기가 정체성과 연결된다는 논리.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">38번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">48</div>
+      <div class="vocab-main">
+        <div class="vocab-word">perceptual</div>
+        <div class="vocab-pron">[pəˈseptʃuəl]</div>
+        <div class="vocab-meaning">지각의, 지각에 관한</div>
+        <div class="vocab-context">Players extend their <em>perceptual</em> field into the game</div>
+        <div class="vocab-tip">💡 perceive(지각하다) → perception → perceptual. 39번 핵심어. 아바타를 통한 게임 세계 지각 메커니즘을 설명. "perceptual system"(지각 체계).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">39번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">49</div>
+      <div class="vocab-main">
+        <div class="vocab-word">encompass</div>
+        <div class="vocab-pron">[ɪnˈkʌmpəs]</div>
+        <div class="vocab-meaning">포함하다, 둘러싸다</div>
+        <div class="vocab-context">encompassing the available actions of the avatar</div>
+        <div class="vocab-tip">💡 en-(안에) + compass(범위). 지문 주석(*encompass: 둘러싸다) 제공. include보다 '완전히 감싸 포괄'하는 느낌.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">39번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 40번: 요약문 완성 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>40번 — 요약문 완성 · 공연 예술의 경제적 불안정</h2>
+    <span class="passage-tag medium">2점</span>
+  </div>
+  <div class="passage-intro reveal">
+    정답 ③ <strong>(A) challenges / (B) secure</strong>. 외부 재정에 의존하는 경제적 도전 속에서도 공연 예술은 관객을 확보한다는 내용.
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">50</div>
+      <div class="vocab-main">
+        <div class="vocab-word">ritualistic</div>
+        <div class="vocab-pron">[ˌrɪtʃuəˈlɪstɪk]</div>
+        <div class="vocab-meaning">의식적인, 의례적인</div>
+        <div class="vocab-context">within the boundaries of such <em>ritualistic</em> events</div>
+        <div class="vocab-tip">💡 ritual(의식, 의례) + -istic. 지문 주석(*ritualistic: 의식의) 제공. 공연 예술을 일종의 사회적 의식으로 보는 시각.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">40번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">51</div>
+      <div class="vocab-main">
+        <div class="vocab-word">fascination</div>
+        <div class="vocab-pron">[ˌfæsɪˈneɪʃən]</div>
+        <div class="vocab-meaning">매혹, 강한 흥미</div>
+        <div class="vocab-context">they retain their power of <em>fascination</em> for large audiences</div>
+        <div class="vocab-tip">💡 fascinate(매혹시키다) → fascination. "retain their power of fascination" = 매혹의 힘을 유지한다. 공연 예술의 강점을 나타내는 핵심어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">40번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">52</div>
+      <div class="vocab-main">
+        <div class="vocab-word">experiential</div>
+        <div class="vocab-pron">[ɪkˌspɪəriˈenʃəl]</div>
+        <div class="vocab-meaning">경험적인, 체험에 기반한</div>
+        <div class="vocab-context">prize the <em>experiential</em>, risk-loaded and one-time event quality</div>
+        <div class="vocab-tip">💡 experience(경험) + -tial(형용사). "experiential learning"(체험 학습). 공연의 라이브 특성을 설명. 40번 요약문의 "live experiences"와 대응.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">40번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 41~42번: 의복의 역사 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>41~42번 — 장문 독해 · 의복 역사의 시각 자료 [3점/2점]</h2>
+    <span class="passage-tag hard">3점 포함</span>
+  </div>
+  <div class="passage-intro reveal">
+    41번 정답 ② <strong>Visual Sources: Filling in the Gaps of Dress History</strong> / 42번 정답 ⑤ <em>unlikely</em> → likely. 의복이 실물로 남지 않아 회화·조각 등 시각 자료가 보완한다는 내용.
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">53</div>
+      <div class="vocab-main">
+        <div class="vocab-word">textile</div>
+        <div class="vocab-pron">[ˈtekstaɪl]</div>
+        <div class="vocab-meaning">직물, 섬유</div>
+        <div class="vocab-context">although <em>textiles</em> survive from early periods — 직물은 초기 시대부터 살아남지만</div>
+        <div class="vocab-tip">💡 text-(짜다) 어원 → texture(질감), textile(직물). 직물(textile)은 남아있지만 완성된 의복(garment)은 그렇지 않다는 역설이 지문의 출발점.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">41번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">54</div>
+      <div class="vocab-main">
+        <div class="vocab-word">garment</div>
+        <div class="vocab-pron">[ˈɡɑːmənt]</div>
+        <div class="vocab-meaning">의복, 옷 (한 벌)</div>
+        <div class="vocab-context">actual <em>garments</em> do not provide an uninterrupted flow of evidence</div>
+        <div class="vocab-tip">💡 지문 주석(*garment: 의복) 제공. clothing(집합적), garment(개별 의복). 의복 역사 연구의 한계를 설명하는 핵심어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">41번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">55</div>
+      <div class="vocab-main">
+        <div class="vocab-word">artefact</div>
+        <div class="vocab-pron">[ˈɑːtɪfækt]</div>
+        <div class="vocab-meaning">인공물, 유물</div>
+        <div class="vocab-context">like all <em>artefacts</em> described as fine or decorative art</div>
+        <div class="vocab-tip">💡 영국식 철자(artifact는 미국식). arte-(기술) + fact(만든 것). 고고학에서 인간이 만든 모든 물건. 수능 영국 영어 출제 빈출.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">41번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">56</div>
+      <div class="vocab-main">
+        <div class="vocab-word">curate</div>
+        <div class="vocab-pron">[kjʊˈreɪt]</div>
+        <div class="vocab-meaning">큐레이팅하다, 수집·관리하다</div>
+        <div class="vocab-context">one of the many difficulties when <em>curating</em> collections of costume</div>
+        <div class="vocab-tip">💡 curator(큐레이터, 박물관 학예사) → curate(동사). 전시 컬렉션을 선정·관리하는 행위. 현대에는 "curate content"(콘텐츠 큐레이팅)으로도 사용.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">41번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">57</div>
+      <div class="vocab-main">
+        <div class="vocab-word">fluid ↔ static</div>
+        <div class="vocab-meaning">fluid: 유동적인 ↔ static: 정적인, 고정된</div>
+        <div class="vocab-context">it is <em>fluid</em> rather than <em>static</em>. Garments should be seen in movement</div>
+        <div class="vocab-tip">💡 42번 (b) movement의 적절성을 판단하는 핵심 대비쌍. 의복은 정적(static)이 아니라 유동적(fluid) → 움직임(movement) 속에서 보아야 한다는 논리.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">42번</span><span class="badge badge-q">낱말대비</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">58</div>
+      <div class="vocab-main">
+        <div class="vocab-word">uninterrupted</div>
+        <div class="vocab-meaning">끊임없는, 지속적인</div>
+        <div class="vocab-context">do not provide an <em>uninterrupted</em> flow of evidence</div>
+        <div class="vocab-tip">💡 un-(부정) + interrupt(중단) → 중단되지 않는. 의복 실물의 역사적 증거가 '연속적으로' 남아있지 않다는 문제 제기. continuous와 유사.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">41번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">59</div>
+      <div class="vocab-main">
+        <div class="vocab-word">unlikely → likely</div>
+        <div class="vocab-meaning">unlikely: ~하지 않을 것 같은 (→ 오답 단어)</div>
+        <div class="vocab-context">it is <em>unlikely</em> that displays of historic dress would be awkward imitations</div>
+        <div class="vocab-tip">💡 42번 정답 ⑤. 시각 자료 없이는 전시가 어색한 모방이 "될 것이다"가 맞음 → likely가 정확. unlikely는 반대 의미. 부정 접두사 un-이 낱말 오류 유형의 핵심 패턴.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">42번</span><span class="badge badge-q">정답</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 20번 및 기타 고난도 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>20번 & 기타 — 추가 고난도 어휘</h2>
+    <span class="passage-tag mint">2점</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">60</div>
+      <div class="vocab-main">
+        <div class="vocab-word">lyricist</div>
+        <div class="vocab-pron">[ˈlɪrɪsɪst]</div>
+        <div class="vocab-meaning">작사가</div>
+        <div class="vocab-context">the influence of modern musical <em>lyricists</em> — 현대 음악 작사가들의 영향력</div>
+        <div class="vocab-tip">💡 lyric(서정시, 가사) + -ist(사람). 지문 주석(*lyricist: 작사가) 제공. 20번 필자 주장의 핵심 대상.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">20번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">61</div>
+      <div class="vocab-main">
+        <div class="vocab-word">linguistic manipulation</div>
+        <div class="vocab-meaning">언어 조작, 언어의 창의적 사용</div>
+        <div class="vocab-context">used <em>linguistic manipulation</em> and storytelling to enrich our language</div>
+        <div class="vocab-tip">💡 linguistic = language의 형용사형. manipulation = 조작, 구사. 부정적 뉘앙스 없이 '창의적 언어 구사'로 쓰임. 문맥 파악 주의.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">20번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">62</div>
+      <div class="vocab-main">
+        <div class="vocab-word">imagery</div>
+        <div class="vocab-pron">[ˈɪmɪdʒri]</div>
+        <div class="vocab-meaning">심상, 이미지, 비유적 표현</div>
+        <div class="vocab-context">lyrics of distinct and complex <em>imagery</em></div>
+        <div class="vocab-tip">💡 image + -ry(집합). 문학에서 감각적 이미지를 만들어내는 언어. "vivid imagery"(생생한 심상). 20번 작사가의 문학적 기여를 설명하는 어휘.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">20번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">63</div>
+      <div class="vocab-main">
+        <div class="vocab-word">extracurricular</div>
+        <div class="vocab-pron">[ˌekstrəkəˈrɪkjʊlər]</div>
+        <div class="vocab-meaning">과외 활동의, 정규 과정 외의</div>
+        <div class="vocab-context">expand the number of clubs for <em>extracurricular</em> activities</div>
+        <div class="vocab-tip">💡 extra-(밖) + curricular(교육 과정의). 18번 동아리 모집 편지의 핵심어. curriculum(교육 과정) 파생어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">18번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">64</div>
+      <div class="vocab-main">
+        <div class="vocab-word">reprioritize</div>
+        <div class="vocab-pron">[ˌriːpraɪˈɒrɪtaɪz]</div>
+        <div class="vocab-meaning">우선순위를 재조정하다</div>
+        <div class="vocab-context">As we struggle to <em>reprioritize</em> so we can get everything done</div>
+        <div class="vocab-tip">💡 re-(다시) + prioritize(우선순위를 매기다). 35번 무관한 문장 찾기 지문의 핵심어. priority(우선순위), prioritize(우선순위를 두다)로 파생 확장.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">35번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">65</div>
+      <div class="vocab-main">
+        <div class="vocab-word">cumulative</div>
+        <div class="vocab-pron">[ˈkjuːmjʊlətɪv]</div>
+        <div class="vocab-meaning">누적되는, 점점 쌓이는</div>
+        <div class="vocab-context">recognize the <em>cumulative</em> impact of not prioritizing self-care</div>
+        <div class="vocab-tip">💡 cumulate(쌓다) → cumulative. 단기 영향은 작아도 장기적으로 누적되면 크다는 35번 논지의 핵심. "cumulative effect"(누적 효과).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">35번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">66</div>
+      <div class="vocab-main">
+        <div class="vocab-word">inevitable</div>
+        <div class="vocab-pron">[ɪnˈevɪtəbl]</div>
+        <div class="vocab-meaning">불가피한, 피할 수 없는</div>
+        <div class="vocab-context">it was (a) <em>inevitable</em> that these other areas would provide source material (41번)</div>
+        <div class="vocab-tip">💡 in-(부정) + evitable(피할 수 있는). 41번 (a)는 맥락상 적절한 단어. 34번에도 "his belief in inevitable progress"로 등장 — 두 지문에 걸쳐 출제.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">41번</span><span class="badge badge-3">34번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">67</div>
+      <div class="vocab-main">
+        <div class="vocab-word">inbound</div>
+        <div class="vocab-meaning">안으로 들어오는, 인바운드</div>
+        <div class="vocab-context">A potential increase in <em>inbound</em> visitor numbers</div>
+        <div class="vocab-tip">💡 in-(안) + bound(향하는). ↔ outbound(밖으로 나가는). 24번 관광 관련 문맥. "inbound tourism"(외래 관광).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">24번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">68</div>
+      <div class="vocab-main">
+        <div class="vocab-word">secrecy</div>
+        <div class="vocab-pron">[ˈsiːkrəsi]</div>
+        <div class="vocab-meaning">비밀 유지, 기밀성</div>
+        <div class="vocab-context">these firms worked in relative <em>secrecy</em></div>
+        <div class="vocab-tip">💡 secret + -cy(명사). 31번에서 정보 독점 = 수익성의 이유를 설명. "in secrecy"(비밀리에) 표현으로 암기.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">31번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">69</div>
+      <div class="vocab-main">
+        <div class="vocab-word">collaborate</div>
+        <div class="vocab-pron">[kəˈlæbəreɪt]</div>
+        <div class="vocab-meaning">협력하다</div>
+        <div class="vocab-context">sport businesses which need to <em>collaborate</em> for resource efficiency</div>
+        <div class="vocab-tip">💡 col-(함께) + labor(일하다) → 함께 일하다. collaboration(협력), collaborative(협력적인). 22번 coopetition 개념과 연결.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">22번</span><span class="badge badge-3">37번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">70</div>
+      <div class="vocab-main">
+        <div class="vocab-word">supplement</div>
+        <div class="vocab-pron">[ˈsʌplɪment]</div>
+        <div class="vocab-meaning">보완하다, 보충하다</div>
+        <div class="vocab-context">it needs to be <em>supplemented</em> by empirical findings and experiments</div>
+        <div class="vocab-tip">💡 sup-(아래에서) + plere(채우다) → 부족한 부분을 채움. 37번에서 철학이 실험적 발견으로 보완되어야 한다는 핵심 주장의 동사.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">37번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 43~45번: 장문 독해 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>43~45번 — 장문 독해 · Mia의 독서 모임</h2>
+    <span class="passage-tag mint">2점</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">71</div>
+      <div class="vocab-main">
+        <div class="vocab-word">absorbed (in)</div>
+        <div class="vocab-meaning">~에 몰두한, 빠져든</div>
+        <div class="vocab-context">Mia was <em>absorbed in</em> her smartphone, wearing her earbuds</div>
+        <div class="vocab-tip">💡 absorb(흡수하다) → be absorbed in(~에 완전히 빠지다). be engrossed in, be immersed in과 유사. 장문 독해 감정 묘사 어휘.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">43번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">72</div>
+      <div class="vocab-main">
+        <div class="vocab-word">reluctantly</div>
+        <div class="vocab-pron">[rɪˈlʌktəntli]</div>
+        <div class="vocab-meaning">마지못해, 내키지 않게</div>
+        <div class="vocab-context">Mia <em>reluctantly</em> agreed — Mia는 마지못해 동의했다</div>
+        <div class="vocab-tip">💡 reluctant(내키지 않는) + -ly. 44번 지칭어 문제의 단서: Mia가 처음에 거부했다가 마지못해 동의 → 45번 ⑤ 오답 확인.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">44번</span><span class="badge badge-q">45번 단서</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">73</div>
+      <div class="vocab-main">
+        <div class="vocab-word">persuasion</div>
+        <div class="vocab-pron">[pəˈsweɪʒən]</div>
+        <div class="vocab-meaning">설득</div>
+        <div class="vocab-context">After some <em>persuasion</em>, Mia reluctantly agreed</div>
+        <div class="vocab-tip">💡 persuade(설득하다) → persuasion. 38번의 persuasiveness(설득력)와 같은 어근. "some persuasion" = 어느 정도의 설득 과정.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">45번</span></div>
+    </div>
+
+  </div>
+
+  <!-- ===== 추가 고빈도 어휘 ===== -->
+  <div class="section-title reveal" style="margin-top:48px">
+    <h2>수능 전체 지문 — 추가 핵심 어휘 27선</h2>
+    <span class="passage-tag mint">종합</span>
+  </div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">74</div>
+      <div class="vocab-main">
+        <div class="vocab-word">leverage</div>
+        <div class="vocab-pron">[ˈliːvərɪdʒ]</div>
+        <div class="vocab-meaning">활용하다, 지렛대처럼 사용하다</div>
+        <div class="vocab-context">to <em>leverage</em> strategically important resources — 전략적으로 중요한 자원을 활용하기 위해</div>
+        <div class="vocab-tip">💡 lever(지렛대) + -age. 적은 힘으로 큰 결과를 낸다는 개념. 비즈니스 영어 핵심어. 22번 coopetition 정의 문장에 포함.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">22번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">75</div>
+      <div class="vocab-main">
+        <div class="vocab-word">sustain</div>
+        <div class="vocab-meaning">유지하다, 지속시키다</div>
+        <div class="vocab-context">the institutions which <em>sustain</em> them increasingly depend on public funding</div>
+        <div class="vocab-tip">💡 sus-(아래에서) + tain(잡다) → 아래서 지탱하다. sustainable(지속 가능한), sustenance(생계). 40번 공연 예술의 지속 가능성 논의 핵심.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">40번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">76</div>
+      <div class="vocab-main">
+        <div class="vocab-word">accumulate</div>
+        <div class="vocab-pron">[əˈkjuːmjʊleɪt]</div>
+        <div class="vocab-meaning">축적하다, 모으다</div>
+        <div class="vocab-context">allows human populations to <em>accumulate</em> pools of adaptive information</div>
+        <div class="vocab-tip">💡 ac-(~으로) + cumulus(더미) → 쌓다. cumulative(누적되는)와 같은 어근. 29번 인간의 집단 지식 축적 능력을 설명.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">29번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">77</div>
+      <div class="vocab-main">
+        <div class="vocab-word">incentive</div>
+        <div class="vocab-pron">[ɪnˈsentɪv]</div>
+        <div class="vocab-meaning">동기, 유인책</div>
+        <div class="vocab-context">is an <em>incentive</em> for those within governments to work with cultural groups</div>
+        <div class="vocab-tip">💡 in-(안에) + cantus(노래) → 노래로 유혹 → 동기부여. "financial incentive"(금전적 유인). 24번 문화오락의 경제적 유인 설명.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">24번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">78</div>
+      <div class="vocab-main">
+        <div class="vocab-word">validate</div>
+        <div class="vocab-pron">[ˈvælɪdeɪt]</div>
+        <div class="vocab-meaning">검증하다, 정당성을 확인하다</div>
+        <div class="vocab-context">attempts to <em>validate</em> concepts through logical thinking</div>
+        <div class="vocab-tip">💡 valid(유효한) + -ate(동사화). 37번 철학적 방법론 설명. validation(검증), invalid(유효하지 않은) 파생어 함께.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">37번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">79</div>
+      <div class="vocab-main">
+        <div class="vocab-word">proportion</div>
+        <div class="vocab-meaning">비율, 균형</div>
+        <div class="vocab-context">in terms of the amount of emphasis placed on each activity (22번)</div>
+        <div class="vocab-tip">💡 수능에서 proportion = 비율(통계 지문) vs 균형·분량(글쓰기 지문)의 두 가지 의미로 출제. 지문 맥락으로 구분 필수.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-3">32번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">80</div>
+      <div class="vocab-main">
+        <div class="vocab-word">pioneer</div>
+        <div class="vocab-pron">[ˌpaɪəˈnɪər]</div>
+        <div class="vocab-meaning">선구자; 개척하다</div>
+        <div class="vocab-context">helps to bridge gaps … and <em>pioneer</em> new ways for research (37번) / Max Kleiber, a <em>pioneer</em> in the study of animal biology (26번)</div>
+        <div class="vocab-tip">💡 명사(선구자)와 동사(개척하다) 모두로 사용. 26번과 37번 두 지문에 등장. 26번에서는 "a pioneer in …"(~의 선구자) 구조.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">26번</span><span class="badge badge-3">37번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">81</div>
+      <div class="vocab-main">
+        <div class="vocab-word">metabolism</div>
+        <div class="vocab-pron">[məˈtæbəlɪzəm]</div>
+        <div class="vocab-meaning">신진대사</div>
+        <div class="vocab-context">best known for his research on animal nutrition and <em>metabolism</em></div>
+        <div class="vocab-tip">💡 지문 주석(**metabolism: 신진대사) 제공. 26번 Max Kleiber 인물 지문. 내용 불일치 문제에서 정답의 단서가 된 수상 연도(1952 Borden ≠ Morrison) 확인도 중요.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">26번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">82</div>
+      <div class="vocab-main">
+        <div class="vocab-word">suitability</div>
+        <div class="vocab-pron">[ˌsuːtəˈbɪlɪti]</div>
+        <div class="vocab-meaning">적합성</div>
+        <div class="vocab-context">selected based on creativity and <em>suitability</em></div>
+        <div class="vocab-tip">💡 suitable(적합한) + -ity. 27번 School Bell Sound Contest 안내문에서 선발 기준. 내용 불일치 문제의 선지 ④(네 개 → 세 개)가 정답.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">27번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">83</div>
+      <div class="vocab-main">
+        <div class="vocab-word">transferable</div>
+        <div class="vocab-meaning">양도할 수 있는</div>
+        <div class="vocab-context">The pass is not <em>transferable</em> to another person</div>
+        <div class="vocab-tip">💡 transfer(양도/이전) + -able. 28번 볼링 시즌 패스 안내. 내용 일치 문제에서 정답 ④(온라인 구매만 가능)의 근거 중 하나. not transferable = 양도 불가.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">28번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">84</div>
+      <div class="vocab-main">
+        <div class="vocab-word">cognitive</div>
+        <div class="vocab-pron">[ˈkɒɡnɪtɪv]</div>
+        <div class="vocab-meaning">인지의, 인식과 관련된</div>
+        <div class="vocab-context">audiences who respond <em>cognitively</em> and emotionally on the spot (40번)</div>
+        <div class="vocab-tip">💡 cognition(인지) + -ive. 40번 공연 예술 지문과 37번 cognitive science(인지 과학) 모두에 등장. 인지와 감정의 즉각 반응이 공연 예술의 특징.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">40번</span><span class="badge badge-3">37번</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">85</div>
+      <div class="vocab-main">
+        <div class="vocab-word">coherent</div>
+        <div class="vocab-meaning">일관된, 논리적으로 연결된</div>
+        <div class="vocab-context">글의 순서·문장 삽입 유형에서 핵심 판단 기준 어휘</div>
+        <div class="vocab-tip">💡 co-(함께) + haerere(붙다) → 논리적으로 붙어있는. 36~37번, 38~39번 유형에서 단락 간 논리 연결 판단에 사용. cohesion(응집력)도 함께.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">전유형</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">86</div>
+      <div class="vocab-main">
+        <div class="vocab-word">distort</div>
+        <div class="vocab-meaning">왜곡하다</div>
+        <div class="vocab-context">수능 빈출 어휘 — 빈칸·낱말 유형에서 반복 출제</div>
+        <div class="vocab-tip">💡 dis-(비틀어) + torquere(비틀다). distortion(왜곡), distorted(왜곡된). misrepresent와 유사. 수능 영어 철학·사회 지문 단골.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">87</div>
+      <div class="vocab-main">
+        <div class="vocab-word">inherent</div>
+        <div class="vocab-pron">[ɪnˈhɪərənt]</div>
+        <div class="vocab-meaning">내재된, 본질적인</div>
+        <div class="vocab-context">수능 빈출 — "inherent in"(~에 내재된) 구조로 자주 출제</div>
+        <div class="vocab-tip">💡 in-(안에) + haerere(달라붙다) → 본질적으로 달라붙어 있는. coherent와 같은 어근. "an inherent problem"(내재된 문제).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">88</div>
+      <div class="vocab-main">
+        <div class="vocab-word">perpetuate</div>
+        <div class="vocab-pron">[pəˈpetʃuˌeɪt]</div>
+        <div class="vocab-meaning">영속시키다, 지속시키다</div>
+        <div class="vocab-context">수능 빈출 — 부정적 상황을 '지속시키는' 맥락에서 자주 출제</div>
+        <div class="vocab-tip">💡 perpetual(영구적인) → perpetuate(영속시키다). "perpetuate stereotypes"(고정관념을 영속시키다). 수능 사회·윤리 지문 빈출.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">89</div>
+      <div class="vocab-main">
+        <div class="vocab-word">paradox</div>
+        <div class="vocab-pron">[ˈpærədɒks]</div>
+        <div class="vocab-meaning">역설</div>
+        <div class="vocab-context">수능 빈출 — 이율배반적 상황 설명 지문에서 반복 등장</div>
+        <div class="vocab-tip">💡 para-(반대로) + doxa(의견). paradoxical(역설적인). 수능에서 "the paradox is that …"(역설적이게도) 구조 빈출.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">90</div>
+      <div class="vocab-main">
+        <div class="vocab-word">undermine</div>
+        <div class="vocab-meaning">약화시키다, 서서히 훼손하다</div>
+        <div class="vocab-context">수능 빈출 — 부정적 영향을 주는 동사로 자주 출제</div>
+        <div class="vocab-tip">💡 under-(아래에서) + mine(굴 파다) → 기반을 파먹어 약화. ↔ reinforce(강화하다). "undermine confidence/authority"(자신감/권위를 약화시키다).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">91</div>
+      <div class="vocab-main">
+        <div class="vocab-word">facilitate</div>
+        <div class="vocab-pron">[fəˈsɪlɪteɪt]</div>
+        <div class="vocab-meaning">촉진하다, 용이하게 하다</div>
+        <div class="vocab-context">수능 빈출 — "facilitate learning/cooperation"(학습/협력을 촉진하다)</div>
+        <div class="vocab-tip">💡 facile(쉬운) + -itate → 쉽게 만들다 → 촉진. facility(시설/능력), facilitate(촉진하다). enable보다 부드러운 뉘앙스.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">92</div>
+      <div class="vocab-main">
+        <div class="vocab-word">detrimental</div>
+        <div class="vocab-pron">[ˌdetrɪˈmentəl]</div>
+        <div class="vocab-meaning">해로운, 악영향을 끼치는</div>
+        <div class="vocab-context">수능 빈출 — "detrimental to health/society"(건강/사회에 해로운)</div>
+        <div class="vocab-tip">💡 detriment(손해) + -al. ↔ beneficial(이로운). harmful보다 격식체. 수능 문명비판·건강 지문 단골 어휘.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">93</div>
+      <div class="vocab-main">
+        <div class="vocab-word">reciprocal</div>
+        <div class="vocab-pron">[rɪˈsɪprəkəl]</div>
+        <div class="vocab-meaning">상호적인, 서로 주고받는</div>
+        <div class="vocab-context">수능 빈출 — "reciprocal relationship"(상호적 관계)</div>
+        <div class="vocab-tip">💡 reciprocate(보답하다) → reciprocal(상호적). mutual과 유사하나 reciprocal은 '주고받음'의 의미 강조. 사회·생물 지문 빈출.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">94</div>
+      <div class="vocab-main">
+        <div class="vocab-word">albeit</div>
+        <div class="vocab-pron">[ˌɔːlˈbiːɪt]</div>
+        <div class="vocab-meaning">비록 ~일지라도</div>
+        <div class="vocab-context">수능 빈출 접속사 — "albeit slowly"(비록 느리지만)</div>
+        <div class="vocab-tip">💡 although와 같은 뜻이지만 더 격식체이고 간결함. 수능 독해 지문에서 자주 등장하나 한국 수험생이 낯설어하는 단어. "albeit + 형용사/명사구" 구조 주목.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">95</div>
+      <div class="vocab-main">
+        <div class="vocab-word">pragmatic</div>
+        <div class="vocab-pron">[præɡˈmætɪk]</div>
+        <div class="vocab-meaning">실용적인, 현실적인</div>
+        <div class="vocab-context">수능 빈출 — 이상(ideal)과 대비되어 출제</div>
+        <div class="vocab-tip">💡 pragma(행동/사실) 어원 → 행동에 근거한 → 실용적. pragmatism(실용주의). ↔ idealistic(이상주의적). 철학·사회 지문에서 자주 등장.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">96</div>
+      <div class="vocab-main">
+        <div class="vocab-word">autonomous</div>
+        <div class="vocab-pron">[ɔːˈtɒnəməs]</div>
+        <div class="vocab-meaning">자율적인, 독립적인</div>
+        <div class="vocab-context">수능 빈출 — AI·심리·사회 지문에서 반복 출제</div>
+        <div class="vocab-tip">💡 auto-(자신) + nomos(법) → 스스로 규칙을 만드는 → 자율적. autonomy(자율성), autonomous vehicle(자율주행차). 수능 최신 트렌드 어휘.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">97</div>
+      <div class="vocab-main">
+        <div class="vocab-word">constraints</div>
+        <div class="vocab-pron">[kənˈstreɪnts]</div>
+        <div class="vocab-meaning">제약, 한계</div>
+        <div class="vocab-context">수능 빈출 — "constraints on creativity/time"(창의성/시간의 제약)</div>
+        <div class="vocab-tip">💡 constrain(제약하다) → constraints(복수형 명사). 34번 restraint(제약)와 유사하나 constraints는 외부 환경적 제약에 가까움.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">98</div>
+      <div class="vocab-main">
+        <div class="vocab-word">nuance</div>
+        <div class="vocab-pron">[ˈnjuːɑːns]</div>
+        <div class="vocab-meaning">뉘앙스, 미묘한 차이</div>
+        <div class="vocab-context">수능 빈출 — "subtle nuances of meaning"(의미의 미묘한 차이)</div>
+        <div class="vocab-tip">💡 프랑스어 nuance에서 직접 차용. nuanced(미묘한, 세심한). 수능 언어·문화 지문에서 자주 등장. "a nuanced view"(미묘한 시각).</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">99</div>
+      <div class="vocab-main">
+        <div class="vocab-word">hinder</div>
+        <div class="vocab-meaning">방해하다, 저해하다</div>
+        <div class="vocab-context">수능 빈출 — "hinder progress/development"(발전을 저해하다)</div>
+        <div class="vocab-tip">💡 ↔ facilitate(촉진하다). impede, obstruct와 유사. "hindrance"(방해물) 명사형도 함께. 빈칸 유형에서 반의어 쌍으로 자주 등장.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+    <div class="vocab-card reveal">
+      <div class="vocab-num">100</div>
+      <div class="vocab-main">
+        <div class="vocab-word">transcend</div>
+        <div class="vocab-pron">[trænˈsend]</div>
+        <div class="vocab-meaning">초월하다, 넘어서다</div>
+        <div class="vocab-context">수능 빈출 — "transcend boundaries/limitations"(경계/한계를 초월하다)</div>
+        <div class="vocab-tip">💡 trans-(넘어서) + scendere(오르다). 29번의 "exceed the inventive capacities"와 유사 개념. transcendent(초월적인), transcendence(초월). 수능 철학 지문 빈출 마무리 단어.</div>
+      </div>
+      <div class="badge-col"><span class="badge badge-2">빈출</span></div>
+    </div>
+
+  </div>
+
+  <!-- 마무리 팁 -->
+  <div class="tip-box reveal" style="margin-top:48px">
+    <h3>🎯 2026 수능 어휘 총정리 학습 전략</h3>
+    <strong>① 지문 번호별 묶음 학습</strong> — 같은 지문의 단어는 맥락 공유. 묶어 복습하면 기억 정착률 3배 향상.<br><br>
+    <strong>② 주석 제공 단어 우선</strong> — 시험지에서 주석(*단어: 뜻)을 제공하는 단어는 해당 지문의 핵심 개념어. 이 자료에서는 주석 제공 단어에 특별히 💡 팁을 강화.<br><br>
+    <strong>③ 반의어 쌍 암기</strong> — surplus ↔ deficit / fluid ↔ static / empirical ↔ non-empirical / facilitate ↔ hinder. 낱말 오류 문제는 반의어 치환 패턴이 70%.<br><br>
+    <strong>④ 어원 그룹 확장</strong> — 하나의 어근(예: labor, spec, cogn)을 기억하면 파생어 5~10개를 동시에 습득 가능. 이 자료의 💡 어원 팁을 활용하세요.
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Key Trend. All rights reserved. | <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a> | <a href="../suneung-info.html">수능 정보 목록으로</a></p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- 우클릭 및 복사 방지 -->
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p','x'].includes(e.key.toLowerCase())) ||
+    (e.metaKey && ['c','a','s','u','p','x'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+
+// Scroll top button
+const btn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// IntersectionObserver reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
