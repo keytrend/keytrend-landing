@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>무관한 문장 완전정복 — 논리 흐름 끊김 탐지법 | Key Trend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.7;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15)}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;max-width:900px;margin:0 auto}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;animation:fadeUp .7s ease}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.5px}
+.badge-type{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);color:var(--accent2)}
+.badge-num{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);color:var(--mint)}
+.badge-score{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
+.hero h1{font-family:'Outfit';font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.2;margin-bottom:16px;animation:fadeUp .7s ease .1s both}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{color:var(--gray);font-size:16px;line-height:1.8;animation:fadeUp .7s ease .2s both;max-width:680px}
+.meta-row{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;animation:fadeUp .7s ease .3s both}
+.meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray)}
+.meta-item strong{color:var(--white);font-weight:600}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.section{max-width:900px;margin:0 auto;padding:0 24px 60px}
+.section-title{font-family:'Outfit';font-size:22px;font-weight:800;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:24px;background:var(--grad1);border-radius:2px;flex-shrink:0}
+
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;margin-bottom:40px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-title{font-size:13px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.step-card{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);border-radius:12px;padding:20px}
+.step-num{font-family:'Outfit';font-size:28px;font-weight:800;color:var(--accent);opacity:.5;line-height:1}
+.step-label{font-size:14px;font-weight:700;margin:8px 0 6px;color:var(--white)}
+.step-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+.signal-box{background:rgba(30,41,59,.6);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:24px;margin-bottom:32px}
+.signal-box h4{font-size:14px;font-weight:700;color:var(--amber);margin-bottom:14px}
+.signal-list{display:flex;flex-wrap:wrap;gap:8px}
+.signal-chip{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);padding:5px 14px;border-radius:8px;font-size:13px;color:var(--amber);font-weight:600}
+.signal-chip.coral{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.2);color:var(--coral)}
+.signal-chip.mint{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.2);color:var(--mint)}
+
+/* 흐름 시각화 */
+.flow-box{background:rgba(15,23,42,.8);border:1px solid rgba(99,102,241,.2);border-radius:16px;padding:28px;margin-bottom:28px}
+.flow-box h4{font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:20px;text-transform:uppercase;letter-spacing:1px}
+.flow-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:4px;position:relative}
+.flow-connector{position:absolute;left:19px;top:36px;bottom:-4px;width:2px;background:rgba(99,102,241,.2);z-index:0}
+.flow-item:last-child .flow-connector{display:none}
+.flow-circle{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit';font-weight:800;font-size:14px;flex-shrink:0;position:relative;z-index:1}
+.flow-circle.ok{background:rgba(99,102,241,.2);border:2px solid rgba(99,102,241,.4);color:var(--accent2)}
+.flow-circle.out{background:rgba(244,114,182,.15);border:2px solid var(--coral);color:var(--coral)}
+.flow-circle.ok-after{background:rgba(52,211,153,.12);border:2px solid rgba(52,211,153,.4);color:var(--mint)}
+.flow-content{padding:8px 0 20px;flex:1}
+.flow-content .sent{font-size:14px;color:var(--white);line-height:1.7;margin-bottom:6px}
+.flow-content .sent.irrelevant{color:var(--coral);border-left:3px solid var(--coral);padding-left:12px;background:rgba(244,114,182,.04);border-radius:0 8px 8px 0;padding:8px 12px}
+.flow-content .analysis{font-size:12px;color:var(--gray);line-height:1.6}
+.flow-content .analysis.irrelevant{color:var(--coral)}
+.flow-tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.flow-tag.ok{background:rgba(99,102,241,.15);color:var(--accent2)}
+.flow-tag.out{background:rgba(244,114,182,.15);color:var(--coral)}
+.flow-tag.ok-after{background:rgba(52,211,153,.12);color:var(--mint)}
+
+.problem-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:20px;overflow:hidden;margin-bottom:32px}
+.problem-header{background:rgba(99,102,241,.1);border-bottom:1px solid rgba(51,65,85,.4);padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+.problem-num{font-family:'Outfit';font-size:24px;font-weight:800;color:var(--accent2)}
+.problem-type-tag{font-size:12px;color:var(--gray);background:rgba(51,65,85,.5);padding:4px 12px;border-radius:6px}
+.problem-body{padding:28px}
+
+/* 지문 — 번호 있는 문장들 */
+.passage-numbered{background:rgba(15,23,42,.7);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:24px;margin-bottom:20px;font-size:14px;line-height:1.9}
+.sent-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;padding:10px 12px;border-radius:10px;transition:all .2s}
+.sent-row:last-child{margin-bottom:0}
+.sent-row.normal{background:rgba(99,102,241,.04);border:1px solid rgba(99,102,241,.08)}
+.sent-row.irrelevant{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.25)}
+.sent-num{font-family:'Outfit';font-weight:800;font-size:15px;min-width:28px;flex-shrink:0;margin-top:2px}
+.sent-row.normal .sent-num{color:var(--accent2)}
+.sent-row.irrelevant .sent-num{color:var(--coral)}
+.sent-text{flex:1;line-height:1.8}
+.sent-row.irrelevant .sent-text{color:var(--coral)}
+.sent-ko{display:block;font-size:12px;color:var(--slate);margin-top:4px;line-height:1.6}
+.sent-row.irrelevant .sent-ko{color:rgba(244,114,182,.6)}
+.sent-badge{flex-shrink:0;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;margin-top:2px}
+.badge-flow{background:rgba(99,102,241,.15);color:var(--accent2)}
+.badge-out{background:rgba(244,114,182,.2);color:var(--coral)}
+
+.analysis-box{background:rgba(244,114,182,.05);border:1px solid rgba(244,114,182,.25);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.analysis-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:12px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.8}
+.analysis-box p strong{color:var(--white)}
+
+.confirm-box{background:rgba(52,211,153,.05);border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:20px 24px;margin-bottom:24px}
+.confirm-box h4{font-size:13px;font-weight:700;color:var(--mint);margin-bottom:12px}
+.confirm-box p{font-size:14px;color:var(--gray);line-height:1.8}
+.confirm-box p strong{color:var(--white)}
+
+/* 키워드 흐름 추적 */
+.keyword-flow{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:22px 24px;margin-bottom:24px}
+.keyword-flow h4{font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.kf-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.kf-row:last-child{margin-bottom:0}
+.kf-sent{font-size:12px;font-weight:700;padding:3px 10px;border-radius:6px;background:rgba(99,102,241,.15);color:var(--accent2);flex-shrink:0}
+.kf-arrow{color:var(--accent);font-size:14px;flex-shrink:0}
+.kf-word{font-size:13px;font-weight:600;color:var(--white);background:rgba(99,102,241,.1);padding:3px 10px;border-radius:6px}
+.kf-word.break{background:rgba(244,114,182,.12);color:var(--coral)}
+.kf-note{font-size:12px;color:var(--gray)}
+
+.voca-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.voca-table th,.voca-table td{padding:13px 18px;font-size:13px}
+.voca-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700;text-align:left}
+.voca-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray);vertical-align:top}
+.voca-table tbody td:first-child{color:var(--white);font-weight:600;white-space:nowrap}
+.voca-table tbody tr:hover{background:rgba(99,102,241,.05)}
+td.mint{color:var(--mint)!important;font-weight:700}
+td.coral{color:var(--coral)!important}
+
+.summary-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.summary-table th,.summary-table td{padding:13px 18px;font-size:13px;text-align:center}
+.summary-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700}
+.summary-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray)}
+.summary-table tbody td:first-child{text-align:left;color:var(--white);font-weight:600}
+
+.final-card{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;position:relative;overflow:hidden;margin-bottom:60px}
+.final-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.final-card h3{font-family:'Outfit';font-size:20px;font-weight:800;margin-bottom:20px;color:var(--accent2)}
+.tip-list{display:flex;flex-direction:column;gap:12px}
+.tip-item{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.tip-text{color:var(--gray);line-height:1.7}
+.tip-text strong{color:var(--white)}
+
+#scrollTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border:none;border-radius:12px;color:white;font-size:18px;cursor:pointer;opacity:0;transition:all .3s;z-index:99;display:flex;align-items:center;justify-content:center}
+#scrollTop.visible{opacity:1}
+#scrollTop:hover{background:var(--accent2);transform:translateY(-2px)}
+.divider{height:1px;background:rgba(51,65,85,.4);margin:0 0 48px}
+
+@media(max-width:600px){
+.steps-grid{grid-template-columns:1fr 1fr}
+.problem-body{padding:20px}
+.kf-row{gap:6px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="../suneung-info.html" class="nav-back">← 수능정보 목록</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-meta">
+    <span class="badge badge-type">📘 유형별 풀이법</span>
+    <span class="badge badge-num">35번</span>
+    <span class="badge badge-score">2점</span>
+  </div>
+  <h1>무관한 문장 완전정복 —<br><em>논리 흐름 끊김 탐지법</em></h1>
+  <p class="hero-desc">
+    무관한 문장 유형은 글의 논리 흐름과 <strong>어긋나는 문장 하나</strong>를 찾는 유형입니다.
+    전체 주제를 먼저 파악하고, 각 문장이 그 주제와 연결되는지 확인하면서
+    <strong>키워드 단절</strong>이 발생하는 지점을 찾는 것이 핵심입니다.
+  </p>
+  <div class="meta-row">
+    <div class="meta-item"><span>📅</span><strong>2026학년도 수능</strong></div>
+    <div class="meta-item"><span>📌</span><strong>홀수형 35번 · 짝수형 35번 공통</strong></div>
+    <div class="meta-item"><span>✅</span><strong>정답: ④</strong></div>
+    <div class="meta-item"><span>🏷</span><strong>자기관리 활동 / 우선순위 / self-care</strong></div>
+  </div>
+</div>
+
+<!-- 핵심 전략 공식 -->
+<div class="section">
+  <h2 class="section-title">3단계 무관한 문장 탐지 공식</h2>
+  <div class="formula-box">
+    <div class="formula-title">⚡ Key Trend 핵심 공식</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-label">첫 문장으로 주제 확정</div>
+        <div class="step-desc">글의 첫 문장(또는 서두 2문장)으로 전체 글이 무엇에 대한 것인지 파악한다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-label">각 문장의 키워드 연결 추적</div>
+        <div class="step-desc">앞 문장의 키워드가 다음 문장에서 이어지는지 확인한다. 단절 지점이 무관한 문장이다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-label">제거 후 흐름 확인</div>
+        <div class="step-desc">후보 문장을 제거했을 때 앞뒤 흐름이 자연스러우면 그것이 정답이다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 무관한 문장의 특징 -->
+  <div class="signal-box">
+    <h4>⚠️ 무관한 문장의 단골 특징</h4>
+    <div class="signal-list">
+      <span class="signal-chip coral">글 전체 주제와 다른 소재 갑자기 등장</span>
+      <span class="signal-chip coral">앞 문장 키워드와 연결 단절</span>
+      <span class="signal-chip coral">제거해도 앞뒤 흐름이 오히려 자연스러움</span>
+      <span class="signal-chip">부분적으로 관련 단어 포함 → 함정! 주제 연결성 확인 필수</span>
+      <span class="signal-chip mint">이번 ④: self-care 주제에서 수업 등록 비교로 이탈</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider" style="max-width:900px;margin:0 auto 48px"></div>
+
+<!-- 문제 섹션 -->
+<div class="section">
+  <h2 class="section-title">2026학년도 수능 35번 문제 분석</h2>
+
+  <div class="problem-card">
+    <div class="problem-header">
+      <div class="problem-num">35번</div>
+      <div class="problem-type-tag">무관한 문장 · 2점</div>
+    </div>
+    <div class="problem-body">
+
+      <!-- 문장별 분석 -->
+      <div class="passage-numbered">
+
+        <div class="sent-row normal">
+          <span class="sent-num">도입</span>
+          <div class="sent-text">
+            There are few of us who don't at least want to make time for self-care activities such as exercise, hobbies, or relaxation. We start each day with the best of intentions but then get stuck by the flood of email messages or pulled into an unexpected meeting.
+            <span class="sent-ko">→ 대부분의 사람들은 운동, 취미, 휴식 같은 자기관리 활동을 위한 시간을 내고 싶어하지만, 이메일 홍수나 예상치 못한 회의에 갇히고 만다.</span>
+          </div>
+          <span class="sent-badge badge-flow">흐름 ✓</span>
+        </div>
+
+        <div class="sent-row normal">
+          <span class="sent-num">①</span>
+          <div class="sent-text">
+            As we struggle to reprioritize so we can get everything done before our deadlines, often our self-care activities are the first thing to be given up.
+            <span class="sent-ko">→ 마감 전에 모든 것을 끝내기 위해 재우선순위를 정하다 보면, 종종 자기관리 활동이 가장 먼저 포기된다.</span>
+          </div>
+          <span class="sent-badge badge-flow">흐름 ✓</span>
+        </div>
+
+        <div class="sent-row normal">
+          <span class="sent-num">②</span>
+          <div class="sent-text">
+            No matter how much we plan, we all occasionally have days when that happens.
+            <span class="sent-ko">→ 아무리 계획을 세워도, 우리 모두 가끔씩 그런 날이 생긴다.</span>
+          </div>
+          <span class="sent-badge badge-flow">흐름 ✓</span>
+        </div>
+
+        <div class="sent-row normal">
+          <span class="sent-num">③</span>
+          <div class="sent-text">
+            In the short term, the impact of missing that grant deadline may be greater than the impact of missing a woodworking class.
+            <span class="sent-ko">→ 단기적으로는, 보조금 마감을 놓치는 것의 영향이 목공 수업을 빠지는 것보다 클 수 있다.</span>
+          </div>
+          <span class="sent-badge badge-flow">흐름 ✓</span>
+        </div>
+
+        <div class="sent-row irrelevant">
+          <span class="sent-num">④</span>
+          <div class="sent-text">
+            Needless to say, we should try to enroll in the woodworking class before the design class because it is more competitive to get into and more beneficial to us.
+            <span class="sent-ko">→ 말할 것도 없이, 우리는 디자인 수업보다 목공 수업에 먼저 등록하려 해야 하는데, 왜냐하면 목공 수업이 들어가기 더 경쟁적이고 우리에게 더 유익하기 때문이다.</span>
+          </div>
+          <span class="sent-badge badge-out">무관 ✗</span>
+        </div>
+
+        <div class="sent-row normal">
+          <span class="sent-num">⑤</span>
+          <div class="sent-text">
+            But it's important to recognize the cumulative impact of not prioritizing self-care and to make sure that in the long term, this is the exception rather than the norm.
+            <span class="sent-ko">→ 하지만 자기관리를 우선시하지 않는 누적적 영향을 인식하고, 장기적으로 이것이 규범이 아닌 예외가 되도록 하는 것이 중요하다.</span>
+          </div>
+          <span class="sent-badge badge-flow">흐름 ✓</span>
+        </div>
+
+      </div>
+
+      <!-- 키워드 연결 추적 -->
+      <div class="keyword-flow">
+        <h4>🔗 키워드 연결 흐름 추적</h4>
+        <div class="kf-row">
+          <span class="kf-sent">도입</span>
+          <span class="kf-arrow">→</span>
+          <span class="kf-word">self-care activities</span>
+          <span class="kf-arrow">→</span>
+          <span class="kf-word">포기됨</span>
+        </div>
+        <div class="kf-row">
+          <span class="kf-sent">①②</span>
+          <span class="kf-arrow">→</span>
+          <span class="kf-word">reprioritize</span>
+          <span class="kf-arrow">+</span>
+          <span class="kf-word">self-care 포기</span>
+          <span class="kf-note">→ 흐름 연결 ✓</span>
+        </div>
+        <div class="kf-row">
+          <span class="kf-sent">③</span>
+          <span class="kf-arrow">→</span>
+          <span class="kf-word">grant deadline</span>
+          <span class="kf-arrow">vs</span>
+          <span class="kf-word">woodworking class</span>
+          <span class="kf-note">→ 단기적 우선순위 예시 ✓</span>
+        </div>
+        <div class="kf-row">
+          <span class="kf-sent">④</span>
+          <span class="kf-arrow">→</span>
+          <span class="kf-word break">woodworking vs design 수업 등록 비교</span>
+          <span class="kf-note" style="color:var(--coral)">→ 주제 이탈! 수업 선택 우선순위 ≠ self-care 우선순위</span>
+        </div>
+        <div class="kf-row">
+          <span class="kf-sent">⑤</span>
+          <span class="kf-arrow">→</span>
+          <span class="kf-word">cumulative impact</span>
+          <span class="kf-arrow">+</span>
+          <span class="kf-word">self-care 우선순위</span>
+          <span class="kf-note">→ ③에서 ⑤로 바로 연결 자연스러움 ✓</span>
+        </div>
+      </div>
+
+      <!-- 정답 분석 -->
+      <div class="analysis-box">
+        <h4>❌ ④번이 무관한 이유 — 정밀 분석</h4>
+        <p>
+          글 전체의 주제: <strong>자기관리(self-care) 활동을 우선순위에서 밀려나게 두지 않는 것의 중요성</strong><br><br>
+          ③번은 "단기적으로는 보조금 마감이 목공 수업보다 중요할 수 있다"며 <em>자기관리를 단기 희생하는 상황의 현실적 예시</em>를 제시.<br><br>
+          ④번은 갑자기 "목공 수업 vs 디자인 수업 중 어느 것을 먼저 등록해야 하는가"라는 <em>수업 선택 우선순위</em>를 논함.<br><br>
+          → ③의 'woodworking class'라는 단어를 연결고리로 삼았지만, <strong>주제가 완전히 다름</strong>. self-care의 장기적 중요성과 무관.<br><br>
+          ⑤번은 ③의 단기 희생 허용 → <strong>"하지만 장기적으로는 예외가 되어야 한다"</strong>로 자연스럽게 연결됨. ④ 없이도 흐름 완성.
+        </p>
+      </div>
+
+      <!-- 제거 후 흐름 확인 -->
+      <div class="confirm-box">
+        <h4>✅ ④ 제거 후 흐름 확인</h4>
+        <p>
+          ③ "단기적으로 grant deadline > woodworking class"<br>
+          <strong>↓ ④ 제거</strong><br>
+          ⑤ "하지만 self-care를 우선시하지 않는 누적 영향을 인식해야 한다"<br><br>
+          → ③(단기 현실 인정) → ⑤(But, 장기 관점 강조) : <strong>완벽한 역접 흐름 형성</strong>. ④가 없어야 자연스럽다.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 논리 흐름 시각화 -->
+  <h2 class="section-title">논리 흐름 시각화</h2>
+  <div class="flow-box">
+    <h4>📐 전체 문장 흐름 구조</h4>
+
+    <div class="flow-item">
+      <div class="flow-connector"></div>
+      <div class="flow-circle ok">도입</div>
+      <div class="flow-content">
+        <span class="flow-tag ok">주제 제시</span>
+        <div class="sent">self-care 활동을 원하지만 실제로는 포기하게 됨</div>
+        <div class="analysis">핵심 키워드: self-care activities, priorities</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-connector"></div>
+      <div class="flow-circle ok">①②</div>
+      <div class="flow-content">
+        <span class="flow-tag ok">전개</span>
+        <div class="sent">재우선순위 설정 시 self-care가 가장 먼저 희생됨 — 누구나 가끔 그런 날이 있다</div>
+        <div class="analysis">키워드 연결: reprioritize → self-care given up ✓</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-connector"></div>
+      <div class="flow-circle ok">③</div>
+      <div class="flow-content">
+        <span class="flow-tag ok">단기 인정</span>
+        <div class="sent">단기적으로는 grant deadline > woodworking class (현실 인정)</div>
+        <div class="analysis">키워드 연결: short term, self-care(woodworking) 희생 ✓</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-connector"></div>
+      <div class="flow-circle out">④</div>
+      <div class="flow-content">
+        <span class="flow-tag out">⚠️ 흐름 이탈</span>
+        <div class="sent irrelevant">woodworking 수업 vs design 수업 중 무엇을 먼저 등록할지 — 경쟁도·유익함 비교</div>
+        <div class="analysis irrelevant">주제 이탈: 수업 등록 우선순위 ≠ self-care 우선순위. 'woodworking'만 연결고리로 사용한 함정.</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-circle ok-after">⑤</div>
+      <div class="flow-content">
+        <span class="flow-tag ok-after">결론</span>
+        <div class="sent">하지만 self-care를 우선시하지 않는 누적 영향을 인식하고 장기적으로 예외가 되어야 함</div>
+        <div class="analysis">③→⑤ 직접 연결: But(역접) + long term + self-care ✓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 핵심 어휘 -->
+  <h2 class="section-title">핵심 어휘 & 개념 정리</h2>
+  <table class="voca-table">
+    <thead>
+      <tr><th>표현</th><th>의미</th><th>흐름에서의 역할</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>self-care activities</td><td>자기관리 활동 (운동, 취미, 휴식)</td><td class="mint">글 전체 핵심 주제어</td></tr>
+      <tr><td>reprioritize</td><td>우선순위를 다시 정하다</td><td>①의 핵심 동사 — self-care 희생 이유</td></tr>
+      <tr><td>grant deadline</td><td>보조금 마감</td><td>③의 예시 — 단기 현실적 우선순위</td></tr>
+      <tr><td>woodworking class</td><td>목공 수업</td><td class="coral">③의 self-care 예시 / ④에서 주제 이탈의 연결고리로 오용</td></tr>
+      <tr><td>enroll in</td><td>~에 등록하다</td><td class="coral">④의 핵심 동사 — self-care 주제와 무관한 이탈 신호</td></tr>
+      <tr><td>cumulative impact</td><td>누적적 영향</td><td class="mint">⑤의 핵심 — 장기 관점 강조</td></tr>
+      <tr><td>exception rather than the norm</td><td>규범이 아닌 예외</td><td>결론 메시지 — self-care 희생은 가끔이어야 함</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 총정리 -->
+  <h2 class="section-title">총정리 체크리스트</h2>
+  <table class="summary-table">
+    <thead>
+      <tr><th>단계</th><th>이번 문제 적용</th><th>결과</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>주제 확정</td><td>self-care 우선순위 / 장기적 중요성</td><td class="mint">✓</td></tr>
+      <tr><td>키워드 연결 추적</td><td>④에서 'woodworking 등록 비교'로 단절</td><td class="coral">✗ 단절 탐지</td></tr>
+      <tr><td>제거 후 흐름 확인</td><td>③ → ⑤ 완벽 연결 (But + long term)</td><td class="mint">✓ 정답 확정</td></tr>
+      <tr><td>함정 인식</td><td>'woodworking' 단어 재사용 → 표면적 연결처럼 보이나 주제 이탈</td><td class="mint">✓ 함정 소거</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 최종 전략 카드 -->
+  <div class="final-card">
+    <h3>🎯 무관한 문장 최종 전략</h3>
+    <div class="tip-list">
+      <div class="tip-item">
+        <span class="tip-icon">🔗</span>
+        <span class="tip-text"><strong>앞 문장의 키워드가 끊기는 곳이 정답이다.</strong> 각 문장을 읽으면서 앞 문장의 핵심 명사·개념이 다음 문장에서 이어지는지 추적하라. 단절 지점이 정답이다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">⚠️</span>
+        <span class="tip-text"><strong>같은 단어가 있어도 주제가 다르면 무관한 문장이다.</strong> ④에서 'woodworking'은 ③에서 가져온 단어지만, 논의하는 주제(수업 등록 우선순위 vs self-care)가 완전히 다르다. 표면적 연결에 속지 마라.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">✂️</span>
+        <span class="tip-text"><strong>후보 문장을 제거해 보라.</strong> 제거했을 때 앞뒤가 더 자연스럽게 연결되면 그것이 무관한 문장이다. ③→⑤ 연결이 ④ 없이 더 자연스럽다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">📍</span>
+        <span class="tip-text"><strong>무관한 문장은 ②~④번에 자주 배치된다.</strong> ①번과 ⑤번은 각각 글의 전개와 결론이라 무관한 문장이 되기 어렵다. ③번이 가장 빈번하고, 이번처럼 ④번도 자주 출제된다.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400)
+})
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}
+  })
+},{threshold:0.08})
+document.querySelectorAll('.formula-box,.signal-box,.problem-card,.keyword-flow,.analysis-box,.confirm-box,.flow-box,.voca-table,.summary-table,.final-card').forEach(el=>{
+  el.style.opacity=0;el.style.transform='translateY(24px)';el.style.transition='all .6s ease'
+  observer.observe(el)
+})
+</script>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
