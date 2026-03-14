@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>글의 순서 완전정복 — 연결 단서 3종 세트 공식 | Key Trend 수능정보</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);line-height:1.8;user-select:none;-webkit-user-select:none}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:14px 0}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;display:flex;align-items:center;gap:6px}
+.nav-back:hover{color:var(--accent2)}
+
+/* HERO */
+.hero{padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.type-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:6px 18px;border-radius:100px;font-size:12px;font-weight:700;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Outfit';font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--gray);font-size:16px;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.meta-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray)}
+.meta-dot{width:8px;height:8px;border-radius:50%}
+.dot-mint{background:var(--mint)}
+.dot-coral{background:var(--coral)}
+.dot-amber{background:var(--amber)}
+.dot-accent{background:var(--accent)}
+
+/* CONTENT */
+.content{max-width:900px;margin:0 auto;padding:0 24px 80px}
+.section-label{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
+.section-title{font-family:'Outfit';font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:24px;line-height:1.3}
+.section-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.divider{border:none;border-top:1px solid rgba(51,65,85,.3);margin:48px 0}
+
+/* FORMULA BOX */
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:36px;margin-bottom:48px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+@media(max-width:680px){.formula-steps{grid-template-columns:1fr}}
+.step-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:20px;transition:border-color .2s}
+.step-card:hover{border-color:var(--accent)}
+.step-num{font-family:'Outfit';font-size:36px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.4;line-height:1}
+.step-title{font-size:15px;font-weight:700;color:var(--white);margin:6px 0 4px}
+.step-desc{font-size:13px;color:var(--gray);line-height:1.7}
+.step-tip{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(99,102,241,.15);color:var(--accent2)}
+
+/* CONNECTOR TABLE */
+.connector-table-wrap{margin-bottom:48px}
+.connector-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:1px solid rgba(51,65,85,.4)}
+.connector-table th{background:rgba(30,41,59,.8);padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:left}
+.connector-table td{padding:14px 16px;border-top:1px solid rgba(51,65,85,.3);font-size:13px;color:var(--gray);vertical-align:top}
+.connector-table td:first-child{font-weight:700;color:var(--white);white-space:nowrap}
+.connector-table td:nth-child(2){color:var(--mint);font-family:'Outfit';font-weight:600}
+.connector-table tr:hover td{background:rgba(99,102,241,.04)}
+
+/* PROBLEM SECTION */
+.problem-section{margin-bottom:56px}
+.problem-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(51,65,85,.4)}
+.problem-num{font-family:'Outfit';font-size:42px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;flex-shrink:0}
+.problem-meta{flex:1}
+.problem-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.problem-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-type{background:rgba(99,102,241,.15);color:var(--accent2)}
+.tag-score{background:rgba(251,191,36,.15);color:var(--amber)}
+.tag-answer{background:rgba(52,211,153,.15);color:var(--mint)}
+.tag-trap{background:rgba(244,114,182,.15);color:var(--coral)}
+
+/* PASSAGE BOX */
+.passage-box{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:24px 28px;margin-bottom:10px;font-size:15px;line-height:2;color:#cbd5e1}
+.passage-box .key-phrase{color:var(--mint);font-weight:700}
+.passage-box .link-phrase{color:var(--amber);font-weight:700}
+.passage-box .trap-phrase{color:var(--coral);font-weight:600}
+.passage-label{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:8px;display:block}
+
+/* PARAGRAPH CARDS */
+.para-cards{display:grid;gap:12px;margin-bottom:20px}
+.para-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:20px 24px;transition:all .2s;position:relative;overflow:hidden}
+.para-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.para-card-A::before{background:var(--accent)}
+.para-card-B::before{background:var(--mint)}
+.para-card-C::before{background:var(--coral)}
+.para-label{font-family:'Outfit';font-size:14px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.para-label-A{color:var(--accent2)}
+.para-label-B{color:var(--mint)}
+.para-label-C{color:var(--coral)}
+.para-text{font-size:14px;color:#cbd5e1;line-height:2}
+.para-text .key-phrase{color:var(--mint);font-weight:700}
+.para-text .link-phrase{color:var(--amber);font-weight:700}
+.hint-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;color:var(--amber);margin-top:10px}
+
+/* TRANS BOX */
+.trans-box{background:rgba(30,41,59,.4);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:10px;font-size:14px;color:var(--gray);line-height:1.9}
+.trans-box .trans-label{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:8px;display:block}
+.trans-box .trans-key{color:#e2e8f0;font-weight:500}
+.trans-box-A{border-left-color:var(--accent2)}
+.trans-box-B{border-left-color:var(--mint)}
+.trans-box-C{border-left-color:var(--coral)}
+
+/* CHOICES */
+.choices-grid{display:grid;gap:10px;margin-bottom:20px}
+.choice{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:10px;border:1px solid rgba(51,65,85,.4);background:rgba(15,23,42,.4);font-size:14px;transition:all .2s}
+.choice-num{font-family:'Outfit';font-weight:700;width:22px;flex-shrink:0;color:var(--gray)}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.correct .choice-text{color:var(--white);font-weight:600}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-num{color:var(--coral)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+
+/* ORDER FLOW */
+.order-flow{display:flex;align-items:center;justify-content:center;gap:0;margin:20px 0;flex-wrap:wrap}
+.order-block{padding:14px 22px;border-radius:10px;font-family:'Outfit';font-weight:800;font-size:16px;text-align:center;min-width:90px}
+.order-intro{background:rgba(99,102,241,.15);border:2px solid rgba(99,102,241,.4);color:var(--accent2)}
+.order-A{background:rgba(99,102,241,.12);border:2px solid rgba(99,102,241,.35);color:var(--accent2)}
+.order-B{background:rgba(52,211,153,.12);border:2px solid rgba(52,211,153,.35);color:var(--mint)}
+.order-C{background:rgba(244,114,182,.12);border:2px solid rgba(244,114,182,.35);color:var(--coral)}
+.order-arrow{font-size:20px;color:var(--gray);padding:0 6px}
+
+/* ANALYSIS */
+.analysis-box{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:24px;margin-bottom:16px}
+.analysis-box h4{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.9;margin-bottom:10px}
+.analysis-box p:last-child{margin-bottom:0}
+.analysis-box strong{color:var(--white);font-weight:600}
+.highlight-mint{color:var(--mint);font-weight:700}
+.highlight-coral{color:var(--coral);font-weight:700}
+.highlight-amber{color:var(--amber);font-weight:700}
+
+/* KEY STRUCTURE */
+.key-structure{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.key-structure h4{font-size:13px;font-weight:700;color:var(--amber);margin-bottom:12px;letter-spacing:1px}
+.key-structure ul{list-style:none}
+.key-structure li{padding:5px 0;font-size:14px;color:var(--gray);display:flex;gap:10px;align-items:flex-start}
+.key-structure li::before{content:'→';color:var(--amber);flex-shrink:0;font-weight:700}
+
+/* ANSWER REVEAL */
+.answer-reveal{display:flex;align-items:center;gap:12px;padding:14px 20px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);border-radius:10px;margin-bottom:20px}
+.ans-label{font-size:12px;font-weight:700;color:var(--mint);letter-spacing:1px}
+.ans-text{font-size:15px;font-weight:700;color:var(--white)}
+.ans-num{font-family:'Outfit';font-size:22px;font-weight:800;color:var(--mint);margin-left:auto}
+
+/* WARNING */
+.warning-box{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.warning-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:10px}
+.warning-box p{font-size:14px;color:var(--gray);line-height:1.8}
+
+/* SUMMARY TABLE */
+.summary-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:1px solid rgba(51,65,85,.4);margin-bottom:48px}
+.summary-table th{background:rgba(30,41,59,.8);padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:center}
+.summary-table td{padding:14px 16px;border-top:1px solid rgba(51,65,85,.3);font-size:14px;text-align:center;color:var(--gray)}
+.summary-table td:first-child{font-weight:700;color:var(--white);text-align:left}
+.summary-table tr:hover td{background:rgba(99,102,241,.04)}
+.ans-mint{color:var(--mint);font-weight:700;font-family:'Outfit';font-size:18px}
+
+.card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-accent{border-color:rgba(99,102,241,.3);background:rgba(30,41,59,.6)}
+
+.scroll-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;box-shadow:0 4px 20px rgba(99,102,241,.4);transition:all .2s;z-index:50;text-decoration:none;color:white}
+.scroll-top:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(99,102,241,.5)}
+
+@media(max-width:768px){
+  .problem-header{flex-direction:column;gap:8px}
+  .problem-num{font-size:32px}
+  .passage-box{padding:18px 20px;font-size:14px}
+  .order-flow{gap:4px}
+  .order-block{padding:10px 14px;font-size:14px;min-width:70px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="nav-inner">
+  <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+  <a href="/suneung-info.html" class="nav-back">← 수능정보 목록</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-inner">
+  <div class="type-badge">유형별 풀이법</div>
+  <h1>글의 순서 <em>완전정복</em><br>연결 단서 3종 세트 공식</h1>
+  <p class="hero-sub">2026학년도 수능 36~37번 기출 실전 분석 — 순서는 <strong style="color:var(--white)">논리의 흐름</strong>이다. 단서를 보면 순서가 보인다</p>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-dot dot-accent"></span>문항: 36~37번</div>
+    <div class="meta-item"><span class="meta-dot dot-amber"></span>배점: 2점·3점</div>
+    <div class="meta-item"><span class="meta-dot dot-mint"></span>2026 수능 기출 기반</div>
+    <div class="meta-item"><span class="meta-dot dot-coral"></span>홀수형 정답 기준</div>
+  </div>
+</div>
+</section>
+
+<div class="content">
+
+<!-- FORMULA -->
+<div style="margin-bottom:48px">
+  <div class="section-label">핵심 전략</div>
+  <div class="section-title">글의 순서 <em>연결 단서 3종 세트</em></div>
+  <div class="formula-box">
+    <p style="color:var(--gray);font-size:14px;line-height:1.8">순서 문제는 <strong style="color:var(--white)">각 단락의 첫 문장과 마지막 문장</strong>을 집중 공략한다. 이전 단락의 끝과 다음 단락의 시작이 연결되는 지점에 반드시 단서가 있다.</p>
+    <div class="formula-steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">지시어·대명사 추적</div>
+        <div class="step-desc">this / it / they / such / these → 앞에 언급된 명사를 가리킨다. 대명사가 가리키는 대상이 앞 단락에 있으면 그 단락 바로 뒤에 배치.</div>
+        <span class="step-tip">대명사의 선행사 = 순서의 열쇠</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">접속어·연결어 파악</div>
+        <div class="step-desc">Indeed / However / But / Also / In addition / For example / On the contrary — 이 단어들이 단락 간 논리 관계를 직접 알려준다.</div>
+        <span class="step-tip">역접 → 새로운 방향 / 첨가 → 같은 방향</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">핵심 개념어 반복</div>
+        <div class="step-desc">앞 단락에서 제시된 개념·단어가 다음 단락에서 반복되거나 발전된다. 반복 어휘의 흐름을 따라가면 자연스러운 순서가 드러난다.</div>
+        <span class="step-tip">새 개념 도입 → 설명 → 구체 예시 순서</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONNECTOR TABLE -->
+<div class="connector-table-wrap">
+  <div class="section-label">빠른 참고</div>
+  <div class="section-title" style="font-size:20px">자주 나오는 <em>연결어 유형</em></div>
+  <table class="connector-table">
+    <thead>
+      <tr><th>연결어</th><th>기능</th><th>순서 판단 기준</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Indeed / In fact / Of course</td>
+        <td>강조·확인</td>
+        <td>앞 단락의 주장을 더 강하게 뒷받침 → 같은 흐름으로 연결</td>
+      </tr>
+      <tr>
+        <td>However / But / Yet / On the contrary</td>
+        <td>역접·전환</td>
+        <td>앞 단락과 반대 방향의 내용이 뒤에 옴 → 전환점 표시</td>
+      </tr>
+      <tr>
+        <td>For example / For instance / Say...</td>
+        <td>예시</td>
+        <td>앞에 일반적 주장 → 뒤에 구체 예시. 예시 단락은 반드시 주장 뒤에</td>
+      </tr>
+      <tr>
+        <td>Also / In addition / Furthermore</td>
+        <td>첨가</td>
+        <td>앞 단락과 같은 방향의 추가 내용. 첫 단락이 될 수 없음</td>
+      </tr>
+      <tr>
+        <td>This / It / They / Such + 명사</td>
+        <td>지시·대명사</td>
+        <td>선행사 단락 바로 다음에 배치 — 가장 강력한 순서 단서</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- 36번 -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">36</div>
+    <div class="problem-meta">
+      <div class="problem-title">주어진 글 다음에 이어질 글의 순서로 가장 적절한 것은?</div>
+      <div class="problem-tags">
+        <span class="tag tag-type">글의 순서</span>
+        <span class="tag tag-score">2점</span>
+        <span class="tag tag-answer">정답 ④</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 주어진 글 -->
+  <div style="margin-bottom:16px">
+    <span class="passage-label">📄 주어진 글 (도입)</span>
+    <div class="passage-box">
+      We usually think of a clock as a physical thing, like an alarm clock or a wristwatch. But a clock is really <span class="key-phrase">a process embodied in a machine</span>, and the nature of that process is <span class="key-phrase">repetitive</span>.
+    </div>
+    <div class="trans-box">
+      <span class="trans-label">🇰🇷 해석</span>
+      우리는 보통 시계를 자명종이나 손목시계 같은 물리적인 것으로 생각한다. 그러나 시계는 실제로 <span class="trans-key">기계에 구현된 하나의 과정</span>이며, 그 과정의 본질은 <span class="trans-key">반복적</span>이다.
+    </div>
+    <div class="hint-badge" style="display:inline-flex">💡 핵심 개념: "반복적(repetitive)" — 이후 단락들이 모두 이 개념을 발전시킴</div>
+  </div>
+
+  <!-- 단락 카드들 -->
+  <div class="para-cards">
+    <div class="para-card para-card-C">
+      <div class="para-label para-label-C">(C) 단락</div>
+      <div class="para-text">
+        A clock can be almost any process that <span class="key-phrase">repeats itself over and over again</span> for an indefinite period. Water clocks drip at a steady pace; quartz crystals vibrate regularly.<br>
+        <small style="color:var(--gray)">* quartz: 석영(石英)</small>
+      </div>
+      <div class="hint-badge">🔗 "repeats itself" = 주어진 글의 "repetitive" 직접 연결</div>
+    </div>
+    <div class="trans-box trans-box-C">
+      <span class="trans-label">🇰🇷 (C) 해석</span>
+      시계는 무한정의 기간 동안 <span class="trans-key">계속해서 반복하는</span> 거의 모든 과정일 수 있다. 물시계는 일정한 속도로 물방울을 떨어뜨리고, 석영 결정은 규칙적으로 진동한다.
+    </div>
+
+    <div class="para-card para-card-A">
+      <div class="para-label para-label-A">(A) 단락</div>
+      <div class="para-text">
+        <span class="link-phrase">Indeed</span>, it is almost impossible to think of a clock that does not depend on a <span class="key-phrase">repetitive cycle</span> of events. The only example that comes to mind readily is a candle marked in hours. But here too there is <span class="key-phrase">iteration</span> — the repeated burning of molecules of wax — so this too is an iterative process, although at first masked.<br>
+        <small style="color:var(--gray)">* molecule: 분자</small>
+      </div>
+      <div class="hint-badge">🔗 "Indeed" = (C)의 내용을 강조·확인하며 이어짐</div>
+    </div>
+    <div class="trans-box trans-box-A">
+      <span class="trans-label">🇰🇷 (A) 해석</span>
+      <span class="trans-key">실제로</span>, <span class="trans-key">반복적인 사건의 순환</span>에 의존하지 않는 시계를 생각하기란 거의 불가능하다. 즉각적으로 떠오르는 유일한 예시는 시간 단위로 표시된 양초다. 그러나 여기서도 <span class="trans-key">반복</span>이 존재한다 — 왁스 분자의 반복적인 연소 — 따라서 이것 역시 처음에는 숨겨져 있지만 반복적 과정이다.
+    </div>
+
+    <div class="para-card para-card-B">
+      <div class="para-label para-label-B">(B) 단락</div>
+      <div class="para-text">
+        The use of radiocarbon dating is <span class="link-phrase">another</span>, much longer scale clock that also appears to be <span class="link-phrase">like this</span>. It seems to yield a smooth time scale but in fact does not: the decay of atoms of carbon-14 is <span class="key-phrase">repetitive</span>, although on a large scale it gives the appearance of being continuous.
+      </div>
+      <div class="hint-badge">🔗 "another" + "like this" = (A)의 양초 예시 다음에 추가 예시</div>
+    </div>
+    <div class="trans-box trans-box-B">
+      <span class="trans-label">🇰🇷 (B) 해석</span>
+      방사성탄소 연대 측정의 사용은 <span class="trans-key">또 다른</span>, 훨씬 더 긴 시간 척도의 시계로, <span class="trans-key">이것과 비슷하게</span> 보이는 것이기도 하다. 표면적으로는 부드러운 시간 척도를 산출하는 것처럼 보이지만 실제로는 그렇지 않다. 탄소-14 원자의 붕괴는 <span class="trans-key">반복적</span>이지만, 대규모에서는 연속적인 것처럼 보인다.
+    </div>
+  </div>
+
+  <!-- 정답 순서 시각화 -->
+  <div class="order-flow">
+    <div class="order-block order-intro">주어진 글<br><small style="font-size:11px;opacity:.7">반복(repetitive)</small></div>
+    <span class="order-arrow">→</span>
+    <div class="order-block order-C">(C)<br><small style="font-size:11px;opacity:.7">반복 정의</small></div>
+    <span class="order-arrow">→</span>
+    <div class="order-block order-A">(A)<br><small style="font-size:11px;opacity:.7">Indeed + 예시(양초)</small></div>
+    <span class="order-arrow">→</span>
+    <div class="order-block order-B">(B)<br><small style="font-size:11px;opacity:.7">another + 추가예시</small></div>
+  </div>
+
+  <!-- 선택지 -->
+  <div class="choices-grid">
+    <div class="choice wrong"><span class="choice-num">①</span><span class="choice-text">(A) − (C) − (B)</span></div>
+    <div class="choice wrong"><span class="choice-num">②</span><span class="choice-text">(B) − (A) − (C)</span></div>
+    <div class="choice wrong"><span class="choice-num">③</span><span class="choice-text">(B) − (C) − (A)</span></div>
+    <div class="choice correct"><span class="choice-num">④</span><span class="choice-text">(C) − (A) − (B)</span></div>
+    <div class="choice wrong"><span class="choice-num">⑤</span><span class="choice-text">(C) − (B) − (A)</span></div>
+  </div>
+
+  <div class="answer-reveal">
+    <span class="ans-label">정답</span>
+    <span class="ans-text">④ (C) − (A) − (B)</span>
+    <span class="ans-num">④</span>
+  </div>
+
+  <div class="analysis-box">
+    <h4>🔍 순서 결정 근거 단계별 분석</h4>
+    <p><strong>Step 1 — 주어진 글 → (C):</strong> 주어진 글이 시계의 본질은 "반복(repetitive)"이라고 정의한다. (C)는 "A clock can be almost any process that <span class="highlight-mint">repeats itself</span>"로 시작하며 이 정의를 바로 이어받아 구체화한다. 자연스러운 첫 번째 연결.</p>
+    <p><strong>Step 2 — (C) → (A):</strong> (A)의 첫 단어 <span class="highlight-amber">"Indeed"</span>는 앞의 내용을 강조·확인하는 접속어다. (C)에서 "시계는 반복적 과정"이라고 했고, (A)에서 "Indeed, 반복적 순환에 의존하지 않는 시계는 없다"고 강조하며 자연스럽게 이어진다.</p>
+    <p><strong>Step 3 — (A) → (B):</strong> (A)에서 양초를 예외처럼 소개했다가 "이것도 반복적 과정"이라고 결론 냈다. (B)의 <span class="highlight-amber">"another... like this"</span>는 (A)의 양초 예시에 이어 '또 다른 예시(방사성탄소 연대 측정)'를 추가한다. "another"는 앞에 이미 하나의 예시가 있어야 쓸 수 있다.</p>
+  </div>
+
+  <div class="key-structure">
+    <h4>🚫 ①번 오답 이유 — (A) 먼저 올 수 없는 이유</h4>
+    <ul>
+      <li>(A) 첫 문장: "Indeed, it is almost impossible to think of a clock that does not depend on a repetitive cycle"</li>
+      <li>"Indeed"는 앞 단락의 내용을 강조하는 접속어 → 앞에 반드시 관련 내용이 있어야 함</li>
+      <li>주어진 글에서 시계의 반복성은 언급했지만, '구체적인 정의'를 제공한 것은 (C)이므로 (A)는 (C) 뒤에 와야 함</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 37번 -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">37</div>
+    <div class="problem-meta">
+      <div class="problem-title">주어진 글 다음에 이어질 글의 순서로 가장 적절한 것은? [3점]</div>
+      <div class="problem-tags">
+        <span class="tag tag-type">글의 순서</span>
+        <span class="tag tag-score">3점</span>
+        <span class="tag tag-answer">정답 ⑤</span>
+        <span class="tag tag-trap">고난도</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 주어진 글 -->
+  <div style="margin-bottom:16px">
+    <span class="passage-label">📄 주어진 글 (도입)</span>
+    <div class="passage-box">
+      Philosophy allows us to ask much broader questions than many other scientific disciplines. It is capable of looking at the bigger picture and providing important insights into the <span class="key-phrase">relationships between different areas of knowledge</span>.
+    </div>
+    <div class="trans-box">
+      <span class="trans-label">🇰🇷 해석</span>
+      철학은 우리가 많은 다른 과학 분야보다 훨씬 더 광범위한 질문을 할 수 있게 해준다. 철학은 더 큰 그림을 볼 수 있고 <span class="trans-key">지식의 다양한 영역 사이의 관계</span>에 대한 중요한 통찰력을 제공할 수 있다.
+    </div>
+    <div class="hint-badge" style="display:inline-flex">💡 핵심 개념: 철학의 역할 — 학문 간 관계 파악. 이후 단락은 철학의 구체적 역할과 한계를 논함</div>
+  </div>
+
+  <!-- 단락 카드들 -->
+  <div class="para-cards">
+    <div class="para-card para-card-C">
+      <div class="para-label para-label-C">(C) 단락</div>
+      <div class="para-text">
+        Philosophy is particularly important for the <span class="key-phrase">interdisciplinary efforts of cognitive science</span>, where it helps to <span class="key-phrase">bridge gaps between different disciplines</span> and pioneer new ways for research. Unlike scientific methods, philosophizing is a <span class="trap-phrase">non-empirical approach</span> that attempts to validate concepts through logical thinking and argumentation.<br>
+        <small style="color:var(--gray)">* empirical: 경험의</small>
+      </div>
+      <div class="hint-badge">🔗 "bridge gaps between different disciplines" = 주어진 글의 "relationships between different areas" 직접 연결</div>
+    </div>
+    <div class="trans-box trans-box-C">
+      <span class="trans-label">🇰🇷 (C) 해석</span>
+      철학은 인지 과학의 <span class="trans-key">학제 간 노력</span>에 특히 중요하며, 여기서 철학은 서로 다른 학문 분야 사이의 <span class="trans-key">간격을 메우고</span> 연구를 위한 새로운 방법을 개척하는 데 도움을 준다. 과학적 방법과 달리, 철학적 사유는 논리적 사고와 논증을 통해 개념을 검증하려는 <span class="trans-key">비경험적 접근법</span>이다.
+    </div>
+
+    <div class="para-card para-card-B">
+      <div class="para-label para-label-B">(B) 단락</div>
+      <div class="para-text">
+        Philosophers tend to ask questions rather than provide definitive answers, and their contributions often consist of challenging established assumptions and proposing new research approaches. <span class="link-phrase">However</span>, for a more comprehensive understanding of the nature of <span class="key-phrase">consciousness</span>, close collaboration between <span class="key-phrase">philosophy and neuroscience</span> is required.
+      </div>
+      <div class="hint-badge">🔗 (C)의 "non-empirical" 속성 → (B)에서 "However, 경험적 협력 필요"로 전환</div>
+    </div>
+    <div class="trans-box trans-box-B">
+      <span class="trans-label">🇰🇷 (B) 해석</span>
+      철학자들은 결정적인 답을 제공하기보다는 질문을 던지는 경향이 있으며, 그들의 기여는 종종 기존의 가정에 도전하고 새로운 연구 접근법을 제안하는 것으로 이루어진다. <span class="trans-key">그러나</span>, <span class="trans-key">의식의 본질</span>에 대한 더 포괄적인 이해를 위해서는 <span class="trans-key">철학과 신경과학</span> 사이의 긴밀한 협력이 요구된다.
+    </div>
+
+    <div class="para-card para-card-A">
+      <div class="para-label para-label-A">(A) 단락</div>
+      <div class="para-text">
+        <span class="link-phrase">This means</span> that while philosophy can provide valuable insights into theoretical concepts and broader ethical questions, it needs to be <span class="key-phrase">supplemented by empirical findings and experiments</span> to reach a more comprehensive understanding.
+      </div>
+      <div class="hint-badge">🔗 "This means" = (B)의 결론(철학과 신경과학 협력 필요)을 일반화하여 마무리</div>
+    </div>
+    <div class="trans-box trans-box-A">
+      <span class="trans-label">🇰🇷 (A) 해석</span>
+      <span class="trans-key">이것은</span> 철학이 이론적 개념과 더 광범위한 윤리적 질문에 대한 귀중한 통찰력을 제공할 수 있지만, 더 포괄적인 이해에 도달하기 위해서는 <span class="trans-key">경험적 발견과 실험으로 보완될 필요</span>가 있음을 의미한다.
+    </div>
+  </div>
+
+  <!-- 정답 순서 시각화 -->
+  <div class="order-flow">
+    <div class="order-block order-intro">주어진 글<br><small style="font-size:11px;opacity:.7">철학의 역할</small></div>
+    <span class="order-arrow">→</span>
+    <div class="order-block order-C">(C)<br><small style="font-size:11px;opacity:.7">학문 간 연결<br>+ 비경험적</small></div>
+    <span class="order-arrow">→</span>
+    <div class="order-block order-B">(B)<br><small style="font-size:11px;opacity:.7">However<br>협력 필요</small></div>
+    <span class="order-arrow">→</span>
+    <div class="order-block order-A">(A)<br><small style="font-size:11px;opacity:.7">This means<br>결론·일반화</small></div>
+  </div>
+
+  <!-- 선택지 -->
+  <div class="choices-grid">
+    <div class="choice wrong"><span class="choice-num">①</span><span class="choice-text">(A) − (C) − (B)</span></div>
+    <div class="choice wrong"><span class="choice-num">②</span><span class="choice-text">(B) − (A) − (C)</span></div>
+    <div class="choice wrong"><span class="choice-num">③</span><span class="choice-text">(B) − (C) − (A)</span></div>
+    <div class="choice wrong"><span class="choice-num">④</span><span class="choice-text">(C) − (A) − (B)</span></div>
+    <div class="choice correct"><span class="choice-num">⑤</span><span class="choice-text">(C) − (B) − (A)</span></div>
+  </div>
+
+  <div class="answer-reveal">
+    <span class="ans-label">정답</span>
+    <span class="ans-text">⑤ (C) − (B) − (A)</span>
+    <span class="ans-num">⑤</span>
+  </div>
+
+  <div class="analysis-box">
+    <h4>🔍 순서 결정 근거 단계별 분석</h4>
+    <p><strong>Step 1 — 주어진 글 → (C):</strong> 주어진 글은 "철학이 <span class="highlight-mint">지식의 다양한 영역 사이의 관계</span>에 통찰을 제공한다"고 소개한다. (C)는 "Philosophy is particularly important for the <span class="highlight-mint">interdisciplinary efforts</span>... helps to <span class="highlight-mint">bridge gaps between different disciplines</span>"로 이 내용을 구체화한다. 직접적 연결.</p>
+    <p><strong>Step 2 — (C) → (B):</strong> (C)는 철학이 "비경험적(non-empirical) 접근법"임을 언급하며 끝난다. (B)는 <span class="highlight-amber">"However"</span>로 시작하여 전환을 알린다. '비경험적 접근'의 한계를 지적하며 '철학과 신경과학의 협력'이 필요하다고 주장한다 — 역접 접속어가 (C)→(B) 연결을 확정.</p>
+    <p><strong>Step 3 — (B) → (A):</strong> (A)는 <span class="highlight-amber">"This means"</span>로 시작한다. 이 표현은 앞 단락의 결론을 받아 의미를 확장·일반화한다. (B)에서 '철학+신경과학 협력 필요'라는 구체 사례를 제시했고, (A)에서 "철학은 경험적 발견으로 보완되어야 한다"고 일반적 결론을 내린다.</p>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ 고난도 함정 — ④번 (C)-(A)-(B) 와 ⑤번 혼동</h4>
+    <p>④번 (C)-(A)-(B)를 선택하면 (A)의 "This means"가 (C)를 받는 것이 된다. 그러나 (A)에서 말하는 "empirical findings and experiments로 보완" 논리는 (B)에서 "철학과 신경과학 협력"을 언급한 뒤에야 자연스럽게 일반화된다. (C) 바로 다음에 (A)가 오면 "This means"가 지시하는 내용(협력의 필요성)이 아직 등장하지 않아 논리가 끊긴다.</p>
+  </div>
+
+  <div class="key-structure">
+    <h4>🧠 37번 논리 전개 구조 요약</h4>
+    <ul>
+      <li>주어진 글: 철학 = 학문 간 관계 통찰 제공 (일반적 역할 소개)</li>
+      <li>(C): 인지과학에서 구체적 역할 + 비경험적 접근법이라는 특성 제시</li>
+      <li>(B): However → 비경험적 한계 지적 + 신경과학과의 협력 필요 (전환)</li>
+      <li>(A): This means → 철학은 경험적 발견으로 보완되어야 한다 (결론·일반화)</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SUMMARY TABLE -->
+<div style="margin-bottom:48px">
+  <div class="section-label">총정리</div>
+  <div class="section-title">2026 수능 글의 순서 <em>정답 & 핵심 단서</em></div>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th style="text-align:left">문항</th>
+        <th>배점</th>
+        <th>정답</th>
+        <th>결정적 연결어</th>
+        <th>순서 확정 근거</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>36번 — 시계와 반복</td>
+        <td>2점</td>
+        <td><span class="ans-mint">④</span></td>
+        <td>Indeed / another + like this</td>
+        <td>(C) 반복 정의 → (A) 강조+양초 예시 → (B) 추가 예시</td>
+      </tr>
+      <tr>
+        <td>37번 — 철학의 역할</td>
+        <td>3점</td>
+        <td><span class="ans-mint">⑤</span></td>
+        <td>However / This means</td>
+        <td>(C) 비경험적 속성 → (B) 역접+협력 필요 → (A) 결론 일반화</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FINAL TIP -->
+<div class="card card-accent">
+  <div class="section-label" style="margin-bottom:12px">글의 순서 최종 전략</div>
+  <p style="font-size:15px;color:var(--gray);line-height:2">
+    순서 문제에서 가장 강력한 단서는 <span style="color:var(--amber);font-weight:700">지시어(This / It / another + like this)</span>다. 이 표현이 가리키는 내용이 반드시 앞 단락에 있어야 한다는 원칙만 지키면 절반은 해결된다. 나머지 절반은 <span style="color:var(--mint);font-weight:700">접속어(However / Indeed / This means)</span>의 방향을 읽는 것이다. 역접 접속어가 있는 단락은 흐름이 전환되는 지점이고, "This means / In other words"는 반드시 결론 위치에 온다.
+  </p>
+</div>
+
+</div><!-- /content -->
+
+<a href="#" class="scroll-top">↑</a>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+
+document.querySelector('.scroll-top').addEventListener('click', e => {
+  e.preventDefault();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = 1;
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {threshold: 0.1});
+document.querySelectorAll('.problem-section, .formula-box, .summary-table, .connector-table-wrap').forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'all .6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
