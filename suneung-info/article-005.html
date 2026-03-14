@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문장 삽입 완전정복 — 논리 흐름 끊김 탐지법 | Key Trend 수능정보</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);line-height:1.8;user-select:none;-webkit-user-select:none}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:14px 0}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+/* HERO */
+.hero{padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.type-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:6px 18px;border-radius:100px;font-size:12px;font-weight:700;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Outfit';font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--gray);font-size:16px;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.meta-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray)}
+.meta-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-mint{background:var(--mint)}.dot-coral{background:var(--coral)}.dot-amber{background:var(--amber)}.dot-accent{background:var(--accent)}
+
+/* CONTENT */
+.content{max-width:900px;margin:0 auto;padding:0 24px 80px}
+.section-label{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
+.section-title{font-family:'Outfit';font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:24px;line-height:1.3}
+.section-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.divider{border:none;border-top:1px solid rgba(51,65,85,.3);margin:48px 0}
+
+/* FORMULA BOX */
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:36px;margin-bottom:48px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+@media(max-width:600px){.formula-steps{grid-template-columns:1fr}}
+.step-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:20px;transition:border-color .2s}
+.step-card:hover{border-color:var(--accent)}
+.step-num{font-family:'Outfit';font-size:36px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.4;line-height:1}
+.step-title{font-size:15px;font-weight:700;color:var(--white);margin:6px 0 4px}
+.step-desc{font-size:13px;color:var(--gray);line-height:1.7}
+.step-tip{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(99,102,241,.15);color:var(--accent2)}
+
+/* PROBLEM SECTION */
+.problem-section{margin-bottom:56px}
+.problem-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(51,65,85,.4)}
+.problem-num{font-family:'Outfit';font-size:42px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;flex-shrink:0}
+.problem-meta{flex:1}
+.problem-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.problem-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-type{background:rgba(99,102,241,.15);color:var(--accent2)}
+.tag-score{background:rgba(251,191,36,.15);color:var(--amber)}
+.tag-answer{background:rgba(52,211,153,.15);color:var(--mint)}
+.tag-trap{background:rgba(244,114,182,.15);color:var(--coral)}
+
+/* GIVEN SENTENCE BOX */
+.given-box{background:rgba(99,102,241,.1);border:2px solid rgba(99,102,241,.4);border-radius:14px;padding:20px 24px;margin-bottom:16px;position:relative}
+.given-box::before{content:'주어진 문장';position:absolute;top:-11px;left:16px;background:var(--accent);color:white;font-size:11px;font-weight:700;padding:2px 10px;border-radius:6px;letter-spacing:1px}
+.given-text{font-size:15px;color:var(--white);line-height:2;font-weight:500}
+.given-text .key-phrase{color:var(--mint);font-weight:700}
+.given-text .link-phrase{color:var(--amber);font-weight:700}
+
+/* PASSAGE BOX */
+.passage-box{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:24px 28px;margin-bottom:10px;font-size:15px;line-height:2.1;color:#cbd5e1;position:relative}
+.passage-box .key-phrase{color:var(--mint);font-weight:700}
+.passage-box .link-phrase{color:var(--amber);font-weight:700}
+.passage-box .trap-phrase{color:var(--coral);font-weight:600}
+
+/* NUMBER MARKERS */
+.marker{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:800;font-family:'Outfit';margin:0 3px;vertical-align:middle;flex-shrink:0}
+.marker-normal{background:rgba(51,65,85,.6);border:1px solid rgba(99,102,241,.3);color:var(--gray)}
+.marker-answer{background:rgba(52,211,153,.2);border:2px solid var(--mint);color:var(--mint)}
+
+/* INSERT POSITION VISUAL */
+.insert-visual{background:rgba(15,23,42,.7);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:24px;margin:16px 0;overflow-x:auto}
+.insert-visual-title{font-size:12px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:16px}
+.insert-row{display:flex;flex-direction:column;gap:8px}
+.insert-sentence{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.3);font-size:13px;color:#cbd5e1;line-height:1.7;transition:all .2s}
+.insert-sentence.answer-pos{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.3)}
+.insert-sentence .s-num{font-family:'Outfit';font-weight:800;font-size:13px;flex-shrink:0;margin-top:1px}
+.s-num-normal{color:var(--gray)}
+.s-num-answer{color:var(--mint)}
+.inserted-sentence{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;border-radius:10px;background:rgba(99,102,241,.12);border:2px dashed rgba(99,102,241,.5);font-size:13px;color:var(--accent2);line-height:1.7;font-weight:600;margin:4px 0}
+.inserted-label{font-size:10px;font-weight:700;background:var(--accent);color:white;padding:1px 6px;border-radius:4px;flex-shrink:0;margin-top:2px;white-space:nowrap}
+
+/* TRANS BOX */
+.trans-box{background:rgba(30,41,59,.4);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:16px;font-size:14px;color:var(--gray);line-height:1.9}
+.trans-label{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:8px;display:block}
+.trans-key{color:#e2e8f0;font-weight:500}
+
+/* CHOICES */
+.choices-grid{display:grid;gap:10px;margin-bottom:20px}
+.choice{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:10px;border:1px solid rgba(51,65,85,.4);background:rgba(15,23,42,.4);font-size:14px}
+.choice-num{font-family:'Outfit';font-weight:700;width:22px;flex-shrink:0;color:var(--gray)}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.correct .choice-text{color:var(--white);font-weight:600}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-num{color:var(--coral)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+
+/* ANSWER REVEAL */
+.answer-reveal{display:flex;align-items:center;gap:12px;padding:14px 20px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);border-radius:10px;margin-bottom:20px}
+.ans-label{font-size:12px;font-weight:700;color:var(--mint);letter-spacing:1px}
+.ans-text{font-size:15px;font-weight:700;color:var(--white)}
+.ans-num{font-family:'Outfit';font-size:22px;font-weight:800;color:var(--mint);margin-left:auto}
+
+/* ANALYSIS */
+.analysis-box{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:24px;margin-bottom:16px}
+.analysis-box h4{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:14px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.9;margin-bottom:10px}
+.analysis-box p:last-child{margin-bottom:0}
+.analysis-box strong{color:var(--white);font-weight:600}
+.h-mint{color:var(--mint);font-weight:700}
+.h-coral{color:var(--coral);font-weight:700}
+.h-amber{color:var(--amber);font-weight:700}
+
+/* KEY STRUCTURE */
+.key-structure{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.key-structure h4{font-size:13px;font-weight:700;color:var(--amber);margin-bottom:12px;letter-spacing:1px}
+.key-structure ul{list-style:none}
+.key-structure li{padding:5px 0;font-size:14px;color:var(--gray);display:flex;gap:10px;align-items:flex-start}
+.key-structure li::before{content:'→';color:var(--amber);flex-shrink:0;font-weight:700}
+
+/* WARNING */
+.warning-box{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.warning-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:10px}
+.warning-box p{font-size:14px;color:var(--gray);line-height:1.8}
+
+/* SUMMARY TABLE */
+.summary-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:1px solid rgba(51,65,85,.4);margin-bottom:48px}
+.summary-table th{background:rgba(30,41,59,.8);padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:center}
+.summary-table td{padding:14px 16px;border-top:1px solid rgba(51,65,85,.3);font-size:14px;text-align:center;color:var(--gray)}
+.summary-table td:first-child{font-weight:700;color:var(--white);text-align:left}
+.summary-table tr:hover td{background:rgba(99,102,241,.04)}
+.ans-mint{color:var(--mint);font-weight:700;font-family:'Outfit';font-size:18px}
+
+.card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-accent{border-color:rgba(99,102,241,.3)}
+
+.hint-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;color:var(--amber);margin-top:10px}
+
+.scroll-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;box-shadow:0 4px 20px rgba(99,102,241,.4);transition:all .2s;z-index:50;text-decoration:none;color:white}
+.scroll-top:hover{transform:translateY(-3px)}
+
+@media(max-width:768px){
+  .problem-header{flex-direction:column;gap:8px}
+  .problem-num{font-size:32px}
+  .passage-box,.given-text{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+  <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+  <a href="/suneung-info.html" class="nav-back">← 수능정보 목록</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-inner">
+  <div class="type-badge">유형별 풀이법</div>
+  <h1>문장 삽입 <em>완전정복</em><br>논리 흐름 끊김 탐지법</h1>
+  <p class="hero-sub">2026학년도 수능 38~39번 기출 실전 분석 — 주어진 문장이 들어갈 자리는 <strong style="color:var(--white)">논리가 끊기는 바로 그 지점</strong>이다</p>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-dot dot-accent"></span>문항: 38~39번</div>
+    <div class="meta-item"><span class="meta-dot dot-amber"></span>배점: 2점·3점</div>
+    <div class="meta-item"><span class="meta-dot dot-mint"></span>2026 수능 기출 기반</div>
+    <div class="meta-item"><span class="meta-dot dot-coral"></span>홀수형 정답 기준</div>
+  </div>
+</div>
+</section>
+
+<div class="content">
+
+<!-- FORMULA -->
+<div style="margin-bottom:48px">
+  <div class="section-label">핵심 전략</div>
+  <div class="section-title">문장 삽입 <em>4단계 풀이법</em></div>
+  <div class="formula-box">
+    <p style="color:var(--gray);font-size:14px;line-height:1.8">문장 삽입의 핵심은 <strong style="color:var(--white)">주어진 문장을 먼저 분석</strong>하는 것이다. 주어진 문장의 앞에 무엇이 와야 하는지, 뒤에 무엇이 이어져야 하는지를 파악하면 위치가 자연스럽게 드러난다.</p>
+    <div class="formula-steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">주어진 문장 선행 조건 분석</div>
+        <div class="step-desc">지시어(This / It / They / Such)가 있으면 그것이 가리키는 명사가 앞에 있어야 한다. 역접 접속어(But / However)가 있으면 앞에 반대 방향의 내용이 필요하다.</div>
+        <span class="step-tip">주어진 문장의 첫 단어가 가장 강력한 단서</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">주어진 문장 후행 조건 분석</div>
+        <div class="step-desc">주어진 문장이 새로운 개념을 도입하면 뒤에 설명·예시가 따라온다. 주어진 문장이 결론이면 뒤 문장이 더 구체적이거나 심화될 수 없다.</div>
+        <span class="step-tip">삽입 후 앞뒤가 자연스럽게 이어지는지 검증</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">번호 위치별 논리 끊김 탐색</div>
+        <div class="step-desc">①~⑤ 위치를 순서대로 읽으며 논리가 갑자기 끊기거나 흐름이 어색한 지점을 찾는다. 그 지점 앞뒤에 주어진 문장을 넣어 확인한다.</div>
+        <span class="step-tip">끊김 없는 흐름 = 주어진 문장이 빠진 자리</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">삽입 후 앞뒤 검증</div>
+        <div class="step-desc">주어진 문장을 해당 위치에 넣은 뒤 앞 문장 → 주어진 문장 → 뒷 문장을 연속으로 읽는다. 세 문장이 자연스럽게 이어지면 정답.</div>
+        <span class="step-tip">앞 문장 + 주어진 문장 + 뒷 문장 3연속 검증</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 38번 -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">38</div>
+    <div class="problem-meta">
+      <div class="problem-title">글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳은?</div>
+      <div class="problem-tags">
+        <span class="tag tag-type">문장 삽입</span>
+        <span class="tag tag-score">2점</span>
+        <span class="tag tag-answer">정답 ⑤</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 주어진 문장 -->
+  <div class="given-box">
+    <div class="given-text">
+      <span class="link-phrase">Sometimes</span> these <span class="key-phrase">internal narratives</span> we form not only shape our beliefs and opinions but also become <span class="key-phrase">deeply rooted in our identity</span>.
+    </div>
+  </div>
+  <div class="trans-box">
+    <span class="trans-label">🇰🇷 주어진 문장 해석</span>
+    때로는 우리가 형성하는 이러한 <span class="trans-key">내면의 서사</span>가 우리의 믿음과 의견을 형성할 뿐만 아니라 <span class="trans-key">우리의 정체성에 깊이 뿌리내리기도</span> 한다.
+  </div>
+  <div class="hint-badge" style="display:inline-flex;margin-bottom:20px">💡 분석: "these internal narratives" → 앞에 internal narratives가 먼저 언급되어야 함 / "Sometimes" → 이전 내용에서 한 발 더 나아가는 심화 표현</div>
+
+  <!-- 본문 -->
+  <div class="passage-box">
+    While stories clearly dominate statistics from both memorability and persuasiveness perspectives, it's rarely a battle between facts and anecdotes — or even facts and other facts. The real clash is actually between <span class="key-phrase">stories</span>: the predominant incumbent and a new challenger.
+    <span class="marker marker-normal">①</span>
+    As storytelling creatures, we routinely form <span class="key-phrase">narratives</span> to help us understand the world around us.
+    <span class="marker marker-normal">②</span>
+    When we experience different events or encounter various facts, our minds seek to make sense of them by forming <span class="key-phrase">stories</span> around them.
+    <span class="marker marker-normal">③</span>
+    For example, if you have had some bad experiences with graduates from a particular university, you may create a <span class="key-phrase">negative narrative</span> in your mind about people who went to that school.
+    <span class="marker marker-normal">④</span>
+    Suddenly, you judge everyone from the university by what you've experienced on just a few unfortunate occasions.
+    <span class="marker marker-answer">⑤</span>
+    For example, the <span class="trap-phrase">narratives</span> you have formed around gun control or climate change are most likely related with your <span class="key-phrase">political ideology</span> — who you are as an individual.
+    <br><small style="color:var(--gray);font-size:12px">* anecdote: 일화 &nbsp;&nbsp; ** incumbent: 점유자</small>
+  </div>
+  <div class="trans-box">
+    <span class="trans-label">🇰🇷 본문 전문 해석</span>
+    이야기는 기억 가능성과 설득력 측면 모두에서 통계를 명확히 지배하지만, 사실과 일화 사이의 싸움 — 심지어 사실과 다른 사실 사이의 싸움 — 인 경우는 거의 없다. 진짜 충돌은 실제로 <span class="trans-key">이야기들</span> 사이에 있다: 지배적인 기존 점유자와 새로운 도전자. <span style="color:var(--gray);font-size:12px">(①)</span> 이야기하는 존재로서, 우리는 주변 세계를 이해하도록 돕는 <span class="trans-key">서사</span>를 습관적으로 형성한다. <span style="color:var(--gray);font-size:12px">(②)</span> 우리가 다양한 사건을 경험하거나 다양한 사실과 마주칠 때, 우리의 마음은 그것들 주변에 이야기를 형성함으로써 의미를 파악하려 한다. <span style="color:var(--gray);font-size:12px">(③)</span> 예를 들어, 특정 대학 졸업생들과 나쁜 경험을 해왔다면, 그 학교를 나온 사람들에 대해 <span class="trans-key">부정적 서사</span>를 머릿속에 만들 수 있다. <span style="color:var(--gray);font-size:12px">(④)</span> 갑자기, 몇 가지 불행한 경우에 경험한 것으로 그 대학 출신 모든 사람을 판단하게 된다. <span style="color:var(--gray);font-size:12px">(⑤)</span> 예를 들어, 총기 규제나 기후 변화에 관해 형성한 <span class="trans-key">서사</span>는 당신의 <span class="trans-key">정치적 이념</span> — 개인으로서 당신이 누구인지 — 와 가장 깊이 관련되어 있을 것이다.
+  </div>
+
+  <!-- 삽입 위치 시각화 -->
+  <div class="insert-visual">
+    <div class="insert-visual-title">✅ 정답 위치 시각화 — ⑤번 자리</div>
+    <div class="insert-row">
+      <div class="insert-sentence">
+        <span class="s-num s-num-normal">④ 앞</span>
+        <span>Suddenly, you judge everyone from the university by what you've experienced on just a few unfortunate occasions.</span>
+      </div>
+      <div class="inserted-sentence">
+        <span class="inserted-label">삽입</span>
+        <span>Sometimes these <strong>internal narratives</strong> we form not only shape our beliefs and opinions but also become <strong>deeply rooted in our identity</strong>.</span>
+      </div>
+      <div class="insert-sentence answer-pos">
+        <span class="s-num s-num-answer">⑤ 뒤</span>
+        <span>For example, the narratives you have formed around gun control or climate change are most likely related with your <strong>political ideology</strong> — who you are as an individual.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 선택지 -->
+  <div class="choices-grid">
+    <div class="choice wrong"><span class="choice-num">①</span><span class="choice-text">①</span></div>
+    <div class="choice wrong"><span class="choice-num">②</span><span class="choice-text">②</span></div>
+    <div class="choice wrong"><span class="choice-num">③</span><span class="choice-text">③</span></div>
+    <div class="choice wrong"><span class="choice-num">④</span><span class="choice-text">④</span></div>
+    <div class="choice correct"><span class="choice-num">⑤</span><span class="choice-text">⑤</span></div>
+  </div>
+
+  <div class="answer-reveal">
+    <span class="ans-label">정답</span>
+    <span class="ans-text">⑤번 위치</span>
+    <span class="ans-num">⑤</span>
+  </div>
+
+  <div class="analysis-box">
+    <h4>🔍 핵심 논리 분석</h4>
+    <p><strong>주어진 문장의 선행 조건:</strong> "<span class="h-amber">these</span> internal narratives"의 <span class="h-amber">these</span>는 앞에 이미 서사(narrative) 형성에 대한 설명이 있어야 한다. ④번 앞까지 대학 졸업생 예시로 부정적 서사가 형성·확장되는 과정을 설명하므로 조건 충족.</p>
+    <p><strong>주어진 문장의 후행 조건:</strong> 주어진 문장이 "서사가 <span class="h-mint">정체성(identity)에 깊이 뿌리내린다</span>"는 심화 내용을 담는다. ⑤ 뒤 문장은 "총기 규제·기후 변화에 관한 서사가 <span class="h-mint">정치적 이념 — 당신이 누구인지</span>와 연결된다"는 정체성 관련 구체 예시다 → 완벽한 후행 연결.</p>
+    <p><strong>논리 흐름:</strong> ① 서사 형성 습관 → ② 사건·사실로 이야기 만들기 → ③ 대학 부정적 서사 예시 → ④ 일반화·과잉 판단 → <span class="h-mint">[삽입: 서사가 정체성에 뿌리내림]</span> → ⑤ 정치 이념으로 확장되는 구체 예시</p>
+  </div>
+
+  <div class="key-structure">
+    <h4>🚫 ④번이 정답이 아닌 이유</h4>
+    <ul>
+      <li>④번 앞: "③ 대학 졸업생 부정적 서사 예시"</li>
+      <li>④번 뒤: "Suddenly, you judge everyone..." → 예시의 결과를 바로 이어가야 함</li>
+      <li>주어진 문장을 ④ 자리에 넣으면 대학 예시(③)와 그 결과(④ 뒤)가 분리되어 흐름이 끊김</li>
+      <li>주어진 문장의 "sometimes"는 단순 예시 중간이 아닌, 전체 예시를 마무리한 뒤 심화하는 위치에 어울림</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 39번 -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">39</div>
+    <div class="problem-meta">
+      <div class="problem-title">글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳은? [3점]</div>
+      <div class="problem-tags">
+        <span class="tag tag-type">문장 삽입</span>
+        <span class="tag tag-score">3점</span>
+        <span class="tag tag-answer">정답 ③</span>
+        <span class="tag tag-trap">고난도</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 주어진 문장 -->
+  <div class="given-box">
+    <div class="given-text">
+      <span class="link-phrase">The difference is that</span> the action in the game world can <span class="key-phrase">only</span> be explored through the <span class="key-phrase">virtual bodily space of the avatar</span>.
+    </div>
+  </div>
+  <div class="trans-box">
+    <span class="trans-label">🇰🇷 주어진 문장 해석</span>
+    <span class="trans-key">차이점은</span> 게임 세계의 행동이 <span class="trans-key">아바타의 가상 신체 공간을 통해서만</span> 탐색될 수 있다는 것이다.
+  </div>
+  <div class="hint-badge" style="display:inline-flex;margin-bottom:20px">💡 분석: "The difference is that" → 앞에 비교 대상(실제 세계 vs 게임 세계)이 먼저 제시되어야 함 / "only" → 제한·대조를 강조하는 단서</div>
+
+  <!-- 본문 -->
+  <div class="passage-box">
+    A video game has its own model of reality, internal to itself and separate from the player's external reality, the player's <span class="key-phrase">bodily space</span> and the <span class="key-phrase">avatar's bodily space</span>.
+    <span class="marker marker-normal">①</span>
+    The avatar's bodily space, the potential actions of the avatar in the game world, is the only way in which the reality of the external reality of the game world can be perceived.
+    <span class="marker marker-normal">②</span>
+    As in the <span class="key-phrase">real world</span>, <span class="key-phrase">perception requires action</span>.
+    <span class="marker marker-answer">③</span>
+    Players extend their <span class="key-phrase">perceptual field</span> into the game, encompassing the available actions of the avatar.
+    <span class="marker marker-normal">④</span>
+    The feedback loop of perception and action that enables you to navigate the world around you is now one step removed: instead of perceiving primarily through interaction of your own body with the external world, you're perceiving the game world through interaction of the avatar.
+    <span class="marker marker-normal">⑤</span>
+    The entire <span class="key-phrase">perceptual system</span> has been extended into the game world.
+    <br><small style="color:var(--gray);font-size:12px">* encompass: 둘러싸다</small>
+  </div>
+  <div class="trans-box">
+    <span class="trans-label">🇰🇷 본문 전문 해석</span>
+    비디오 게임은 그 자체에 내부적이고 플레이어의 외부 현실, 플레이어의 <span class="trans-key">신체 공간</span>과 <span class="trans-key">아바타의 신체 공간</span>으로부터 분리된 자체적인 현실 모델을 가지고 있다. <span style="color:var(--gray);font-size:12px">(①)</span> 아바타의 신체 공간, 즉 게임 세계에서 아바타의 잠재적 행동은 게임 세계의 외부 현실이 인식될 수 있는 유일한 방법이다. <span style="color:var(--gray);font-size:12px">(②)</span> <span class="trans-key">실제 세계에서처럼</span>, <span class="trans-key">인식은 행동을 필요로 한다</span>. <span style="color:var(--gray);font-size:12px">(③)</span> 플레이어들은 자신의 <span class="trans-key">지각 영역</span>을 게임으로 확장하여, 아바타의 가능한 행동들을 포함한다. <span style="color:var(--gray);font-size:12px">(④)</span> 주변 세계를 탐색할 수 있게 해주는 인식과 행동의 피드백 루프는 이제 한 단계 제거된다: 자신의 몸이 외부 세계와 상호작용함으로써 주로 인식하는 대신, 아바타의 상호작용을 통해 게임 세계를 인식하고 있다. <span style="color:var(--gray);font-size:12px">(⑤)</span> 전체 <span class="trans-key">지각 시스템</span>이 게임 세계로 확장되었다.
+  </div>
+
+  <!-- 삽입 위치 시각화 -->
+  <div class="insert-visual">
+    <div class="insert-visual-title">✅ 정답 위치 시각화 — ③번 자리</div>
+    <div class="insert-row">
+      <div class="insert-sentence">
+        <span class="s-num s-num-normal">② 앞</span>
+        <span>As in the <strong>real world</strong>, <strong>perception requires action</strong>.</span>
+      </div>
+      <div class="inserted-sentence">
+        <span class="inserted-label">삽입</span>
+        <span>The difference is that the action in the game world can <strong>only</strong> be explored through the <strong>virtual bodily space of the avatar</strong>.</span>
+      </div>
+      <div class="insert-sentence answer-pos">
+        <span class="s-num s-num-answer">③ 뒤</span>
+        <span>Players extend their <strong>perceptual field</strong> into the game, encompassing the available actions of the avatar.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 선택지 -->
+  <div class="choices-grid">
+    <div class="choice wrong"><span class="choice-num">①</span><span class="choice-text">①</span></div>
+    <div class="choice wrong"><span class="choice-num">②</span><span class="choice-text">②</span></div>
+    <div class="choice correct"><span class="choice-num">③</span><span class="choice-text">③</span></div>
+    <div class="choice wrong"><span class="choice-num">④</span><span class="choice-text">④</span></div>
+    <div class="choice wrong"><span class="choice-num">⑤</span><span class="choice-text">⑤</span></div>
+  </div>
+
+  <div class="answer-reveal">
+    <span class="ans-label">정답</span>
+    <span class="ans-text">③번 위치</span>
+    <span class="ans-num">③</span>
+  </div>
+
+  <div class="analysis-box">
+    <h4>🔍 핵심 논리 분석 (3점 고난도)</h4>
+    <p><strong>주어진 문장의 선행 조건:</strong> "<span class="h-amber">The difference is that</span>"은 비교를 전제한다. ③번 바로 앞 문장 "As in the <span class="h-mint">real world</span>, perception requires action"이 <span class="h-mint">실제 세계</span>를 언급한다 → 주어진 문장의 "차이점(The difference)"이 가리키는 비교 대상은 '실제 세계' vs '게임 세계'. 조건 완벽 충족.</p>
+    <p><strong>주어진 문장의 후행 조건:</strong> 주어진 문장이 "게임 세계에서는 아바타를 통해서만 탐색 가능"하다고 제한한다. ③ 뒤 "Players extend their perceptual field into the game, <span class="h-mint">encompassing the available actions of the avatar</span>"가 이 제한의 구체화다 — 아바타의 행동이 곧 지각 영역이 된다는 내용으로 자연스럽게 연결.</p>
+    <p><strong>3점 난도 이유:</strong> ②번 자리처럼 보이는 함정이 있다. 그러나 ②에 삽입하면 "아바타 신체 공간이 유일한 방법(①뒤)" → "<span class="h-coral">[삽입]</span>" → "실제 세계에서도 인식은 행동 필요(③앞)"가 되어, '실제 세계' 비교 대상이 주어진 문장보다 뒤에 등장해 논리 역전이 발생한다.</p>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ 고난도 함정 — ②번과 ③번 혼동</h4>
+    <p>②번에 삽입하면 "The difference is that..."의 비교 대상인 "real world(실제 세계)"가 아직 등장하기 전이다. 비교를 하려면 비교 대상이 먼저 언급되어야 한다. "As in the real world"(③번 앞 문장)가 실제 세계를 먼저 제시한 뒤에야 "게임 세계와의 차이"를 말할 수 있다. 따라서 ③이 정답이다.</p>
+  </div>
+
+  <div class="key-structure">
+    <h4>🧠 39번 논리 전개 구조 요약</h4>
+    <ul>
+      <li>도입: 게임 → 플레이어 신체 공간 + 아바타 신체 공간으로 분리</li>
+      <li>①뒤: 아바타 신체 공간만이 게임 현실 인식의 유일한 방법</li>
+      <li>②뒤: 실제 세계처럼 인식은 행동을 필요로 함 (비교 대상 등장)</li>
+      <li>③ 자리: [삽입] 그러나 게임에서는 오직 아바타를 통해서만 가능 (차이 명시)</li>
+      <li>③뒤~⑤: 플레이어가 지각 영역을 아바타로 확장 → 전체 지각 시스템이 게임 세계로 이동</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SUMMARY TABLE -->
+<div style="margin-bottom:48px">
+  <div class="section-label">총정리</div>
+  <div class="section-title">2026 수능 문장 삽입 <em>정답 & 핵심 단서</em></div>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th style="text-align:left">문항</th>
+        <th>배점</th>
+        <th>정답</th>
+        <th>주어진 문장 핵심 단서</th>
+        <th>삽입 위치 결정 근거</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>38번 — 내면의 서사</td>
+        <td>2점</td>
+        <td><span class="ans-mint">⑤</span></td>
+        <td>these internal narratives / identity</td>
+        <td>대학 예시 완결 후 → 정체성으로 심화하는 위치</td>
+      </tr>
+      <tr>
+        <td>39번 — 게임 아바타</td>
+        <td>3점</td>
+        <td><span class="ans-mint">③</span></td>
+        <td>The difference is that / only</td>
+        <td>"real world" 비교 대상 등장 직후 → 차이 명시</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FINAL TIP -->
+<div class="card card-accent">
+  <div class="section-label" style="margin-bottom:12px">문장 삽입 최종 전략</div>
+  <p style="font-size:15px;color:var(--gray);line-height:2">
+    문장 삽입에서 가장 먼저 할 일은 <span style="color:var(--amber);font-weight:700">주어진 문장의 첫 단어를 보는 것</span>이다. <span style="color:var(--mint);font-weight:700">This / These / The difference</span>처럼 앞 내용을 받는 표현이 있으면, 그것이 가리키는 선행사가 있는 문장 바로 뒤가 정답이다. 또한 주어진 문장을 삽입한 뒤 <span style="color:var(--mint);font-weight:700">앞 문장 → 주어진 문장 → 뒷 문장</span> 3연속으로 읽어 논리가 자연스럽게 이어지는지 반드시 검증해야 한다. 3점짜리 고난도 문제일수록 비교 대상의 등장 순서가 핵심 단서다.
+  </p>
+</div>
+
+</div><!-- /content -->
+
+<a href="#" class="scroll-top">↑</a>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+document.querySelector('.scroll-top').addEventListener('click', e => {
+  e.preventDefault();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = 1;
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {threshold:0.1});
+document.querySelectorAll('.problem-section, .formula-box, .summary-table').forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'all .6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
