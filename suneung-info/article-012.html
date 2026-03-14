@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>요지 완전정복 — 필자의 핵심 메시지 한 문장 추출법 | Key Trend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.7;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15)}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;max-width:900px;margin:0 auto}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;animation:fadeUp .7s ease}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.5px}
+.badge-type{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);color:var(--accent2)}
+.badge-num{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);color:var(--mint)}
+.badge-score{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
+.hero h1{font-family:'Outfit';font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.2;margin-bottom:16px;animation:fadeUp .7s ease .1s both}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{color:var(--gray);font-size:16px;line-height:1.8;animation:fadeUp .7s ease .2s both;max-width:680px}
+.meta-row{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;animation:fadeUp .7s ease .3s both}
+.meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray)}
+.meta-item strong{color:var(--white);font-weight:600}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.section{max-width:900px;margin:0 auto;padding:0 24px 60px}
+.section-title{font-family:'Outfit';font-size:22px;font-weight:800;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:24px;background:var(--grad1);border-radius:2px;flex-shrink:0}
+
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;margin-bottom:40px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-title{font-size:13px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.step-card{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);border-radius:12px;padding:20px}
+.step-num{font-family:'Outfit';font-size:28px;font-weight:800;color:var(--accent);opacity:.5;line-height:1}
+.step-label{font-size:14px;font-weight:700;margin:8px 0 6px;color:var(--white)}
+.step-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+.signal-box{background:rgba(30,41,59,.6);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:24px;margin-bottom:24px}
+.signal-box h4{font-size:14px;font-weight:700;color:var(--amber);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.signal-list{display:flex;flex-wrap:wrap;gap:8px}
+.signal-chip{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);padding:5px 14px;border-radius:8px;font-size:13px;color:var(--amber);font-weight:600}
+.signal-chip.mint{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.2);color:var(--mint)}
+.signal-chip.coral{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.2);color:var(--coral)}
+
+.problem-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:20px;overflow:hidden;margin-bottom:32px}
+.problem-header{background:rgba(99,102,241,.1);border-bottom:1px solid rgba(51,65,85,.4);padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+.problem-num{font-family:'Outfit';font-size:24px;font-weight:800;color:var(--accent2)}
+.problem-type-tag{font-size:12px;color:var(--gray);background:rgba(51,65,85,.5);padding:4px 12px;border-radius:6px}
+.problem-body{padding:28px}
+
+.passage{background:rgba(15,23,42,.7);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:24px;margin-bottom:24px;font-size:15px;line-height:1.9}
+.passage-ko{margin-top:16px;padding-top:16px;border-top:1px solid rgba(51,65,85,.4);color:var(--gray);font-size:14px;line-height:1.9}
+.passage-ko .arrow{color:var(--accent2);font-weight:700}
+.ko-line{margin-bottom:6px}
+
+/* 요지 구조 분석 박스 */
+.structure-box{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:22px 24px;margin-bottom:24px}
+.structure-box h4{font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.structure-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;font-size:14px}
+.structure-row:last-child{margin-bottom:0}
+.s-tag{min-width:72px;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;text-align:center;flex-shrink:0;margin-top:2px}
+.s-tag.topic{background:rgba(99,102,241,.2);color:var(--accent2)}
+.s-tag.expand{background:rgba(52,211,153,.12);color:var(--mint)}
+.s-tag.contra{background:rgba(244,114,182,.12);color:var(--coral)}
+.s-tag.conclude{background:rgba(251,191,36,.12);color:var(--amber)}
+.s-content{color:var(--gray);line-height:1.7}
+.s-content strong{color:var(--white)}
+
+.choices{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:12px;border:1px solid rgba(51,65,85,.4);background:rgba(30,41,59,.3);font-size:14px;transition:all .2s}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+.choice-num{font-family:'Outfit';font-weight:700;font-size:16px;min-width:24px;flex-shrink:0}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.wrong .choice-num{color:#ef4444}
+.choice-text{line-height:1.6}
+.choice-badge{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;flex-shrink:0}
+.badge-correct{background:rgba(52,211,153,.2);color:var(--mint)}
+.badge-wrong{background:rgba(239,68,68,.15);color:#f87171}
+
+.analysis-box{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.analysis-box h4{font-size:13px;font-weight:700;color:var(--mint);margin-bottom:12px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.8}
+.analysis-box p strong{color:var(--white)}
+
+.wrong-analysis{background:rgba(244,114,182,.05);border:1px solid rgba(244,114,182,.15);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.wrong-analysis h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:12px}
+.wrong-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;font-size:13px}
+.wrong-row:last-child{margin-bottom:0}
+.wrong-row .wnum{font-family:'Outfit';font-weight:700;color:var(--coral);min-width:20px}
+.wrong-row .wtext{color:var(--gray);line-height:1.6}
+.wrong-row .wtext strong{color:var(--white)}
+
+.keyword-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.keyword-table th,.keyword-table td{padding:14px 18px;font-size:13px}
+.keyword-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700;text-align:left}
+.keyword-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray);vertical-align:top}
+.keyword-table tbody td:first-child{color:var(--white);font-weight:600;white-space:nowrap}
+.keyword-table tbody tr:hover{background:rgba(99,102,241,.05)}
+td.mint{color:var(--mint)!important;font-weight:700}
+td.coral{color:var(--coral)!important}
+
+.summary-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.summary-table th,.summary-table td{padding:14px 18px;font-size:13px;text-align:center}
+.summary-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700}
+.summary-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray)}
+.summary-table tbody td:first-child{text-align:left;color:var(--white);font-weight:600}
+
+.final-card{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;position:relative;overflow:hidden;margin-bottom:60px}
+.final-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.final-card h3{font-family:'Outfit';font-size:20px;font-weight:800;margin-bottom:20px;color:var(--accent2)}
+.tip-list{display:flex;flex-direction:column;gap:12px}
+.tip-item{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.tip-text{color:var(--gray);line-height:1.7}
+.tip-text strong{color:var(--white)}
+
+#scrollTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border:none;border-radius:12px;color:white;font-size:18px;cursor:pointer;opacity:0;transition:all .3s;z-index:99;display:flex;align-items:center;justify-content:center}
+#scrollTop.visible{opacity:1}
+#scrollTop:hover{background:var(--accent2);transform:translateY(-2px)}
+
+.divider{height:1px;background:rgba(51,65,85,.4);margin:0 0 48px}
+
+/* 요지 vs 주장 비교 */
+.compare-box{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.compare-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:20px}
+.compare-card h4{font-size:13px;font-weight:700;margin-bottom:12px}
+.compare-card p{font-size:13px;color:var(--gray);line-height:1.7}
+.compare-card.active{border-color:var(--accent);background:rgba(99,102,241,.08)}
+.compare-card.active h4{color:var(--accent2)}
+
+@media(max-width:600px){
+.steps-grid{grid-template-columns:1fr 1fr}
+.compare-box{grid-template-columns:1fr}
+.problem-body{padding:20px}
+.passage{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="../suneung-info.html" class="nav-back">← 수능정보 목록</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-meta">
+    <span class="badge badge-type">📘 유형별 풀이법</span>
+    <span class="badge badge-num">22번</span>
+    <span class="badge badge-score">2점</span>
+  </div>
+  <h1>요지 완전정복 —<br><em>필자의 핵심 메시지 한 문장 추출법</em></h1>
+  <p class="hero-desc">
+    요지(主旨)는 글이 궁극적으로 전달하고자 하는 <strong>핵심 메시지 한 문장</strong>입니다.
+    글 전체의 흐름을 '주장 → 근거 → 결론' 구조로 파악하고,
+    선택지에서 <strong>과도한 일반화나 지엽적 내용</strong>을 걸러내는 것이 핵심입니다.
+  </p>
+  <div class="meta-row">
+    <div class="meta-item"><span>📅</span><strong>2026학년도 수능</strong></div>
+    <div class="meta-item"><span>📌</span><strong>홀수형 22번 · 짝수형 22번 공통</strong></div>
+    <div class="meta-item"><span>✅</span><strong>정답: ①</strong></div>
+    <div class="meta-item"><span>🏷</span><strong>스포츠 산업 / coopetition / 협력-경쟁 균형</strong></div>
+  </div>
+</div>
+
+<!-- 핵심 전략 공식 -->
+<div class="section">
+  <h2 class="section-title">4단계 요지 추출 공식</h2>
+  <div class="formula-box">
+    <div class="formula-title">⚡ Key Trend 핵심 공식</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-label">첫 문장 주목</div>
+        <div class="step-desc">첫 문장에서 글의 주제(topic)와 필자의 관점이 드러나는 경우가 많다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-label">역접 신호어 탐지</div>
+        <div class="step-desc">However / But / Yet / Still 뒤에 필자의 진짜 주장이 나온다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-label">마지막 문장 확인</div>
+        <div class="step-desc">결론·권고·당위 표현(must, should, need to)이 있는 마지막 문장이 요지.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-label">선택지 정밀 검토</div>
+        <div class="step-desc">너무 좁거나(지엽), 너무 넓은(과도한 일반화) 선택지 소거.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 요지 vs 주장 비교 -->
+  <h2 class="section-title">요지(22번) vs 주장(20번) 차이</h2>
+  <div class="compare-box">
+    <div class="compare-card active">
+      <h4>📋 요지 (22번)</h4>
+      <p>글 전체의 <strong>핵심 내용을 객관적으로 서술</strong>. 필자가 "이 글에서 가장 중요하게 말하는 것"을 선택. 당위·명령 표현보다 사실·현상 기반 서술이 많음.</p>
+    </div>
+    <div class="compare-card">
+      <h4>💬 주장 (20번)</h4>
+      <p>필자가 독자에게 <strong>행동·태도 변화를 촉구</strong>하는 내용. "~해야 한다"는 당위·규범적 표현이 핵심. 행동 지향적 메시지.</p>
+    </div>
+  </div>
+
+  <!-- 요지 신호어 -->
+  <div class="signal-box">
+    <h4>🔑 요지 위치를 알려주는 신호어</h4>
+    <div class="signal-list">
+      <span class="signal-chip">However</span>
+      <span class="signal-chip">But</span>
+      <span class="signal-chip">This means</span>
+      <span class="signal-chip">Therefore</span>
+      <span class="signal-chip mint">This will ensure</span>
+      <span class="signal-chip mint">It might be better to</span>
+      <span class="signal-chip mint">careful balancing</span>
+      <span class="signal-chip coral">Often / Generally → 일반론 (요지 아님)</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider" style="max-width:900px;margin:0 auto 48px"></div>
+
+<!-- 문제 섹션 -->
+<div class="section">
+  <h2 class="section-title">2026학년도 수능 22번 문제 분석</h2>
+
+  <div class="problem-card">
+    <div class="problem-header">
+      <div class="problem-num">22번</div>
+      <div class="problem-type-tag">요지 · 2점</div>
+    </div>
+    <div class="problem-body">
+
+      <!-- 지문 구조 분석 -->
+      <div class="structure-box">
+        <h4>📐 지문 논리 구조 분석</h4>
+        <div class="structure-row">
+          <span class="s-tag topic">주제 제시</span>
+          <span class="s-content">스포츠 생태계는 <strong>coopetition(협력+경쟁의 동시 추구)</strong>의 유형과 비율에 기반한다.</span>
+        </div>
+        <div class="structure-row">
+          <span class="s-tag expand">개념 확장</span>
+          <span class="s-content">협력과 경쟁은 서로 다른 형태의 행동을 수반하므로 <strong>균형 잡힌 접근</strong>이 필요하다.</span>
+        </div>
+        <div class="structure-row">
+          <span class="s-tag contra">역접 전환</span>
+          <span class="s-content"><strong>Often</strong> sport managers will try to be more competitive and less collaborative.</span>
+        </div>
+        <div class="structure-row">
+          <span class="s-tag conclude">결론 (요지)</span>
+          <span class="s-content"><strong>This means it might be better to have plans in place about how to pursue both simultaneously.</strong> → 협력과 경쟁 모두를 동시에 추구하는 계획이 필요하다.</span>
+        </div>
+      </div>
+
+      <!-- 영어 지문 -->
+      <div class="passage">
+        <p>A sport ecosystem exists based on the type and rate of coopetition existing. Coopetition is defined as "the simultaneous pursuit of cooperation and competition among firms to leverage strategically important resources for superior value creation purposes". It is a useful way to understand the dynamic nature of sport businesses which need to collaborate for resource efficiency purposes but potentially compete with each other. This special relationship should be managed properly due to trust and confidence issues being paramount. It can be challenging to be collaborative and competitive in sport as they involve different forms of behaviour. <strong>This means a careful balancing act may be required in terms of the amount of emphasis placed on each activity.</strong> Often sport managers will try to be more competitive due to performance reasons and less collaborative. By necessity they may need to share information but do so in a cautious manner. This means it might be better to have plans in place about how to pursue both simultaneously. <strong>This will ensure one is not neglected at the expense of the other.</strong></p>
+        <div style="margin-top:8px;font-size:12px;color:var(--slate)">* simultaneous: 동시의 ** paramount: 최고의</div>
+        <div class="passage-ko">
+          <div class="ko-line"><span class="arrow">→</span> 스포츠 생태계는 coopetition(협력-경쟁 동시 추구)의 유형과 비율에 기반하여 존재한다.</div>
+          <div class="ko-line"><span class="arrow">→</span> coopetition이란 "우월한 가치 창출을 위해 전략적으로 중요한 자원을 활용하고자 기업 간 협력과 경쟁을 동시에 추구하는 것"으로 정의된다.</div>
+          <div class="ko-line"><span class="arrow">→</span> <strong>이는 협력과 경쟁 각각에 강조하는 정도의 균형 잡힌 조율이 필요함을 의미한다.</strong></div>
+          <div class="ko-line"><span class="arrow">→</span> 스포츠 감독들은 성과상의 이유로 더 경쟁적이 되려 하고 협력은 덜 하려는 경향이 있다.</div>
+          <div class="ko-line"><span class="arrow">→</span> 이는 협력과 경쟁 모두를 동시에 추구하는 방법에 대한 계획을 갖추는 것이 더 나을 수 있음을 의미한다.</div>
+          <div class="ko-line"><span class="arrow">→</span> <strong>이렇게 해야 한쪽이 다른 쪽을 희생시키면서 무시되지 않도록 할 수 있다.</strong></div>
+        </div>
+      </div>
+
+      <!-- 선택지 -->
+      <ul class="choices">
+        <li class="choice correct">
+          <span class="choice-num">①</span>
+          <span class="choice-text">스포츠 산업에서는 협력과 경쟁 사이의 균형 잡힌 접근이 요구된다.</span>
+          <span class="choice-badge badge-correct">✓ 정답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">②</span>
+          <span class="choice-text">협력에 기반한 경쟁을 위해서 스포츠 정신 함양 교육이 필수적이다.</span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">③</span>
+          <span class="choice-text">스포츠에서는 성과를 중요시하기 때문에 협력을 과소평가하기 쉽다.</span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">④</span>
+          <span class="choice-text">스포츠 산업에서는 효율적 자원 활용을 위한 전략이 필요하다.</span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">⑤</span>
+          <span class="choice-text">스포츠 산업에서의 성취는 경쟁을 필연적으로 수반한다.</span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+      </ul>
+
+      <!-- 정답 분석 -->
+      <div class="analysis-box">
+        <h4>✅ 정답 ① 분석</h4>
+        <p>
+          <strong>[핵심 문장]</strong> "a careful balancing act may be required" + "This will ensure one is not neglected at the expense of the other"<br><br>
+          → 글 전체가 협력(cooperation)과 경쟁(competition)을 <strong>동시에 균형 있게 추구해야 한다</strong>고 일관되게 주장.<br><br>
+          ①의 "협력과 경쟁 사이의 균형 잡힌 접근이 요구된다"는 이 핵심 메시지를 정확히 담아낸 요지.
+        </p>
+      </div>
+
+      <!-- 오답 소거 -->
+      <div class="wrong-analysis">
+        <h4>❌ 오답 소거 분석</h4>
+        <div class="wrong-row"><span class="wnum">②</span><span class="wtext"><strong>"스포츠 정신 함양 교육이 필수적"</strong> → 본문에 교육(education)에 대한 언급 없음. 근거 없는 내용 추가.</span></div>
+        <div class="wrong-row"><span class="wnum">③</span><span class="wtext"><strong>"협력을 과소평가하기 쉽다"</strong> → 본문의 일부 내용(성과 때문에 경쟁 치중)만 반영. 글 전체 결론이 아닌 <em>중간 과정</em>을 요지로 오인.</span></div>
+        <div class="wrong-row"><span class="wnum">④</span><span class="wtext"><strong>"효율적 자원 활용 전략"</strong> → "resource efficiency"는 coopetition의 정의에서 잠깐 나온 지엽적 표현. 글의 중심 주장이 아님.</span></div>
+        <div class="wrong-row"><span class="wnum">⑤</span><span class="wtext"><strong>"경쟁을 필연적으로 수반"</strong> → 본문은 경쟁만이 아니라 <em>협력도 함께</em> 필요하다는 내용. 경쟁 일면만 강조한 오답.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 핵심 어휘 -->
+  <h2 class="section-title">핵심 어휘 & 개념 정리</h2>
+  <table class="keyword-table">
+    <thead>
+      <tr><th>표현</th><th>의미</th><th>요지와의 연관</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>coopetition</td><td>cooperation + competition 합성어: 협력-경쟁 동시 추구</td><td class="mint">글 전체 핵심 개념</td></tr>
+      <tr><td>simultaneous pursuit</td><td>동시 추구</td><td>균형의 핵심 근거</td></tr>
+      <tr><td>careful balancing act</td><td>신중한 균형 조율</td><td class="mint">요지 직접 표현</td></tr>
+      <tr><td>paramount</td><td>최고의, 가장 중요한</td><td>신뢰·자신감 이슈</td></tr>
+      <tr><td>neglected at the expense of</td><td>~를 희생시키며 무시되다</td><td class="mint">결론 — 균형 필요성 강조</td></tr>
+      <tr><td>by necessity</td><td>필요에 의해, 어쩔 수 없이</td><td>정보 공유의 불가피성</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 총정리 -->
+  <h2 class="section-title">총정리 — 요지 추론 체크리스트</h2>
+  <table class="summary-table">
+    <thead>
+      <tr><th>확인 항목</th><th>이번 문제 적용</th><th>결과</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>첫 문장 주제</td><td>coopetition 개념 소개</td><td class="mint">✓ 주제 확인</td></tr>
+      <tr><td>역접 신호어</td><td>However → 없음 / "This means" 반복으로 핵심 강조</td><td class="mint">✓ 구조 파악</td></tr>
+      <tr><td>마지막 문장 결론</td><td>"This will ensure one is not neglected" → 균형 필요</td><td class="mint">✓ 요지 확정</td></tr>
+      <tr><td>선택지 정밀 검토</td><td>②교육(근거없음), ③지엽, ④지엽, ⑤반쪽 정보</td><td class="mint">✓ 소거 완료</td></tr>
+      <tr><td>최종 정답</td><td>① "협력과 경쟁의 균형 잡힌 접근 요구"</td><td class="mint">✓ 정답</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 최종 전략 카드 -->
+  <div class="final-card">
+    <h3>🎯 요지 추론 최종 전략</h3>
+    <div class="tip-list">
+      <div class="tip-item">
+        <span class="tip-icon">🔑</span>
+        <span class="tip-text"><strong>결론 문장이 요지다.</strong> 마지막 1~2 문장에 "This means / This will ensure / Therefore" 등이 붙으면 그게 필자의 핵심 메시지다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">⚖️</span>
+        <span class="tip-text"><strong>너무 좁거나 넓은 선택지를 소거하라.</strong> 지문의 특정 예시만 다룬 선택지(③④)와 지문에 없는 개념을 추가한 선택지(②)는 오답이다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">⚡</span>
+        <span class="tip-text"><strong>"Often / Generally" 뒤는 요지가 아니다.</strong> 일반적 경향을 서술하는 문장은 요지의 근거가 되는 반례이지, 글의 핵심 메시지가 아니다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">✅</span>
+        <span class="tip-text"><strong>요지 선택지는 글 전체를 압축한다.</strong> 지문의 특정 단어를 그대로 쓴 선택지보다 <em>개념을 재진술한</em> 선택지가 정답인 경우가 많다.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400)
+})
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}
+  })
+},{threshold:0.08})
+document.querySelectorAll('.formula-box,.signal-box,.problem-card,.structure-box,.analysis-box,.wrong-analysis,.keyword-table,.summary-table,.final-card,.compare-box').forEach(el=>{
+  el.style.opacity=0;el.style.transform='translateY(24px)';el.style.transition='all .6s ease'
+  observer.observe(el)
+})
+</script>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
