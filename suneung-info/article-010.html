@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>필자의 주장 완전정복 — 핵심 주장 문장 탐지법 | Key Trend 수능정보</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);line-height:1.8;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:14px 0}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.type-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:6px 18px;border-radius:100px;font-size:12px;font-weight:700;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Outfit';font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--gray);font-size:16px;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.meta-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray)}
+.meta-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-mint{background:var(--mint)}.dot-coral{background:var(--coral)}.dot-amber{background:var(--amber)}.dot-accent{background:var(--accent)}
+
+.content{max-width:900px;margin:0 auto;padding:0 24px 80px}
+.section-label{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
+.section-title{font-family:'Outfit';font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:24px;line-height:1.3}
+.section-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.divider{border:none;border-top:1px solid rgba(51,65,85,.3);margin:48px 0}
+
+/* FORMULA */
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:36px;margin-bottom:48px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+@media(max-width:600px){.formula-steps{grid-template-columns:1fr}}
+.step-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:20px;transition:border-color .2s}
+.step-card:hover{border-color:var(--accent)}
+.step-num{font-family:'Outfit';font-size:36px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.4;line-height:1}
+.step-title{font-size:15px;font-weight:700;color:var(--white);margin:6px 0 4px}
+.step-desc{font-size:13px;color:var(--gray);line-height:1.7}
+.step-tip{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(99,102,241,.15);color:var(--accent2)}
+
+/* SIGNAL WORD TABLE */
+.signal-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:1px solid rgba(51,65,85,.4);margin-bottom:48px}
+.signal-table th{background:rgba(30,41,59,.8);padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:left}
+.signal-table td{padding:13px 16px;border-top:1px solid rgba(51,65,85,.3);font-size:13px;color:var(--gray);vertical-align:top}
+.signal-table td:first-child{font-weight:700;color:var(--white);white-space:nowrap}
+.signal-table td:nth-child(2){color:var(--mint);font-family:'Outfit';font-weight:600}
+.signal-table tr:hover td{background:rgba(99,102,241,.04)}
+
+/* PROBLEM SECTION */
+.problem-section{margin-bottom:56px}
+.problem-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(51,65,85,.4)}
+.problem-num{font-family:'Outfit';font-size:42px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;flex-shrink:0}
+.problem-meta{flex:1}
+.problem-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.problem-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-type{background:rgba(99,102,241,.15);color:var(--accent2)}
+.tag-score{background:rgba(251,191,36,.15);color:var(--amber)}
+.tag-answer{background:rgba(52,211,153,.15);color:var(--mint)}
+
+/* PASSAGE */
+.passage-box{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:24px 28px;margin-bottom:10px;font-size:15px;line-height:2.2;color:#cbd5e1}
+.passage-box .key-phrase{color:var(--mint);font-weight:700}
+.passage-box .claim-phrase{background:rgba(99,102,241,.15);border-radius:4px;padding:1px 6px;color:var(--accent2);font-weight:700}
+.passage-box .contrast-phrase{color:var(--amber);font-weight:700}
+.passage-box .trap-phrase{color:var(--coral);font-weight:600}
+
+/* STRUCTURE FLOW */
+.struct-flow{display:flex;flex-direction:column;gap:0;margin:20px 0 24px;border:1px solid rgba(51,65,85,.4);border-radius:14px;overflow:hidden}
+.struct-row{display:flex;align-items:stretch;border-bottom:1px solid rgba(51,65,85,.3)}
+.struct-row:last-child{border-bottom:none}
+.struct-left{width:110px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 8px;text-align:center;font-size:11px;font-weight:700;letter-spacing:1px;gap:5px}
+.struct-left.sl-prob{background:rgba(244,114,182,.08);color:var(--coral);border-right:3px solid rgba(244,114,182,.4)}
+.struct-left.sl-claim{background:rgba(99,102,241,.08);color:var(--accent2);border-right:3px solid rgba(99,102,241,.4)}
+.struct-left.sl-ex{background:rgba(52,211,153,.06);color:var(--mint);border-right:3px solid rgba(52,211,153,.3)}
+.struct-left.sl-concl{background:rgba(251,191,36,.06);color:var(--amber);border-right:3px solid rgba(251,191,36,.4)}
+.struct-icon{font-size:18px}
+.struct-right{flex:1;padding:14px 20px}
+.struct-right p{font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:4px}
+.struct-right p:last-child{margin-bottom:0}
+.struct-right strong{color:var(--white);font-weight:600}
+.h-mint{color:var(--mint);font-weight:700}
+.h-coral{color:var(--coral);font-weight:700}
+.h-amber{color:var(--amber);font-weight:700}
+.h-acc{color:var(--accent2);font-weight:700}
+@media(max-width:600px){.struct-left{width:76px;font-size:10px}.struct-right{padding:12px 14px}}
+
+/* TRANS BOX */
+.trans-box{background:rgba(30,41,59,.4);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:16px;font-size:14px;color:var(--gray);line-height:1.9}
+.trans-label{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:8px;display:block}
+.trans-key{color:#e2e8f0;font-weight:500}
+
+/* CHOICES */
+.choices-grid{display:grid;gap:10px;margin-bottom:20px}
+.choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:10px;border:1px solid rgba(51,65,85,.4);background:rgba(15,23,42,.4);font-size:14px}
+.choice-num{font-family:'Outfit';font-weight:700;width:22px;flex-shrink:0;color:var(--gray);margin-top:1px}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.correct .choice-text{color:var(--white);font-weight:600}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-num{color:var(--coral)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+
+/* ANSWER REVEAL */
+.answer-reveal{display:flex;align-items:center;gap:12px;padding:14px 20px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);border-radius:10px;margin-bottom:20px}
+.ans-label{font-size:12px;font-weight:700;color:var(--mint);letter-spacing:1px}
+.ans-text{font-size:15px;font-weight:700;color:var(--white)}
+.ans-num{font-family:'Outfit';font-size:22px;font-weight:800;color:var(--mint);margin-left:auto}
+
+/* ANALYSIS */
+.analysis-box{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:24px;margin-bottom:16px}
+.analysis-box h4{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:14px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.9;margin-bottom:10px}
+.analysis-box p:last-child{margin-bottom:0}
+.analysis-box strong{color:var(--white);font-weight:600}
+
+/* KEY STRUCTURE */
+.key-structure{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.key-structure h4{font-size:13px;font-weight:700;color:var(--amber);margin-bottom:12px}
+.key-structure ul{list-style:none}
+.key-structure li{padding:6px 0;font-size:14px;color:var(--gray);display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid rgba(51,65,85,.2)}
+.key-structure li:last-child{border-bottom:none}
+.key-structure li::before{content:'→';color:var(--amber);flex-shrink:0;font-weight:700}
+
+/* WARNING */
+.warning-box{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.warning-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:10px}
+.warning-box p{font-size:14px;color:var(--gray);line-height:1.8}
+
+/* CLAIM HIGHLIGHT */
+.claim-box{background:rgba(99,102,241,.1);border:2px solid rgba(99,102,241,.4);border-radius:12px;padding:20px 24px;margin:16px 0;position:relative}
+.claim-box::before{content:'핵심 주장 문장';position:absolute;top:-11px;left:16px;background:var(--accent);color:white;font-size:11px;font-weight:700;padding:2px 10px;border-radius:6px;letter-spacing:1px}
+.claim-box p{font-size:15px;color:var(--white);line-height:1.9;font-weight:500}
+.claim-box p .h-mint{color:var(--mint);font-weight:700}
+
+.card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-accent{border-color:rgba(99,102,241,.3)}
+
+.scroll-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;box-shadow:0 4px 20px rgba(99,102,241,.4);transition:all .2s;z-index:50;text-decoration:none;color:white}
+.scroll-top:hover{transform:translateY(-3px)}
+
+@media(max-width:768px){
+  .problem-header{flex-direction:column;gap:8px}
+  .problem-num{font-size:32px}
+  .passage-box{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+  <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+  <a href="/suneung-info.html" class="nav-back">← 수능정보 목록</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-inner">
+  <div class="type-badge">유형별 풀이법</div>
+  <h1>필자의 주장 <em>완전정복</em><br>핵심 주장 문장 탐지법</h1>
+  <p class="hero-sub">2026학년도 수능 20번 기출 실전 분석 — 필자의 주장은 <strong style="color:var(--white)">문제 제기 → 대조 → 핵심 주장</strong>의 구조로 반드시 드러난다</p>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-dot dot-accent"></span>문항: 20번</div>
+    <div class="meta-item"><span class="meta-dot dot-amber"></span>배점: 2점</div>
+    <div class="meta-item"><span class="meta-dot dot-mint"></span>2026 수능 기출 기반</div>
+    <div class="meta-item"><span class="meta-dot dot-coral"></span>홀수형 정답 기준</div>
+  </div>
+</div>
+</section>
+
+<div class="content">
+
+<!-- FORMULA -->
+<div style="margin-bottom:48px">
+  <div class="section-label">핵심 전략</div>
+  <div class="section-title">필자의 주장 <em>3단계 풀이법</em></div>
+  <div class="formula-box">
+    <p style="color:var(--gray);font-size:14px;line-height:1.8">필자의 주장은 반드시 <strong style="color:var(--white)">must / should / need to / have to</strong>와 같은 당위 표현이 담긴 문장에 있다. 대부분 글의 후반부, 특히 마지막 문장에 핵심 주장이 집약된다.</p>
+    <div class="formula-steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">문제 제기 파악 (현재 상황)</div>
+        <div class="step-desc">글의 초반에 현재 상황의 문제점이나 결핍을 제시한다. "has repeatedly failed to / has been ignored" 같은 표현으로 비판적 시각을 드러낸다.</div>
+        <span class="step-tip">failed / ignored / overlooked → 현재 문제 제기</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">대조 구조 파악 (Unlike / while)</div>
+        <div class="step-desc">Unlike A, B / While A, B 구조로 현재 대우받는 대상(A)과 부당하게 무시되는 대상(B)을 대조한다. B가 필자의 주장 대상이다.</div>
+        <span class="step-tip">Unlike A(인정받는 것), B(무시되는 것) → B를 인정해야 한다</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">핵심 주장 문장 포착</div>
+        <div class="step-desc">must / should / need to가 포함된 문장이 필자의 주장이다. 특히 마지막 문장에 "must be recognized / should be acknowledged"처럼 집약된다.</div>
+        <span class="step-tip">must / should → 마지막 문장 집중</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNAL WORD TABLE -->
+<div style="margin-bottom:48px">
+  <div class="section-label">빠른 참고</div>
+  <div class="section-title" style="font-size:20px">필자의 주장 <em>핵심 신호어 유형</em></div>
+  <table class="signal-table">
+    <thead>
+      <tr><th>신호어 유형</th><th>대표 표현</th><th>의미·역할</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>당위 표현</td>
+        <td>must / should / need to / have to / ought to</td>
+        <td>필자의 주장을 직접적으로 나타내는 가장 강력한 신호</td>
+      </tr>
+      <tr>
+        <td>권고 표현</td>
+        <td>it is important to / it is necessary to / it is essential that</td>
+        <td>당위만큼 강하지는 않지만 필자의 가치 판단을 나타냄</td>
+      </tr>
+      <tr>
+        <td>문제 제기</td>
+        <td>has failed to / has been ignored / has been overlooked</td>
+        <td>현재 상황의 문제점 → 주장의 배경으로 기능</td>
+      </tr>
+      <tr>
+        <td>대조 구조</td>
+        <td>Unlike A, B / While A (인정), B (무시됨)</td>
+        <td>B에 대한 인정·변화를 촉구하는 주장으로 이어짐</td>
+      </tr>
+      <tr>
+        <td>결론 연결어</td>
+        <td>Therefore / Thus / As a result / In conclusion</td>
+        <td>이 표현 뒤에 필자의 주장이 집약되는 경우 많음</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- 20번 -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">20</div>
+    <div class="problem-meta">
+      <div class="problem-title">다음 글에서 필자가 주장하는 바로 가장 적절한 것은?</div>
+      <div class="problem-tags">
+        <span class="tag tag-type">필자의 주장</span>
+        <span class="tag tag-score">2점</span>
+        <span class="tag tag-answer">정답 ②</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 지문 -->
+  <div class="passage-box">
+    The study of literature has <span class="trap-phrase">repeatedly failed to recognize</span> the influence of modern musical <span class="key-phrase">lyricists</span> and their contributions to the evolution of language. <span class="contrast-phrase">Unlike</span> Shakespeare, who has been studied and celebrated for his development of the English language, particularly in vocabulary and grammatical structure, modern <span class="key-phrase">songwriters</span> have experienced restraints on the acknowledgement of their contributions and <span class="trap-phrase">largely been ignored</span>. Over the past century, we have witnessed an explosion of incredible literary works by these artists, who, through their music, have used <span class="key-phrase">linguistic manipulation and storytelling</span> to enrich our language and literature. Producing lyrics of distinct and complex imagery, songwriters have had an incredible <span class="key-phrase">literary impact</span> on our language. Their remarkable works, including influences on modern language development, <span class="claim-phrase">must be recognized</span> in the field of modern literature.
+    <br><small style="color:var(--gray);font-size:12px">* lyricist: 작사가 &nbsp;&nbsp; ** restraint: 제약</small>
+  </div>
+
+  <!-- 핵심 주장 문장 강조 -->
+  <div class="claim-box">
+    <p>Their remarkable works, including influences on modern language development, <span class="h-mint">must be recognized</span> in the field of modern literature.</p>
+  </div>
+
+  <!-- 전문 해석 -->
+  <div class="trans-box">
+    <span class="trans-label">🇰🇷 전문 해석</span>
+    문학 연구는 현대 음악 <span class="trans-key">작사가들</span>의 영향력과 언어 발전에 대한 그들의 기여를 인정하는 데 <span class="trans-key">반복적으로 실패해왔다</span>. 특히 어휘와 문법 구조에서 영어의 발전을 이루어 연구되고 찬사받아 온 셰익스피어와 <span class="trans-key">달리</span>, 현대 <span class="trans-key">작사가들</span>은 자신들의 기여에 대한 인정에 제약을 경험했고 <span class="trans-key">대체로 무시되어 왔다</span>. 지난 세기 동안, 우리는 음악을 통해 <span class="trans-key">언어적 조작과 스토리텔링</span>을 사용하여 언어와 문학을 풍요롭게 한 이 예술가들의 놀라운 문학 작품들의 폭발적 증가를 목격했다. 독특하고 복합적인 이미지의 가사를 만들면서, 작사가들은 우리 언어에 엄청난 <span class="trans-key">문학적 영향</span>을 미쳤다. 현대 언어 발전에 대한 영향을 포함한 그들의 놀라운 작품들은 현대 문학 분야에서 <span class="trans-key">반드시 인정받아야 한다</span>.
+  </div>
+
+  <!-- 논리 구조 분석 -->
+  <div style="margin-bottom:20px">
+    <div class="section-label" style="margin-bottom:12px">글의 논리 구조 분석</div>
+    <div class="struct-flow">
+      <div class="struct-row">
+        <div class="struct-left sl-prob">
+          <span class="struct-icon">⚠️</span>
+          문제 제기
+        </div>
+        <div class="struct-right">
+          <p><strong>현재 상황의 문제:</strong> 문학 연구가 <span class="h-coral">현대 작사가들의 기여를 반복적으로 인정하지 못함</span></p>
+          <p>"repeatedly failed to recognize" / "largely been ignored" — 작사가들이 부당하게 무시받고 있음을 비판</p>
+        </div>
+      </div>
+      <div class="struct-row">
+        <div class="struct-left sl-claim">
+          <span class="struct-icon">⚖️</span>
+          대조 구조
+        </div>
+        <div class="struct-right">
+          <p><strong>Unlike Shakespeare (인정받는 쪽) ↔ songwriters (무시되는 쪽)</strong></p>
+          <p>셰익스피어는 영어 발전에 기여한 것으로 연구·찬사를 받지만, 동일하게 언어에 기여한 <span class="h-acc">현대 작사가들은 무시</span>된다 → 불공정함 강조</p>
+        </div>
+      </div>
+      <div class="struct-row">
+        <div class="struct-left sl-ex">
+          <span class="struct-icon">📝</span>
+          근거 제시
+        </div>
+        <div class="struct-right">
+          <p>작사가들은 <span class="h-mint">언어적 조작과 스토리텔링</span>으로 언어·문학을 풍요롭게 함</p>
+          <p><span class="h-mint">독특하고 복합적인 이미지의 가사</span>로 현대 언어에 엄청난 문학적 영향을 미침</p>
+        </div>
+      </div>
+      <div class="struct-row">
+        <div class="struct-left sl-concl">
+          <span class="struct-icon">🎯</span>
+          핵심 주장
+        </div>
+        <div class="struct-right">
+          <p><strong>"Their remarkable works... <span class="h-amber">must be recognized</span> in the field of modern literature"</strong></p>
+          <p>→ <span class="h-amber">must</span> = 당위 표현 → 이 문장이 필자의 핵심 주장</p>
+          <p>= <strong>가사를 통한 작사가들의 언어·문학 기여를 현대 문학 분야에서 인정해야 한다</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 선택지 -->
+  <div class="choices-grid">
+    <div class="choice wrong">
+      <span class="choice-num">①</span>
+      <span class="choice-text">독특하고 복합적인 이미지 표현 기법을 작사 과정에 적용해야 한다.</span>
+    </div>
+    <div class="choice correct">
+      <span class="choice-num">②</span>
+      <span class="choice-text">가사를 통해 작사가들이 언어와 문학에 기여한 바를 인정해야 한다.</span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">③</span>
+      <span class="choice-text">셰익스피어의 작품이 영문학 발전에 미친 영향을 분석해야 한다.</span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">④</span>
+      <span class="choice-text">문학 작품을 감상하기 위해 스토리텔링 기법을 이해해야 한다.</span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">⑤</span>
+      <span class="choice-text">문학 작품과 가사에 사용되는 언어의 차이를 연구해야 한다.</span>
+    </div>
+  </div>
+
+  <div class="answer-reveal">
+    <span class="ans-label">정답</span>
+    <span class="ans-text">② 가사를 통해 작사가들이 언어와 문학에 기여한 바를 인정해야 한다.</span>
+    <span class="ans-num">②</span>
+  </div>
+
+  <!-- 분석 -->
+  <div class="analysis-box">
+    <h4>🔍 핵심 논리 분석</h4>
+    <p><strong>핵심 주장 문장:</strong> "Their remarkable works... <span class="h-mint">must be recognized</span> in the field of modern literature."</p>
+    <p><span class="h-mint">must</span>는 당위 표현으로, 필자가 반드시 이루어져야 한다고 생각하는 것을 나타낸다. 이 문장은 <strong>작사가들의 기여(contributions)가 현대 문학 분야에서 인정(recognized)받아야 한다</strong>는 주장을 직접적으로 담고 있다.</p>
+    <p><strong>전체 논리 흐름:</strong> 작사가들이 무시되어 왔다(문제) → 셰익스피어는 인정받지만 작사가들은 무시된다(대조) → 작사가들도 언어에 엄청난 기여를 했다(근거) → <span class="h-mint">그러므로 반드시 인정받아야 한다(주장)</span></p>
+    <p>이 흐름에서 ②번 "가사를 통해 작사가들이 언어와 문학에 기여한 바를 인정해야 한다"가 must be recognized의 내용과 정확히 일치한다.</p>
+  </div>
+
+  <!-- 오답 소거 -->
+  <div class="key-structure">
+    <h4>🚫 오답 소거 — 왜 나머지 4개는 틀린가</h4>
+    <ul>
+      <li>① 이미지 표현 기법을 작사에 적용: 본문에 "lyrics of distinct and complex imagery"가 언급되지만, 이는 작사가들의 능력을 설명하는 근거일 뿐이다. 기법을 '적용해야 한다'는 주장은 없음</li>
+      <li>③ 셰익스피어의 영향 분석: 셰익스피어는 대조의 기준으로만 등장한다. 셰익스피어를 분석하자는 주장이 아님</li>
+      <li>④ 스토리텔링 기법 이해: "storytelling"이 본문에 나오지만 이는 작사가들의 수단을 설명하는 것이지, 감상자가 스토리텔링을 이해해야 한다는 주장이 아님</li>
+      <li>⑤ 문학 작품과 가사의 언어 차이 연구: 본문의 주장은 차이를 연구하자는 것이 아니라, 작사가들의 기여를 인정하자는 것</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ ①번 함정 — 근거와 주장의 혼동</h4>
+    <p>①번 "독특하고 복합적인 이미지 표현 기법을 작사 과정에 적용해야 한다"는 본문의 "Producing lyrics of distinct and complex imagery"라는 표현과 유사하여 혼동을 일으킨다. 그러나 이 표현은 작사가들이 <strong>이미 그렇게 하고 있음</strong>을 설명하는 근거 문장이지, 앞으로 해야 한다는 주장이 아니다. 필자의 주장은 마지막 문장의 <strong>must be recognized</strong>에 집약된다.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 총정리 -->
+<div style="margin-bottom:48px">
+  <div class="section-label">총정리</div>
+  <div class="section-title">2026 수능 20번 <em>구조 & 주장 근거</em></div>
+  <table class="signal-table">
+    <thead>
+      <tr><th>단계</th><th>핵심 표현</th><th>역할</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>문제 제기</td>
+        <td style="color:var(--coral)">repeatedly failed to recognize / largely been ignored</td>
+        <td>현재 작사가들이 부당하게 무시받고 있음을 비판</td>
+      </tr>
+      <tr>
+        <td>대조</td>
+        <td style="color:var(--amber)">Unlike Shakespeare... songwriters have experienced restraints</td>
+        <td>인정받는 셰익스피어 vs 무시되는 작사가 대조</td>
+      </tr>
+      <tr>
+        <td>근거</td>
+        <td style="color:var(--accent2)">linguistic manipulation / storytelling / literary impact</td>
+        <td>작사가들이 언어·문학에 실제로 크게 기여했음을 입증</td>
+      </tr>
+      <tr>
+        <td style="color:var(--mint);font-weight:800">핵심 주장</td>
+        <td style="color:var(--mint)">must be recognized in the field of modern literature</td>
+        <td style="color:var(--mint);font-weight:700">당위 표현 must → 정답의 직접적 근거</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FINAL TIP -->
+<div class="card card-accent">
+  <div class="section-label" style="margin-bottom:12px">필자의 주장 최종 전략</div>
+  <p style="font-size:15px;color:var(--gray);line-height:2">
+    필자의 주장 문제는 <span style="color:var(--amber);font-weight:700">must / should / need to가 들어간 문장</span>을 찾는 것이 핵심이다. 대부분 <span style="color:var(--mint);font-weight:700">마지막 문장</span>에 주장이 집약되므로, 마지막 문장부터 확인하는 역순 독해도 효과적이다. 선택지를 볼 때는 <span style="color:var(--coral);font-weight:700">근거 내용(어떻게 기여했는지)과 주장(인정해야 한다)을 혼동하지 않는 것</span>이 중요하다. 본문에 나온 단어가 들어간 선택지라도 필자의 핵심 주장(must/should)과 일치하지 않으면 오답이다.
+  </p>
+</div>
+
+</div>
+
+<a href="#" class="scroll-top">↑</a>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+document.querySelector('.scroll-top').addEventListener('click', e => {
+  e.preventDefault();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity=1; e.target.style.transform='translateY(0)'; }
+  });
+}, {threshold:0.08});
+document.querySelectorAll('.problem-section, .formula-box, .signal-table').forEach(el => {
+  el.style.opacity=0; el.style.transform='translateY(20px)'; el.style.transition='all .6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
