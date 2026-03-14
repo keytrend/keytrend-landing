@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>심경 변화 완전정복 — 감정 흐름 전환점 탐지법 | Key Trend 수능정보</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);line-height:1.8;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:14px 0}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.type-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:6px 18px;border-radius:100px;font-size:12px;font-weight:700;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Outfit';font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--gray);font-size:16px;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.meta-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray)}
+.meta-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-mint{background:var(--mint)}.dot-coral{background:var(--coral)}.dot-amber{background:var(--amber)}.dot-accent{background:var(--accent)}
+
+.content{max-width:900px;margin:0 auto;padding:0 24px 80px}
+.section-label{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
+.section-title{font-family:'Outfit';font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:24px;line-height:1.3}
+.section-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.divider{border:none;border-top:1px solid rgba(51,65,85,.3);margin:48px 0}
+
+/* FORMULA */
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:36px;margin-bottom:48px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+@media(max-width:640px){.formula-steps{grid-template-columns:1fr}}
+.step-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:20px;transition:border-color .2s}
+.step-card:hover{border-color:var(--accent)}
+.step-num{font-family:'Outfit';font-size:36px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.4;line-height:1}
+.step-title{font-size:15px;font-weight:700;color:var(--white);margin:6px 0 4px}
+.step-desc{font-size:13px;color:var(--gray);line-height:1.7}
+.step-tip{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(99,102,241,.15);color:var(--accent2)}
+
+/* EMOTION VOCABULARY TABLE */
+.emo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px}
+@media(max-width:600px){.emo-grid{grid-template-columns:1fr}}
+.emo-card{border-radius:14px;padding:20px;border:1px solid}
+.emo-card-neg{background:rgba(244,114,182,.05);border-color:rgba(244,114,182,.25)}
+.emo-card-pos{background:rgba(52,211,153,.05);border-color:rgba(52,211,153,.25)}
+.emo-card-title{font-size:13px;font-weight:700;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.emo-card-title-neg{color:var(--coral)}
+.emo-card-title-pos{color:var(--mint)}
+.emo-list{display:flex;flex-wrap:wrap;gap:6px}
+.emo-chip{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600}
+.emo-chip-neg{background:rgba(244,114,182,.12);color:var(--coral)}
+.emo-chip-pos{background:rgba(52,211,153,.12);color:var(--mint)}
+
+/* PROBLEM SECTION */
+.problem-section{margin-bottom:56px}
+.problem-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(51,65,85,.4)}
+.problem-num{font-family:'Outfit';font-size:42px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;flex-shrink:0}
+.problem-meta{flex:1}
+.problem-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.problem-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-type{background:rgba(99,102,241,.15);color:var(--accent2)}
+.tag-score{background:rgba(251,191,36,.15);color:var(--amber)}
+.tag-answer{background:rgba(52,211,153,.15);color:var(--mint)}
+
+/* PASSAGE */
+.passage-box{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:24px 28px;margin-bottom:10px;font-size:15px;line-height:2.2;color:#cbd5e1}
+.passage-box .neg-phrase{color:var(--coral);font-weight:700}
+.passage-box .pos-phrase{color:var(--mint);font-weight:700}
+.passage-box .turn-phrase{background:rgba(251,191,36,.15);border-radius:4px;padding:1px 6px;color:var(--amber);font-weight:700}
+
+/* EMOTION FLOW VISUAL */
+.emo-flow{display:flex;align-items:center;justify-content:center;gap:0;margin:24px 0;flex-wrap:wrap}
+.emo-block{padding:18px 28px;border-radius:14px;text-align:center;min-width:130px}
+.emo-block-neg{background:rgba(244,114,182,.1);border:2px solid rgba(244,114,182,.4)}
+.emo-block-pos{background:rgba(52,211,153,.1);border:2px solid rgba(52,211,153,.4)}
+.emo-block-label{font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:4px}
+.emo-block-neg .emo-block-label{color:var(--coral)}
+.emo-block-pos .emo-block-label{color:var(--mint)}
+.emo-block-word{font-family:'Outfit';font-size:18px;font-weight:800}
+.emo-block-neg .emo-block-word{color:var(--coral)}
+.emo-block-pos .emo-block-word{color:var(--mint)}
+.emo-block-kor{font-size:12px;color:var(--gray);margin-top:3px}
+.emo-arrow{font-size:28px;color:var(--amber);padding:0 12px;font-weight:700}
+.emo-turn{display:flex;flex-direction:column;align-items:center;padding:0 8px}
+.emo-turn-label{font-size:10px;font-weight:700;color:var(--amber);letter-spacing:1px;margin-bottom:4px}
+
+/* SCENE ANALYSIS */
+.scene-box{display:flex;flex-direction:column;gap:0;margin:20px 0;border:1px solid rgba(51,65,85,.4);border-radius:14px;overflow:hidden}
+.scene-row{display:flex;gap:0;align-items:stretch;border-bottom:1px solid rgba(51,65,85,.3)}
+.scene-row:last-child{border-bottom:none}
+.scene-left{width:100px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 8px;text-align:center;font-size:11px;font-weight:700;letter-spacing:1px;gap:6px}
+.scene-left.sl-neg{background:rgba(244,114,182,.08);color:var(--coral);border-right:3px solid rgba(244,114,182,.4)}
+.scene-left.sl-turn{background:rgba(251,191,36,.08);color:var(--amber);border-right:3px solid rgba(251,191,36,.4)}
+.scene-left.sl-pos{background:rgba(52,211,153,.08);color:var(--mint);border-right:3px solid rgba(52,211,153,.4)}
+.scene-icon{font-size:20px}
+.scene-right{flex:1;padding:16px 20px}
+.scene-right p{font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:4px}
+.scene-right p:last-child{margin-bottom:0}
+.scene-right strong{color:var(--white);font-weight:600}
+.scene-right .h-neg{color:var(--coral);font-weight:700}
+.scene-right .h-pos{color:var(--mint);font-weight:700}
+.scene-right .h-turn{color:var(--amber);font-weight:700}
+@media(max-width:600px){
+  .scene-left{width:70px;font-size:10px}
+  .scene-right{padding:12px 14px}
+}
+
+/* TRANS BOX */
+.trans-box{background:rgba(30,41,59,.4);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:16px;font-size:14px;color:var(--gray);line-height:1.9}
+.trans-label{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:8px;display:block}
+.trans-key{color:#e2e8f0;font-weight:500}
+
+/* CHOICES */
+.choices-grid{display:grid;gap:10px;margin-bottom:20px}
+.choice{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:10px;border:1px solid rgba(51,65,85,.4);background:rgba(15,23,42,.4);font-size:14px}
+.choice-num{font-family:'Outfit';font-weight:700;width:22px;flex-shrink:0;color:var(--gray)}
+.choice-arrow{font-size:13px;color:var(--gray);margin:0 4px}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.correct .choice-text{color:var(--white);font-weight:600}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-num{color:var(--coral)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+
+/* ANSWER REVEAL */
+.answer-reveal{display:flex;align-items:center;gap:12px;padding:14px 20px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);border-radius:10px;margin-bottom:20px}
+.ans-label{font-size:12px;font-weight:700;color:var(--mint);letter-spacing:1px}
+.ans-text{font-size:15px;font-weight:700;color:var(--white)}
+.ans-num{font-family:'Outfit';font-size:22px;font-weight:800;color:var(--mint);margin-left:auto}
+
+/* ANALYSIS */
+.analysis-box{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:24px;margin-bottom:16px}
+.analysis-box h4{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:14px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.9;margin-bottom:10px}
+.analysis-box p:last-child{margin-bottom:0}
+.analysis-box strong{color:var(--white);font-weight:600}
+.h-mint{color:var(--mint);font-weight:700}
+.h-coral{color:var(--coral);font-weight:700}
+.h-amber{color:var(--amber);font-weight:700}
+.h-acc{color:var(--accent2);font-weight:700}
+
+/* KEY STRUCTURE */
+.key-structure{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.key-structure h4{font-size:13px;font-weight:700;color:var(--amber);margin-bottom:12px}
+.key-structure ul{list-style:none}
+.key-structure li{padding:6px 0;font-size:14px;color:var(--gray);display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid rgba(51,65,85,.2)}
+.key-structure li:last-child{border-bottom:none}
+.key-structure li::before{content:'→';color:var(--amber);flex-shrink:0;font-weight:700}
+
+/* WARNING */
+.warning-box{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.warning-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:10px}
+.warning-box p{font-size:14px;color:var(--gray);line-height:1.8}
+
+.card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-accent{border-color:rgba(99,102,241,.3)}
+
+.scroll-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;box-shadow:0 4px 20px rgba(99,102,241,.4);transition:all .2s;z-index:50;text-decoration:none;color:white}
+.scroll-top:hover{transform:translateY(-3px)}
+
+@media(max-width:768px){
+  .problem-header{flex-direction:column;gap:8px}
+  .problem-num{font-size:32px}
+  .passage-box{font-size:14px}
+  .emo-flow{gap:4px}
+  .emo-block{padding:14px 16px;min-width:100px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+  <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+  <a href="/suneung-info.html" class="nav-back">← 수능정보 목록</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-inner">
+  <div class="type-badge">유형별 풀이법</div>
+  <h1>심경 변화 <em>완전정복</em><br>감정 흐름 전환점 탐지법</h1>
+  <p class="hero-sub">2026학년도 수능 19번 기출 실전 분석 — 심경 변화의 핵심은 <strong style="color:var(--white)">전환점(Suddenly / At last)을 찾는 것</strong>이다</p>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-dot dot-accent"></span>문항: 19번</div>
+    <div class="meta-item"><span class="meta-dot dot-amber"></span>배점: 2점</div>
+    <div class="meta-item"><span class="meta-dot dot-mint"></span>2026 수능 기출 기반</div>
+    <div class="meta-item"><span class="meta-dot dot-coral"></span>홀수형 정답 기준</div>
+  </div>
+</div>
+</section>
+
+<div class="content">
+
+<!-- FORMULA -->
+<div style="margin-bottom:48px">
+  <div class="section-label">핵심 전략</div>
+  <div class="section-title">심경 변화 <em>3단계 풀이법</em></div>
+  <div class="formula-box">
+    <p style="color:var(--gray);font-size:14px;line-height:1.8">심경 변화 문제는 <strong style="color:var(--white)">전환점(turning point)을 찾는 것</strong>이 핵심이다. 감정을 직접 서술하는 단어보다 <strong style="color:var(--white)">행동·표정·상황 묘사</strong>에서 감정을 읽어내는 능력이 필요하다.</p>
+    <div class="formula-steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">초반 감정 파악</div>
+        <div class="step-desc">글의 앞부분에서 인물이 처한 상황과 초기 감정을 파악한다. 행동 묘사(awkwardly looked / unsure / uncertain)에서 부정적 감정을 읽는다.</div>
+        <span class="step-tip">uncertain / awkwardly / unsure = 불안·혼란</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">전환점 탐지</div>
+        <div class="step-desc">Suddenly / At last / Finally / Then / But 등의 전환 표현이 나오는 지점이 심경이 바뀌는 순간이다. 이 단어 앞뒤로 감정이 반전된다.</div>
+        <span class="step-tip">Suddenly / At last → 전환점 신호</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">후반 감정 파악</div>
+        <div class="step-desc">전환점 이후의 행동·표정 묘사에서 변화된 감정을 읽는다. "smiled brightly / nodded / looked forward to" 같은 긍정적 묘사에 집중한다.</div>
+        <span class="step-tip">smiled / nodded / relieved = 기쁨·안도</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EMOTION VOCABULARY -->
+<div style="margin-bottom:48px">
+  <div class="section-label">빠른 참고</div>
+  <div class="section-title" style="font-size:20px">수능 자주 출제 <em>감정 어휘</em></div>
+  <div class="emo-grid">
+    <div class="emo-card emo-card-neg">
+      <div class="emo-card-title emo-card-title-neg">😟 부정적 감정 (변화 전)</div>
+      <div class="emo-list">
+        <span class="emo-chip emo-chip-neg">confused 혼란스러운</span>
+        <span class="emo-chip emo-chip-neg">anxious 불안한</span>
+        <span class="emo-chip emo-chip-neg">nervous 초조한</span>
+        <span class="emo-chip emo-chip-neg">frustrated 좌절한</span>
+        <span class="emo-chip emo-chip-neg">embarrassed 당황한</span>
+        <span class="emo-chip emo-chip-neg">disappointed 실망한</span>
+        <span class="emo-chip emo-chip-neg">desperate 절망한</span>
+        <span class="emo-chip emo-chip-neg">gloomy 우울한</span>
+        <span class="emo-chip emo-chip-neg">bored 지루한</span>
+        <span class="emo-chip emo-chip-neg">indifferent 무관심한</span>
+      </div>
+    </div>
+    <div class="emo-card emo-card-pos">
+      <div class="emo-card-title emo-card-title-pos">😊 긍정적 감정 (변화 후)</div>
+      <div class="emo-list">
+        <span class="emo-chip emo-chip-pos">pleased 기쁜</span>
+        <span class="emo-chip emo-chip-pos">relieved 안도한</span>
+        <span class="emo-chip emo-chip-pos">thrilled 흥분된</span>
+        <span class="emo-chip emo-chip-pos">delighted 즐거운</span>
+        <span class="emo-chip emo-chip-pos">excited 신난</span>
+        <span class="emo-chip emo-chip-pos">satisfied 만족한</span>
+        <span class="emo-chip emo-chip-pos">confident 자신감 있는</span>
+        <span class="emo-chip emo-chip-pos">hopeful 희망찬</span>
+        <span class="emo-chip emo-chip-pos">grateful 감사한</span>
+        <span class="emo-chip emo-chip-pos">proud 자랑스러운</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 19번 -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">19</div>
+    <div class="problem-meta">
+      <div class="problem-title">다음 글에 드러난 Sophie의 심경 변화로 가장 적절한 것은?</div>
+      <div class="problem-tags">
+        <span class="tag tag-type">심경 변화</span>
+        <span class="tag tag-score">2점</span>
+        <span class="tag tag-answer">정답 ①</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 지문 -->
+  <div class="passage-box">
+    "Where could it be?" Sophie asked herself. It had been more than ten years since she had last visited the area where she had grown up. The village had changed a lot over time. <span class="neg-phrase">Uncertain</span>, she <span class="neg-phrase">awkwardly looked around</span> at her surroundings. She walked the narrow streets of the village, <span class="neg-phrase">unsure about which way to go</span>. <span class="turn-phrase">Suddenly</span>, Sophie saw a familiar sight. "Yes, this must be it," she thought. In front of her was a wall with flowers painted on it. Although the colors were now faded, the familiar shapes on the wall were the same ones she had painted with her father as a child. Sophie <span class="pos-phrase">nodded</span>, <span class="pos-phrase">smiled brightly</span>, and walked toward the gate. <span class="turn-phrase">At last</span>, she had finally found the house she had grown up in.
+  </div>
+
+  <!-- 전문 해석 -->
+  <div class="trans-box">
+    <span class="trans-label">🇰🇷 전문 해석</span>
+    "어디에 있을까?" Sophie는 혼자 중얼거렸다. 그녀가 자란 지역을 마지막으로 방문한 지 10년이 넘었다. 마을은 시간이 지나며 많이 변해 있었다. <span class="trans-key">불확실하여</span>, 그녀는 주변을 <span class="trans-key">어색하게 둘러보았다</span>. 그녀는 어느 길로 가야 할지 <span class="trans-key">몰라 당황하며</span> 마을의 좁은 거리를 걸었다. <span class="trans-key">갑자기</span>, Sophie는 익숙한 광경을 보았다. "그래, 여기가 틀림없어"라고 그녀는 생각했다. 그녀 앞에는 꽃이 그려진 벽이 있었다. 비록 색은 이제 바랬지만, 벽의 익숙한 모양들은 어린 시절 아버지와 함께 그렸던 것과 같았다. Sophie는 <span class="trans-key">고개를 끄덕이고</span>, <span class="trans-key">밝게 미소 지으며</span> 문을 향해 걸어갔다. <span class="trans-key">마침내</span>, 그녀는 자신이 자란 집을 찾았다.
+  </div>
+
+  <!-- 감정 흐름 시각화 -->
+  <div style="margin-bottom:20px">
+    <div class="section-label" style="margin-bottom:12px">감정 흐름 시각화</div>
+    <div class="emo-flow">
+      <div class="emo-block emo-block-neg">
+        <div class="emo-block-label">변화 전</div>
+        <div class="emo-block-word">confused</div>
+        <div class="emo-block-kor">혼란스러운·당황한</div>
+      </div>
+      <div class="emo-turn">
+        <div class="emo-turn-label">전환점</div>
+        <span class="emo-arrow">→</span>
+        <div style="font-size:11px;color:var(--amber);font-weight:700;margin-top:2px">Suddenly / At last</div>
+      </div>
+      <div class="emo-block emo-block-pos">
+        <div class="emo-block-label">변화 후</div>
+        <div class="emo-block-word">pleased</div>
+        <div class="emo-block-kor">기쁜·흐뭇한</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 장면별 분석 -->
+  <div style="margin-bottom:20px">
+    <div class="section-label" style="margin-bottom:12px">장면별 감정 분석</div>
+    <div class="scene-box">
+      <div class="scene-row">
+        <div class="scene-left sl-neg">
+          <span class="scene-icon">😟</span>
+          변화 전<br>부정 감정
+        </div>
+        <div class="scene-right">
+          <p><strong>"Where could it be?" / 10년 만에 고향 방문 / 마을이 많이 변함</strong></p>
+          <p><span class="h-neg">Uncertain</span> — 확신이 없는, 불안한 상태임을 직접 표현</p>
+          <p><span class="h-neg">awkwardly looked around</span> — '어색하게 둘러본다' = 어디로 가야 할지 모르는 혼란스러운 행동</p>
+          <p><span class="h-neg">unsure about which way to go</span> — 방향을 모른다 = 혼란·당혹감 직접 묘사</p>
+        </div>
+      </div>
+      <div class="scene-row">
+        <div class="scene-left sl-turn">
+          <span class="scene-icon">⚡</span>
+          전환점
+        </div>
+        <div class="scene-right">
+          <p><span class="h-turn">Suddenly</span> — 갑자기 익숙한 광경을 발견</p>
+          <p>꽃이 그려진 벽 → 어린 시절 아버지와 함께 그렸던 벽임을 인식</p>
+          <p><span class="h-turn">At last</span> — '마침내' = 오랜 혼란 끝에 찾던 것을 발견한 안도·기쁨</p>
+        </div>
+      </div>
+      <div class="scene-row">
+        <div class="scene-left sl-pos">
+          <span class="scene-icon">😊</span>
+          변화 후<br>긍정 감정
+        </div>
+        <div class="scene-right">
+          <p><span class="h-pos">nodded</span> — 고개를 끄덕이다 = 확인·확신·안도의 행동</p>
+          <p><span class="h-pos">smiled brightly</span> — 밝게 미소 짓다 = 기쁨·만족감의 직접 표현</p>
+          <p><span class="h-pos">walked toward the gate</span> — 확신을 갖고 문을 향해 걸어감 = 목적 달성의 기쁨</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 선택지 -->
+  <div class="choices-grid">
+    <div class="choice correct">
+      <span class="choice-num">①</span>
+      <span class="choice-text">confused <span class="choice-arrow">→</span> pleased <span style="color:var(--gray);font-size:12px">(혼란스러운 → 기쁜)</span></span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">②</span>
+      <span class="choice-text">confident <span class="choice-arrow">→</span> embarrassed <span style="color:var(--gray);font-size:12px">(자신감 있는 → 당황한)</span></span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">③</span>
+      <span class="choice-text">thrilled <span class="choice-arrow">→</span> anxious <span style="color:var(--gray);font-size:12px">(흥분된 → 불안한)</span></span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">④</span>
+      <span class="choice-text">relieved <span class="choice-arrow">→</span> nervous <span style="color:var(--gray);font-size:12px">(안도한 → 초조한)</span></span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">⑤</span>
+      <span class="choice-text">bored <span class="choice-arrow">→</span> excited <span style="color:var(--gray);font-size:12px">(지루한 → 신난)</span></span>
+    </div>
+  </div>
+
+  <div class="answer-reveal">
+    <span class="ans-label">정답</span>
+    <span class="ans-text">① confused → pleased (혼란스러운 → 기쁜)</span>
+    <span class="ans-num">①</span>
+  </div>
+
+  <!-- 분석 -->
+  <div class="analysis-box">
+    <h4>🔍 핵심 논리 분석</h4>
+    <p><strong>변화 전 감정 근거 (confused):</strong><br>
+    · <span class="h-coral">Uncertain</span> — 불확실하여(방향·장소를 모르는 상태)<br>
+    · <span class="h-coral">awkwardly looked around</span> — 어색하게 주위를 둘러봄<br>
+    · <span class="h-coral">unsure about which way to go</span> — 어느 길로 가야 할지 몰라 당황함<br>
+    → 세 가지 묘사 모두 방향과 장소를 몰라 <strong>혼란스럽고 당혹스러운(confused)</strong> 감정을 나타냄</p>
+    <p><strong>전환점:</strong> <span class="h-amber">Suddenly</span> / <span class="h-amber">At last</span> — 익숙한 벽을 발견하며 감정이 반전됨</p>
+    <p><strong>변화 후 감정 근거 (pleased):</strong><br>
+    · <span class="h-mint">nodded</span> — 고개를 끄덕임 = 확신·만족의 행동<br>
+    · <span class="h-mint">smiled brightly</span> — 밝게 미소 = 기쁨의 직접 표현<br>
+    · <span class="h-mint">finally found the house</span> — 마침내 찾음 = 목적 달성의 성취감과 기쁨<br>
+    → 오랫동안 찾던 집을 발견한 <strong>기쁨·흐뭇함(pleased)</strong> 감정을 나타냄</p>
+  </div>
+
+  <!-- 오답 소거 -->
+  <div class="key-structure">
+    <h4>🚫 오답 소거</h4>
+    <ul>
+      <li>② confident → embarrassed: 초반에 confident(자신감 있는) 묘사 전혀 없음 — 오히려 uncertain(불확실한)</li>
+      <li>③ thrilled → anxious: 초반이 thrilled(흥분된)이 아니며, 후반도 anxious(불안한)이 아님 — 방향 완전히 반대</li>
+      <li>④ relieved → nervous: 초반에 relieved(안도한) 묘사 없음 / 후반이 nervous(초조한)이 아니라 기쁨</li>
+      <li>⑤ bored → excited: 초반이 bored(지루한)이 아닌 confused(혼란) / 후반도 excited보다 pleased(기쁜·흐뭇한)가 정확</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ ⑤번 함정 — bored vs confused / excited vs pleased</h4>
+    <p>⑤번 "bored → excited"는 얼핏 비슷해 보이지만 초반 Sophie의 감정은 지루함(bored)이 아니라 <strong>길을 모르는 혼란·당혹(confused)</strong>이다. 또한 후반의 감정도 신남(excited)보다는 <strong>찾던 것을 발견한 기쁨·흐뭇함(pleased)</strong>에 더 가깝다. "smiled brightly"와 "At last"는 오래 기다리다가 얻은 만족감을 나타내는 표현으로, thrilled나 excited의 격한 흥분보다는 pleased나 relieved의 차분한 기쁨에 해당한다.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 총정리 -->
+<div style="margin-bottom:48px">
+  <div class="section-label">총정리</div>
+  <div class="section-title">2026 수능 19번 <em>감정 증거 & 판단 기준</em></div>
+  <table style="width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:1px solid rgba(51,65,85,.4)">
+    <thead>
+      <tr style="background:rgba(30,41,59,.8)">
+        <th style="padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:left">구분</th>
+        <th style="padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:center">감정</th>
+        <th style="padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:left">근거 표현</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-top:1px solid rgba(51,65,85,.3)">
+        <td style="padding:14px 16px;font-weight:700;color:var(--coral)">변화 전</td>
+        <td style="padding:14px 16px;text-align:center;color:var(--coral);font-weight:700;font-family:'Outfit'">confused</td>
+        <td style="padding:14px 16px;font-size:13px;color:var(--gray)">Uncertain / awkwardly looked around / unsure about which way to go</td>
+      </tr>
+      <tr style="border-top:1px solid rgba(51,65,85,.3);background:rgba(251,191,36,.04)">
+        <td style="padding:14px 16px;font-weight:700;color:var(--amber)">전환점</td>
+        <td style="padding:14px 16px;text-align:center;color:var(--amber);font-weight:700;font-family:'Outfit'">Suddenly / At last</td>
+        <td style="padding:14px 16px;font-size:13px;color:var(--gray)">익숙한 꽃 그림 벽 발견 → 어린 시절 아버지와 그린 벽임을 확인</td>
+      </tr>
+      <tr style="border-top:1px solid rgba(51,65,85,.3)">
+        <td style="padding:14px 16px;font-weight:700;color:var(--mint)">변화 후</td>
+        <td style="padding:14px 16px;text-align:center;color:var(--mint);font-weight:700;font-family:'Outfit'">pleased</td>
+        <td style="padding:14px 16px;font-size:13px;color:var(--gray)">nodded / smiled brightly / At last, finally found the house</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FINAL TIP -->
+<div class="card card-accent">
+  <div class="section-label" style="margin-bottom:12px">심경 변화 최종 전략</div>
+  <p style="font-size:15px;color:var(--gray);line-height:2">
+    심경 변화 문제에서 가장 중요한 것은 <span style="color:var(--amber);font-weight:700">전환점(Suddenly / At last / Finally / But)을 찾는 것</span>이다. 전환점 앞은 부정 감정, 뒤는 긍정 감정이 오는 패턴이 가장 흔하다. 감정을 직접 표현하는 단어보다 <span style="color:var(--mint);font-weight:700">행동·표정·상황 묘사(smiled / nodded / awkwardly / unsure)</span>에서 감정을 읽어내는 연습이 필요하다. 선택지에서는 방향이 완전히 반대인 것(긍정→부정 / 부정→긍정)을 먼저 확인하고, 감정의 강도(thrilled vs pleased)를 본문 묘사와 정확히 대응시키면 정답이 보인다.
+  </p>
+</div>
+
+</div>
+
+<a href="#" class="scroll-top">↑</a>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+document.querySelector('.scroll-top').addEventListener('click', e => {
+  e.preventDefault();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity=1; e.target.style.transform='translateY(0)'; }
+  });
+}, {threshold:0.08});
+document.querySelectorAll('.problem-section, .formula-box, .emo-grid').forEach(el => {
+  el.style.opacity=0; el.style.transform='translateY(20px)'; el.style.transition='all .6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
