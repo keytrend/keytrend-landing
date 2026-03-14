@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>도표 완전정복 — 숫자 비교 함정 탐지 3단계 공식 | Key Trend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.7;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15)}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;max-width:900px;margin:0 auto}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;animation:fadeUp .7s ease}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.5px}
+.badge-type{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);color:var(--accent2)}
+.badge-num{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);color:var(--mint)}
+.badge-score{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
+.hero h1{font-family:'Outfit';font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.2;margin-bottom:16px;animation:fadeUp .7s ease .1s both}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{color:var(--gray);font-size:16px;line-height:1.8;animation:fadeUp .7s ease .2s both;max-width:680px}
+.meta-row{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;animation:fadeUp .7s ease .3s both}
+.meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray)}
+.meta-item strong{color:var(--white);font-weight:600}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.section{max-width:900px;margin:0 auto;padding:0 24px 60px}
+.section-title{font-family:'Outfit';font-size:22px;font-weight:800;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:24px;background:var(--grad1);border-radius:2px;flex-shrink:0}
+
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;margin-bottom:40px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-title{font-size:13px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.step-card{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);border-radius:12px;padding:20px}
+.step-num{font-family:'Outfit';font-size:28px;font-weight:800;color:var(--accent);opacity:.5;line-height:1}
+.step-label{font-size:14px;font-weight:700;margin:8px 0 6px;color:var(--white)}
+.step-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+.signal-box{background:rgba(30,41,59,.6);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:24px;margin-bottom:24px}
+.signal-box h4{font-size:14px;font-weight:700;color:var(--amber);margin-bottom:14px}
+.signal-list{display:flex;flex-wrap:wrap;gap:8px}
+.signal-chip{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);padding:5px 14px;border-radius:8px;font-size:13px;color:var(--amber);font-weight:600}
+.signal-chip.coral{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.2);color:var(--coral)}
+.signal-chip.mint{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.2);color:var(--mint)}
+
+/* 도표 시각화 */
+.chart-container{background:rgba(15,23,42,.8);border:1px solid rgba(99,102,241,.2);border-radius:16px;padding:28px;margin-bottom:28px}
+.chart-title{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:6px;text-align:center}
+.chart-subtitle{font-size:12px;color:var(--gray);text-align:center;margin-bottom:24px}
+.chart-legend{display:flex;gap:20px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray)}
+.legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.legend-dot.everyday{background:var(--accent)}
+.legend-dot.lessoften{background:var(--amber)}
+
+.bar-group{margin-bottom:16px}
+.bar-label{font-size:13px;color:var(--gray);margin-bottom:8px;font-weight:600}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.bar-name{font-size:11px;color:var(--gray);min-width:60px;text-align:right;flex-shrink:0}
+.bar-wrap{flex:1;display:flex;align-items:center;gap:8px}
+.bar{height:28px;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:12px;font-weight:700;color:white;min-width:28px;transition:width .8s ease;position:relative}
+.bar.everyday{background:var(--accent)}
+.bar.lessoften{background:var(--amber)}
+.bar.highlight-correct{background:var(--mint)!important;box-shadow:0 0 12px rgba(52,211,153,.4)}
+.bar.highlight-wrong{background:var(--coral)!important;box-shadow:0 0 12px rgba(244,114,182,.4)}
+.bar-pct{font-size:12px;font-weight:700;min-width:32px;flex-shrink:0}
+.bar-pct.everyday{color:var(--accent2)}
+.bar-pct.lessoften{color:var(--amber)}
+.bar-pct.highlight{color:var(--coral);font-size:13px}
+
+/* 수치 데이터 표 */
+.data-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:28px}
+.data-table th,.data-table td{padding:13px 16px;font-size:13px;text-align:center}
+.data-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700}
+.data-table thead th:first-child{text-align:left}
+.data-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray)}
+.data-table tbody td:first-child{text-align:left;color:var(--white);font-weight:600}
+.data-table tbody tr:hover{background:rgba(99,102,241,.05)}
+.num-hi{color:var(--mint);font-weight:700;font-size:14px}
+.num-wrong{color:var(--coral);font-weight:700;font-size:14px}
+.rank-1{background:rgba(52,211,153,.12);color:var(--mint);font-weight:700;padding:2px 8px;border-radius:4px;font-size:11px}
+.rank-2{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700;padding:2px 8px;border-radius:4px;font-size:11px}
+
+.problem-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:20px;overflow:hidden;margin-bottom:32px}
+.problem-header{background:rgba(99,102,241,.1);border-bottom:1px solid rgba(51,65,85,.4);padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+.problem-num{font-family:'Outfit';font-size:24px;font-weight:800;color:var(--accent2)}
+.problem-type-tag{font-size:12px;color:var(--gray);background:rgba(51,65,85,.5);padding:4px 12px;border-radius:6px}
+.problem-body{padding:28px}
+
+.choices{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:12px;border:1px solid rgba(51,65,85,.4);background:rgba(30,41,59,.3);font-size:14px}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-text{color:var(--gray)}
+.choice.wrong-answer{border-color:var(--coral);background:rgba(244,114,182,.08)}
+.choice-num{font-family:'Outfit';font-weight:700;font-size:16px;min-width:24px;flex-shrink:0}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.wrong .choice-num{color:var(--slate)}
+.choice.wrong-answer .choice-num{color:var(--coral)}
+.choice-text{line-height:1.6}
+.choice-badge{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;flex-shrink:0}
+.badge-correct{background:rgba(52,211,153,.2);color:var(--mint)}
+.badge-wrong{background:rgba(239,68,68,.15);color:#f87171}
+.badge-ok{background:rgba(99,102,241,.15);color:var(--accent2)}
+
+.analysis-box{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.25);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.analysis-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:12px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.8}
+.analysis-box p strong{color:var(--white)}
+
+.verify-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.verify-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:18px}
+.verify-card.ok{border-color:rgba(99,102,241,.3)}
+.verify-card.fail{border-color:var(--coral);background:rgba(244,114,182,.05)}
+.verify-card h4{font-size:12px;font-weight:700;margin-bottom:10px}
+.verify-card.ok h4{color:var(--accent2)}
+.verify-card.fail h4{color:var(--coral)}
+.verify-card p{font-size:13px;color:var(--gray);line-height:1.7}
+.verify-card p strong{color:var(--white)}
+.verify-card .verdict{margin-top:10px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:6px;display:inline-block}
+.verdict.pass{background:rgba(99,102,241,.15);color:var(--accent2)}
+.verdict.fail{background:rgba(244,114,182,.15);color:var(--coral)}
+
+.voca-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.voca-table th,.voca-table td{padding:14px 18px;font-size:13px}
+.voca-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700;text-align:left}
+.voca-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray);vertical-align:top}
+.voca-table tbody td:first-child{color:var(--white);font-weight:600;white-space:nowrap}
+.voca-table tbody tr:hover{background:rgba(99,102,241,.05)}
+td.mint{color:var(--mint)!important;font-weight:700}
+td.coral{color:var(--coral)!important}
+
+.summary-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.summary-table th,.summary-table td{padding:14px 18px;font-size:13px;text-align:center}
+.summary-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700}
+.summary-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray)}
+.summary-table tbody td:first-child{text-align:left;color:var(--white);font-weight:600}
+
+.final-card{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;position:relative;overflow:hidden;margin-bottom:60px}
+.final-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.final-card h3{font-family:'Outfit';font-size:20px;font-weight:800;margin-bottom:20px;color:var(--accent2)}
+.tip-list{display:flex;flex-direction:column;gap:12px}
+.tip-item{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.tip-text{color:var(--gray);line-height:1.7}
+.tip-text strong{color:var(--white)}
+
+#scrollTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border:none;border-radius:12px;color:white;font-size:18px;cursor:pointer;opacity:0;transition:all .3s;z-index:99;display:flex;align-items:center;justify-content:center}
+#scrollTop.visible{opacity:1}
+#scrollTop:hover{background:var(--accent2);transform:translateY(-2px)}
+.divider{height:1px;background:rgba(51,65,85,.4);margin:0 0 48px}
+
+@media(max-width:600px){
+.steps-grid{grid-template-columns:1fr 1fr}
+.verify-grid{grid-template-columns:1fr}
+.problem-body{padding:20px}
+.bar-name{min-width:44px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="../suneung-info.html" class="nav-back">← 수능정보 목록</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-meta">
+    <span class="badge badge-type">📘 유형별 풀이법</span>
+    <span class="badge badge-num">25번</span>
+    <span class="badge badge-score">2점</span>
+  </div>
+  <h1>도표 완전정복 —<br><em>숫자 비교 함정 탐지 3단계 공식</em></h1>
+  <p class="hero-desc">
+    도표 유형은 선택지가 도표의 수치를 정확히 설명하는지 검증하는 유형입니다.
+    순위 표현(highest, second), 배수 표현(twice, more than), 대소 비교(higher, lower)를
+    <strong>숫자로 직접 검증</strong>하는 것이 핵심입니다.
+  </p>
+  <div class="meta-row">
+    <div class="meta-item"><span>📅</span><strong>2026학년도 수능</strong></div>
+    <div class="meta-item"><span>📌</span><strong>홀수형 25번 · 짝수형 25번 공통</strong></div>
+    <div class="meta-item"><span>✅</span><strong>정답: ④</strong></div>
+    <div class="meta-item"><span>🏷</span><strong>미국 청소년 소통 유형별 친구와의 시간</strong></div>
+  </div>
+</div>
+
+<!-- 핵심 전략 공식 -->
+<div class="section">
+  <h2 class="section-title">3단계 도표 오류 탐지 공식</h2>
+  <div class="formula-box">
+    <div class="formula-title">⚡ Key Trend 핵심 공식</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-label">도표 수치 먼저 읽기</div>
+        <div class="step-desc">선택지 읽기 전, 도표의 모든 수치를 머릿속 또는 여백에 정리한다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-label">비교 표현 밑줄</div>
+        <div class="step-desc">highest / second / twice / more than / lower than 등 비교 표현에 밑줄 긋기.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-label">수치 직접 대입 검증</div>
+        <div class="step-desc">비교 표현이 등장하면 해당 수치를 직접 대입해 맞는지 계산 확인.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 오류 탐지 함정 패턴 -->
+  <div class="signal-box">
+    <h4>⚠️ 도표 오류 선택지의 단골 함정 패턴</h4>
+    <div class="signal-list">
+      <span class="signal-chip coral">순위 바꿔치기: 1위를 2위로, 2위를 1위로</span>
+      <span class="signal-chip coral">배수 과장: "두 배 이상"인데 실제로는 두 배 미만</span>
+      <span class="signal-chip coral">대소 역전: higher라고 했는데 실제로는 lower</span>
+      <span class="signal-chip">카테고리 혼동: Every Day와 Less Often 혼동</span>
+      <span class="signal-chip mint">이번 오답 ④: 1위를 2위로 잘못 표현</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider" style="max-width:900px;margin:0 auto 48px"></div>
+
+<!-- 도표 재현 -->
+<div class="section">
+  <h2 class="section-title">도표 데이터 완전 정리</h2>
+
+  <!-- 도표 시각화 -->
+  <div class="chart-container">
+    <div class="chart-title">Percentages of U.S. Teenagers Who Spent Time with Friends by Communication Type (2014–2015)</div>
+    <div class="chart-subtitle">미국 청소년이 소통 유형별로 친구와 시간을 보낸 비율 (%)</div>
+    <div class="chart-legend">
+      <div class="legend-item"><div class="legend-dot everyday"></div> Every Day (매일)</div>
+      <div class="legend-item"><div class="legend-dot lessoften"></div> Less Often (덜 자주)</div>
+    </div>
+
+    <!-- Text Messaging -->
+    <div class="bar-group">
+      <div class="bar-label">📱 Text Messaging (문자 메시지)</div>
+      <div class="bar-row">
+        <span class="bar-name">Every Day</span>
+        <div class="bar-wrap">
+          <div class="bar everyday" style="width:65%">65%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name">Less Often</span>
+        <div class="bar-wrap">
+          <div class="bar lessoften" style="width:13%">13%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="bar-group">
+      <div class="bar-label">📞 Talking on the Phone (전화 통화)</div>
+      <div class="bar-row">
+        <span class="bar-name">Every Day</span>
+        <div class="bar-wrap">
+          <div class="bar everyday" style="width:19%">19%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name">Less Often</span>
+        <div class="bar-wrap">
+          <div class="bar lessoften" style="width:41%">41%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emailing -->
+    <div class="bar-group">
+      <div class="bar-label">✉️ Emailing (이메일) — ④번 오류 포인트</div>
+      <div class="bar-row">
+        <span class="bar-name">Every Day</span>
+        <div class="bar-wrap">
+          <div class="bar everyday" style="width:6%">6%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name">Less Often</span>
+        <div class="bar-wrap">
+          <div class="bar lessoften highlight-wrong" style="width:43%">43% ← 실제 1위!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Chatting -->
+    <div class="bar-group">
+      <div class="bar-label">🎥 Video Chatting (영상 통화)</div>
+      <div class="bar-row">
+        <span class="bar-name">Every Day</span>
+        <div class="bar-wrap">
+          <div class="bar everyday" style="width:7%">7%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name">Less Often</span>
+        <div class="bar-wrap">
+          <div class="bar lessoften" style="width:37%">37%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 수치 요약 표 -->
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>소통 유형</th>
+        <th>Every Day (%)</th>
+        <th>Less Often (%)</th>
+        <th>Less Often 순위</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Text Messaging</td>
+        <td class="num-hi">65 <span style="font-size:11px;color:var(--mint)">(1위)</span></td>
+        <td>13</td>
+        <td><span class="rank-2" style="background:rgba(148,163,184,.15);color:var(--gray)">4위</span></td>
+      </tr>
+      <tr>
+        <td>Talking on the Phone</td>
+        <td>19</td>
+        <td>41</td>
+        <td><span class="rank-2">2위</span></td>
+      </tr>
+      <tr>
+        <td>Emailing</td>
+        <td>6</td>
+        <td class="num-wrong">43 ← ④번 오류</td>
+        <td><span class="rank-1">1위</span></td>
+      </tr>
+      <tr>
+        <td>Video Chatting</td>
+        <td>7</td>
+        <td>37</td>
+        <td><span class="rank-2" style="background:rgba(148,163,184,.1);color:var(--gray)">3위</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 문제 섹션 -->
+<div class="section">
+  <h2 class="section-title">2026학년도 수능 25번 선택지 전체 검증</h2>
+
+  <div class="problem-card">
+    <div class="problem-header">
+      <div class="problem-num">25번</div>
+      <div class="problem-type-tag">도표 · 2점</div>
+    </div>
+    <div class="problem-body">
+
+      <ul class="choices">
+        <li class="choice wrong">
+          <span class="choice-num">①</span>
+          <span class="choice-text">In the category of Every Day, text messaging showed the highest percentage among the four types of communication that teenagers used to spend time with friends.<br><span style="font-size:12px;color:var(--gray);margin-top:4px;display:block">→ Every Day 카테고리에서 문자 메시지가 네 유형 중 가장 높은 비율을 보였다.</span></span>
+          <span class="choice-badge badge-ok">일치 ✓</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">②</span>
+          <span class="choice-text">In the category of Less Often, the percentage of teenagers who spent time with friends through talking on the phone was more than twice that of teenagers who did so through text messaging.<br><span style="font-size:12px;color:var(--gray);margin-top:4px;display:block">→ Less Often에서 전화 통화 비율이 문자 메시지 비율의 두 배 이상이었다.</span></span>
+          <span class="choice-badge badge-ok">일치 ✓</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">③</span>
+          <span class="choice-text">The percentage of teenagers who spent time with friends through talking on the phone in the category of Every Day was lower than that of teenagers who did so in the category of Less Often.<br><span style="font-size:12px;color:var(--gray);margin-top:4px;display:block">→ Every Day의 전화 통화 비율(19%)이 Less Often(41%)보다 낮다.</span></span>
+          <span class="choice-badge badge-ok">일치 ✓</span>
+        </li>
+        <li class="choice wrong-answer">
+          <span class="choice-num">④</span>
+          <span class="choice-text">In the category of Less Often, emailing was the <strong>second highest</strong> in percentage among the types of communication listed above.<br><span style="font-size:12px;color:var(--coral);margin-top:4px;display:block">→ Less Often에서 이메일이 두 번째로 높은 비율이었다. ← 오류!</span></span>
+          <span class="choice-badge badge-wrong">오답 ✗</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">⑤</span>
+          <span class="choice-text">The percentage of teenagers who spent time with friends through video chatting in the category of Less Often was higher than that of teenagers who did so in the category of Every Day.<br><span style="font-size:12px;color:var(--gray);margin-top:4px;display:block">→ Less Often 영상 통화(37%) > Every Day 영상 통화(7%)</span></span>
+          <span class="choice-badge badge-ok">일치 ✓</span>
+        </li>
+      </ul>
+
+      <!-- 정답(오류) 분석 -->
+      <div class="analysis-box">
+        <h4>❌ ④번 오류 분석 — 순위 바꿔치기 함정</h4>
+        <p>
+          ④는 Less Often 카테고리에서 이메일이 <strong>"second highest(2위)"</strong>라고 주장.<br><br>
+          실제 Less Often 순위: <strong>1위 Emailing(43%) → 2위 Phone(41%) → 3위 Video Chatting(37%) → 4위 Text(13%)</strong><br><br>
+          → 이메일은 <strong>1위(43%)</strong>인데 선택지에서 <strong>2위</strong>로 잘못 표현. → 불일치 → <strong>정답(오류 선택지)</strong>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 선택지별 검증 -->
+  <h2 class="section-title">선택지별 수치 검증 상세</h2>
+  <div class="verify-grid">
+    <div class="verify-card ok">
+      <h4>① Every Day — 문자 메시지 최고 비율</h4>
+      <p>Text: <strong>65%</strong> vs Phone: 19% vs Email: 6% vs Video: 7%<br>→ 65%가 가장 높음. <strong>일치.</strong></p>
+      <span class="verdict pass">✓ 일치</span>
+    </div>
+    <div class="verify-card ok">
+      <h4>② Less Often — 전화가 문자의 두 배 이상</h4>
+      <p>Phone: <strong>41%</strong>, Text: <strong>13%</strong><br>41 ÷ 13 = 3.15배 → 두 배 이상. <strong>일치.</strong></p>
+      <span class="verdict pass">✓ 일치</span>
+    </div>
+    <div class="verify-card ok">
+      <h4>③ 전화 Every Day(19%) < Less Often(41%)</h4>
+      <p>19% &lt; 41% → lower than 표현 일치. <strong>일치.</strong></p>
+      <span class="verdict pass">✓ 일치</span>
+    </div>
+    <div class="verify-card fail">
+      <h4>④ Less Often — 이메일 2위 주장</h4>
+      <p>실제 순위: <strong>Email 43%(1위)</strong> &gt; Phone 41%(2위)<br>→ 이메일은 <strong>1위</strong>. "second highest" 주장은 <strong>틀림.</strong></p>
+      <span class="verdict fail">✗ 불일치 → 정답</span>
+    </div>
+  </div>
+  <div class="verify-grid" style="grid-template-columns:1fr">
+    <div class="verify-card ok">
+      <h4>⑤ Less Often 영상 통화(37%) > Every Day 영상 통화(7%)</h4>
+      <p>37% &gt; 7% → higher than 표현 일치. <strong>일치.</strong></p>
+      <span class="verdict pass">✓ 일치</span>
+    </div>
+  </div>
+
+  <!-- 핵심 어휘 -->
+  <h2 class="section-title" style="margin-top:16px">도표 유형 핵심 비교 표현 정리</h2>
+  <table class="voca-table">
+    <thead>
+      <tr><th>표현</th><th>의미</th><th>검증 방법</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>the highest</td><td>가장 높은 (1위)</td><td>모든 항목 중 최댓값인지 확인</td></tr>
+      <tr><td>the second highest</td><td>두 번째로 높은 (2위)</td><td class="coral">1위와 3위 사이인지 순위 직접 확인 ← 이번 오답</td></tr>
+      <tr><td>more than twice</td><td>두 배 초과</td><td>A ÷ B &gt; 2인지 계산</td></tr>
+      <tr><td>lower than</td><td>~보다 낮은</td><td>두 수의 대소 직접 비교</td></tr>
+      <tr><td>higher than</td><td>~보다 높은</td><td>두 수의 대소 직접 비교</td></tr>
+      <tr><td>Every Day vs Less Often</td><td>매일 vs 덜 자주</td><td class="mint">카테고리 혼동 방지 — 선택지마다 카테고리 확인</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 총정리 -->
+  <h2 class="section-title">총정리 체크리스트</h2>
+  <table class="summary-table">
+    <thead>
+      <tr><th>확인 항목</th><th>이번 문제 적용</th><th>결과</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>도표 수치 사전 정리</td><td>Less Often 순위: Email 43 > Phone 41 > Video 37 > Text 13</td><td class="mint">✓</td></tr>
+      <tr><td>비교 표현 밑줄</td><td>④ "second highest" 탐지</td><td class="mint">✓</td></tr>
+      <tr><td>수치 대입 검증</td><td>Email 43% = 1위 ≠ 2위 → 불일치</td><td class="coral">✗ → 정답</td></tr>
+      <tr><td>나머지 선택지 확인</td><td>①②③⑤ 모두 수치 일치</td><td class="mint">✓ 소거 완료</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 최종 전략 카드 -->
+  <div class="final-card">
+    <h3>🎯 도표 유형 최종 전략</h3>
+    <div class="tip-list">
+      <div class="tip-item">
+        <span class="tip-icon">🔢</span>
+        <span class="tip-text"><strong>선택지 읽기 전에 수치를 표로 정리하라.</strong> 도표를 보자마자 각 항목의 수치를 시험지 여백에 간단히 적어두면 선택지 검증이 훨씬 빨라진다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">⚠️</span>
+        <span class="tip-text"><strong>순위 표현(highest, second)이 가장 자주 오류 포인트다.</strong> "second highest"가 나오면 반드시 1위부터 순서대로 나열해 해당 항목이 정말 2위인지 확인하라.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">✖️</span>
+        <span class="tip-text"><strong>배수 표현은 계산기처럼 검증하라.</strong> "more than twice"는 A ÷ B &gt; 2인지 직접 나눠봐야 한다. 대략 어림하다 함정에 빠지지 않도록.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">🗂️</span>
+        <span class="tip-text"><strong>카테고리를 혼동하지 마라.</strong> Every Day와 Less Often을 항상 명확히 구분하고, 선택지마다 어느 카테고리를 말하는지 먼저 확인한 뒤 수치를 대입한다.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400)
+})
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}
+  })
+},{threshold:0.08})
+document.querySelectorAll('.formula-box,.signal-box,.chart-container,.data-table,.problem-card,.verify-grid,.voca-table,.summary-table,.final-card').forEach(el=>{
+  el.style.opacity=0;el.style.transform='translateY(24px)';el.style.transition='all .6s ease'
+  observer.observe(el)
+})
+</script>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
