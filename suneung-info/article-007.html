@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문맥상 낱말 완전정복 — 반의어 함정 탐지법 | Key Trend 수능정보</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);line-height:1.8;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:14px 0}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.type-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:6px 18px;border-radius:100px;font-size:12px;font-weight:700;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Outfit';font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--gray);font-size:16px;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.meta-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray)}
+.meta-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-mint{background:var(--mint)}.dot-coral{background:var(--coral)}.dot-amber{background:var(--amber)}.dot-accent{background:var(--accent)}
+
+.content{max-width:900px;margin:0 auto;padding:0 24px 80px}
+.section-label{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
+.section-title{font-family:'Outfit';font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:24px;line-height:1.3}
+.section-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.divider{border:none;border-top:1px solid rgba(51,65,85,.3);margin:48px 0}
+
+/* STRATEGY FORMULA */
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:36px;margin-bottom:48px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+@media(max-width:600px){.formula-steps{grid-template-columns:1fr}}
+.step-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:20px;transition:border-color .2s}
+.step-card:hover{border-color:var(--accent)}
+.step-num{font-family:'Outfit';font-size:36px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.4;line-height:1}
+.step-title{font-size:15px;font-weight:700;color:var(--white);margin:6px 0 4px}
+.step-desc{font-size:13px;color:var(--gray);line-height:1.7}
+.step-tip{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(99,102,241,.15);color:var(--accent2)}
+
+/* PROBLEM SECTION */
+.problem-section{margin-bottom:56px}
+.problem-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(51,65,85,.4)}
+.problem-num{font-family:'Outfit';font-size:42px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;flex-shrink:0}
+.problem-meta{flex:1}
+.problem-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.problem-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-type{background:rgba(99,102,241,.15);color:var(--accent2)}
+.tag-score{background:rgba(251,191,36,.15);color:var(--amber)}
+.tag-answer{background:rgba(52,211,153,.15);color:var(--mint)}
+.tag-hard{background:rgba(244,114,182,.15);color:var(--coral)}
+
+/* PASSAGE */
+.passage-box{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:24px 28px;margin-bottom:10px;font-size:15px;line-height:2.2;color:#cbd5e1}
+.passage-box .key-phrase{color:var(--mint);font-weight:700}
+.passage-box .trap-phrase{color:var(--coral);font-weight:700}
+.passage-box .link-phrase{color:var(--amber);font-weight:700}
+.cn-ok{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:12px;font-weight:800;font-family:'Outfit';margin:0 2px;vertical-align:middle;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);color:var(--accent2)}
+.cn-wrong{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:12px;font-weight:800;font-family:'Outfit';margin:0 2px;vertical-align:middle;background:rgba(244,114,182,.2);border:2px solid var(--coral);color:var(--coral)}
+.uline-ok{background:rgba(99,102,241,.1);border-radius:4px;padding:1px 5px;color:var(--accent2);font-weight:600}
+.uline-wrong{background:rgba(244,114,182,.15);border-radius:4px;padding:1px 5px;color:var(--coral);font-weight:700;text-decoration:underline;text-decoration-color:var(--coral)}
+
+/* TRANS BOX */
+.trans-box{background:rgba(30,41,59,.4);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:16px;font-size:14px;color:var(--gray);line-height:1.9}
+.trans-label{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:8px;display:block}
+.trans-key{color:#e2e8f0;font-weight:500}
+
+/* LOGIC FLOW DIAGRAM */
+.logic-flow{display:flex;flex-direction:column;gap:0;margin:20px 0 28px;border:1px solid rgba(51,65,85,.4);border-radius:14px;overflow:hidden}
+.logic-block{padding:16px 20px;font-size:14px;line-height:1.8;color:var(--gray);border-bottom:1px solid rgba(51,65,85,.3);position:relative}
+.logic-block:last-child{border-bottom:none}
+.logic-block-label{font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:4px;display:block}
+.logic-block.lb-intro{background:rgba(99,102,241,.06);border-left:4px solid var(--accent2)}
+.logic-block.lb-intro .logic-block-label{color:var(--accent2)}
+.logic-block.lb-case1{background:rgba(52,211,153,.04);border-left:4px solid var(--mint)}
+.logic-block.lb-case1 .logic-block-label{color:var(--mint)}
+.logic-block.lb-case2{background:rgba(244,114,182,.04);border-left:4px solid var(--coral)}
+.logic-block.lb-case2 .logic-block-label{color:var(--coral)}
+.logic-block.lb-concl{background:rgba(251,191,36,.04);border-left:4px solid var(--amber)}
+.logic-block.lb-concl .logic-block-label{color:var(--amber)}
+.logic-block strong{color:var(--white);font-weight:600}
+.h-mint{color:var(--mint);font-weight:700}
+.h-coral{color:var(--coral);font-weight:700}
+.h-amber{color:var(--amber);font-weight:700}
+.h-acc{color:var(--accent2);font-weight:700}
+
+/* ALL 5 ITEMS */
+.items-grid{display:grid;gap:12px;margin-bottom:20px}
+.item-row{display:flex;gap:14px;padding:18px 20px;border-radius:12px;border:1px solid rgba(51,65,85,.4);background:rgba(15,23,42,.4);align-items:flex-start}
+.item-row.item-wrong{border-color:rgba(244,114,182,.35);background:rgba(244,114,182,.06)}
+.item-row.item-ok{border-color:rgba(99,102,241,.2)}
+.item-badge{flex-shrink:0;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Outfit';font-weight:800;font-size:14px;margin-top:2px}
+.badge-wrong{background:rgba(244,114,182,.2);border:2px solid var(--coral);color:var(--coral)}
+.badge-ok{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);color:var(--accent2)}
+.item-content{flex:1}
+.item-eng{font-size:14px;color:var(--white);font-weight:600;margin-bottom:4px;line-height:1.7}
+.item-eng .wrong-word{color:var(--coral);text-decoration:line-through;text-decoration-color:var(--coral)}
+.item-eng .correct-word{color:var(--mint);font-weight:700;margin-left:6px}
+.item-eng .ok-word{color:var(--accent2)}
+.item-kor{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:6px}
+.item-reason{font-size:13px;color:var(--gray);line-height:1.7;padding:8px 12px;background:rgba(30,41,59,.5);border-radius:8px;border-left:3px solid rgba(51,65,85,.5)}
+.item-row.item-wrong .item-reason{border-left-color:var(--coral)}
+.item-row.item-ok .item-reason{border-left-color:var(--accent)}
+.reason-label{font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:3px;display:block}
+.label-wrong{color:var(--coral)}
+.label-ok{color:var(--mint)}
+
+/* CHOICES */
+.choices-grid{display:grid;gap:10px;margin-bottom:20px}
+.choice{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:10px;border:1px solid rgba(51,65,85,.4);background:rgba(15,23,42,.4);font-size:14px}
+.choice-num{font-family:'Outfit';font-weight:700;width:22px;flex-shrink:0;color:var(--gray)}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.correct .choice-text{color:var(--white);font-weight:600}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-num{color:var(--coral)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+
+/* ANSWER REVEAL */
+.answer-reveal{display:flex;align-items:center;gap:12px;padding:14px 20px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);border-radius:10px;margin-bottom:20px}
+.ans-label{font-size:12px;font-weight:700;color:var(--mint);letter-spacing:1px}
+.ans-text{font-size:15px;font-weight:700;color:var(--white)}
+.ans-num{font-family:'Outfit';font-size:22px;font-weight:800;color:var(--mint);margin-left:auto}
+
+/* ANALYSIS */
+.analysis-box{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:24px;margin-bottom:16px}
+.analysis-box h4{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:14px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.9;margin-bottom:10px}
+.analysis-box p:last-child{margin-bottom:0}
+.analysis-box strong{color:var(--white);font-weight:600}
+
+/* WARNING */
+.warning-box{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.warning-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:10px}
+.warning-box p{font-size:14px;color:var(--gray);line-height:1.8}
+
+/* KEY STRUCTURE */
+.key-structure{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.key-structure h4{font-size:13px;font-weight:700;color:var(--amber);margin-bottom:12px}
+.key-structure ul{list-style:none}
+.key-structure li{padding:6px 0;font-size:14px;color:var(--gray);display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid rgba(51,65,85,.2)}
+.key-structure li:last-child{border-bottom:none}
+.key-structure li::before{content:'→';color:var(--amber);flex-shrink:0;font-weight:700}
+
+/* SUMMARY TABLE */
+.summary-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:1px solid rgba(51,65,85,.4);margin-bottom:48px}
+.summary-table th{background:rgba(30,41,59,.8);padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:center}
+.summary-table td{padding:13px 16px;border-top:1px solid rgba(51,65,85,.3);font-size:13px;text-align:center;color:var(--gray)}
+.summary-table td:first-child{font-weight:700;color:var(--white);text-align:left}
+.summary-table tr:hover td{background:rgba(99,102,241,.04)}
+.ans-mint{color:var(--mint);font-weight:700;font-family:'Outfit';font-size:16px}
+.ok-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.ng-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--coral)}
+
+.card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-accent{border-color:rgba(99,102,241,.3)}
+
+.scroll-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;box-shadow:0 4px 20px rgba(99,102,241,.4);transition:all .2s;z-index:50;text-decoration:none;color:white}
+.scroll-top:hover{transform:translateY(-3px)}
+
+@media(max-width:768px){
+  .problem-header{flex-direction:column;gap:8px}
+  .problem-num{font-size:32px}
+  .passage-box{font-size:14px}
+  .item-row{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+  <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+  <a href="/suneung-info.html" class="nav-back">← 수능정보 목록</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-inner">
+  <div class="type-badge">유형별 풀이법</div>
+  <h1>문맥상 낱말 <em>완전정복</em><br>반의어 함정 탐지법</h1>
+  <p class="hero-sub">2026학년도 수능 30번 기출 실전 분석 — 밑줄 친 낱말은 항상 <strong style="color:var(--white)">글의 논리 방향과 반대</strong>인 하나가 정답이다</p>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-dot dot-accent"></span>문항: 30번</div>
+    <div class="meta-item"><span class="meta-dot dot-amber"></span>배점: 3점</div>
+    <div class="meta-item"><span class="meta-dot dot-mint"></span>2026 수능 기출 기반</div>
+    <div class="meta-item"><span class="meta-dot dot-coral"></span>홀수형 정답 기준</div>
+  </div>
+</div>
+</section>
+
+<div class="content">
+
+<!-- FORMULA -->
+<div style="margin-bottom:48px">
+  <div class="section-label">핵심 전략</div>
+  <div class="section-title">문맥상 낱말 <em>4단계 풀이법</em></div>
+  <div class="formula-box">
+    <p style="color:var(--gray);font-size:14px;line-height:1.8">문맥상 낱말 문제의 정답은 항상 <strong style="color:var(--white)">글의 전체 논리 방향과 반대되는 단어</strong>다. 단어 하나만 보지 말고 반드시 해당 문장이 글에서 하는 역할을 파악해야 한다.</p>
+    <div class="formula-steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">글의 핵심 주제·방향 파악</div>
+        <div class="step-desc">먼저 글 전체가 무엇을 주장하는지 파악한다. 각 밑줄 단어가 그 주장과 같은 방향인지 반대 방향인지를 판단하는 기준이 된다.</div>
+        <span class="step-tip">도입부 주제문 = 전체 방향의 나침반</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">밑줄 단어의 문장 내 역할 파악</div>
+        <div class="step-desc">밑줄 단어가 포함된 문장이 글에서 어떤 역할을 하는지 확인한다. 주장인지, 예시인지, 예외인지, 결론인지에 따라 논리 방향이 달라진다.</div>
+        <span class="step-tip">주장·결론 문장 → 핵심 방향과 일치해야 함</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">반의어 후보 확인</div>
+        <div class="step-desc">밑줄 단어를 반의어로 바꿨을 때 문장이 글의 논리와 자연스럽게 일치하면 그것이 정답이다. 바꾼 뒤에도 어색하면 오답 후보에서 제거한다.</div>
+        <span class="step-tip">abandon ↔ secure / gain / maintain</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">나머지 4개 오답 확인 소거</div>
+        <div class="step-desc">정답 후보 1개를 찾은 뒤, 나머지 4개가 글의 논리와 일치하는지 재확인한다. 오답들은 모두 글의 흐름에 잘 어울리는 단어들이다.</div>
+        <span class="step-tip">오답 4개는 모두 문맥에 맞는 단어 — 바꾸면 어색함</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 30번 -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">30</div>
+    <div class="problem-meta">
+      <div class="problem-title">다음 글의 밑줄 친 부분 중, 문맥상 낱말의 쓰임이 적절하지 않은 것은? [3점]</div>
+      <div class="problem-tags">
+        <span class="tag tag-type">문맥상 낱말</span>
+        <span class="tag tag-score">3점</span>
+        <span class="tag tag-answer">정답 ⑤</span>
+        <span class="tag tag-hard">고난도</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 지문 -->
+  <div class="passage-box">
+    <em>Situational ethics</em> is an ethical theory that takes into account the context of a situation or an act when judging whether it is ethical. Supporters of this theory willingly permit casting aside
+    <span class="cn-ok">①</span> <span class="uline-ok">absolute</span>
+    moral standards. In the absence of a universal standard or law, what matters is the outcome or consequences; so, the end
+    <span class="cn-ok">②</span> <span class="uline-ok">justifies</span>
+    the means. Possibly the following contrasting realities can help illustrate the application of situational ethics. In a pickup game of basketball played among friends, everyone is expected to call his or her own fouls or acknowledge knocking the ball out-of-bounds. Caring about one's friends and maybe getting to
+    <span class="cn-ok">③</span> <span class="uline-ok">keep</span>
+    playing with the group leads to these actions. But, once an organized game is played with officials, most athletes will not admit to the same fouls or violations as the end goal of winning is more important than expressing
+    <span class="cn-ok">④</span> <span class="uline-ok">concern</span>
+    for competitors. Situational ethics has been extended by many athletes and coaches to mean trying to get away with as many actions on the field or court as possible to
+    <span class="cn-wrong">⑤</span> <span class="uline-wrong">abandon</span>
+    competitive advantages.
+  </div>
+
+  <!-- 전문 해석 -->
+  <div class="trans-box">
+    <span class="trans-label">🇰🇷 전문 해석</span>
+    <em>상황 윤리</em>는 어떤 행위가 윤리적인지 판단할 때 상황이나 행위의 맥락을 고려하는 윤리 이론이다. 이 이론의 지지자들은 <span class="trans-key">절대적인</span> 도덕적 기준을 기꺼이 폐기하는 것을 허용한다. 보편적인 기준이나 법이 없는 상황에서, 중요한 것은 결과나 결과물이다. 따라서 목적은 수단을 <span class="trans-key">정당화한다</span>. 아마도 다음의 대조적인 현실이 상황 윤리의 적용을 보여주는 데 도움이 될 수 있다. 친구들끼리 하는 농구 픽업 게임에서, 모든 사람은 자신의 파울을 선언하거나 공을 경계 밖으로 친 것을 인정하도록 기대된다. 친구를 배려하고 아마도 계속 그룹과 함께 <span class="trans-key">플레이하는</span> 것이 이러한 행동으로 이어진다. 그러나 심판과 함께 하는 공식 경기에서는, 대부분의 선수들이 이기는 최종 목표가 경쟁자에 대한 <span class="trans-key">배려</span>를 표현하는 것보다 더 중요하기 때문에 같은 파울이나 위반을 인정하지 않을 것이다. 상황 윤리는 많은 선수와 코치들에 의해 경쟁적 이점을 <span class="trans-key">포기하기(→ 확보하기)</span> 위해 경기장에서 가능한 한 많은 행동을 빠져나가려 하는 것을 의미하도록 확장되었다.
+  </div>
+
+  <!-- 논리 흐름 다이어그램 -->
+  <div style="margin-bottom:20px">
+    <div class="section-label" style="margin-bottom:12px">논리 흐름 분석</div>
+    <div class="logic-flow">
+      <div class="logic-block lb-intro">
+        <span class="logic-block-label">📌 도입 — 상황 윤리 정의</span>
+        상황 윤리 = <strong>절대적 도덕 기준을 폐기</strong>하고 결과가 수단을 정당화한다는 이론
+      </div>
+      <div class="logic-block lb-case1">
+        <span class="logic-block-label">🏀 사례 1 — 친구끼리 하는 픽업 게임 (규칙 준수)</span>
+        친구와의 관계 유지 → <strong>자신의 파울 인정, 규칙 준수</strong> → <span class="h-mint">계속 함께 플레이(keep playing)</span>하기 위함
+      </div>
+      <div class="logic-block lb-case2">
+        <span class="logic-block-label">🏆 사례 2 — 공식 경기 (이기는 것이 최우선)</span>
+        이기는 것이 목표 → <strong>파울·위반 인정 거부</strong> → 상대방 배려(<span class="h-coral">concern for competitors</span>)보다 승리가 우선
+      </div>
+      <div class="logic-block lb-concl">
+        <span class="logic-block-label">🎯 결론 — 상황 윤리의 확장된 의미</span>
+        경기장에서 최대한 많은 위반을 빠져나가려 함 → 목적: <span class="h-amber">경쟁적 이점을 <strong>확보(secure/gain)</strong>하기 위해</span>
+        <br><span style="color:var(--coral);font-size:13px;margin-top:4px;display:block">⑤ abandon(포기하다) → 이겨야 한다는 논리와 정반대 방향 → 정답</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 선택지 -->
+  <div class="choices-grid">
+    <div class="choice wrong"><span class="choice-num">①</span><span class="choice-text">absolute <span style="color:var(--gray);font-size:12px">(절대적인)</span></span></div>
+    <div class="choice wrong"><span class="choice-num">②</span><span class="choice-text">justifies <span style="color:var(--gray);font-size:12px">(정당화하다)</span></span></div>
+    <div class="choice wrong"><span class="choice-num">③</span><span class="choice-text">keep <span style="color:var(--gray);font-size:12px">(계속하다)</span></span></div>
+    <div class="choice wrong"><span class="choice-num">④</span><span class="choice-text">concern <span style="color:var(--gray);font-size:12px">(배려, 관심)</span></span></div>
+    <div class="choice correct"><span class="choice-num">⑤</span><span class="choice-text">abandon <span style="color:var(--gray);font-size:12px">(포기하다)</span> <span style="color:var(--mint);font-size:12px;font-weight:700;margin-left:8px">→ secure / gain (확보하다)</span></span></div>
+  </div>
+
+  <div class="answer-reveal">
+    <span class="ans-label">정답</span>
+    <span class="ans-text">⑤ abandon → secure / gain (경쟁적 이점을 확보하기 위해)</span>
+    <span class="ans-num">⑤</span>
+  </div>
+
+  <!-- 5항목 전체 분석 -->
+  <div class="section-label" style="margin-bottom:14px">전체 항목 분석</div>
+  <div class="items-grid">
+
+    <!-- ① -->
+    <div class="item-row item-ok">
+      <div class="item-badge badge-ok">①</div>
+      <div class="item-content">
+        <div class="item-eng">willingly permit casting aside <span class="ok-word">absolute</span> moral standards</div>
+        <div class="item-kor"><span class="trans-key">절대적인</span> 도덕 기준을 기꺼이 폐기하는 것을 허용한다</div>
+        <div class="item-reason">
+          <span class="reason-label label-ok">✅ 문맥상 적절</span>
+          상황 윤리의 정의: <strong>절대적 도덕 기준을 버리고 상황에 따라 판단</strong>한다는 것이 핵심이다. "absolute moral standards를 폐기한다"는 표현은 상황 윤리의 본질을 정확히 설명하므로 올바르다.
+        </div>
+      </div>
+    </div>
+
+    <!-- ② -->
+    <div class="item-row item-ok">
+      <div class="item-badge badge-ok">②</div>
+      <div class="item-content">
+        <div class="item-eng">the end <span class="ok-word">justifies</span> the means</div>
+        <div class="item-kor">목적은 수단을 <span class="trans-key">정당화한다</span></div>
+        <div class="item-reason">
+          <span class="reason-label label-ok">✅ 문맥상 적절</span>
+          상황 윤리의 핵심 원리: 결과(end)가 좋으면 수단(means)도 정당화된다는 논리다. <span class="h-mint">justifies(정당화한다)</span>는 "what matters is the outcome" 문장과 정확히 같은 방향으로 이어진다.
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ -->
+    <div class="item-row item-ok">
+      <div class="item-badge badge-ok">③</div>
+      <div class="item-content">
+        <div class="item-eng">getting to <span class="ok-word">keep</span> playing with the group</div>
+        <div class="item-kor">그룹과 함께 <span class="trans-key">계속 플레이하는</span> 것</div>
+        <div class="item-reason">
+          <span class="reason-label label-ok">✅ 문맥상 적절</span>
+          친구들과의 픽업 게임에서 파울을 솔직히 인정하는 이유: <strong>친구 관계 유지 + 계속 함께 플레이하기 위함</strong>. <span class="h-mint">keep playing</span> = 관계 유지를 통한 지속적 참여라는 문맥과 정확히 일치한다.
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ -->
+    <div class="item-row item-ok">
+      <div class="item-badge badge-ok">④</div>
+      <div class="item-content">
+        <div class="item-eng">more important than expressing <span class="ok-word">concern</span> for competitors</div>
+        <div class="item-kor">경쟁자에 대한 <span class="trans-key">배려</span>를 표현하는 것보다 더 중요하다</div>
+        <div class="item-reason">
+          <span class="reason-label label-ok">✅ 문맥상 적절</span>
+          공식 경기에서는 이기는 것이 최우선 목표이므로 경쟁자에 대한 배려(concern)는 뒷순위로 밀린다. <span class="h-mint">concern(배려·관심)</span>이 이기는 것보다 덜 중요하다는 맥락에서 자연스럽다.
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ -->
+    <div class="item-row item-wrong">
+      <div class="item-badge badge-wrong">⑤</div>
+      <div class="item-content">
+        <div class="item-eng">trying to get away with as many actions as possible to <span class="wrong-word">abandon</span> <span class="correct-word">→ secure / gain</span> competitive advantages</div>
+        <div class="item-kor">경쟁적 이점을 <span class="h-coral">포기하기(abandon)</span> → <span class="h-mint">확보하기(secure / gain)</span> 위해</div>
+        <div class="item-reason">
+          <span class="reason-label label-wrong">❌ 문맥상 부적절 — 정답</span>
+          상황 윤리를 확장 적용한 선수·코치들은 <strong>최대한 많은 위반을 빠져나가려</strong> 한다. 이 행동의 목적은 경쟁적 이점을 <span class="h-mint">"확보(gain/secure)"</span>하기 위함이다. <span class="h-coral">abandon(포기하다)</span>은 이기려는 논리와 정반대이므로 문맥상 맞지 않는다.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 분석 -->
+  <div class="analysis-box">
+    <h4>🔍 ⑤번 오답의 핵심 — 논리 방향 역전</h4>
+    <p><strong>결론 문장의 논리 방향:</strong> "trying to get away with as many actions... to <span class="h-coral">abandon</span> competitive advantages"</p>
+    <p>글 전체의 흐름은 <span class="h-mint">상황 윤리 → 결과(이기는 것)가 수단을 정당화 → 규칙 위반도 이기기 위한 수단</span>이다. 따라서 최대한 위반을 빠져나가려는 행동의 목적은 경쟁적 이점을 <strong>"확보(gain / secure)"</strong>하기 위함이어야 한다.</p>
+    <p><span class="h-coral">abandon(포기하다)</span>을 쓰면 "위반을 빠져나가서 이점을 포기하려 한다"는 말이 되어 전체 논리가 붕괴된다. 이기기 위해 규칙을 어기면서 오히려 이점을 포기한다는 것은 모순이다.</p>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ 3점 고난도 함정 — ④번과 ⑤번 혼동</h4>
+    <p>④번 concern(배려)은 공식 경기에서 배려보다 승리가 중요하다는 문맥에서 배려가 뒷순위로 밀린다는 의미로 쓰였으므로 올바르다. 반면 ⑤번 abandon은 글 전체 방향(이기기 위해 규칙을 어긴다)과 정반대다. 문맥상 낱말 문제에서 정답은 항상 <strong>글의 논리 방향과 반대되는 단어 하나</strong>다. 주변 문장이 아닌 글 전체의 방향을 기준으로 판단해야 한다.</p>
+  </div>
+
+  <div class="key-structure">
+    <h4>📊 30번 5항목 정오 요약</h4>
+    <ul>
+      <li><span class="ok-dot"></span>&nbsp;① absolute — 절대적 기준을 폐기한다는 상황 윤리의 정의와 일치</li>
+      <li><span class="ok-dot"></span>&nbsp;② justifies — 결과가 수단을 정당화한다는 핵심 원리와 일치</li>
+      <li><span class="ok-dot"></span>&nbsp;③ keep — 친구 관계 유지를 위해 규칙을 지킨다는 맥락과 일치</li>
+      <li><span class="ok-dot"></span>&nbsp;④ concern — 이기는 것이 배려보다 중요하다는 문맥에서 자연스러움</li>
+      <li><span class="ng-dot"></span>&nbsp;⑤ abandon → secure/gain — 이기기 위해 규칙을 어기는 논리와 <strong style="color:var(--coral)">정반대, 정답</strong></li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SUMMARY TABLE -->
+<div style="margin-bottom:48px">
+  <div class="section-label">총정리</div>
+  <div class="section-title">2026 수능 30번 <em>낱말 항목 & 판단 기준</em></div>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th style="text-align:left">항목</th>
+        <th>밑줄 단어</th>
+        <th>의미</th>
+        <th>정오</th>
+        <th>판단 기준</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>①</td>
+        <td>absolute</td>
+        <td>절대적인</td>
+        <td><span class="ans-mint">✓</span></td>
+        <td>상황 윤리의 정의 = 절대 기준 폐기</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td>justifies</td>
+        <td>정당화하다</td>
+        <td><span class="ans-mint">✓</span></td>
+        <td>결과 중심 원리 = 목적이 수단을 정당화</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td>keep</td>
+        <td>계속하다</td>
+        <td><span class="ans-mint">✓</span></td>
+        <td>관계 유지 = 계속 함께 플레이하기 위함</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td>concern</td>
+        <td>배려, 관심</td>
+        <td><span class="ans-mint">✓</span></td>
+        <td>이기는 것 > 배려 → 배려가 뒷전이 됨</td>
+      </tr>
+      <tr>
+        <td style="color:var(--coral);font-weight:800">⑤</td>
+        <td style="color:var(--coral)">abandon → secure</td>
+        <td style="color:var(--coral)">포기 → 확보</td>
+        <td style="color:var(--coral);font-weight:700">✗ 정답</td>
+        <td>위반 = 이점 확보 수단 → abandon은 논리 역전</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FINAL TIP -->
+<div class="card card-accent">
+  <div class="section-label" style="margin-bottom:12px">문맥상 낱말 최종 전략</div>
+  <p style="font-size:15px;color:var(--gray);line-height:2">
+    문맥상 낱말 문제에서 정답은 항상 <span style="color:var(--coral);font-weight:700">글의 핵심 논리 방향과 정반대인 단어</span>다. 오답 4개는 모두 문맥에 잘 어울리는 단어들이므로, 나머지 4개를 확인하는 것보다 <span style="color:var(--mint);font-weight:700">글의 큰 흐름(주장 → 예시 → 결론)을 먼저 파악</span>하는 것이 빠르다. 3점짜리는 특히 결론 부분에 함정이 있는 경우가 많다. 결론 문장의 단어가 앞에서 전개된 논리 방향과 일치하는지 반드시 확인하자.
+  </p>
+</div>
+
+</div>
+
+<a href="#" class="scroll-top">↑</a>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+document.querySelector('.scroll-top').addEventListener('click', e => {
+  e.preventDefault();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity=1; e.target.style.transform='translateY(0)'; }
+  });
+}, {threshold:0.08});
+document.querySelectorAll('.problem-section, .formula-box, .summary-table, .items-grid').forEach(el => {
+  el.style.opacity=0; el.style.transform='translateY(20px)'; el.style.transition='all .6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
