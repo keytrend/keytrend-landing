@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>글의 목적 완전정복 — 첫 문장·마지막 문장 집중 공략법 | Key Trend 수능정보</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);line-height:1.8;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15);padding:14px 0}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.type-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);padding:6px 18px;border-radius:100px;font-size:12px;font-weight:700;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Outfit';font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--gray);font-size:16px;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.meta-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray)}
+.meta-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-mint{background:var(--mint)}.dot-coral{background:var(--coral)}.dot-amber{background:var(--amber)}.dot-accent{background:var(--accent)}
+
+.content{max-width:900px;margin:0 auto;padding:0 24px 80px}
+.section-label{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
+.section-title{font-family:'Outfit';font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:24px;line-height:1.3}
+.section-title em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.divider{border:none;border-top:1px solid rgba(51,65,85,.3);margin:48px 0}
+
+/* FORMULA */
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.3);border-radius:20px;padding:36px;margin-bottom:48px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+@media(max-width:600px){.formula-steps{grid-template-columns:1fr}}
+.step-card{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:20px;transition:border-color .2s}
+.step-card:hover{border-color:var(--accent)}
+.step-num{font-family:'Outfit';font-size:36px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.4;line-height:1}
+.step-title{font-size:15px;font-weight:700;color:var(--white);margin:6px 0 4px}
+.step-desc{font-size:13px;color:var(--gray);line-height:1.7}
+.step-tip{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(99,102,241,.15);color:var(--accent2)}
+
+/* PURPOSE TYPE TABLE */
+.purpose-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;border:1px solid rgba(51,65,85,.4);margin-bottom:48px}
+.purpose-table th{background:rgba(30,41,59,.8);padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;text-align:left}
+.purpose-table td{padding:13px 16px;border-top:1px solid rgba(51,65,85,.3);font-size:13px;color:var(--gray);vertical-align:top}
+.purpose-table td:first-child{font-weight:700;color:var(--white);white-space:nowrap}
+.purpose-table td:nth-child(2){color:var(--mint);font-family:'Outfit';font-weight:600;white-space:nowrap}
+.purpose-table tr:hover td{background:rgba(99,102,241,.04)}
+
+/* PROBLEM SECTION */
+.problem-section{margin-bottom:56px}
+.problem-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(51,65,65,.4)}
+.problem-num{font-family:'Outfit';font-size:42px;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;flex-shrink:0}
+.problem-meta{flex:1}
+.problem-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.problem-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-type{background:rgba(99,102,241,.15);color:var(--accent2)}
+.tag-score{background:rgba(251,191,36,.15);color:var(--amber)}
+.tag-answer{background:rgba(52,211,153,.15);color:var(--mint)}
+
+/* LETTER STYLED PASSAGE */
+.letter-wrap{background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.4);border-radius:14px;overflow:hidden;margin-bottom:10px}
+.letter-header{background:rgba(30,41,59,.6);padding:12px 24px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(51,65,85,.3)}
+.letter-dot{width:10px;height:10px;border-radius:50%}
+.letter-dot-r{background:#ef4444}.letter-dot-y{background:#fbbf24}.letter-dot-g{background:#34d399}
+.letter-title-bar{font-size:12px;color:var(--gray);margin-left:8px}
+.letter-body{padding:24px 28px;font-size:15px;line-height:2.1;color:#cbd5e1}
+.letter-body .key-phrase{color:var(--mint);font-weight:700}
+.letter-body .purpose-phrase{background:rgba(99,102,241,.15);border-radius:4px;padding:1px 6px;color:var(--accent2);font-weight:700}
+.letter-body .trap-phrase{color:var(--coral);font-weight:600}
+.letter-salutation{font-size:14px;color:var(--gray);font-style:italic;padding-top:12px;border-top:1px solid rgba(51,65,85,.2);margin-top:16px}
+
+/* ANNOTATION OVERLAY */
+.annotated-box{position:relative;margin-bottom:16px}
+.anno-row{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:6px}
+.anno-row.anno-key{background:rgba(52,211,153,.06);border-left:3px solid var(--mint)}
+.anno-row.anno-purpose{background:rgba(99,102,241,.08);border-left:3px solid var(--accent2)}
+.anno-row.anno-trap{background:rgba(244,114,182,.06);border-left:3px solid var(--coral)}
+.anno-icon{font-size:14px;flex-shrink:0;margin-top:2px}
+.anno-content{flex:1;color:var(--gray);line-height:1.7}
+.anno-content strong{color:var(--white);font-weight:600}
+.anno-content .h-mint{color:var(--mint);font-weight:700}
+.anno-content .h-coral{color:var(--coral);font-weight:700}
+.anno-content .h-amber{color:var(--amber);font-weight:700}
+.anno-content .h-acc{color:var(--accent2);font-weight:700}
+
+/* TRANS BOX */
+.trans-box{background:rgba(30,41,59,.4);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:16px;font-size:14px;color:var(--gray);line-height:1.9}
+.trans-label{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:8px;display:block}
+.trans-key{color:#e2e8f0;font-weight:500}
+
+/* CHOICES */
+.choices-grid{display:grid;gap:10px;margin-bottom:20px}
+.choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:10px;border:1px solid rgba(51,65,85,.4);background:rgba(15,23,42,.4);font-size:14px}
+.choice-num{font-family:'Outfit';font-weight:700;width:22px;flex-shrink:0;color:var(--gray);margin-top:1px}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.correct .choice-text{color:var(--white);font-weight:600}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-num{color:var(--coral)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+
+/* ANSWER REVEAL */
+.answer-reveal{display:flex;align-items:center;gap:12px;padding:14px 20px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);border-radius:10px;margin-bottom:20px}
+.ans-label{font-size:12px;font-weight:700;color:var(--mint);letter-spacing:1px}
+.ans-text{font-size:15px;font-weight:700;color:var(--white)}
+.ans-num{font-family:'Outfit';font-size:22px;font-weight:800;color:var(--mint);margin-left:auto}
+
+/* ANALYSIS */
+.analysis-box{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:24px;margin-bottom:16px}
+.analysis-box h4{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:14px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.9;margin-bottom:10px}
+.analysis-box p:last-child{margin-bottom:0}
+.analysis-box strong{color:var(--white);font-weight:600}
+.h-mint{color:var(--mint);font-weight:700}
+.h-coral{color:var(--coral);font-weight:700}
+.h-amber{color:var(--amber);font-weight:700}
+.h-acc{color:var(--accent2);font-weight:700}
+
+/* KEY STRUCTURE */
+.key-structure{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.key-structure h4{font-size:13px;font-weight:700;color:var(--amber);margin-bottom:12px}
+.key-structure ul{list-style:none}
+.key-structure li{padding:6px 0;font-size:14px;color:var(--gray);display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid rgba(51,65,85,.2)}
+.key-structure li:last-child{border-bottom:none}
+.key-structure li::before{content:'→';color:var(--amber);flex-shrink:0;font-weight:700}
+
+/* WARNING */
+.warning-box{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.2);border-radius:12px;padding:20px;margin-bottom:16px}
+.warning-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:10px}
+.warning-box p{font-size:14px;color:var(--gray);line-height:1.8}
+
+/* KEYWORD HIGHLIGHT CHIPS */
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid}
+.chip-mint{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3);color:var(--mint)}
+.chip-acc{background:rgba(99,102,241,.1);border-color:rgba(99,102,241,.3);color:var(--accent2)}
+.chip-coral{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.3);color:var(--coral)}
+
+.card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-accent{border-color:rgba(99,102,241,.3)}
+
+.scroll-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;box-shadow:0 4px 20px rgba(99,102,241,.4);transition:all .2s;z-index:50;text-decoration:none;color:white}
+.scroll-top:hover{transform:translateY(-3px)}
+
+@media(max-width:768px){
+  .problem-header{flex-direction:column;gap:8px}
+  .problem-num{font-size:32px}
+  .letter-body{padding:18px 20px;font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+  <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+  <a href="/suneung-info.html" class="nav-back">← 수능정보 목록</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-inner">
+  <div class="type-badge">유형별 풀이법</div>
+  <h1>글의 목적 <em>완전정복</em><br>첫·끝 문장 집중 공략법</h1>
+  <p class="hero-sub">2026학년도 수능 18번 기출 실전 분석 — 목적은 <strong style="color:var(--white)">첫 문장에서 배경, 마지막 문장에서 핵심 요청</strong>으로 드러난다</p>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-dot dot-accent"></span>문항: 18번</div>
+    <div class="meta-item"><span class="meta-dot dot-amber"></span>배점: 2점</div>
+    <div class="meta-item"><span class="meta-dot dot-mint"></span>2026 수능 기출 기반</div>
+    <div class="meta-item"><span class="meta-dot dot-coral"></span>홀수형 정답 기준</div>
+  </div>
+</div>
+</section>
+
+<div class="content">
+
+<!-- FORMULA -->
+<div style="margin-bottom:48px">
+  <div class="section-label">핵심 전략</div>
+  <div class="section-title">글의 목적 <em>3단계 풀이법</em></div>
+  <div class="formula-box">
+    <p style="color:var(--gray);font-size:14px;line-height:1.8">글의 목적 문제는 <strong style="color:var(--white)">첫 문장(배경·자기소개)과 마지막 문장(핵심 요청·행동 촉구)</strong>을 집중적으로 읽으면 30초 안에 풀 수 있다. 중간 내용은 근거나 배경 설명이므로 빠르게 훑는다.</p>
+    <div class="formula-steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">첫 문장 — 글쓴이·배경 파악</div>
+        <div class="step-desc">글쓴이가 누구인지, 왜 이 글을 쓰는지에 대한 배경이 나온다. "I am writing to you about..."처럼 목적을 암시하는 표현이 초반에 등장한다.</div>
+        <span class="step-tip">I am + 직책 → 글쓴이의 권한·역할 파악</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">중간 — 배경·근거 빠르게 훑기</div>
+        <div class="step-desc">목적을 뒷받침하는 배경 설명이 나온다. 정확한 목적 선택에 필요한 세부 정보만 확인하고 빠르게 넘어간다.</div>
+        <span class="step-tip">For this reason / Therefore → 결론 연결어 집중</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">마지막 문장 — 핵심 요청 확인</div>
+        <div class="step-desc">"Therefore, I am encouraging you to...", "Please..." 같은 직접적 요청·행동 촉구가 나온다. 이 문장이 글의 목적 그 자체다.</div>
+        <span class="step-tip">I am encouraging / Please / I hope → 목적 결정 문장</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PURPOSE TYPE TABLE -->
+<div style="margin-bottom:48px">
+  <div class="section-label">빠른 참고</div>
+  <div class="section-title" style="font-size:20px">자주 나오는 <em>목적 유형 & 핵심 표현</em></div>
+  <table class="purpose-table">
+    <thead>
+      <tr><th>목적 유형</th><th>핵심 키워드</th><th>자주 쓰이는 표현</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>제안·독려하려고</td>
+        <td>encourage / submit / propose</td>
+        <td>I am encouraging you to submit... / Please consider...</td>
+      </tr>
+      <tr>
+        <td>공지·안내하려고</td>
+        <td>inform / announce / notify</td>
+        <td>I am writing to inform you that... / Please be advised...</td>
+      </tr>
+      <tr>
+        <td>요청하려고</td>
+        <td>request / ask / would like</td>
+        <td>I would like to ask you to... / Could you please...</td>
+      </tr>
+      <tr>
+        <td>항의·불만을 제기하려고</td>
+        <td>complain / disappointed / unacceptable</td>
+        <td>I was disappointed to find... / I would like to report...</td>
+      </tr>
+      <tr>
+        <td>감사·칭찬하려고</td>
+        <td>thank / appreciate / grateful</td>
+        <td>I am writing to express my gratitude... / I would like to thank...</td>
+      </tr>
+      <tr>
+        <td>소개·설명하려고</td>
+        <td>introduce / explain / describe</td>
+        <td>I am pleased to introduce... / I would like to explain...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- 18번 -->
+<div class="problem-section">
+  <div class="problem-header">
+    <div class="problem-num">18</div>
+    <div class="problem-meta">
+      <div class="problem-title">다음 글의 목적으로 가장 적절한 것은?</div>
+      <div class="problem-tags">
+        <span class="tag tag-type">글의 목적</span>
+        <span class="tag tag-score">2점</span>
+        <span class="tag tag-answer">정답 ②</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 지문 — 편지 스타일 -->
+  <div class="letter-wrap" style="margin-bottom:10px">
+    <div class="letter-header">
+      <span class="letter-dot letter-dot-r"></span>
+      <span class="letter-dot letter-dot-y"></span>
+      <span class="letter-dot letter-dot-g"></span>
+      <span class="letter-title-bar">📧 Dear students — Amanda Clark, School Club Director</span>
+    </div>
+    <div class="letter-body">
+      <p>Dear students,</p>
+      <br>
+      <p>I am <span class="purpose-phrase">Amanda Clark, the school club director</span>, and I am <span class="key-phrase">writing to you about our school clubs</span>. Over the last few semesters, there have been <span class="key-phrase">requests for more diverse school clubs</span>. For this reason, the school decided to <span class="key-phrase">expand the number of clubs</span> for extracurricular activities. This provides students with an opportunity to make additional clubs. Students can make any type of club based on their various interests, such as hip-hop, K-pop dancing, or coding. Therefore, I am <span class="key-phrase">encouraging you to submit a proposal for a new club</span> that you would like to create. Please turn this in to my office by the end of this week. I look forward to seeing your great ideas.</p>
+      <br>
+      <div class="letter-salutation">Best regards,<br>Amanda Clark</div>
+    </div>
+  </div>
+
+  <!-- 주석 분석 -->
+  <div class="annotated-box" style="margin-bottom:20px">
+    <div class="anno-row anno-purpose">
+      <span class="anno-icon">👤</span>
+      <div class="anno-content"><strong>첫 문장 — 글쓴이 & 목적 암시:</strong> <span class="h-acc">Amanda Clark, the school club director</span> → 학교 클럽을 관리하는 담당자가 클럽과 관련된 내용을 전달하려 함</div>
+    </div>
+    <div class="anno-row anno-key">
+      <span class="anno-icon">📋</span>
+      <div class="anno-content"><strong>배경 (근거):</strong> 지난 몇 학기 동안 <span class="h-mint">더 다양한 학교 클럽에 대한 요청</span>이 있었음 → 학교가 클럽 수를 늘리기로 결정</div>
+    </div>
+    <div class="anno-row anno-key">
+      <span class="anno-icon">🎯</span>
+      <div class="anno-content"><strong>핵심 목적 문장 — "Therefore, I am <span class="h-mint">encouraging you to submit a proposal</span> for a new club"</strong> → 새 클럽 개설 제안서 제출을 독려하는 것이 글의 목적</div>
+    </div>
+    <div class="anno-row anno-purpose">
+      <span class="anno-icon">📅</span>
+      <div class="anno-content"><strong>행동 촉구:</strong> <span class="h-acc">"Please turn this in to my office by the end of this week"</span> → 마감 기한까지 제출 요청 → 독려 목적 재확인</div>
+    </div>
+  </div>
+
+  <!-- 전문 해석 -->
+  <div class="trans-box">
+    <span class="trans-label">🇰🇷 전문 해석</span>
+    친애하는 학생들에게,<br><br>
+    저는 <span class="trans-key">학교 클럽 담당자인 Amanda Clark</span>이며, <span class="trans-key">우리 학교 클럽에 관해</span> 여러분에게 글을 씁니다. 지난 몇 학기 동안 <span class="trans-key">더 다양한 학교 클럽에 대한 요청</span>이 있었습니다. 이러한 이유로, 학교는 과외 활동을 위한 <span class="trans-key">클럽 수를 확대하기로</span> 결정했습니다. 이는 학생들에게 추가 클럽을 만들 기회를 제공합니다. 학생들은 힙합, K-팝 댄스, 코딩 등 다양한 관심사에 따라 어떤 유형의 클럽이든 만들 수 있습니다. 따라서 저는 여러분이 <span class="trans-key">만들고 싶은 새 클럽에 대한 제안서를 제출하도록 독려</span>합니다. 이번 주 말까지 제 사무실에 제출해 주세요. 여러분의 훌륭한 아이디어를 기대합니다.<br><br>
+    <em>Amanda Clark 드림</em>
+  </div>
+
+  <!-- 핵심 키워드 칩 -->
+  <div class="chip-row">
+    <span class="chip chip-mint">📌 encouraging you to submit</span>
+    <span class="chip chip-mint">📌 proposal for a new club</span>
+    <span class="chip chip-acc">🔑 expand the number of clubs</span>
+    <span class="chip chip-acc">🔑 diverse school clubs</span>
+    <span class="chip chip-coral">⚠️ 함정: inform / recruit / explain</span>
+  </div>
+
+  <!-- 선택지 -->
+  <div class="choices-grid" style="margin-top:16px">
+    <div class="choice wrong">
+      <span class="choice-num">①</span>
+      <span class="choice-text">동아리 활동에 대한 만족도를 조사하려고</span>
+    </div>
+    <div class="choice correct">
+      <span class="choice-num">②</span>
+      <span class="choice-text">동아리 개설 제안서 제출을 독려하려고</span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">③</span>
+      <span class="choice-text">체험 활동 결과 보고서를 요청하려고</span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">④</span>
+      <span class="choice-text">동아리 신규 회원 모집을 공지하려고</span>
+    </div>
+    <div class="choice wrong">
+      <span class="choice-num">⑤</span>
+      <span class="choice-text">방과 후 활동 프로그램을 설명하려고</span>
+    </div>
+  </div>
+
+  <div class="answer-reveal">
+    <span class="ans-label">정답</span>
+    <span class="ans-text">② 동아리 개설 제안서 제출을 독려하려고</span>
+    <span class="ans-num">②</span>
+  </div>
+
+  <!-- 분석 -->
+  <div class="analysis-box">
+    <h4>🔍 핵심 논리 분석 — 정답 ②의 근거</h4>
+    <p><strong>결정적 문장 1:</strong> "Therefore, I am <span class="h-mint">encouraging you to submit a proposal for a new club</span> that you would like to create."<br>
+    → <span class="h-mint">제안서(proposal) 제출을 독려(encouraging)</span>하는 행위가 글의 목적 그 자체다.</p>
+    <p><strong>결정적 문장 2:</strong> "Please <span class="h-mint">turn this in</span> to my office by the end of this week."<br>
+    → 제출 기한과 방법까지 안내함으로써 독려를 행동 촉구로 구체화한다.</p>
+    <p><strong>흐름 요약:</strong> 클럽 다양화 요청(배경) → 학교가 클럽 수 확대 결정(근거) → <span class="h-mint">새 클럽 제안서 제출 독려(목적)</span></p>
+  </div>
+
+  <!-- 오답 소거 -->
+  <div class="key-structure">
+    <h4>🚫 오답 소거 — 왜 나머지 4개는 틀린가</h4>
+    <ul>
+      <li>① 만족도 조사: 글 어디에도 "survey / satisfaction / feedback 조사"에 해당하는 내용 없음</li>
+      <li>③ 체험 활동 결과 보고서 요청: "report / result / outcome" 관련 내용 없음 — 제안서(proposal)와 혼동 주의</li>
+      <li>④ 신규 회원 모집 공지: "recruit members / join" 내용 없음. 새 클럽을 만드는 것이지, 기존 클럽 회원 모집이 아님</li>
+      <li>⑤ 방과 후 프로그램 설명: "after-school program" 관련 설명 없음. 클럽 개설 독려가 목적임</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ 함정 주의 — ④번과 ②번 혼동</h4>
+    <p>④번 "동아리 신규 회원 모집 공지"는 글에서 "make additional clubs / make any type of club"이라는 표현 때문에 혼동할 수 있다. 그러나 글의 요청은 <strong>새 클럽을 만들기 위한 제안서(proposal)를 제출</strong>하라는 것이지, 기존 클럽의 회원을 모집하는 내용이 아니다. "encouraging you to <strong>submit a proposal for a new club</strong>"이 핵심이다.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- 총정리 -->
+<div style="margin-bottom:48px">
+  <div class="section-label">총정리</div>
+  <div class="section-title">2026 수능 18번 <em>목적 판단 근거</em></div>
+  <table class="purpose-table">
+    <thead>
+      <tr><th>문장 위치</th><th>핵심 내용</th><th>목적 판단 기여도</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>첫 문장</td>
+        <td>I am Amanda Clark, the school club director → 클럽 담당자</td>
+        <td>글쓴이의 역할 파악 → 클럽 관련 내용 예측</td>
+      </tr>
+      <tr>
+        <td>배경</td>
+        <td>requests for more diverse clubs → 학교가 클럽 수 확대 결정</td>
+        <td>목적의 배경·근거 제공</td>
+      </tr>
+      <tr>
+        <td style="color:var(--mint);font-weight:800">핵심 목적 문장</td>
+        <td style="color:var(--mint)">encouraging you to submit a proposal for a new club</td>
+        <td style="color:var(--mint);font-weight:700">글의 목적 그 자체 → 정답 결정</td>
+      </tr>
+      <tr>
+        <td>마지막 문장</td>
+        <td>Please turn this in to my office by the end of this week</td>
+        <td>행동 촉구 → 독려 목적 재확인</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FINAL TIP -->
+<div class="card card-accent">
+  <div class="section-label" style="margin-bottom:12px">글의 목적 최종 전략</div>
+  <p style="font-size:15px;color:var(--gray);line-height:2">
+    글의 목적 문제는 수능에서 <span style="color:var(--amber);font-weight:700">가장 빠르게 풀 수 있는 유형</span>이다. <span style="color:var(--mint);font-weight:700">첫 문장</span>에서 글쓴이와 배경을 파악하고, <span style="color:var(--mint);font-weight:700">마지막 문장</span>에서 "Therefore I am encouraging / Please / I would like to ask"와 같은 요청·행동 촉구 표현을 찾으면 된다. 중간 내용은 근거나 배경 설명이므로 빠르게 훑어도 충분하다. 선택지에서는 글에 없는 단어(survey, recruit, report 등)가 들어간 것을 먼저 소거하면 정답이 자연스럽게 남는다.
+  </p>
+</div>
+
+</div>
+
+<a href="#" class="scroll-top">↑</a>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+document.querySelector('.scroll-top').addEventListener('click', e => {
+  e.preventDefault();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity=1; e.target.style.transform='translateY(0)'; }
+  });
+}, {threshold:0.08});
+document.querySelectorAll('.problem-section, .formula-box, .purpose-table').forEach(el => {
+  el.style.opacity=0; el.style.transform='translateY(20px)'; el.style.transition='all .6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
