@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제목 완전정복 — 글의 핵심 긴장 관계를 한 줄로 압축하는 법 | Key Trend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.7;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15)}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;max-width:900px;margin:0 auto}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;animation:fadeUp .7s ease}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.5px}
+.badge-type{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);color:var(--accent2)}
+.badge-num{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);color:var(--mint)}
+.badge-score{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
+.badge-3pt{background:rgba(244,114,182,.12);border:1px solid rgba(244,114,182,.25);color:var(--coral)}
+.hero h1{font-family:'Outfit';font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.2;margin-bottom:16px;animation:fadeUp .7s ease .1s both}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{color:var(--gray);font-size:16px;line-height:1.8;animation:fadeUp .7s ease .2s both;max-width:680px}
+.meta-row{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;animation:fadeUp .7s ease .3s both}
+.meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray)}
+.meta-item strong{color:var(--white);font-weight:600}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.section{max-width:900px;margin:0 auto;padding:0 24px 60px}
+.section-title{font-family:'Outfit';font-size:22px;font-weight:800;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:24px;background:var(--grad1);border-radius:2px;flex-shrink:0}
+
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;margin-bottom:40px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-title{font-size:13px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.step-card{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);border-radius:12px;padding:20px}
+.step-num{font-family:'Outfit';font-size:28px;font-weight:800;color:var(--accent);opacity:.5;line-height:1}
+.step-label{font-size:14px;font-weight:700;margin:8px 0 6px;color:var(--white)}
+.step-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+/* 제목 유형 패턴 박스 */
+.title-pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.pattern-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:20px}
+.pattern-card h4{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--accent2)}
+.pattern-card .example{font-size:13px;font-family:'Outfit';color:var(--white);background:rgba(99,102,241,.1);padding:8px 12px;border-radius:8px;margin-top:8px;font-style:italic}
+.pattern-card p{font-size:12px;color:var(--gray);line-height:1.6}
+
+.signal-box{background:rgba(30,41,59,.6);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:24px;margin-bottom:24px}
+.signal-box h4{font-size:14px;font-weight:700;color:var(--amber);margin-bottom:14px}
+.signal-list{display:flex;flex-wrap:wrap;gap:8px}
+.signal-chip{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);padding:5px 14px;border-radius:8px;font-size:13px;color:var(--amber);font-weight:600}
+.signal-chip.mint{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.2);color:var(--mint)}
+.signal-chip.coral{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.2);color:var(--coral)}
+.signal-chip.accent{background:rgba(99,102,241,.1);border-color:rgba(99,102,241,.2);color:var(--accent2)}
+
+.problem-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:20px;overflow:hidden;margin-bottom:32px}
+.problem-header{background:rgba(99,102,241,.1);border-bottom:1px solid rgba(51,65,85,.4);padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+.problem-num{font-family:'Outfit';font-size:24px;font-weight:800;color:var(--accent2)}
+.problem-type-tag{font-size:12px;color:var(--gray);background:rgba(51,65,85,.5);padding:4px 12px;border-radius:6px}
+.problem-body{padding:28px}
+
+/* 글 구조 분석 */
+.structure-box{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:22px 24px;margin-bottom:24px}
+.structure-box h4{font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.str-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;font-size:14px}
+.str-row:last-child{margin-bottom:0}
+.s-tag{min-width:76px;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;text-align:center;flex-shrink:0;margin-top:2px}
+.s-tag.benefit{background:rgba(52,211,153,.15);color:var(--mint)}
+.s-tag.risk{background:rgba(244,114,182,.15);color:var(--coral)}
+.s-tag.balance{background:rgba(251,191,36,.12);color:var(--amber)}
+.s-tag.future{background:rgba(99,102,241,.2);color:var(--accent2)}
+.s-content{color:var(--gray);line-height:1.7}
+.s-content strong{color:var(--white)}
+
+.passage{background:rgba(15,23,42,.7);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:24px;margin-bottom:24px;font-size:15px;line-height:1.9}
+.hl{background:rgba(99,102,241,.2);padding:1px 3px;border-radius:3px;color:var(--accent2);font-weight:600}
+.hl.mint{background:rgba(52,211,153,.15);color:var(--mint)}
+.hl.coral{background:rgba(244,114,182,.15);color:var(--coral)}
+.hl.amber{background:rgba(251,191,36,.12);color:var(--amber)}
+.passage-ko{margin-top:16px;padding-top:16px;border-top:1px solid rgba(51,65,85,.4);color:var(--gray);font-size:14px;line-height:1.9}
+.arrow{color:var(--accent2);font-weight:700}
+.ko-line{margin-bottom:6px}
+
+.choices{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:12px;border:1px solid rgba(51,65,85,.4);background:rgba(30,41,59,.3);font-size:14px}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+.choice-num{font-family:'Outfit';font-weight:700;font-size:16px;min-width:24px;flex-shrink:0}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.wrong .choice-num{color:#ef4444}
+.choice-text{line-height:1.6}
+.choice-ko{display:block;font-size:12px;margin-top:3px}
+.choice.correct .choice-ko{color:var(--mint)}
+.choice.wrong .choice-ko{color:var(--slate)}
+.choice-badge{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;flex-shrink:0}
+.badge-correct{background:rgba(52,211,153,.2);color:var(--mint)}
+.badge-wrong{background:rgba(239,68,68,.15);color:#f87171}
+
+.analysis-box{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.analysis-box h4{font-size:13px;font-weight:700;color:var(--mint);margin-bottom:12px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.8}
+.analysis-box p strong{color:var(--white)}
+
+/* 제목 분해 박스 */
+.title-break{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:20px 24px;margin-bottom:24px}
+.title-break h4{font-size:13px;font-weight:700;color:var(--mint);margin-bottom:16px}
+.tb-row{display:flex;gap:12px;align-items:center;margin-bottom:10px;font-size:14px;flex-wrap:wrap}
+.tb-word{font-family:'Outfit';font-weight:700;color:var(--white);background:rgba(99,102,241,.15);padding:4px 14px;border-radius:8px;font-size:15px}
+.tb-arrow{color:var(--accent2);font-size:18px}
+.tb-meaning{color:var(--gray);font-size:13px}
+.tb-meaning strong{color:var(--white)}
+
+.wrong-analysis{background:rgba(244,114,182,.05);border:1px solid rgba(244,114,182,.15);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.wrong-analysis h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:12px}
+.wrong-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;font-size:13px}
+.wrong-row:last-child{margin-bottom:0}
+.wnum{font-family:'Outfit';font-weight:700;color:var(--coral);min-width:20px}
+.wtext{color:var(--gray);line-height:1.6}
+.wtext strong{color:var(--white)}
+
+.voca-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.voca-table th,.voca-table td{padding:14px 18px;font-size:13px}
+.voca-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700;text-align:left}
+.voca-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray);vertical-align:top}
+.voca-table tbody td:first-child{color:var(--white);font-weight:600;white-space:nowrap}
+.voca-table tbody tr:hover{background:rgba(99,102,241,.05)}
+td.mint{color:var(--mint)!important;font-weight:700}
+td.coral{color:var(--coral)!important}
+
+.summary-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.summary-table th,.summary-table td{padding:14px 18px;font-size:13px;text-align:center}
+.summary-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700}
+.summary-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray)}
+.summary-table tbody td:first-child{text-align:left;color:var(--white);font-weight:600}
+
+.final-card{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;position:relative;overflow:hidden;margin-bottom:60px}
+.final-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.final-card h3{font-family:'Outfit';font-size:20px;font-weight:800;margin-bottom:20px;color:var(--accent2)}
+.tip-list{display:flex;flex-direction:column;gap:12px}
+.tip-item{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.tip-text{color:var(--gray);line-height:1.7}
+.tip-text strong{color:var(--white)}
+
+#scrollTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border:none;border-radius:12px;color:white;font-size:18px;cursor:pointer;opacity:0;transition:all .3s;z-index:99;display:flex;align-items:center;justify-content:center}
+#scrollTop.visible{opacity:1}
+#scrollTop:hover{background:var(--accent2);transform:translateY(-2px)}
+.divider{height:1px;background:rgba(51,65,85,.4);margin:0 0 48px}
+
+@media(max-width:600px){
+.steps-grid{grid-template-columns:1fr 1fr}
+.title-pattern-grid{grid-template-columns:1fr}
+.problem-body{padding:20px}
+.passage{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="../suneung-info.html" class="nav-back">← 수능정보 목록</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-meta">
+    <span class="badge badge-type">📘 유형별 풀이법</span>
+    <span class="badge badge-num">24번</span>
+    <span class="badge badge-3pt">3점</span>
+  </div>
+  <h1>제목 완전정복 —<br><em>글의 핵심 긴장 관계를 한 줄로 압축하는 법</em></h1>
+  <p class="hero-desc">
+    제목 유형은 글 전체의 핵심 메시지를 <strong>압축적이고 인상적인 한 줄</strong>로 표현합니다.
+    비유·수사적 표현이 많고 3점 문항인 만큼, 글의 <strong>긴장 관계(tension)</strong>나
+    <strong>역설(paradox)</strong>을 담은 선택지가 정답인 경우가 많습니다.
+  </p>
+  <div class="meta-row">
+    <div class="meta-item"><span>📅</span><strong>2026학년도 수능</strong></div>
+    <div class="meta-item"><span>📌</span><strong>홀수형 24번 · 짝수형 24번 공통</strong></div>
+    <div class="meta-item"><span>✅</span><strong>정답: ②</strong></div>
+    <div class="meta-item"><span>🏷</span><strong>culturtainment / 문화와 엔터테인먼트의 상업화 딜레마</strong></div>
+  </div>
+</div>
+
+<!-- 핵심 전략 공식 -->
+<div class="section">
+  <h2 class="section-title">4단계 제목 추론 공식</h2>
+  <div class="formula-box">
+    <div class="formula-title">⚡ Key Trend 핵심 공식</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-label">글의 핵심 긴장 파악</div>
+        <div class="step-desc">글이 A(긍정)와 B(위험) 사이의 긴장·딜레마를 다루는지 확인한다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-label">역접·양보 구조 탐지</div>
+        <div class="step-desc">However / but / yet / delicate 뒤에 글의 핵심 메시지가 있다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-label">제목의 수사적 표현 수용</div>
+        <div class="step-desc">비유·대조·의문·콜론(:) 구조는 제목 유형의 전형적 패턴이다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-label">긍정/부정 방향 확인</div>
+        <div class="step-desc">글이 문화 상업화를 무조건 찬성하는지, 경계하는지 방향을 확인한다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 제목 유형 패턴 -->
+  <h2 class="section-title">수능 제목 선택지 4가지 패턴</h2>
+  <div class="title-pattern-grid">
+    <div class="pattern-card">
+      <h4>🔑 패턴 1 — 대조·역설형</h4>
+      <p>두 개념의 긴장·충돌을 표현. 글이 A vs B 구도일 때.</p>
+      <div class="example">Cash or Soul? When A Couples with B</div>
+    </div>
+    <div class="pattern-card">
+      <h4>🔑 패턴 2 — 의문문형</h4>
+      <p>독자의 호기심을 자극하는 질문 형태. 글의 핵심 딜레마를 묻는 형식.</p>
+      <div class="example">Why Does X Matter More Than Y?</div>
+    </div>
+    <div class="pattern-card">
+      <h4>🔑 패턴 3 — 명사구 강조형</h4>
+      <p>핵심 개념을 간결한 명사구로 표현. 주제와 일치.</p>
+      <div class="example">The Hidden Cost of Commercialization</div>
+    </div>
+    <div class="pattern-card">
+      <h4>🔑 패턴 4 — 과장·긍정 일방형 (오답 패턴)</h4>
+      <p>글의 한 면만 강조하거나 글에 없는 내용 포함. 소거 대상.</p>
+      <div class="example">Unexpected Benefits of X → 위험성 무시 오답</div>
+    </div>
+  </div>
+
+  <!-- 이 지문의 핵심 구조 -->
+  <div class="signal-box">
+    <h4>⚖️ 이 지문의 핵심 긴장 관계</h4>
+    <div class="signal-list">
+      <span class="signal-chip mint">경제적 이익 (benefit) → 정치인·정책입안자에게 매력적</span>
+      <span class="signal-chip coral">상업화 위험 (risk) → 동질화, 본래 메시지 희석</span>
+      <span class="signal-chip accent">결론: delicate in the face of exploitation</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider" style="max-width:900px;margin:0 auto 48px"></div>
+
+<!-- 문제 섹션 -->
+<div class="section">
+  <h2 class="section-title">2026학년도 수능 24번 문제 분석</h2>
+
+  <div class="problem-card">
+    <div class="problem-header">
+      <div class="problem-num">24번 [3점]</div>
+      <div class="problem-type-tag">제목 · 3점</div>
+    </div>
+    <div class="problem-body">
+
+      <!-- 글 구조 분석 -->
+      <div class="structure-box">
+        <h4>📐 지문 논리 구조 분석</h4>
+        <div class="str-row">
+          <span class="s-tag benefit">경제적 이익</span>
+          <span class="s-content">culturtainment의 경제적 혜택 → 관광객 증가, 관련 상품·서비스 수요 증가 → 정부·정책입안자에게 <strong>매력적</strong></span>
+        </div>
+        <div class="str-row">
+          <span class="s-tag risk">상업화 위험</span>
+          <span class="s-content"><strong>However</strong> — 상업화 위험: 동질화(homogeneous), 본래 메시지 희석(dilution), 소규모 독립 행사 분리</span>
+        </div>
+        <div class="str-row">
+          <span class="s-tag balance">균형 필요</span>
+          <span class="s-content">기획자·이해관계자들이 <strong>재정적 이익과 균형</strong>을 맞춰야 할 문제</span>
+        </div>
+        <div class="str-row">
+          <span class="s-tag future">최종 결론</span>
+          <span class="s-content">전반적으로 건강한 성장 분야이지만, 본질적으로 <strong>착취에 취약한(delicate)</strong> 분야</span>
+        </div>
+      </div>
+
+      <!-- 영어 지문 -->
+      <div class="passage">
+        <p>The <span class="hl mint">economic benefit</span> of culturtainment makes it attractive to politicians and policy makers alike. A potential increase in inbound visitor numbers coupled with their demand for related goods and services (travel, accommodation, retail) is an incentive for those within governments and authorities to work with cultural groups in order to develop celebrations and commemorations into larger and more high-profile events. <span class="hl coral">However, such commercialization risks</span> culturtainment becoming <span class="hl coral">homogeneous</span> and losing its original '<span class="hl coral">message</span>' that could lead to a <span class="hl coral">dilution</span> of audiences. This could also lead to smaller non-commercial independent events being set up that would only serve to <span class="hl coral">divide</span> audiences further. This is something that planners and stakeholders will need to <span class="hl amber">balance</span> against potential financial gain. Changing political, social and religious landscapes will lead to the emergence of new cultures, and with them new culturtainment experiences. Overall this is a healthy growth sector of the entertainment industry, but one that by its very nature is <span class="hl amber">delicate in the face of exploitation</span>.</p>
+        <div style="margin-top:8px;font-size:12px;color:var(--slate)">* homogeneous: 동종의 ** dilution: 희석 *** exploitation: 착취</div>
+        <div class="passage-ko">
+          <div class="ko-line"><span class="arrow">→</span> culturtainment의 경제적 이익은 정치인과 정책 입안자들에게 매력적이다.</div>
+          <div class="ko-line"><span class="arrow">→</span> 방문객 증가와 관련 재화·서비스 수요는 정부·당국이 문화 행사를 대형·고지명도 행사로 발전시키려는 유인이 된다.</div>
+          <div class="ko-line"><span class="arrow">→</span> <strong>그러나</strong> 이러한 상업화는 culturtainment가 동질화되고 본래의 '메시지'를 잃어 관객이 희석될 위험이 있다.</div>
+          <div class="ko-line"><span class="arrow">→</span> 이로 인해 소규모 비상업적 독립 행사들이 생겨나 관객을 더욱 분산시킬 수 있다.</div>
+          <div class="ko-line"><span class="arrow">→</span> 기획자·이해관계자들은 이를 잠재적 재정적 이익과 균형을 맞춰야 한다.</div>
+          <div class="ko-line"><span class="arrow">→</span> 전반적으로 건강한 성장 분야이지만, 본질적으로 <strong>착취에 취약한(delicate)</strong> 분야다.</div>
+        </div>
+      </div>
+
+      <!-- 선택지 -->
+      <ul class="choices">
+        <li class="choice wrong">
+          <span class="choice-num">①</span>
+          <span class="choice-text">The Commercialization of Culture and Its Unexpected Benefits
+            <span class="choice-ko">→ 문화의 상업화와 예상치 못한 이익들</span>
+          </span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice correct">
+          <span class="choice-num">②</span>
+          <span class="choice-text">Cash or Soul? When Culture Couples with Entertainment
+            <span class="choice-ko">→ 현금이냐 영혼이냐? 문화가 엔터테인먼트와 결합할 때</span>
+          </span>
+          <span class="choice-badge badge-correct">✓ 정답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">③</span>
+          <span class="choice-text">Culturtainment: An Ambition of Entertainment to Be a Culture
+            <span class="choice-ko">→ Culturtainment: 문화가 되려는 엔터테인먼트의 야망</span>
+          </span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">④</span>
+          <span class="choice-text">New Cultures! The Poisonous Fruit of Culturtainment
+            <span class="choice-ko">→ 새로운 문화들! Culturtainment의 독이 든 열매</span>
+          </span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">⑤</span>
+          <span class="choice-text">Why Balanced Investments Matter in the Entertainment Industry
+            <span class="choice-ko">→ 왜 균형 잡힌 투자가 엔터테인먼트 산업에서 중요한가</span>
+          </span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+      </ul>
+
+      <!-- 정답 분석 -->
+      <div class="analysis-box">
+        <h4>✅ 정답 ② 분석 — 제목 분해</h4>
+        <p>
+          ②를 구성 요소별로 분해하면 글 전체 구조와 정확히 대응한다.
+        </p>
+      </div>
+
+      <!-- 제목 분해 -->
+      <div class="title-break">
+        <h4>🔍 정답 ② 제목 분해</h4>
+        <div class="tb-row">
+          <span class="tb-word">Cash</span>
+          <span class="tb-arrow">→</span>
+          <span class="tb-meaning"><strong>경제적 이익</strong> (economic benefit, financial gain) — 지문 전반부 주제</span>
+        </div>
+        <div class="tb-row">
+          <span class="tb-word">or</span>
+          <span class="tb-arrow">→</span>
+          <span class="tb-meaning">선택·긴장 관계 표현 — <strong>However</strong>의 대립 구도 반영</span>
+        </div>
+        <div class="tb-row">
+          <span class="tb-word">Soul?</span>
+          <span class="tb-arrow">→</span>
+          <span class="tb-meaning"><strong>문화의 본래 메시지·정체성</strong> (original 'message', dilution 위험) — 지문 후반부 핵심 위험</span>
+        </div>
+        <div class="tb-row">
+          <span class="tb-word">Culture Couples with Entertainment</span>
+          <span class="tb-arrow">→</span>
+          <span class="tb-meaning"><strong>culturtainment의 정의</strong> 그 자체 — 문화(culture) + 엔터테인먼트(entertainment) 결합</span>
+        </div>
+      </div>
+
+      <!-- 오답 소거 -->
+      <div class="wrong-analysis">
+        <h4>❌ 오답 소거 분석</h4>
+        <div class="wrong-row">
+          <span class="wnum">①</span>
+          <span class="wtext"><strong>"Unexpected Benefits"</strong> → 글은 이익(benefits)을 인정하면서도 <em>위험성</em>을 함께 경고. 이익만 강조하면 글의 반쪽만 담은 제목. 방향 오류.</span>
+        </div>
+        <div class="wrong-row">
+          <span class="wnum">③</span>
+          <span class="wtext"><strong>"엔터테인먼트가 문화가 되려는 야망"</strong> → 글의 방향과 정반대. 글은 문화가 엔터테인먼트화(상업화)되는 것의 위험을 다룸. 주체·방향 역전.</span>
+        </div>
+        <div class="wrong-row">
+          <span class="wnum">④</span>
+          <span class="wtext"><strong>"Poisonous Fruit(독이 든 열매)"</strong> → 글은 culturtainment를 <em>부정적으로만</em> 보지 않음. "healthy growth sector"라고도 표현. 부정 일방화 오류.</span>
+        </div>
+        <div class="wrong-row">
+          <span class="wnum">⑤</span>
+          <span class="wtext"><strong>"균형 잡힌 투자"</strong> → balance는 지문에 등장하지만, 투자(investment)에 대한 내용은 없음. 핵심 긴장(문화 정체성 vs 상업화)을 빠뜨린 지엽적 제목.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 핵심 어휘 -->
+  <h2 class="section-title">핵심 어휘 & 개념 정리</h2>
+  <table class="voca-table">
+    <thead>
+      <tr><th>표현</th><th>의미</th><th>제목과의 연관</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>culturtainment</td><td>culture + entertainment 합성어: 문화 엔터테인먼트</td><td class="mint">글 전체 핵심 소재</td></tr>
+      <tr><td>homogeneous</td><td>동질화된, 획일화된</td><td class="coral">상업화 위험 — Soul 상실</td></tr>
+      <tr><td>dilution</td><td>희석, 약화</td><td class="coral">관객·메시지 약화 위험</td></tr>
+      <tr><td>exploitation</td><td>착취, 상업적 남용</td><td class="coral">결론의 핵심 위험 개념</td></tr>
+      <tr><td>delicate</td><td>섬세한, 취약한</td><td>착취에 취약 → ② Soul 위기 반영</td></tr>
+      <tr><td>commemoration</td><td>기념 행사</td><td>culturtainment의 구체 사례</td></tr>
+      <tr><td>high-profile</td><td>고지명도의, 주목받는</td><td>상업화의 방향성</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 총정리 -->
+  <h2 class="section-title">총정리 — 제목 추론 체크리스트</h2>
+  <table class="summary-table">
+    <thead>
+      <tr><th>확인 항목</th><th>이번 문제 적용</th><th>결과</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>핵심 긴장 파악</td><td>경제적 이익(Cash) vs 문화 정체성 상실(Soul)</td><td class="mint">✓</td></tr>
+      <tr><td>역접 구조</td><td>However → 상업화 위험, delicate → 결론</td><td class="mint">✓</td></tr>
+      <tr><td>제목 패턴</td><td>대조·역설형 "Cash or Soul?"</td><td class="mint">✓ 정답 ②</td></tr>
+      <tr><td>오답 소거</td><td>①이익 일방화, ③방향역전, ④부정 일방화, ⑤지엽</td><td class="mint">✓</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 최종 전략 카드 -->
+  <div class="final-card">
+    <h3>🎯 제목 추론 최종 전략</h3>
+    <div class="tip-list">
+      <div class="tip-item">
+        <span class="tip-icon">⚖️</span>
+        <span class="tip-text"><strong>글의 긴장·딜레마를 담은 제목이 정답이다.</strong> A(긍정)와 B(위험) 구도가 있는 글에서는 양쪽을 모두 포함하거나, 긴장 관계를 압축한 선택지를 골라라.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">🔑</span>
+        <span class="tip-text"><strong>"Cash or Soul?" 처럼 비유·수사적 표현이 정답인 경우가 많다.</strong> 제목은 주제·요지와 달리 함축적이고 인상적인 표현을 허용한다. 직접적 표현보다 비유적 제목이 정답일 때가 많다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">🚫</span>
+        <span class="tip-text"><strong>글의 한 면만 담은 제목은 오답이다.</strong> 이익만 강조(①), 부정만 강조(④), 방향 역전(③) — 글 전체의 균형을 반영하지 못한 제목은 소거.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">✅</span>
+        <span class="tip-text"><strong>결론 문장의 핵심어가 제목에 들어간다.</strong> "delicate in the face of exploitation" → Soul(문화 정체성) 위기. 결론의 키워드를 제목 선택지와 대조하라.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400)
+})
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}
+  })
+},{threshold:0.08})
+document.querySelectorAll('.formula-box,.title-pattern-grid,.signal-box,.problem-card,.structure-box,.title-break,.analysis-box,.wrong-analysis,.voca-table,.summary-table,.final-card').forEach(el=>{
+  el.style.opacity=0;el.style.transform='translateY(24px)';el.style.transition='all .6s ease'
+  observer.observe(el)
+})
+</script>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
