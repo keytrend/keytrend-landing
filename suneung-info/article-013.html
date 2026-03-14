@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주제 완전정복 — 반복 키워드로 글의 중심 화제 포착하기 | Key Trend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0f172a;--navy:#1e293b;--slate:#334155;--gray:#94a3b8;
+  --white:#f8fafc;--accent:#6366f1;--accent2:#818cf8;
+  --mint:#34d399;--coral:#f472b6;--amber:#fbbf24;
+  --grad1:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#ec4899 100%);
+  --grad2:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Outfit',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.7;user-select:none;-webkit-user-select:none}
+
+nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.15)}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Outfit';font-weight:800;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{color:var(--gray);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--accent2)}
+
+.hero{padding:120px 24px 60px;max-width:900px;margin:0 auto}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;animation:fadeUp .7s ease}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.5px}
+.badge-type{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);color:var(--accent2)}
+.badge-num{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);color:var(--mint)}
+.badge-score{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
+.hero h1{font-family:'Outfit';font-size:clamp(26px,4vw,40px);font-weight:800;line-height:1.2;margin-bottom:16px;animation:fadeUp .7s ease .1s both}
+.hero h1 em{font-style:normal;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{color:var(--gray);font-size:16px;line-height:1.8;animation:fadeUp .7s ease .2s both;max-width:680px}
+.meta-row{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;animation:fadeUp .7s ease .3s both}
+.meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray)}
+.meta-item strong{color:var(--white);font-weight:600}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.section{max-width:900px;margin:0 auto;padding:0 24px 60px}
+.section-title{font-family:'Outfit';font-size:22px;font-weight:800;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:24px;background:var(--grad1);border-radius:2px;flex-shrink:0}
+
+.formula-box{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;margin-bottom:40px;position:relative;overflow:hidden}
+.formula-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.formula-title{font-size:13px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.step-card{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);border-radius:12px;padding:20px}
+.step-num{font-family:'Outfit';font-size:28px;font-weight:800;color:var(--accent);opacity:.5;line-height:1}
+.step-label{font-size:14px;font-weight:700;margin:8px 0 6px;color:var(--white)}
+.step-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+/* 주제 vs 요지 비교 */
+.compare-box{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.compare-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:20px}
+.compare-card h4{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--gray)}
+.compare-card p{font-size:13px;color:var(--gray);line-height:1.7}
+.compare-card.active{border-color:var(--accent);background:rgba(99,102,241,.08)}
+.compare-card.active h4{color:var(--accent2)}
+
+.signal-box{background:rgba(30,41,59,.6);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:24px;margin-bottom:24px}
+.signal-box h4{font-size:14px;font-weight:700;color:var(--amber);margin-bottom:14px}
+.signal-list{display:flex;flex-wrap:wrap;gap:8px}
+.signal-chip{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);padding:5px 14px;border-radius:8px;font-size:13px;color:var(--amber);font-weight:600}
+.signal-chip.mint{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.2);color:var(--mint)}
+.signal-chip.coral{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.2);color:var(--coral)}
+
+.problem-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:20px;overflow:hidden;margin-bottom:32px}
+.problem-header{background:rgba(99,102,241,.1);border-bottom:1px solid rgba(51,65,85,.4);padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+.problem-num{font-family:'Outfit';font-size:24px;font-weight:800;color:var(--accent2)}
+.problem-type-tag{font-size:12px;color:var(--gray);background:rgba(51,65,85,.5);padding:4px 12px;border-radius:6px}
+.problem-body{padding:28px}
+
+/* 키워드 추적 박스 */
+.keyword-track{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.2);border-radius:14px;padding:22px 24px;margin-bottom:24px}
+.keyword-track h4{font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.kw-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;font-size:13px}
+.kw-row:last-child{margin-bottom:0}
+.kw-word{min-width:140px;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:700;background:rgba(99,102,241,.15);color:var(--accent2);flex-shrink:0;text-align:center}
+.kw-word.repeat{background:rgba(52,211,153,.12);color:var(--mint)}
+.kw-meaning{color:var(--gray);line-height:1.6}
+.kw-meaning strong{color:var(--white)}
+
+.passage{background:rgba(15,23,42,.7);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:24px;margin-bottom:24px;font-size:15px;line-height:1.9}
+.hl{background:rgba(99,102,241,.2);padding:1px 3px;border-radius:3px;color:var(--accent2);font-weight:600}
+.hl.mint{background:rgba(52,211,153,.15);color:var(--mint)}
+.passage-ko{margin-top:16px;padding-top:16px;border-top:1px solid rgba(51,65,85,.4);color:var(--gray);font-size:14px;line-height:1.9}
+.arrow{color:var(--accent2);font-weight:700}
+.ko-line{margin-bottom:6px}
+
+.choices{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:12px;border:1px solid rgba(51,65,85,.4);background:rgba(30,41,59,.3);font-size:14px}
+.choice.correct{border-color:var(--mint);background:rgba(52,211,153,.08)}
+.choice.wrong{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.04)}
+.choice.wrong .choice-text{color:var(--gray);text-decoration:line-through;text-decoration-color:rgba(244,114,182,.4)}
+.choice-num{font-family:'Outfit';font-weight:700;font-size:16px;min-width:24px;flex-shrink:0}
+.choice.correct .choice-num{color:var(--mint)}
+.choice.wrong .choice-num{color:#ef4444}
+.choice-text{line-height:1.6}
+.choice-ko{display:block;font-size:12px;margin-top:3px}
+.choice.correct .choice-ko{color:var(--mint)}
+.choice.wrong .choice-ko{color:var(--slate)}
+.choice-badge{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;flex-shrink:0}
+.badge-correct{background:rgba(52,211,153,.2);color:var(--mint)}
+.badge-wrong{background:rgba(239,68,68,.15);color:#f87171}
+
+.analysis-box{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.analysis-box h4{font-size:13px;font-weight:700;color:var(--mint);margin-bottom:12px}
+.analysis-box p{font-size:14px;color:var(--gray);line-height:1.8}
+.analysis-box p strong{color:var(--white)}
+
+.wrong-analysis{background:rgba(244,114,182,.05);border:1px solid rgba(244,114,182,.15);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.wrong-analysis h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:12px}
+.wrong-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;font-size:13px}
+.wrong-row:last-child{margin-bottom:0}
+.wnum{font-family:'Outfit';font-weight:700;color:var(--coral);min-width:20px}
+.wtext{color:var(--gray);line-height:1.6}
+.wtext strong{color:var(--white)}
+
+.voca-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.voca-table th,.voca-table td{padding:14px 18px;font-size:13px}
+.voca-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700;text-align:left}
+.voca-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray);vertical-align:top}
+.voca-table tbody td:first-child{color:var(--white);font-weight:600;white-space:nowrap}
+.voca-table tbody tr:hover{background:rgba(99,102,241,.05)}
+td.mint{color:var(--mint)!important;font-weight:700}
+td.coral{color:var(--coral)!important}
+
+.summary-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:32px}
+.summary-table th,.summary-table td{padding:14px 18px;font-size:13px;text-align:center}
+.summary-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700}
+.summary-table tbody td{border-top:1px solid rgba(51,65,85,.3);color:var(--gray)}
+.summary-table tbody td:first-child{text-align:left;color:var(--white);font-weight:600}
+
+.final-card{background:var(--grad2);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:32px;position:relative;overflow:hidden;margin-bottom:60px}
+.final-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad1)}
+.final-card h3{font-family:'Outfit';font-size:20px;font-weight:800;margin-bottom:20px;color:var(--accent2)}
+.tip-list{display:flex;flex-direction:column;gap:12px}
+.tip-item{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.tip-text{color:var(--gray);line-height:1.7}
+.tip-text strong{color:var(--white)}
+
+#scrollTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--accent);border:none;border-radius:12px;color:white;font-size:18px;cursor:pointer;opacity:0;transition:all .3s;z-index:99;display:flex;align-items:center;justify-content:center}
+#scrollTop.visible{opacity:1}
+#scrollTop:hover{background:var(--accent2);transform:translateY(-2px)}
+.divider{height:1px;background:rgba(51,65,85,.4);margin:0 0 48px}
+
+@media(max-width:600px){
+.steps-grid{grid-template-columns:1fr 1fr}
+.compare-box{grid-template-columns:1fr}
+.problem-body{padding:20px}
+.passage{font-size:14px}
+.kw-word{min-width:100px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="../suneung-info.html" class="nav-back">← 수능정보 목록</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-meta">
+    <span class="badge badge-type">📘 유형별 풀이법</span>
+    <span class="badge badge-num">23번</span>
+    <span class="badge badge-score">2점</span>
+  </div>
+  <h1>주제 완전정복 —<br><em>반복 키워드로 글의 중심 화제 포착하기</em></h1>
+  <p class="hero-desc">
+    주제(Topic)는 글 전체가 다루는 <strong>중심 화제</strong>입니다.
+    지문에서 반복되는 핵심 단어를 추적하고, 선택지의 영어 표현이
+    지문 키워드를 정확히 포괄하는지 대조하면 정답이 보입니다.
+  </p>
+  <div class="meta-row">
+    <div class="meta-item"><span>📅</span><strong>2026학년도 수능</strong></div>
+    <div class="meta-item"><span>📌</span><strong>홀수형 23번 · 짝수형 23번 공통</strong></div>
+    <div class="meta-item"><span>✅</span><strong>정답: ③</strong></div>
+    <div class="meta-item"><span>🏷</span><strong>대중교통 / 배차 빈도 / frequency vs speed</strong></div>
+  </div>
+</div>
+
+<!-- 핵심 전략 공식 -->
+<div class="section">
+  <h2 class="section-title">4단계 주제 추출 공식</h2>
+  <div class="formula-box">
+    <div class="formula-title">⚡ Key Trend 핵심 공식</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-label">반복 키워드 추적</div>
+        <div class="step-desc">지문에서 2회 이상 반복되는 명사·동사가 주제의 핵심어다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-label">대립 구도 파악</div>
+        <div class="step-desc">A vs B 구도가 있으면 필자가 강조하는 쪽(B)이 주제와 연결된다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-label">선택지 키워드 대조</div>
+        <div class="step-desc">선택지의 명사구가 지문 반복 키워드와 일치하는지 확인한다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-label">범위 오류 소거</div>
+        <div class="step-desc">너무 좁은(지엽) 선택지와 너무 넓은(과일반화) 선택지를 제거한다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 주제 vs 요지 비교 -->
+  <h2 class="section-title">주제(23번) vs 요지(22번) 차이</h2>
+  <div class="compare-box">
+    <div class="compare-card active">
+      <h4>🗂 주제 (23번)</h4>
+      <p>글이 <strong>무엇에 대해</strong> 쓴 글인가? → 명사구(noun phrase) 형태의 선택지. 행위나 가치 판단보다 <em>화제(topic) 자체</em>를 묻는다.</p>
+    </div>
+    <div class="compare-card">
+      <h4>📋 요지 (22번)</h4>
+      <p>글이 <strong>무엇을 말하려</strong> 하는가? → 문장(sentence) 형태의 선택지. 필자의 핵심 메시지·주장을 묻는다.</p>
+    </div>
+  </div>
+
+  <!-- 주제 신호 키워드 -->
+  <div class="signal-box">
+    <h4>🔍 이 지문의 반복 키워드 추적</h4>
+    <div class="signal-list">
+      <span class="signal-chip">frequency (4회)</span>
+      <span class="signal-chip">speed (4회)</span>
+      <span class="signal-chip mint">transit (5회)</span>
+      <span class="signal-chip mint">waiting time</span>
+      <span class="signal-chip coral">speed over frequency → 오류로 제시</span>
+      <span class="signal-chip mint">frequency → 필자가 강조하는 핵심</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider" style="max-width:900px;margin:0 auto 48px"></div>
+
+<!-- 문제 섹션 -->
+<div class="section">
+  <h2 class="section-title">2026학년도 수능 23번 문제 분석</h2>
+
+  <div class="problem-card">
+    <div class="problem-header">
+      <div class="problem-num">23번</div>
+      <div class="problem-type-tag">주제 · 2점</div>
+    </div>
+    <div class="problem-body">
+
+      <!-- 키워드 추적 -->
+      <div class="keyword-track">
+        <h4>🔑 반복 키워드 추적 — 주제 탐지</h4>
+        <div class="kw-row">
+          <span class="kw-word repeat">frequency (4회)</span>
+          <span class="kw-meaning">배차 빈도 — 필자가 <strong>중요성을 강조</strong>하는 핵심 개념</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-word">speed (4회)</span>
+          <span class="kw-meaning">속도 — frequency와 <strong>대립</strong>하며 필자가 비판하는 개념</span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-word repeat">transit (5회)</span>
+          <span class="kw-meaning">대중교통 — 글의 <strong>배경 주제어</strong></span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-word">waiting time</span>
+          <span class="kw-meaning">대기 시간 — 빈도가 낮을 때 발생하는 <strong>핵심 문제</strong></span>
+        </div>
+        <div class="kw-row">
+          <span class="kw-word repeat">public transportation</span>
+          <span class="kw-meaning">③ 선택지의 핵심어 — transit의 <strong>환언(paraphrase)</strong></span>
+        </div>
+      </div>
+
+      <!-- 영어 지문 -->
+      <div class="passage">
+        <p>Emphasizing <span class="hl coral">speed over frequency</span> can make sense in contexts where everyone is expected to plan around the timetable, including peak-only commute services and very long trips with low demand. In all other contexts, though, it seems to be a <span class="hl coral">common motorist's error</span>. Roads are there all the time, so their speed is the most important fact that distinguishes them. But <span class="hl">transit is only there if it's coming soon</span>. If you have a car, you can use a road whenever you want and experience its speed. But transit has to exist when you need it (span), and it needs to be coming soon (<span class="hl mint">frequency</span>). Otherwise, <span class="hl mint">waiting time will wipe out any time savings</span> from a faster service. Unless you're comfortable planning your life around a particular scheduled trip, <span class="hl mint">speed is worthless without frequency</span>, so a transit map that screams about speed and whispers about <span class="hl mint">frequency</span> may simply be planting confusion.</p>
+        <div style="margin-top:8px;font-size:12px;color:var(--slate)">* commute: 통근</div>
+        <div class="passage-ko">
+          <div class="ko-line"><span class="arrow">→</span> 배차 빈도보다 속도를 강조하는 것은 시간표에 맞춰 계획을 세우도록 요구되는 맥락(출퇴근 피크 서비스, 수요 낮은 장거리 여행)에서는 합리적일 수 있다.</div>
+          <div class="ko-line"><span class="arrow">→</span> 하지만 다른 모든 맥락에서는 이것은 흔한 <strong>자동차 이용자의 오류</strong>처럼 보인다.</div>
+          <div class="ko-line"><span class="arrow">→</span> 도로는 항상 존재하므로 속도가 도로를 구별하는 가장 중요한 요소다.</div>
+          <div class="ko-line"><span class="arrow">→</span> 그러나 <strong>대중교통은 곧 올 때만 존재한다.</strong></div>
+          <div class="ko-line"><span class="arrow">→</span> 자동차는 원할 때 언제든 이용할 수 있지만, 대중교통은 필요할 때 존재해야 하고(span), 곧 와야 한다(<strong>frequency</strong>).</div>
+          <div class="ko-line"><span class="arrow">→</span> 그렇지 않으면 <strong>대기 시간이 더 빠른 서비스로 절약되는 시간을 다 없애버린다.</strong></div>
+          <div class="ko-line"><span class="arrow">→</span> 빈도 없이는 <strong>속도는 무의미하다.</strong> 속도를 외치고 빈도는 속삭이는 교통 지도는 그냥 혼란만 심어줄 뿐이다.</div>
+        </div>
+      </div>
+
+      <!-- 선택지 -->
+      <ul class="choices">
+        <li class="choice wrong">
+          <span class="choice-num">①</span>
+          <span class="choice-text">consequences of adjusting frequency of transit
+            <span class="choice-ko">→ 대중교통 빈도 조정의 결과</span>
+          </span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">②</span>
+          <span class="choice-text">significance of designing an accurate transit map
+            <span class="choice-ko">→ 정확한 교통 지도 설계의 중요성</span>
+          </span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice correct">
+          <span class="choice-num">③</span>
+          <span class="choice-text">importance of valuing frequency in public transportation
+            <span class="choice-ko">→ 대중교통에서 배차 빈도를 중시하는 것의 중요성</span>
+          </span>
+          <span class="choice-badge badge-correct">✓ 정답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">④</span>
+          <span class="choice-text">impact of creating high-speed public transportation systems
+            <span class="choice-ko">→ 고속 대중교통 시스템 구축의 영향</span>
+          </span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+        <li class="choice wrong">
+          <span class="choice-num">⑤</span>
+          <span class="choice-text">methods to improve speed and frequency of commute services
+            <span class="choice-ko">→ 통근 서비스의 속도와 빈도를 향상시키는 방법</span>
+          </span>
+          <span class="choice-badge badge-wrong">오답</span>
+        </li>
+      </ul>
+
+      <!-- 정답 분석 -->
+      <div class="analysis-box">
+        <h4>✅ 정답 ③ 분석 — 키워드 대조</h4>
+        <p>
+          <strong>[반복 키워드]</strong> frequency(4회) + transit/public transportation(5회)<br><br>
+          <strong>[대립 구도]</strong> speed(속도, 자동차식 사고) vs <strong>frequency(빈도, 대중교통의 핵심)</strong><br><br>
+          <strong>[필자 주장]</strong> "speed is worthless without frequency" → 빈도가 중요하다<br><br>
+          <strong>[선택지 대조]</strong> ③ "importance of <strong>valuing frequency</strong> in <strong>public transportation</strong>"<br>
+          → 반복 키워드 frequency ✓ + transit의 환언 public transportation ✓ + 필자 주장 방향 ✓<br>
+          → 세 요소 모두 일치. 정답.
+        </p>
+      </div>
+
+      <!-- 오답 소거 -->
+      <div class="wrong-analysis">
+        <h4>❌ 오답 소거 분석</h4>
+        <div class="wrong-row">
+          <span class="wnum">①</span>
+          <span class="wtext"><strong>"빈도 조정의 결과(consequences of adjusting)"</strong> → 지문은 빈도를 조정하는 것의 결과를 논하지 않음. '빈도의 중요성'과 혼동 주의. 논점 이탈.</span>
+        </div>
+        <div class="wrong-row">
+          <span class="wnum">②</span>
+          <span class="wtext"><strong>"정확한 교통 지도 설계"</strong> → 마지막 문장의 "transit map" 언급을 지나치게 확대 해석. 지도 설계는 지엽적 비유일 뿐, 글의 주제가 아님.</span>
+        </div>
+        <div class="wrong-row">
+          <span class="wnum">④</span>
+          <span class="wtext"><strong>"고속 교통 시스템 구축의 영향"</strong> → 지문은 속도(speed)를 <em>비판</em>하는 방향. 고속 시스템의 긍정적 영향을 다루는 내용이 아님. 방향 역전 오류.</span>
+        </div>
+        <div class="wrong-row">
+          <span class="wnum">⑤</span>
+          <span class="wtext"><strong>"속도와 빈도 둘 다 향상"</strong> → 지문은 속도보다 빈도가 더 중요하다는 내용. 둘을 동등하게 개선하자는 내용이 아님. 논지 왜곡.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 핵심 어휘 -->
+  <h2 class="section-title">핵심 어휘 & 개념 정리</h2>
+  <table class="voca-table">
+    <thead>
+      <tr><th>표현</th><th>의미</th><th>주제와의 연관</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>frequency</td><td>배차 빈도 (얼마나 자주 오는가)</td><td class="mint">주제 핵심어 (4회 반복)</td></tr>
+      <tr><td>span</td><td>운행 시간 범위 (언제 운행하는가)</td><td>빈도와 함께 transit 조건</td></tr>
+      <tr><td>wipe out</td><td>완전히 없애버리다</td><td class="mint">빈도 부재의 결과 강조</td></tr>
+      <tr><td>worthless</td><td>무의미한, 가치 없는</td><td class="mint">"speed is worthless without frequency" — 핵심 주장</td></tr>
+      <tr><td>commute</td><td>통근</td><td>peak-only 예외 상황</td></tr>
+      <tr><td>motorist's error</td><td>자동차 이용자의 오류</td><td class="coral">속도 중시가 잘못된 사고임을 표현</td></tr>
+      <tr><td>planting confusion</td><td>혼란을 심다</td><td>빈도 경시의 결과 — 비유적 결론</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 총정리 -->
+  <h2 class="section-title">총정리 — 주제 추론 체크리스트</h2>
+  <table class="summary-table">
+    <thead>
+      <tr><th>확인 항목</th><th>이번 문제 적용</th><th>결과</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>반복 키워드</td><td>frequency(4회), transit(5회)</td><td class="mint">✓ 주제어 확정</td></tr>
+      <tr><td>대립 구도</td><td>speed(비판) vs frequency(강조)</td><td class="mint">✓ 방향 확인</td></tr>
+      <tr><td>선택지 대조</td><td>③ = frequency + public transportation 일치</td><td class="mint">✓ 정답 확정</td></tr>
+      <tr><td>오답 소거</td><td>①논점이탈, ②지엽, ④방향역전, ⑤논지왜곡</td><td class="mint">✓ 소거 완료</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 최종 전략 카드 -->
+  <div class="final-card">
+    <h3>🎯 주제 추론 최종 전략</h3>
+    <div class="tip-list">
+      <div class="tip-item">
+        <span class="tip-icon">🔄</span>
+        <span class="tip-text"><strong>반복 단어 = 주제어.</strong> 지문에서 2회 이상 등장하는 명사·동사를 먼저 표시하라. 그것이 정답 선택지에 그대로 또는 환언(paraphrase)되어 들어간다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">⚖️</span>
+        <span class="tip-text"><strong>A vs B 구도에서 필자가 지지하는 쪽이 주제다.</strong> 이 지문은 speed(비판) vs frequency(강조) 구도 → 정답은 frequency를 중시하는 내용.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">🚫</span>
+        <span class="tip-text"><strong>마지막 문장의 비유적 표현을 지나치게 확대하지 마라.</strong> "transit map"은 비유적 표현. 이를 주제로 오인한 ②는 지엽적 오답의 전형이다.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-icon">✅</span>
+        <span class="tip-text"><strong>주제 선택지는 명사구(noun phrase)다.</strong> 동사나 당위 표현(should, must)이 없는 명사 중심 구문을 찾아라. "importance of valuing ~"처럼 핵심 개념을 포괄하는 구문이 정답.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400)
+})
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}
+  })
+},{threshold:0.08})
+document.querySelectorAll('.formula-box,.compare-box,.signal-box,.problem-card,.keyword-track,.analysis-box,.wrong-analysis,.voca-table,.summary-table,.final-card').forEach(el=>{
+  el.style.opacity=0;el.style.transform='translateY(24px)';el.style.transition='all .6s ease'
+  observer.observe(el)
+})
+</script>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    (e.ctrlKey && ['c','a','s','u','p'].includes(e.key.toLowerCase())) ||
+    e.key === 'F12'
+  ) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
