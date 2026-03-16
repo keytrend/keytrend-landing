@@ -66,35 +66,76 @@
         // 이미 수동 분할이 되어 있으면 건너뜀
         if (document.querySelector('.paid-content')) return;
 
-        const content = document.querySelector('.content');
-        if (!content) return;
+        // .content 또는 .section 구조 모두 지원
+        var content = document.querySelector('.content');
+        var wrapper = null;
 
-        // .content 안의 직계 자식들을 순회
-        const children = Array.from(content.children);
-        if (children.length === 0) return;
+        if (content) {
+            // article-001 스타일: .content 안에 h2 여러 개
+            wrapper = content;
+        } else {
+            // article-014 스타일: .section 여러 개
+            // .hero 다음의 .section들을 감싸는 부모를 찾음
+            var sections = document.querySelectorAll('.section');
+            if (sections.length >= 2) {
+                wrapper = sections[0].parentElement;
+            }
+        }
 
-        // 두 번째 <h2>를 찾아서 그 지점부터 유료 영역으로 분할
-        let splitIndex = -1;
-        let h2Count = 0;
-        for (let i = 0; i < children.length; i++) {
-            if (children[i].tagName === 'H2') {
-                h2Count++;
-                if (h2Count === 2) {
-                    splitIndex = i;
+        if (!wrapper) return;
+
+        // wrapper 직계 자식 중 실제 콘텐츠 요소만 수집
+        // (.hero, nav, footer, script, button, #scrollTop 제외)
+        var skipTags = ['NAV', 'FOOTER', 'SCRIPT', 'BUTTON', 'STYLE'];
+        var skipIds = ['scrollTop', 'paywall-overlay'];
+        var skipClasses = ['hero'];
+        var children = [];
+
+        Array.from(wrapper.children).forEach(function(child) {
+            if (skipTags.indexOf(child.tagName) !== -1) return;
+            if (child.id && skipIds.indexOf(child.id) !== -1) return;
+            for (var c = 0; c < skipClasses.length; c++) {
+                if (child.classList.contains(skipClasses[c])) return;
+            }
+            children.push(child);
+        });
+
+        if (children.length < 2) return;
+
+        // 분할 지점 찾기: 두 번째 주요 섹션부터 유료
+        var splitIndex = -1;
+        var sectionCount = 0;
+
+        for (var i = 0; i < children.length; i++) {
+            var el = children[i];
+            // h2 또는 .section 또는 .divider를 섹션 경계로 인식
+            var isBoundary = (el.tagName === 'H2') || 
+                             el.classList.contains('section') || 
+                             el.classList.contains('section-title');
+            
+            if (isBoundary) {
+                sectionCount++;
+                if (sectionCount === 2) {
+                    // .divider가 바로 앞에 있으면 그것도 유료에 포함
+                    if (i > 0 && children[i-1].classList.contains('divider')) {
+                        splitIndex = i - 1;
+                    } else {
+                        splitIndex = i;
+                    }
                     break;
                 }
             }
         }
 
-        // h2가 1개 이하면 페이월 미적용
+        // 섹션이 1개 이하면 페이월 미적용
         if (splitIndex === -1) return;
 
         // free-content div 생성
-        const freeDiv = document.createElement('div');
+        var freeDiv = document.createElement('div');
         freeDiv.className = 'free-content';
 
         // paid-content div 생성
-        const paidDiv = document.createElement('div');
+        var paidDiv = document.createElement('div');
         paidDiv.className = 'paid-content';
 
         // 자식 요소를 분배
@@ -106,9 +147,9 @@
             }
         });
 
-        // content에 다시 삽입
-        content.appendChild(freeDiv);
-        content.appendChild(paidDiv);
+        // wrapper에 삽입
+        wrapper.appendChild(freeDiv);
+        wrapper.appendChild(paidDiv);
     }
 
     // ===== 4. UI 생성 =====
