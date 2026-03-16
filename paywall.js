@@ -66,16 +66,11 @@
         // 이미 수동 분할이 되어 있으면 건너뜀
         if (document.querySelector('.paid-content')) return;
 
-        // .content 또는 .section 구조 모두 지원
-        var content = document.querySelector('.content');
-        var wrapper = null;
+        // .content 찾기
+        var wrapper = document.querySelector('.content');
 
-        if (content) {
-            // article-001 스타일: .content 안에 h2 여러 개
-            wrapper = content;
-        } else {
-            // article-014 스타일: .section 여러 개
-            // .hero 다음의 .section들을 감싸는 부모를 찾음
+        // .content 없으면 .section 구조 시도
+        if (!wrapper) {
             var sections = document.querySelectorAll('.section');
             if (sections.length >= 2) {
                 wrapper = sections[0].parentElement;
@@ -84,51 +79,37 @@
 
         if (!wrapper) return;
 
-        // wrapper 직계 자식 중 실제 콘텐츠 요소만 수집
-        // (.hero, nav, footer, script, button, #scrollTop 제외)
-        var skipTags = ['NAV', 'FOOTER', 'SCRIPT', 'BUTTON', 'STYLE'];
-        var skipIds = ['scrollTop', 'paywall-overlay'];
-        var skipClasses = ['hero'];
-        var children = [];
-
-        Array.from(wrapper.children).forEach(function(child) {
-            if (skipTags.indexOf(child.tagName) !== -1) return;
-            if (child.id && skipIds.indexOf(child.id) !== -1) return;
-            for (var c = 0; c < skipClasses.length; c++) {
-                if (child.classList.contains(skipClasses[c])) return;
-            }
-            children.push(child);
-        });
-
+        var children = Array.from(wrapper.children);
         if (children.length < 2) return;
 
-        // 분할 지점 찾기: 두 번째 주요 섹션부터 유료
+        // 분할 지점 찾기: 첫 번째 HR.divider 위치
         var splitIndex = -1;
-        var sectionCount = 0;
-
         for (var i = 0; i < children.length; i++) {
-            var el = children[i];
-            // h2 또는 .section 또는 .divider를 섹션 경계로 인식
-            var isBoundary = (el.tagName === 'H2') || 
-                             el.classList.contains('section') || 
-                             el.classList.contains('section-title');
-            
-            if (isBoundary) {
-                sectionCount++;
-                if (sectionCount === 2) {
-                    // .divider가 바로 앞에 있으면 그것도 유료에 포함
-                    if (i > 0 && children[i-1].classList.contains('divider')) {
-                        splitIndex = i - 1;
-                    } else {
+            if (children[i].tagName === 'HR' || children[i].classList.contains('divider')) {
+                splitIndex = i;
+                break;
+            }
+        }
+
+        // HR.divider 없으면 두 번째 주요 블록에서 분할
+        if (splitIndex === -1) {
+            var blockCount = 0;
+            for (var i = 0; i < children.length; i++) {
+                var el = children[i];
+                var isBlock = (el.tagName === 'H2') || 
+                              el.classList.contains('section') ||
+                              el.classList.contains('problem-section');
+                if (isBlock) {
+                    blockCount++;
+                    if (blockCount === 2) {
                         splitIndex = i;
+                        break;
                     }
-                    break;
                 }
             }
         }
 
-        // 섹션이 1개 이하면 페이월 미적용
-        if (splitIndex === -1) return;
+        if (splitIndex === -1 || splitIndex === 0) return;
 
         // free-content div 생성
         var freeDiv = document.createElement('div');
