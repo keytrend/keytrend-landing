@@ -155,7 +155,7 @@
                     <button class="pw-link-btn" onclick="window.__paywall.backToEmail()">← 다른 이메일로 시도</button>\
                 </div>\
                 <div class="pw-footer">\
-                    <a href="https://keytrend.thinkific.com/collections" target="_blank">아직 구독 전이신가요? 구독하기 →</a>\
+                    <a href="https://keytrend.co.kr/#start">아직 구독 전이신가요? 구독하기 →</a>\
                 </div>\
             </div>';
         return overlay;
