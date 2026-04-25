@@ -561,7 +561,7 @@ body{
           <tr><td>문제 인식</td><td class="om">✓ 자동 인식</td><td class="xm">✗</td><td class="xm">✗</td></tr>
           <tr><td>단어 학습</td><td class="om">✓ 포함</td><td class="xm">별도 구매</td><td class="xm">별도 구매</td></tr>
           <tr><td>24시간</td><td class="om">✓</td><td class="om">✓</td><td class="om">✓</td></tr>
-          <tr><td>월 비용</td><td class="om">9,900원~</td><td>15,000원~</td><td>50,000원~</td></tr>
+          <tr><td>월 비용</td><td class="om">19,500원~</td><td>15,000원~</td><td>50,000원~</td></tr>
         </tbody>
       </table>
     </div>
@@ -639,34 +639,61 @@ body{
     <p class="section-desc" style="margin-bottom:36px">문제집 한 권 가격으로 AI 튜터까지</p>
     <div class="pricing-toggle">
       <button class="active" onclick="togglePlan('monthly',this)">월간</button>
-      <button onclick="togglePlan('yearly',this)">연간 <span class="save-tag">25% ↓</span></button>
+      <button onclick="togglePlan('3m',this)">3개월 <span class="save-tag">10% ↓</span></button>
+      <button onclick="togglePlan('6m',this)">6개월 <span class="save-tag">17% ↓</span></button>
+      <button onclick="togglePlan('annual',this)">연간 <span class="save-tag">25% ↓</span></button>
     </div>
     <div class="plans-grid">
+      <!-- 도전 -->
       <div class="plan-card">
-        <div class="plan-name">기본형</div>
-        <div class="plan-price" data-m="9,900원" data-y="89,000원">9,900원<sub>/월</sub></div>
-        <div class="plan-period" data-m="" data-y="연간 결제 시 7,417원/월 (29,800원 절약)"></div>
+        <div class="plan-name">도전</div>
+        <div class="plan-price"
+             data-m="19,500원" data-3m="52,650원" data-6m="97,110원" data-y="175,500원">19,500원<sub>/월</sub></div>
+        <div class="plan-period"
+             data-m=""
+             data-3m="3개월 결제 시 17,550원/월 (5,850원 절약)"
+             data-6m="6개월 결제 시 16,185원/월 (19,890원 절약)"
+             data-y="연간 결제 시 14,625원/월 (<span class='save-highlight'>58,500원 절약</span>)"></div>
         <ul class="plan-list">
-          <li>전체 문제 콘텐츠 (4,400+ 매일 추가 업데이트)</li> 
-          <li>9단계 상세 문제해설 제공</li>
-          <li>챗봇 서비스: 단어 뜻 질문(300회/월)+단어장 저장+퀴즈 </li>
-          <li>챗봇 서비스: 복잡한 질문 100회/월</li>
-          <li>수능 어휘 4,605개 (퀴즈 무제한)</li> 
+          <li>전체 문제 이용 (4,400+ 매일 추가 업데이트)</li>
         </ul>
-        <button class="plan-btn plan-btn-line" onclick="location.href='https://learn.keytrend.co.kr/payment'">기본형 시작하기</button>
+        <button class="plan-btn plan-btn-line" onclick="location.href='https://learn.keytrend.co.kr/payment'">도전 시작하기</button>
       </div>
+      <!-- 합격 (추천) -->
       <div class="plan-card best">
-        <div class="plan-name">고급형</div>
-        <div class="plan-price" data-m="14,900원" data-y="134,000원">14,900원<sub>/월</sub></div>
-        <div class="plan-period" data-m="" data-y="연간 결제 시 11,167원/월 (<span class='save-highlight'>44,800원 절약</span>)"></div>
+        <div class="plan-name">합격</div>
+        <div class="plan-price"
+             data-m="34,500원" data-3m="93,150원" data-6m="171,810원" data-y="310,500원">34,500원<sub>/월</sub></div>
+        <div class="plan-period"
+             data-m=""
+             data-3m="3개월 결제 시 31,050원/월 (10,350원 절약)"
+             data-6m="6개월 결제 시 28,635원/월 (35,190원 절약)"
+             data-y="연간 결제 시 25,875원/월 (<span class='save-highlight'>103,500원 절약</span>)"></div>
         <ul class="plan-list">
-          <li>전체 문제 콘텐츠 (4,400+ 매일 추가 업데이트)</li> 
-          <li>9단계 상세 문제해설 제공</li>
-          <li>챗봇 서비스: 단어 뜻 질문(300회/월)+단어장 저장+퀴즈 </li>
-          <li class="em-hot">챗봇 서비스: 복잡한 질문 250회/월</li>
-          <li>수능 어휘 4,605개 (퀴즈 무제한)</li> 
+          <li>전체 문제 이용 (4,400+ 매일 추가 업데이트)</li>
+          <li>10~13단계 상세 해설</li>
+          <li class="em-hot">프리미엄 분석</li>
         </ul>
-        <button class="plan-btn plan-btn-fill" onclick="location.href='https://learn.keytrend.co.kr/payment'">고급형 시작하기 →</button>
+        <button class="plan-btn plan-btn-fill" onclick="location.href='https://learn.keytrend.co.kr/payment'">합격 시작하기 →</button>
+      </div>
+      <!-- 만점 -->
+      <div class="plan-card">
+        <div class="plan-name">만점</div>
+        <div class="plan-price"
+             data-m="49,500원" data-3m="133,650원" data-6m="246,510원" data-y="445,500원">49,500원<sub>/월</sub></div>
+        <div class="plan-period"
+             data-m=""
+             data-3m="3개월 결제 시 44,550원/월 (14,850원 절약)"
+             data-6m="6개월 결제 시 41,085원/월 (50,490원 절약)"
+             data-y="연간 결제 시 37,125원/월 (<span class='save-highlight'>148,500원 절약</span>)"></div>
+        <ul class="plan-list">
+          <li>전체 문제 이용 (4,400+ 매일 추가 업데이트)</li>
+          <li>10~13단계 상세 해설</li>
+          <li>프리미엄 분석</li>
+          <li class="em-hot">AI 튜터 챗봇</li>
+          <li>타이머 기능</li>
+        </ul>
+        <button class="plan-btn plan-btn-line" onclick="location.href='https://learn.keytrend.co.kr/payment'">만점 시작하기</button>
       </div>
     </div>
   </div>
@@ -732,7 +759,7 @@ body{
       </div>
       <div class="faq-item">
         <div class="faq-q">질문 횟수가 부족하면 어떻게 하나요?</div>
-        <div class="faq-a">충전팩을 구매하여 추가 질문 횟수를 확보할 수 있습니다. 30회(2,900원), 80회(5,900원), 200회(12,900원) 팩이 있습니다. 자주 부족하다면 고급형 요금이 더 경제적입니다.</div>
+        <div class="faq-a">충전팩을 구매하여 추가 질문 횟수를 확보할 수 있습니다. 30회(2,900원), 80회(5,900원), 200회(12,900원) 팩이 있습니다. 자주 부족하다면 만점 요금이 더 경제적입니다.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">문제는 계속 추가되나요?</div>
@@ -792,15 +819,23 @@ body{
         <div class="co-field">
             <label>플랜</label>
             <select id="co-plan" onchange="updateCheckoutPrice()">
-                <option value="standard_monthly">기본형 월간 - ₩9,900</option>
-                <option value="standard_yearly">기본형 연간 - ₩89,000</option>
-                <option value="premium_monthly">고급형 월간 - ₩14,900</option>
-                <option value="premium_yearly">고급형 연간 - ₩134,000</option>
+                <option value="challenger_monthly">도전 월간 - ₩19,500</option>
+                <option value="challenger_3m">도전 3개월 - ₩52,650</option>
+                <option value="challenger_6m">도전 6개월 - ₩97,110</option>
+                <option value="challenger_annual">도전 연간 - ₩175,500</option>
+                <option value="passer_monthly">합격 월간 - ₩34,500</option>
+                <option value="passer_3m">합격 3개월 - ₩93,150</option>
+                <option value="passer_6m">합격 6개월 - ₩171,810</option>
+                <option value="passer_annual">합격 연간 - ₩310,500</option>
+                <option value="perfect_monthly">만점 월간 - ₩49,500</option>
+                <option value="perfect_3m">만점 3개월 - ₩133,650</option>
+                <option value="perfect_6m">만점 6개월 - ₩246,510</option>
+                <option value="perfect_annual">만점 연간 - ₩445,500</option>
             </select>
         </div>
         <div class="co-plan-display">
-            <div class="plan-name-display" id="co-display-name">기본형 월간</div>
-            <div class="plan-price-display" id="co-display-price">₩9,900</div>
+            <div class="plan-name-display" id="co-display-name">도전 월간</div>
+            <div class="plan-price-display" id="co-display-price">₩19,500</div>
         </div>
         <button class="co-btn co-btn-primary" id="co-pay-btn" onclick="startCheckoutPayment()">결제하기</button>
         <div class="co-toggle"><span id="co-user-email" style="color:#9ba3b5"></span></div>
@@ -838,17 +873,20 @@ document.querySelectorAll('.faq-q').forEach(q=>{
   })
 })
 
-// Pricing toggle
+// Pricing toggle (monthly / 3m / 6m / annual)
 function togglePlan(type,btn){
   document.querySelectorAll('.pricing-toggle button').forEach(b=>b.classList.remove('active'))
   btn.classList.add('active')
+  // type → dataset key + 단위 라벨
+  const keyMap ={monthly:'m','3m':'3m','6m':'6m',annual:'y'}
+  const unitMap={monthly:'/월','3m':'/3개월','6m':'/6개월',annual:'/년'}
+  const k=keyMap[type], unit=unitMap[type]
   document.querySelectorAll('.plan-price').forEach(el=>{
-    const val=type==='yearly'?el.dataset.y:el.dataset.m
-    const unit=type==='yearly'?'/년':'/월'
+    const val=el.dataset[k]
     el.innerHTML=val+'<sub>'+unit+'</sub>'
   })
   document.querySelectorAll('.plan-period').forEach(el=>{
-    el.innerHTML=type==='yearly'?el.dataset.y:el.dataset.m
+    el.innerHTML=el.dataset[k]||''
   })
 }
 
@@ -915,11 +953,40 @@ mobileCta.style.transition='all .3s ease'
 <script>
 const API_BASE='https://english-exam-chatbot.onrender.com';
 let coToken=null,coPayAppUserId='';
-const CO_PRICES={standard_monthly:{amount:'₩9,900',label:'기본형 월간'},standard_yearly:{amount:'₩89,000',label:'기본형 연간'},premium_monthly:{amount:'₩14,900',label:'고급형 월간'},premium_yearly:{amount:'₩134,000',label:'고급형 연간'}};
+const CO_PRICES={
+  challenger_monthly:{amount:'₩19,500', label:'도전 월간'},
+  challenger_3m:     {amount:'₩52,650', label:'도전 3개월'},
+  challenger_6m:     {amount:'₩97,110', label:'도전 6개월'},
+  challenger_annual: {amount:'₩175,500',label:'도전 연간'},
+  passer_monthly:    {amount:'₩34,500', label:'합격 월간'},
+  passer_3m:         {amount:'₩93,150', label:'합격 3개월'},
+  passer_6m:         {amount:'₩171,810',label:'합격 6개월'},
+  passer_annual:     {amount:'₩310,500',label:'합격 연간'},
+  perfect_monthly:   {amount:'₩49,500', label:'만점 월간'},
+  perfect_3m:        {amount:'₩133,650',label:'만점 3개월'},
+  perfect_6m:        {amount:'₩246,510',label:'만점 6개월'},
+  perfect_annual:    {amount:'₩445,500',label:'만점 연간'}
+};
 (async function(){try{const r=await fetch(API_BASE+'/api/payment/plans');const d=await r.json();if(d.payapp&&d.payapp.userid)coPayAppUserId=d.payapp.userid;}catch(e){}})();
 // 추천 코드 URL 파라미터 처리 (?ref=CODE)
 (function(){var params=new URLSearchParams(window.location.search);var refCode=params.get('ref');if(refCode){var step0=document.getElementById('co-step0');var coAuth=document.getElementById('co-auth');if(step0)step0.style.display='none';if(coAuth)coAuth.style.display='block';var refInput=document.getElementById('co-referral');if(refInput){refInput.value=refCode.toUpperCase();document.getElementById('co-referral-msg').innerHTML='<span style="color:#34d399">✓ 추천 링크로 접속! 가입하면 AI 질문 +3회 보너스</span>';}setTimeout(function(){document.getElementById('start').scrollIntoView({behavior:'smooth'});},500);}})();
-function selectPlan(t){var y=document.querySelector('.pricing-toggle button:last-child').classList.contains('active');var k=t+'_'+(y?'yearly':'monthly');document.getElementById('start').scrollIntoView({behavior:'smooth'});setTimeout(function(){if(coToken){document.getElementById('co-plan').value=k;updateCheckoutPrice();}else{window._pendingPlan=k;}},500);}
+function selectPlan(t){
+  var btns=document.querySelectorAll('.pricing-toggle button');
+  var cycle='monthly';
+  for(var i=0;i<btns.length;i++){
+    if(btns[i].classList.contains('active')){
+      var labels=['monthly','3m','6m','annual'];
+      cycle=labels[i]||'monthly';
+      break;
+    }
+  }
+  var k=t+'_'+cycle;
+  document.getElementById('start').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){
+    if(coToken){document.getElementById('co-plan').value=k;updateCheckoutPrice();}
+    else{window._pendingPlan=k;}
+  },500);
+}
 async function doAuth(){var e=document.getElementById('co-email').value.trim(),refCode=(document.getElementById('co-referral').value||'').trim().toUpperCase(),msg=document.getElementById('co-auth-msg'),btn=document.getElementById('co-auth-btn');if(!e){msg.className='co-msg error';msg.textContent='이메일을 입력하세요.';return;}var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!emailRegex.test(e)){msg.className='co-msg error';msg.textContent='올바른 이메일 형식이 아닙니다.';return;}btn.disabled=true;btn.textContent='확인 중...';try{var body={email:e,name:e.split('@')[0]};if(refCode)body.referral_code=refCode;var res=await fetch(API_BASE+'/api/auth/thinkific',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});var data=await res.json();if(data.success&&data.token){coToken=data.token;document.getElementById('co-auth').style.display='none';document.getElementById('co-payment').style.display='block';document.getElementById('co-user-email').textContent=e;if(data.is_new_user&&refCode){document.getElementById('co-pay-msg').innerHTML='<span style="color:#34d399">✓ 추천 코드 적용! AI 질문 +3회 보너스 지급됨</span>';document.getElementById('co-pay-msg').className='co-msg';}if(window._pendingPlan){document.getElementById('co-plan').value=window._pendingPlan;updateCheckoutPrice();window._pendingPlan=null;}}else{msg.className='co-msg error';msg.textContent=data.error||'인증 실패';}}catch(x){msg.className='co-msg error';msg.textContent='서버 연결 오류. 잠시 후 다시 시도해주세요.';}btn.disabled=false;btn.textContent='다음 →';}
 function updateCheckoutPrice(){var v=document.getElementById('co-plan').value;document.getElementById('co-display-name').textContent=CO_PRICES[v].label;document.getElementById('co-display-price').textContent=CO_PRICES[v].amount;}
 async function startCheckoutPayment(){var s=document.getElementById('co-plan').value.split('_'),pt=s[0],bc=s[1],btn=document.getElementById('co-pay-btn'),msg=document.getElementById('co-pay-msg');btn.disabled=true;btn.textContent='결제 준비 중...';msg.className='co-msg';try{var res=await fetch(API_BASE+'/api/payment/prepare',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+coToken},body:JSON.stringify({plan_type:pt,billing_cycle:bc})});var data=await res.json();if(!data.success){msg.className='co-msg error';msg.textContent='결제 준비 실패: '+(data.error||'');btn.disabled=false;btn.textContent='결제하기';return;}var p=data.payapp_params;PayApp.setDefault('userid',coPayAppUserId);PayApp.setDefault('shopname','Key Trend');PayApp.setParam('goodname',p.goodname);PayApp.setParam('price',p.price);PayApp.setParam('feedbackurl',p.feedbackurl);PayApp.setParam('returnurl',p.returnurl||'https://www.keytrend.co.kr/payment/complete/');PayApp.setParam('var1',p.var1);PayApp.setParam('var2',p.var2);PayApp.setParam('checkretry','y');PayApp.setParam('smsuse','n');PayApp.setParam('redirectpay','1');PayApp.setParam('skip_cstpage','y');PayApp.payrequest();}catch(x){msg.className='co-msg error';msg.textContent='오류: '+x.message;}btn.disabled=false;btn.textContent='결제하기';}
