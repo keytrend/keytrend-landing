@@ -253,6 +253,7 @@
                 margin-top: 10px;\
                 min-height: 20px;\
                 line-height: 1.6;\
+                white-space: pre-line;\
             }\
             .pw-msg.error { color: #f472b6; }\
             .pw-msg.success { color: #34d399; }\
@@ -341,7 +342,7 @@
                 document.getElementById('pw-step-email').style.display = 'none';
                 document.getElementById('pw-step-code').style.display = 'block';
                 document.getElementById('pw-sent-email').textContent = email;
-                showMsg('pw-code-msg', '인증코드는 ' + (result.expiresInMinutes || 10) + '분간 유효합니다.', 'info');
+                showMsg('pw-code-msg', '인증코드는 ' + (result.expiresInMinutes || 10) + '분간 유효합니다.\n스팸함에 들어가는 경우가 있으니 스팸함도 확인해 주세요.', 'info');
             } else {
                 if (result.error === 'not_subscribed') {
                     showMsg('pw-email-msg', result.message || '유료 구독이 필요합니다.', 'error');
