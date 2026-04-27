@@ -16,6 +16,12 @@
 (function() {
     'use strict';
 
+    // 무료 공개 글 화이트리스트 — 이 페이지들은 paywall 비활성화
+    const FREE_PAGES = ['article-001.html', 'article-002.html', 'article-003.html'];
+    if (FREE_PAGES.some(function(p) { return location.pathname.endsWith(p); })) {
+        return;
+    }
+
     const API_BASE = 'https://english-exam-chatbot.onrender.com';
     const TOKEN_KEY = 'kt_article_token';
     const EMAIL_KEY = 'kt_article_email';
