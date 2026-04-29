@@ -164,8 +164,7 @@ footer a:hover{text-decoration:underline}
       <p class="sub-title">2.2 수집 방법</p>
       <ul class="dot-list">
         <li>회원가입 및 서비스 이용 과정에서 이용자가 직접 입력</li>
-        <li>Thinkific 플랫폼을 통한 계정 생성 시 자동 연동</li>
-        <li>PayApp 결제 시스템을 통한 결제 정보 수집</li>
+        <li>PortOne(아임포트) 결제 시스템을 통한 결제 정보 수집</li>
         <li>서비스 이용 과정에서 자동으로 생성·수집 (쿠키, 로그 기록 등)</li>
       </ul>
     </div>
@@ -208,6 +207,7 @@ footer a:hover{text-decoration:underline}
           <tr><td>결제 및 구독 내역</td><td>결제일로부터 5년</td></tr>
           <tr><td>서비스 이용 기록 (학습 데이터)</td><td>회원 탈퇴 후 1년</td></tr>
           <tr><td>고객 문의 내역</td><td>문의 접수일로부터 3년</td></tr>
+          <tr><td>학원장의 학습자 초대 발송 기록 (이메일·이름·추천 플랜)</td><td>초대 발송일로부터 30일</td></tr>
         </tbody>
       </table>
     </div>
@@ -242,6 +242,25 @@ footer a:hover{text-decoration:underline}
     <div class="highlight-box">
       <p>회사는 <strong>Anthropic(Claude AI API)</strong>을 통해 AI 튜터 응답을 생성하며, 이 과정에서 이용자가 입력한 질문 내용이 처리될 수 있습니다. Anthropic의 API는 입력 데이터를 모델 학습에 사용하지 않으며, Anthropic의 개인정보처리방침이 별도로 적용됩니다.</p>
     </div>
+
+    <div class="sub-section">
+      <p class="sub-title">5.1 학원 가입 회원의 학원장에 대한 정보 제공</p>
+      <p class="text-block">회원이 학원의 초대 링크 또는 학원장의 직접 등록을 통해 가입한 경우, 다음과 같이 해당 학원장에게 회원의 정보가 제공됩니다. 회원은 학원 초대 가입 시 이에 동의한 것으로 간주되며, 동의를 원하지 않을 경우 학원 초대 대신 일반 회원으로 가입하실 수 있습니다.</p>
+      <table class="info-table">
+        <thead>
+          <tr><th>제공받는 자</th><th>제공 목적</th><th>제공 항목</th><th>보유·이용 기간</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>회원이 소속된 학원의 학원장</td>
+            <td>학원생 학습 관리 (가입 사실 확인, 구독 결제 확인, 반 배정 관리)</td>
+            <td>회원 이름, 이메일, 구독 플랜, 결제 일시, 소속 반 정보</td>
+            <td>회원의 학원 탈퇴 또는 keytrend 회원 탈퇴 시까지</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-block">회원이 학원에서 탈퇴하거나 keytrend 회원에서 탈퇴할 경우, 학원장에게의 정보 제공은 즉시 중단되며 관련 학습 데이터는 본 방침 제4조에 따라 처리됩니다.</p>
+    </div>
   </div>
 
   <!-- 6 -->
@@ -256,11 +275,12 @@ footer a:hover{text-decoration:underline}
         <tr><th>수탁 업체</th><th>위탁 업무 내용</th><th>보유·이용 기간</th></tr>
       </thead>
       <tbody>
-        <tr><td>Thinkific Labs Inc.</td><td>코스 플랫폼 운영, 회원 계정 관리</td><td>회원 탈퇴 시까지</td></tr>
-        <tr><td>스마트로 (PayApp)</td><td>결제 처리 및 정산</td><td>결제일로부터 5년</td></tr>
+        <tr><td>(주)아임포트 (PortOne)</td><td>결제 게이트웨이 및 결제 인증</td><td>결제일로부터 5년</td></tr>
+        <tr><td>KG이니시스</td><td>신용카드 결제 처리 및 정산</td><td>결제일로부터 5년</td></tr>
         <tr><td>Supabase Inc.</td><td>데이터베이스 및 서버 인프라 운영</td><td>회원 탈퇴 시까지</td></tr>
         <tr><td>Render Services Inc.</td><td>서버 호스팅 및 운영</td><td>서비스 이용 기간</td></tr>
         <tr><td>Resend Inc.</td><td>이메일 발송 서비스</td><td>발송 완료 후 즉시 파기</td></tr>
+        <tr><td>Cloudflare Inc.</td><td>웹사이트 호스팅 (CDN) 및 보안</td><td>서비스 이용 기간</td></tr>
       </tbody>
     </table>
   </div>
