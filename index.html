@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -715,10 +715,10 @@ body{
     <h2 class="section-title">나에게 맞는 <span class="hl">요금</span>을 선택하세요</h2>
     <p class="section-desc pricing-subtitle" style="margin-bottom:36px">1,560문항 + 매일 추가 + 24시간 AI 튜터 + 자기관리 통계 시스템.<br>시중 문제집 5권보다 저렴한 월 구독료로<br class="br-mobile"> 수능 영어 1등급에 도전하세요.</p>
     <div class="pricing-toggle">
-      <button class="active" onclick="togglePlan('monthly',this)">월간</button>
+      <button class="active" onclick="togglePlan('monthly',this)">1개월 이용권</button>
       <button onclick="togglePlan('3m',this)">3개월 <span class="save-tag">10% ↓</span></button>
       <button onclick="togglePlan('6m',this)">6개월 <span class="save-tag">17% ↓</span></button>
-      <button onclick="togglePlan('annual',this)">연간 <span class="save-tag">25% ↓</span></button>
+      <button onclick="togglePlan('annual',this)">12개월 이용권 <span class="save-tag">25% ↓</span></button>
     </div>
     <div class="plans-grid">
       <!-- 도전 -->
@@ -730,7 +730,7 @@ body{
              data-m=""
              data-3m="3개월 결제 시 17,550원/월 (5,850원 절약)"
              data-6m="6개월 결제 시 16,185원/월 (19,890원 절약)"
-             data-y="연간 결제 시 14,625원/월 (<span class='save-highlight'>58,500원 절약</span>)"></div>
+             data-y="12개월 결제 시 14,625원/월 (<span class='save-highlight'>58,500원 절약</span>)"></div>
         <ul class="plan-list">
           <li>1,560문항 즉시 이용</li>
           <li>매일 신규 문항 자동 추가</li>
@@ -752,7 +752,7 @@ body{
              data-m=""
              data-3m="3개월 결제 시 31,050원/월 (10,350원 절약)"
              data-6m="6개월 결제 시 28,635원/월 (35,190원 절약)"
-             data-y="연간 결제 시 25,875원/월 (<span class='save-highlight'>103,500원 절약</span>)"></div>
+             data-y="12개월 결제 시 25,875원/월 (<span class='save-highlight'>103,500원 절약</span>)"></div>
         <ul class="plan-list">
           <li>도전의 모든 기능</li>
           <li>10~13단계 상세 해설</li>
@@ -772,7 +772,7 @@ body{
              data-m=""
              data-3m="3개월 결제 시 44,550원/월 (14,850원 절약)"
              data-6m="6개월 결제 시 41,085원/월 (50,490원 절약)"
-             data-y="연간 결제 시 37,125원/월 (<span class='save-highlight'>148,500원 절약</span>)"></div>
+             data-y="12개월 결제 시 37,125원/월 (<span class='save-highlight'>148,500원 절약</span>)"></div>
         <ul class="plan-list">
           <li>합격의 모든 기능</li>
           <li>AI 튜터 챗봇</li>
@@ -893,7 +893,7 @@ body{
       </div>
       <div class="faq-item">
         <div class="faq-q">환불이 가능한가요?</div>
-        <div class="faq-a">월간 요금은 구독 후 7일 이내에 콘텐츠 이용 이력이 없는 경우 전액 환불이 가능합니다. 연간 요금은 첫 14일 이내에 환불 요청이 가능합니다.</div>
+        <div class="faq-a">이용권 요금은 구독 후 7일 이내에 콘텐츠 이용 이력이 없는 경우 전액 환불이 가능합니다. 12개월 이용권 요금은 첫 14일 이내에 환불 요청이 가능합니다.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">모바일에서도 사용할 수 있나요?</div>
@@ -946,22 +946,22 @@ body{
         <div class="co-field">
             <label>플랜</label>
             <select id="co-plan" onchange="updateCheckoutPrice()">
-                <option value="challenger_monthly">도전 월간 - ₩19,500</option>
-                <option value="challenger_3m">도전 3개월 - ₩52,650</option>
-                <option value="challenger_6m">도전 6개월 - ₩97,110</option>
-                <option value="challenger_annual">도전 연간 - ₩175,500</option>
-                <option value="passer_monthly">합격 월간 - ₩34,500</option>
-                <option value="passer_3m">합격 3개월 - ₩93,150</option>
-                <option value="passer_6m">합격 6개월 - ₩171,810</option>
-                <option value="passer_annual">합격 연간 - ₩310,500</option>
-                <option value="perfect_monthly">만점 월간 - ₩49,500</option>
-                <option value="perfect_3m">만점 3개월 - ₩133,650</option>
-                <option value="perfect_6m">만점 6개월 - ₩246,510</option>
-                <option value="perfect_annual">만점 연간 - ₩445,500</option>
+                <option value="challenger_monthly">도전 1개월 이용권 - ₩19,500</option>
+                <option value="challenger_3m">도전 3개월 이용권 - ₩52,650</option>
+                <option value="challenger_6m">도전 6개월 이용권 - ₩97,110</option>
+                <option value="challenger_annual">도전 12개월 이용권 - ₩175,500</option>
+                <option value="passer_monthly">합격 1개월 이용권 - ₩34,500</option>
+                <option value="passer_3m">합격 3개월 이용권 - ₩93,150</option>
+                <option value="passer_6m">합격 6개월 이용권 - ₩171,810</option>
+                <option value="passer_annual">합격 12개월 이용권 - ₩310,500</option>
+                <option value="perfect_monthly">만점 1개월 이용권 - ₩49,500</option>
+                <option value="perfect_3m">만점 3개월 이용권 - ₩133,650</option>
+                <option value="perfect_6m">만점 6개월 이용권 - ₩246,510</option>
+                <option value="perfect_annual">만점 12개월 이용권 - ₩445,500</option>
             </select>
         </div>
         <div class="co-plan-display">
-            <div class="plan-name-display" id="co-display-name">도전 월간</div>
+            <div class="plan-name-display" id="co-display-name">도전 1개월 이용권</div>
             <div class="plan-price-display" id="co-display-price">₩19,500</div>
         </div>
         <button class="co-btn co-btn-primary" id="co-pay-btn" onclick="startCheckoutPayment()">결제하기</button>
@@ -1081,18 +1081,18 @@ mobileCta.style.transition='all .3s ease'
 const API_BASE='https://english-exam-chatbot.onrender.com';
 let coToken=null,coPayAppUserId='';
 const CO_PRICES={
-  challenger_monthly:{amount:'₩19,500', label:'도전 월간'},
-  challenger_3m:     {amount:'₩52,650', label:'도전 3개월'},
-  challenger_6m:     {amount:'₩97,110', label:'도전 6개월'},
-  challenger_annual: {amount:'₩175,500',label:'도전 연간'},
-  passer_monthly:    {amount:'₩34,500', label:'합격 월간'},
-  passer_3m:         {amount:'₩93,150', label:'합격 3개월'},
-  passer_6m:         {amount:'₩171,810',label:'합격 6개월'},
-  passer_annual:     {amount:'₩310,500',label:'합격 연간'},
-  perfect_monthly:   {amount:'₩49,500', label:'만점 월간'},
-  perfect_3m:        {amount:'₩133,650',label:'만점 3개월'},
-  perfect_6m:        {amount:'₩246,510',label:'만점 6개월'},
-  perfect_annual:    {amount:'₩445,500',label:'만점 연간'}
+  challenger_monthly:{amount:'₩19,500', label:'도전 1개월 이용권'},
+  challenger_3m:     {amount:'₩52,650', label:'도전 3개월 이용권'},
+  challenger_6m:     {amount:'₩97,110', label:'도전 6개월 이용권'},
+  challenger_annual: {amount:'₩175,500',label:'도전 12개월 이용권'},
+  passer_monthly:    {amount:'₩34,500', label:'합격 1개월 이용권'},
+  passer_3m:         {amount:'₩93,150', label:'합격 3개월 이용권'},
+  passer_6m:         {amount:'₩171,810',label:'합격 6개월 이용권'},
+  passer_annual:     {amount:'₩310,500',label:'합격 12개월 이용권'},
+  perfect_monthly:   {amount:'₩49,500', label:'만점 1개월 이용권'},
+  perfect_3m:        {amount:'₩133,650',label:'만점 3개월 이용권'},
+  perfect_6m:        {amount:'₩246,510',label:'만점 6개월 이용권'},
+  perfect_annual:    {amount:'₩445,500',label:'만점 12개월 이용권'}
 };
 (async function(){try{const r=await fetch(API_BASE+'/api/payment/plans');const d=await r.json();if(d.payapp&&d.payapp.userid)coPayAppUserId=d.payapp.userid;}catch(e){}})();
 // 추천 코드 URL 파라미터 처리 (?ref=CODE)
