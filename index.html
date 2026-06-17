@@ -1188,12 +1188,7 @@ async function startCheckoutPayment(){var s=document.getElementById('co-plan').v
     const sc    = c['summary_completion'] || 0;
     const total = data.total;
 
-    const desc = document.getElementById('feature-problem-desc');
-    if (desc) {
-      desc.textContent =
-        `빈칸추론 ${blank.toLocaleString('ko-KR')}문항, 글의 순서 ${order.toLocaleString('ko-KR')}문항, 문장넣기 ${si.toLocaleString('ko-KR')}문항, 밑줄 친 글의 의미파악 ${ul.toLocaleString('ko-KR')}문항, 주제추론 ${ti.toLocaleString('ko-KR')}문항, 제목추론 ${tt.toLocaleString('ko-KR')}문항, 문맥 상 낱말의 쓰임 ${vi.toLocaleString('ko-KR')}문항, 전체 흐름과 관계 없는 문장 ${is_.toLocaleString('ko-KR')}문항, 요약문 완성 ${sc.toLocaleString('ko-KR')}문항 등 다양한 문항을 끊임없이 풀 수 있습니다. 계속 업데이트됩니다.`;
-    }
-
+    
     const totalEl = document.getElementById('pricing-total-count');
     if (totalEl) totalEl.textContent = total.toLocaleString('ko-KR');
 
