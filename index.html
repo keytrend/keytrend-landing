@@ -573,7 +573,7 @@ body{
       <div class="feature-card reveal">
         <div class="feature-num">01</div>
         <h3>수능 유형별 문제은행</h3>
-        <p>빈칸추론 400, 글의 순서 200, 문장넣기 300, 밑줄 친 글의 의미파악 83, 주제추론 100, 제목추론 100, 문맥 상 낱말의 쓰임 130, 전체 흐름과 관계 없는 문항 80, 요약문 완성 120 등 다양한 문항을 끊임없이 풀 수 있습니다. 계속 업데이트됩니다.</p>
+        <p id="feature-problem-desc">다양한 수능 유형별 문항을 끊임없이 풀 수 있습니다. 계속 업데이트됩니다.</p>
         <span class="feature-badge badge-db">📦 DB 기반</span>
       </div>
       <div class="feature-card reveal reveal-d1">
@@ -713,7 +713,7 @@ body{
 <section class="section" id="pricing">
   <div class="container section-center">
     <h2 class="section-title">나에게 맞는 <span class="hl">요금</span>을 선택하세요</h2>
-    <p class="section-desc pricing-subtitle" style="margin-bottom:36px">1,560문항 + 매일 추가 + 24시간 AI 튜터 + 자기관리 통계 시스템.<br>시중 문제집 5권보다 저렴한 월 구독료로<br class="br-mobile"> 수능 영어 1등급에 도전하세요.</p>
+    <p class="section-desc pricing-subtitle" style="margin-bottom:36px"><span id="pricing-total-count">1,560</span>문항 + 매일 추가 + 24시간 AI 튜터 + 자기관리 통계 시스템.<br>시중 문제집 5권보다 저렴한 월 구독료로<br class="br-mobile"> 수능 영어 1등급에 도전하세요.</p>
     <div class="pricing-toggle">
       <button class="active" onclick="togglePlan('monthly',this)">월간</button>
       <button onclick="togglePlan('3m',this)">3개월 <span class="save-tag">10% ↓</span></button>
@@ -732,7 +732,7 @@ body{
              data-6m="6개월 결제 시 16,185원/월 (19,890원 절약)"
              data-y="연간 결제 시 14,625원/월 (<span class='save-highlight'>58,500원 절약</span>)"></div>
         <ul class="plan-list">
-          <li>1,560문항 즉시 이용</li>
+          <li><span id="plan-problem-count">1,560</span>문항 즉시 이용</li>
           <li>매일 신규 문항 자동 추가</li>
           <li>PC · 모바일 · 태블릿 어디서나 풀이 + 자동 진도 추적</li>
           <li>모르는 단어 자동 저장 + 5지선다 퀴즈</li>
@@ -1119,5 +1119,47 @@ function updateCheckoutPrice(){var v=document.getElementById('co-plan').value;do
 async function startCheckoutPayment(){var s=document.getElementById('co-plan').value.split('_'),pt=s[0],bc=s[1],btn=document.getElementById('co-pay-btn'),msg=document.getElementById('co-pay-msg');btn.disabled=true;btn.textContent='결제 준비 중...';msg.className='co-msg';try{var res=await fetch(API_BASE+'/api/payment/prepare',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+coToken},body:JSON.stringify({plan_type:pt,billing_cycle:bc})});var data=await res.json();if(!data.success){msg.className='co-msg error';msg.textContent='결제 준비 실패: '+(data.error||'');btn.disabled=false;btn.textContent='결제하기';return;}var p=data.payapp_params;PayApp.setDefault('userid',coPayAppUserId);PayApp.setDefault('shopname','Key Trend');PayApp.setParam('goodname',p.goodname);PayApp.setParam('price',p.price);PayApp.setParam('feedbackurl',p.feedbackurl);PayApp.setParam('returnurl',p.returnurl||'https://www.keytrend.co.kr/payment/complete/');PayApp.setParam('var1',p.var1);PayApp.setParam('var2',p.var2);PayApp.setParam('checkretry','y');PayApp.setParam('smsuse','n');PayApp.setParam('redirectpay','1');PayApp.setParam('skip_cstpage','y');PayApp.payrequest();}catch(x){msg.className='co-msg error';msg.textContent='오류: '+x.message;}btn.disabled=false;btn.textContent='결제하기';}
 </script>
 <script src="https://english-exam-chatbot.onrender.com/chatbot-widget-v4.js"></script>
+<script>
+(async function() {
+  try {
+    const SUPABASE_URL = 'https://qgoqfrwbzogrnmwjxkpp.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFnb3Fmcndiemk0Z3JubXdqeGtwcCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzQ0MDA4NTMxLCJleHAiOjIwNTk1ODQ1MzF9.p6oMFSbQNHrXG0hZRvPqrBBv0RJEgPTgr_pB3RIxiqY';
+
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/problems?select=problem_type&status=eq.published`,
+      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+    );
+    const data = await res.json();
+
+    const counts = {};
+    data.forEach(r => { counts[r.problem_type] = (counts[r.problem_type] || 0) + 1; });
+
+    const blank = (counts['blank_inference'] || 0);
+    const order = (counts['ordering'] || 0) + (counts['order_of_writing'] || 0);
+    const si    = counts['sentence_insertion'] || 0;
+    const ul    = counts['underline_meaning'] || 0;
+    const ti    = counts['topic_inference'] || 0;
+    const tt    = counts['title_inference'] || 0;
+    const vi    = counts['vocab_inference'] || 0;
+    const is_   = counts['irrelevant_sentence'] || 0;
+    const sc    = counts['summary_completion'] || 0;
+
+    const el = document.getElementById('feature-problem-desc');
+    if (el) {
+      el.textContent =
+        `빈칸추론 ${blank.toLocaleString('ko-KR')}문항, 글의 순서 ${order.toLocaleString('ko-KR')}문항, 문장넣기 ${si.toLocaleString('ko-KR')}문항, 밑줄 친 글의 의미파악 ${ul.toLocaleString('ko-KR')}문항, 주제추론 ${ti.toLocaleString('ko-KR')}문항, 제목추론 ${tt.toLocaleString('ko-KR')}문항, 문맥 상 낱말의 쓰임 ${vi.toLocaleString('ko-KR')}문항, 전체 흐름과 관계 없는 문장 ${is_.toLocaleString('ko-KR')}문항, 요약문 완성 ${sc.toLocaleString('ko-KR')}문항 등 다양한 문항을 끊임없이 풀 수 있습니다. 계속 업데이트됩니다.`;
+    }
+
+    // 문항 수 업데이트
+    const total = data.total;
+    const totalEl = document.getElementById('pricing-total-count');
+    if (totalEl) totalEl.textContent = total.toLocaleString('ko-KR');
+    const planEl = document.getElementById('plan-problem-count');
+    if (planEl) planEl.textContent = total.toLocaleString('ko-KR');
+  } catch(e) {
+    console.error('문항 수 로드 실패:', e);
+  }
+})();
+</script>
 </body>
 </html>
