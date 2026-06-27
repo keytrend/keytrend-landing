@@ -1135,48 +1135,6 @@ async function startCheckoutPayment(){var s=document.getElementById('co-plan').v
 <script>
 (async function() {
   try {
-    const SUPABASE_URL = 'https://qgoqfrwbzogrnmwjxkpp.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFnb3Fmcndiemk0Z3JubXdqeGtwcCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzQ0MDA4NTMxLCJleHAiOjIwNTk1ODQ1MzF9.p6oMFSbQNHrXG0hZRvPqrBBv0RJEgPTgr_pB3RIxiqY';
-
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/problems?select=problem_type&status=eq.published`,
-      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
-    );
-    const data = await res.json();
-
-    const counts = {};
-    data.forEach(r => { counts[r.problem_type] = (counts[r.problem_type] || 0) + 1; });
-
-    const blank = (counts['blank_inference'] || 0);
-    const order = (counts['ordering'] || 0) + (counts['order_of_writing'] || 0);
-    const si    = counts['sentence_insertion'] || 0;
-    const ul    = counts['underline_meaning'] || 0;
-    const ti    = counts['topic_inference'] || 0;
-    const tt    = counts['title_inference'] || 0;
-    const vi    = counts['vocab_inference'] || 0;
-    const is_   = counts['irrelevant_sentence'] || 0;
-    const sc    = counts['summary_completion'] || 0;
-
-    const el = document.getElementById('feature-problem-desc');
-    if (el) {
-      el.textContent =
-        `빈칸추론 ${blank.toLocaleString('ko-KR')}문항, 글의 순서 ${order.toLocaleString('ko-KR')}문항, 문장넣기 ${si.toLocaleString('ko-KR')}문항, 밑줄 친 글의 의미파악 ${ul.toLocaleString('ko-KR')}문항, 주제추론 ${ti.toLocaleString('ko-KR')}문항, 제목추론 ${tt.toLocaleString('ko-KR')}문항, 문맥 상 낱말의 쓰임 ${vi.toLocaleString('ko-KR')}문항, 전체 흐름과 관계 없는 문장 ${is_.toLocaleString('ko-KR')}문항, 요약문 완성 ${sc.toLocaleString('ko-KR')}문항 등 다양한 문항을 끊임없이 풀 수 있습니다. 계속 업데이트됩니다.`;
-    }
-
-    // 문항 수 업데이트
-    const total = data.total;
-    const totalEl = document.getElementById('pricing-total-count');
-    if (totalEl) totalEl.textContent = total.toLocaleString('ko-KR');
-    const planEl = document.getElementById('plan-problem-count');
-    if (planEl) planEl.textContent = total.toLocaleString('ko-KR');
-  } catch(e) {
-    console.error('문항 수 로드 실패:', e);
-  }
-})();
-</script>
-<script>
-(async function() {
-  try {
     const res = await fetch('https://english-exam-chatbot.onrender.com/api/public/problem-counts');
     const data = await res.json();
     if (!data.success) return;
