@@ -179,6 +179,9 @@ td:first-child{font-weight:600;color:var(--text-strong);white-space:nowrap}
 }
 .screenshot-placeholder::before{content:"🖼";display:block;font-size:26px;margin-bottom:8px;opacity:.6}
 .screenshot-placeholder .shot-file{display:block;margin-top:6px;font-size:12px;font-weight:400;color:#94a3b8;font-family:var(--font-en)}
+.manual-shot{margin:20px 0;text-align:center}
+.manual-shot img{max-width:min(440px,100%);height:auto;border:1px solid var(--line-strong);border-radius:10px;box-shadow:0 2px 10px rgba(15,23,42,.06)}
+.manual-shot figcaption{margin-top:8px;font-size:13px;color:var(--muted)}
 
 /* ===== 반응형: 모바일 접이식 목차 ===== */
 .mobile-only{display:none}
@@ -230,6 +233,7 @@ td:first-child{font-weight:600;color:var(--text-strong);white-space:nowrap}
   .box,.quote-box{background:#fff !important;border:1px solid #999;border-left:3px solid #666}
   .box-label{color:#000 !important}
   .screenshot-placeholder{background:#fff !important;border:1px dashed #999;color:#333}
+  .manual-shot img{border:1px solid #999;box-shadow:none}
   /* 링크 URL 미표시 */
   a{color:#000;text-decoration:none}
   a[href]::after{content:"" !important}
