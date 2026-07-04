@@ -56,7 +56,9 @@ a:hover{text-decoration:underline}
   padding:34px 32px 30px;
 }
 .doc-header-inner{max-width:1180px;margin:0 auto}
-.doc-brand{font-family:var(--font-en);font-weight:800;font-size:15px;letter-spacing:-.3px;color:#93c5fd;display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.doc-brand{font-family:var(--font-en);font-weight:800;font-size:15px;letter-spacing:-.3px;color:#93c5fd;display:flex;align-items:center;gap:8px;margin-bottom:14px;text-decoration:none}
+a.doc-brand{color:#93c5fd;text-decoration:none}
+a.doc-brand:hover{color:#bfdbfe}
 .doc-brand i{font-style:normal;font-size:17px}
 .doc-title{font-family:var(--font-en);font-weight:800;font-size:clamp(22px,3.6vw,32px);line-height:1.35;letter-spacing:-.02em;color:#fff}
 .doc-meta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:16px;font-size:14px;color:#cbd5e1}
@@ -209,7 +211,7 @@ td:first-child{font-weight:600;color:var(--text-strong);white-space:nowrap}
   html,body{background:#fff;font-size:11pt;line-height:1.6;color:#000}
   .sidebar,.toc-toggle,.print-btn,.no-print{display:none !important}
   .doc-header{background:#fff !important;color:#000;padding:0 0 10px;border-bottom:2px solid #000}
-  .doc-brand{color:#000}
+  .doc-brand,a.doc-brand{color:#000;text-decoration:none}
   .doc-title{color:#000}
   .doc-meta{color:#333}
   .layout{display:block;max-width:none;padding:0}
@@ -239,7 +241,7 @@ td:first-child{font-weight:600;color:var(--text-strong);white-space:nowrap}
 <!-- ===== 상단 헤더 ===== -->
 <header class="doc-header">
   <div class="doc-header-inner">
-    <div class="doc-brand"><i>🔑</i> Key Trend · 학생 이용 안내</div>
+    <a class="doc-brand" href="index.html"><i>🔑</i> Key Trend · 학생 이용 안내</a>
     <h1 class="doc-title">keytrend 학생 이용 매뉴얼</h1>
     <div class="doc-meta">
       <span>최종 수정일: 2026-07-04</span>
