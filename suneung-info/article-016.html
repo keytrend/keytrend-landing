@@ -1,17 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQB50K2MV"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQB5OK2MV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-MJQB50K2MV');
+  gtag('config', 'G-MJQB5OK2MV');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>?댁슜 ?쇱튂/遺덉씪移??꾩쟾?뺣났 ???좏깮吏? 吏臾몄쓽 1:1 ?議??먯?踰?| Key Trend</title>
+<title>내용 일치/불일치 완전정복 — 선택지와 지문의 1:1 대조 탐지법 | Key Trend</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -59,12 +59,12 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 .step-label{font-size:14px;font-weight:700;margin:8px 0 6px;color:var(--white)}
 .step-desc{font-size:12px;color:var(--gray);line-height:1.6}
 
-/* 26~28 援щ텇 ??*/
+/* 26~28 구분 탭 */
 .prob-tabs{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
 .prob-tab{padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;border:1px solid rgba(51,65,85,.5);background:rgba(30,41,59,.4);color:var(--gray);cursor:default}
 .prob-tab.active{background:rgba(99,102,241,.15);border-color:var(--accent);color:var(--accent2)}
 
-/* 26~28 ?좏삎 李⑥씠 ?ㅻ챸 */
+/* 26~28 유형 차이 설명 */
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
 .type-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.4);border-radius:14px;padding:20px}
 .type-card h4{font-size:13px;font-weight:700;margin-bottom:10px}
@@ -82,7 +82,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 .signal-chip.coral{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.2);color:var(--coral)}
 .signal-chip.mint{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.2);color:var(--mint)}
 
-/* 臾몄젣 移대뱶 */
+/* 문제 카드 */
 .problem-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:20px;overflow:hidden;margin-bottom:40px}
 .problem-header{background:rgba(99,102,241,.1);border-bottom:1px solid rgba(51,65,85,.4);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .problem-num{font-family:'Outfit';font-size:24px;font-weight:800;color:var(--accent2)}
@@ -91,14 +91,14 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 .problem-answer-tag{font-size:12px;font-weight:700;background:rgba(52,211,153,.15);color:var(--mint);padding:4px 12px;border-radius:6px}
 .problem-body{padding:28px}
 
-/* 吏臾?*/
+/* 지문 */
 .passage{background:rgba(15,23,42,.7);border:1px solid rgba(51,65,85,.4);border-radius:12px;padding:24px;margin-bottom:20px;font-size:14px;line-height:1.9}
 .passage p{margin-bottom:4px}
 .hl-ok{background:rgba(52,211,153,.15);padding:1px 3px;border-radius:3px;color:var(--mint)}
 .hl-wrong{background:rgba(244,114,182,.15);padding:1px 3px;border-radius:3px;color:var(--coral);font-weight:700;text-decoration:underline;text-decoration-color:var(--coral)}
 .passage-note{font-size:12px;color:var(--slate);margin-top:8px}
 
-/* ?좏깮吏 */
+/* 선택지 */
 .choices{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
 .choice{display:flex;align-items:flex-start;gap:12px;padding:13px 18px;border-radius:12px;border:1px solid rgba(51,65,85,.4);background:rgba(30,41,59,.3);font-size:13px}
 .choice.wrong-answer{border-color:var(--coral);background:rgba(244,114,182,.06)}
@@ -114,7 +114,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 .badge-ok{background:rgba(99,102,241,.15);color:var(--accent2)}
 .badge-match{background:rgba(52,211,153,.2);color:var(--mint)}
 
-/* ?ㅻ쪟 遺꾩꽍 諛뺤뒪 */
+/* 오류 분석 박스 */
 .error-box{background:rgba(244,114,182,.05);border:1px solid rgba(244,114,182,.25);border-radius:12px;padding:20px 24px;margin-bottom:16px}
 .error-box h4{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .compare-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
@@ -126,13 +126,13 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 .compare-cell.actual .label{color:var(--mint)}
 .compare-cell p{font-size:13px;color:var(--white);line-height:1.6}
 
-/* ?쇱튂 遺꾩꽍 諛뺤뒪 */
+/* 일치 분석 박스 */
 .match-box{background:rgba(52,211,153,.05);border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:20px 24px;margin-bottom:16px}
 .match-box h4{font-size:13px;font-weight:700;color:var(--mint);margin-bottom:12px}
 .match-box p{font-size:14px;color:var(--gray);line-height:1.8}
 .match-box p strong{color:var(--white)}
 
-/* ?덈궡臾??꾩슜 ???뺣낫 ?붿빟 ?뚯씠釉?*/
+/* 안내문 전용 — 정보 요약 테이블 */
 .info-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid rgba(51,65,85,.4);margin-bottom:20px}
 .info-table th,.info-table td{padding:12px 16px;font-size:13px}
 .info-table thead th{background:rgba(99,102,241,.12);color:var(--accent2);font-weight:700;text-align:left}
@@ -175,141 +175,141 @@ td.coral{color:var(--coral)!important;font-weight:700}
 
 <nav>
   <div class="nav-inner">
-    <a href="/" class="logo">?뵎 <span>Key Trend</span></a>
-    <a href="../suneung-info.html" class="nav-back">???섎뒫?뺣낫 紐⑸줉</a>
+    <a href="/" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="../suneung-info.html" class="nav-back">← 수능정보 목록</a>
   </div>
 </nav>
 
 <div class="hero">
   <div class="hero-meta">
-    <span class="badge badge-type">?뱲 ?좏삎蹂???대쾿</span>
-    <span class="badge badge-num">26~28踰?/span>
-    <span class="badge badge-score">媛?2??/span>
+    <span class="badge badge-type">📘 유형별 풀이법</span>
+    <span class="badge badge-num">26~28번</span>
+    <span class="badge badge-score">각 2점</span>
   </div>
-  <h1>?댁슜 ?쇱튂/遺덉씪移??꾩쟾?뺣났 ??br><em>?좏깮吏? 吏臾몄쓽 1:1 ?議??먯?踰?/em></h1>
+  <h1>내용 일치/불일치 완전정복 —<br><em>선택지와 지문의 1:1 대조 탐지법</em></h1>
   <p class="hero-desc">
-    26~28踰덉? ?몃Ъ ?꾧린, ?됱궗 ?덈궡臾? ?곹뭹 ?덈궡臾몄뿉??<strong>?좏깮吏媛 吏臾멸낵 ?쇱튂?섎뒗吏 遺덉씪移섑븯?붿?</strong>瑜?
-    寃利앺븯???좏삎?낅땲?? ?レ옄, ?좎쭨, ?쒖꽌, 議곌굔 ?쒗쁽???뺥솗???쎈뒗 寃껋씠 ?듭떖?낅땲??
+    26~28번은 인물 전기, 행사 안내문, 상품 안내문에서 <strong>선택지가 지문과 일치하는지 불일치하는지</strong>를
+    검증하는 유형입니다. 숫자, 날짜, 순서, 조건 표현을 정확히 읽는 것이 핵심입니다.
   </p>
   <div class="meta-row">
-    <div class="meta-item"><span>?뱟</span><strong>2026?숇뀈???섎뒫</strong></div>
-    <div class="meta-item"><span>?뱦</span><strong>??섑삎 26~28踰?쨌 吏앹닔??26~28踰?怨듯넻</strong></div>
-    <div class="meta-item"><span>??/span><strong>26踰??뺣떟 ??쨌 27踰??뺣떟 ??쨌 28踰??뺣떟 ??/strong></div>
+    <div class="meta-item"><span>📅</span><strong>2026학년도 수능</strong></div>
+    <div class="meta-item"><span>📌</span><strong>홀수형 26~28번 · 짝수형 26~28번 공통</strong></div>
+    <div class="meta-item"><span>✅</span><strong>26번 정답 ③ · 27번 정답 ④ · 28번 정답 ④</strong></div>
   </div>
 </div>
 
-<!-- ?듭떖 ?꾨왂 怨듭떇 -->
+<!-- 핵심 전략 공식 -->
 <div class="section">
-  <h2 class="section-title">3?④퀎 ?쇱튂/遺덉씪移??먯? 怨듭떇</h2>
+  <h2 class="section-title">3단계 일치/불일치 탐지 공식</h2>
   <div class="formula-box">
-    <div class="formula-title">??Key Trend ?듭떖 怨듭떇</div>
+    <div class="formula-title">⚡ Key Trend 핵심 공식</div>
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-num">01</div>
-        <div class="step-label">?좏깮吏 ?듭떖??諛묒쨪</div>
-        <div class="step-desc">?レ옄쨌?좎쭨쨌?쒖꽌쨌議곌굔???댁? ?듭떖?댁뿉 癒쇱? 諛묒쨪 湲뗪린.</div>
+        <div class="step-label">선택지 핵심어 밑줄</div>
+        <div class="step-desc">숫자·날짜·순서·조건을 담은 핵심어에 먼저 밑줄 긋기.</div>
       </div>
       <div class="step-card">
         <div class="step-num">02</div>
-        <div class="step-label">吏臾몄뿉??洹쇨굅 臾몄옣 李얘린</div>
-        <div class="step-desc">?좏깮吏 ?듭떖?댁? ?숈씪?섍굅???좎궗???댁슜???섏삤??吏臾??꾩튂瑜??뚯븙?쒕떎.</div>
+        <div class="step-label">지문에서 근거 문장 찾기</div>
+        <div class="step-desc">선택지 핵심어와 동일하거나 유사한 내용이 나오는 지문 위치를 파악한다.</div>
       </div>
       <div class="step-card">
         <div class="step-num">03</div>
-        <div class="step-label">1:1 ?뺣? ?議?/div>
-        <div class="step-desc">?좏깮吏 ?쒗쁽怨?吏臾??쒗쁽?????⑥뼱???議고빐 李⑥씠?먯쓣 李얜뒗??</div>
+        <div class="step-label">1:1 정밀 대조</div>
+        <div class="step-desc">선택지 표현과 지문 표현을 한 단어씩 대조해 차이점을 찾는다.</div>
       </div>
     </div>
   </div>
 
-  <!-- 26/27 vs 28 ?좏삎 李⑥씠 -->
-  <h2 class="section-title">26쨌27踰?vs 28踰???吏덈Ц 諛⑺뼢 李⑥씠</h2>
+  <!-- 26/27 vs 28 유형 차이 -->
+  <h2 class="section-title">26·27번 vs 28번 — 질문 방향 차이</h2>
   <div class="type-grid">
     <div class="type-card mismatch">
-      <h4>??26踰?쨌 27踰???遺덉씪移?怨좊Ⅴ湲?/h4>
-      <p>吏臾??댁슜怨?<strong>?ㅻⅨ 寃?/strong>??怨좊Ⅴ??臾몄젣. 4媛쒕뒗 留욊퀬 1媛쒕쭔 ?由곕떎. ?由??좏깮吏瑜?李얠븘???쒕떎.</p>
-      <div class="tip">??"?쇱튂?섏? ?딅뒗 寃껋??" = ?ㅻ쪟 ?좏깮吏 ?먯깋</div>
+      <h4>❌ 26번 · 27번 — 불일치 고르기</h4>
+      <p>지문 내용과 <strong>다른 것</strong>을 고르는 문제. 4개는 맞고 1개만 틀린다. 틀린 선택지를 찾아야 한다.</p>
+      <div class="tip">→ "일치하지 않는 것은?" = 오류 선택지 탐색</div>
     </div>
     <div class="type-card match">
-      <h4>??28踰????쇱튂 怨좊Ⅴ湲?/h4>
-      <p>吏臾??댁슜怨?<strong>媛숈? 寃?/strong>??怨좊Ⅴ??臾몄젣. 4媛쒕뒗 ?由ш퀬 1媛쒕쭔 留욌떎. 留욌뒗 ?좏깮吏瑜?李얠븘???쒕떎.</p>
-      <div class="tip">??"?쇱튂?섎뒗 寃껋??" = ?뺥솗???좏깮吏 ?먯깋</div>
+      <h4>✅ 28번 — 일치 고르기</h4>
+      <p>지문 내용과 <strong>같은 것</strong>을 고르는 문제. 4개는 틀리고 1개만 맞다. 맞는 선택지를 찾아야 한다.</p>
+      <div class="tip">→ "일치하는 것은?" = 정확한 선택지 탐색</div>
     </div>
   </div>
 
-  <!-- ?④낏 ?ㅻ쪟 ?⑦꽩 -->
+  <!-- 단골 오류 패턴 -->
   <div class="signal-box">
-    <h4>?좑툘 ?댁슜 ?쇱튂/遺덉씪移??④낏 ?ㅻ쪟 ?⑦꽩</h4>
+    <h4>⚠️ 내용 일치/불일치 단골 오류 패턴</h4>
     <div class="signal-list">
-      <span class="signal-chip coral">?곕룄쨌?좎쭨 諛붽퓭移섍린 (1952 ??1953)</span>
-      <span class="signal-chip coral">?レ옄 諛붽퓭移섍린 (??媛?????媛?</span>
-      <span class="signal-chip coral">議곌굔 諛섏쟾 (only online ???ㅽ봽?쇱씤 媛?μ쑝濡??쇰룞)</span>
-      <span class="signal-chip">?쒖꽌 諛붽퓭移섍린 (A ??B ??B ??A濡?</span>
-      <span class="signal-chip mint">?대쾲 26踰??ㅻ쪟: ???섏긽??媛숈? ?????ㅼ젣???ㅻⅨ ??/span>
-      <span class="signal-chip mint">?대쾲 27踰??ㅻ쪟: ??媛?????媛쒕줈 諛붽퓭移섍린</span>
+      <span class="signal-chip coral">연도·날짜 바꿔치기 (1952 → 1953)</span>
+      <span class="signal-chip coral">숫자 바꿔치기 (세 개 → 네 개)</span>
+      <span class="signal-chip coral">조건 반전 (only online → 오프라인 가능으로 혼동)</span>
+      <span class="signal-chip">순서 바꿔치기 (A 후 B → B 후 A로)</span>
+      <span class="signal-chip mint">이번 26번 오류: 두 수상이 같은 해 → 실제는 다른 해</span>
+      <span class="signal-chip mint">이번 27번 오류: 세 개 → 네 개로 바꿔치기</span>
     </div>
   </div>
 </div>
 
 <div class="divider" style="max-width:900px;margin:0 auto 48px"></div>
 
-<!-- ======================== 26踰?======================== -->
+<!-- ======================== 26번 ======================== -->
 <div class="section">
-  <h2 class="section-title">26踰???Max Kleiber ?몃Ъ ?꾧린 (?뺣떟 ??</h2>
+  <h2 class="section-title">26번 — Max Kleiber 인물 전기 (정답 ③)</h2>
 
   <div class="problem-card">
     <div class="problem-header">
-      <div class="problem-num">26踰?/div>
+      <div class="problem-num">26번</div>
       <div class="problem-meta">
-        <span class="problem-type-tag">?댁슜 遺덉씪移?쨌 2??/span>
-        <span class="problem-answer-tag">?뺣떟 ??/span>
+        <span class="problem-type-tag">내용 불일치 · 2점</span>
+        <span class="problem-answer-tag">정답 ③</span>
       </div>
     </div>
     <div class="problem-body">
 
       <div class="passage">
         <p>Max Kleiber, a pioneer in the study of animal biology, was best known for his research on animal nutrition and metabolism. He was born in Zurich, Switzerland <span class="hl-ok">in 1893</span>. Kleiber graduated from the Swiss Federal Institute of Technology <span class="hl-ok">in 1920</span> and earned his doctoral degree <span class="hl-ok">in 1924</span>. He came to the University of California at Davis (UC Davis) <span class="hl-ok">in 1929</span> to conduct research on energy metabolism in animals. <span class="hl-wrong">In 1952, Kleiber received the distinguished Borden Award</span> from the American Institute of Nutrition and, <span class="hl-wrong">a year later</span>, the Morrison Award from the American Society for Animal Production. Kleiber's book, <em>The Fire of Life</em>, was published <span class="hl-ok">in 1961</span> and subsequently translated into <span class="hl-ok">German, Polish, Spanish, and Japanese</span>. Kleiber was an outstanding teacher popular with undergraduates and graduate students alike. Before his death, a new classroom building at UC Davis was named <span class="hl-ok">Kleiber Hall</span> in his honor.</p>
-        <div class="passage-note">* nutrition: ?곸뼇(?? ** metabolism: ?좎쭊???/div>
+        <div class="passage-note">* nutrition: 영양(학) ** metabolism: 신진대사</div>
       </div>
 
       <ul class="choices">
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">?ㅼ쐞?ㅼ쓽 Zurich?먯꽌 ?쒖뼱?щ떎.<br><span style="font-size:12px;color:var(--gray)">??"born in Zurich, Switzerland" ???쇱튂</span></span>
-          <span class="choice-badge badge-ok">?쇱튂</span>
+          <span class="choice-num">①</span>
+          <span class="choice-text">스위스의 Zurich에서 태어났다.<br><span style="font-size:12px;color:var(--gray)">→ "born in Zurich, Switzerland" — 일치</span></span>
+          <span class="choice-badge badge-ok">일치</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">1924?꾩뿉 諛뺤궗 ?숈쐞瑜?諛쏆븯??<br><span style="font-size:12px;color:var(--gray)">??"earned his doctoral degree in 1924" ???쇱튂</span></span>
-          <span class="choice-badge badge-ok">?쇱튂</span>
+          <span class="choice-num">②</span>
+          <span class="choice-text">1924년에 박사 학위를 받았다.<br><span style="font-size:12px;color:var(--gray)">→ "earned his doctoral degree in 1924" — 일치</span></span>
+          <span class="choice-badge badge-ok">일치</span>
         </li>
         <li class="choice wrong-answer">
-          <span class="choice-num">??/span>
-          <span class="choice-text">1952?꾩뿉 Borden Award? Morrison Award瑜??섏긽?덈떎.<br><span style="font-size:12px;color:var(--coral)">???ㅻ쪟! ???섏긽??媛숈? ?닿? ?꾨떂</span></span>
-          <span class="choice-badge badge-wrong">?ㅻ떟 ??/span>
+          <span class="choice-num">③</span>
+          <span class="choice-text">1952년에 Borden Award와 Morrison Award를 수상했다.<br><span style="font-size:12px;color:var(--coral)">→ 오류! 두 수상이 같은 해가 아님</span></span>
+          <span class="choice-badge badge-wrong">오답 ✗</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">洹몄쓽 ???The Fire of Life???щ윭 ?몄뼱濡?踰덉뿭?섏뿀??<br><span style="font-size:12px;color:var(--gray)">??"translated into German, Polish, Spanish, and Japanese" ???쇱튂</span></span>
-          <span class="choice-badge badge-ok">?쇱튂</span>
+          <span class="choice-num">④</span>
+          <span class="choice-text">그의 저서 The Fire of Life는 여러 언어로 번역되었다.<br><span style="font-size:12px;color:var(--gray)">→ "translated into German, Polish, Spanish, and Japanese" — 일치</span></span>
+          <span class="choice-badge badge-ok">일치</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">??숈깮怨???숈썝?앹뿉寃??멸린 ?덈뒗 ?곗뼱???좎깮?섏씠?덈떎.<br><span style="font-size:12px;color:var(--gray)">??"popular with undergraduates and graduate students alike" ???쇱튂</span></span>
-          <span class="choice-badge badge-ok">?쇱튂</span>
+          <span class="choice-num">⑤</span>
+          <span class="choice-text">대학생과 대학원생에게 인기 있는 뛰어난 선생님이었다.<br><span style="font-size:12px;color:var(--gray)">→ "popular with undergraduates and graduate students alike" — 일치</span></span>
+          <span class="choice-badge badge-ok">일치</span>
         </li>
       </ul>
 
       <div class="error-box">
-        <h4>????쾲 ?ㅻ쪟 ???곕룄 諛붽퓭移섍린 ?⑥젙</h4>
+        <h4>❌ ③번 오류 — 연도 바꿔치기 함정</h4>
         <div class="compare-row">
           <div class="compare-cell said">
-            <div class="label">?좏깮吏 二쇱옣</div>
-            <p><strong>1952?꾩뿉</strong> Borden Award? Morrison Award瑜?<strong>?④퍡</strong> ?섏긽?덈떎.</p>
+            <div class="label">선택지 주장</div>
+            <p><strong>1952년에</strong> Borden Award와 Morrison Award를 <strong>함께</strong> 수상했다.</p>
           </div>
           <div class="compare-cell actual">
-            <div class="label">吏臾??ㅼ젣 ?댁슜</div>
-            <p><strong>1952??/strong>??Borden Award, <strong>1953??/strong>(a year later)??Morrison Award ?섏긽. ???쒕줈 ?ㅻⅨ ??</p>
+            <div class="label">지문 실제 내용</div>
+            <p><strong>1952년</strong>에 Borden Award, <strong>1953년</strong>(a year later)에 Morrison Award 수상. → 서로 다른 해.</p>
           </div>
         </div>
       </div>
@@ -318,70 +318,70 @@ td.coral{color:var(--coral)!important;font-weight:700}
   </div>
 </div>
 
-<!-- ======================== 27踰?======================== -->
+<!-- ======================== 27번 ======================== -->
 <div class="section">
-  <h2 class="section-title">27踰???School Bell Sound Contest ?덈궡臾?(?뺣떟 ??</h2>
+  <h2 class="section-title">27번 — School Bell Sound Contest 안내문 (정답 ④)</h2>
 
   <div class="problem-card">
     <div class="problem-header">
-      <div class="problem-num">27踰?/div>
+      <div class="problem-num">27번</div>
       <div class="problem-meta">
-        <span class="problem-type-tag">?댁슜 遺덉씪移?쨌 2??/span>
-        <span class="problem-answer-tag">?뺣떟 ??/span>
+        <span class="problem-type-tag">내용 불일치 · 2점</span>
+        <span class="problem-answer-tag">정답 ④</span>
       </div>
     </div>
     <div class="problem-body">
 
-      <!-- ?덈궡臾??듭떖 ?뺣낫 ??-->
+      <!-- 안내문 핵심 정보 표 -->
       <table class="info-table">
-        <thead><tr><th>??ぉ</th><th>?덈궡臾??댁슜</th><th>寃利?/th></tr></thead>
+        <thead><tr><th>항목</th><th>안내문 내용</th><th>검증</th></tr></thead>
         <tbody>
-          <tr><td>二쇱젣</td><td>Happy School Life</td><td class="mint">???쇱튂</td></tr>
-          <tr><td>李멸???/td><td>Wakeville High School students of all grades</td><td class="mint">???쇱튂</td></tr>
-          <tr><td>?쒖텧 ?뺤떇</td><td>MP3 format only, ?숆탳 ?뱀궗?댄듃 ?낅줈??(1MB ?쒗븳)</td><td class="mint">???쇱튂</td></tr>
-          <tr><td>?좎젙 ??/td><td><strong>Three</strong> school bell sounds (?숈깮 ?ы몴)</td><td class="coral">??遺덉씪移????좏깮吏??"??媛? 二쇱옣</td></tr>
-          <tr><td>?곹뭹</td><td>臾댁꽑 ?ㅽ뵾而?/td><td class="mint">???쇱튂</td></tr>
+          <tr><td>주제</td><td>Happy School Life</td><td class="mint">① 일치</td></tr>
+          <tr><td>참가자</td><td>Wakeville High School students of all grades</td><td class="mint">② 일치</td></tr>
+          <tr><td>제출 형식</td><td>MP3 format only, 학교 웹사이트 업로드 (1MB 제한)</td><td class="mint">③ 일치</td></tr>
+          <tr><td>선정 수</td><td><strong>Three</strong> school bell sounds (학생 투표)</td><td class="coral">④ 불일치 — 선택지는 "네 개" 주장</td></tr>
+          <tr><td>상품</td><td>무선 스피커</td><td class="mint">⑤ 일치</td></tr>
         </tbody>
       </table>
 
       <ul class="choices">
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">二쇱젣???됰났???숆탳?앺솢?대떎.<br><span style="font-size:12px;color:var(--gray)">??"The theme of this contest is Happy School Life" ???쇱튂</span></span>
-          <span class="choice-badge badge-ok">?쇱튂</span>
+          <span class="choice-num">①</span>
+          <span class="choice-text">주제는 행복한 학교생활이다.<br><span style="font-size:12px;color:var(--gray)">→ "The theme of this contest is Happy School Life" — 일치</span></span>
+          <span class="choice-badge badge-ok">일치</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">Wakeville 怨좊벑?숆탳 紐⑤뱺 ?숇뀈???숈깮??李몄뿬?????덈떎.<br><span style="font-size:12px;color:var(--gray)">??"students of all grades" ???쇱튂</span></span>
-          <span class="choice-badge badge-ok">?쇱튂</span>
+          <span class="choice-num">②</span>
+          <span class="choice-text">Wakeville 고등학교 모든 학년의 학생이 참여할 수 있다.<br><span style="font-size:12px;color:var(--gray)">→ "students of all grades" — 일치</span></span>
+          <span class="choice-badge badge-ok">일치</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">異쒗뭹?묒? ?숆탳 ?뱀궗?댄듃???낅줈?쒗빐???쒕떎.<br><span style="font-size:12px;color:var(--gray)">??"Upload entries to our school website" ???쇱튂</span></span>
-          <span class="choice-badge badge-ok">?쇱튂</span>
+          <span class="choice-num">③</span>
+          <span class="choice-text">출품작은 학교 웹사이트에 업로드해야 한다.<br><span style="font-size:12px;color:var(--gray)">→ "Upload entries to our school website" — 일치</span></span>
+          <span class="choice-badge badge-ok">일치</span>
         </li>
         <li class="choice wrong-answer">
-          <span class="choice-num">??/span>
-          <span class="choice-text"><strong>??媛?/strong>???숆탳 醫낆냼由ш? ?숈깮 ?ы몴???섑빐 ?좏깮??寃껋씠??<br><span style="font-size:12px;color:var(--coral)">???ㅻ쪟! ?ㅼ젣??Three (??媛?</span></span>
-          <span class="choice-badge badge-wrong">?ㅻ떟 ??/span>
+          <span class="choice-num">④</span>
+          <span class="choice-text"><strong>네 개</strong>의 학교 종소리가 학생 투표에 의해 선택될 것이다.<br><span style="font-size:12px;color:var(--coral)">→ 오류! 실제는 Three (세 개)</span></span>
+          <span class="choice-badge badge-wrong">오답 ✗</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">?곗듅?먮뒗 臾댁꽑 ?ㅽ뵾而ㅻ? 諛쏆쓣 寃껋씠??<br><span style="font-size:12px;color:var(--gray)">??"winners of the contest will each get a wireless speaker" ???쇱튂</span></span>
-          <span class="choice-badge badge-ok">?쇱튂</span>
+          <span class="choice-num">⑤</span>
+          <span class="choice-text">우승자는 무선 스피커를 받을 것이다.<br><span style="font-size:12px;color:var(--gray)">→ "winners of the contest will each get a wireless speaker" — 일치</span></span>
+          <span class="choice-badge badge-ok">일치</span>
         </li>
       </ul>
 
       <div class="error-box">
-        <h4>???ｋ쾲 ?ㅻ쪟 ???レ옄 諛붽퓭移섍린 ?⑥젙</h4>
+        <h4>❌ ④번 오류 — 숫자 바꿔치기 함정</h4>
         <div class="compare-row">
           <div class="compare-cell said">
-            <div class="label">?좏깮吏 二쇱옣</div>
-            <p><strong>??媛?/strong>???숆탳 醫낆냼由ш? ?숈깮 ?ы몴???섑빐 ?좏깮??寃껋씠??</p>
+            <div class="label">선택지 주장</div>
+            <p><strong>네 개</strong>의 학교 종소리가 학생 투표에 의해 선택될 것이다.</p>
           </div>
           <div class="compare-cell actual">
-            <div class="label">吏臾??ㅼ젣 ?댁슜</div>
-            <p><strong>"Three</strong> school bell sounds will be selected by student vote" ????媛?</p>
+            <div class="label">지문 실제 내용</div>
+            <p><strong>"Three</strong> school bell sounds will be selected by student vote" → 세 개.</p>
           </div>
         </div>
       </div>
@@ -390,113 +390,113 @@ td.coral{color:var(--coral)!important;font-weight:700}
   </div>
 </div>
 
-<!-- ======================== 28踰?======================== -->
+<!-- ======================== 28번 ======================== -->
 <div class="section">
-  <h2 class="section-title">28踰???Fun Bowling Season Pass ?덈궡臾?(?뺣떟 ??</h2>
+  <h2 class="section-title">28번 — Fun Bowling Season Pass 안내문 (정답 ④)</h2>
 
   <div class="problem-card">
     <div class="problem-header">
-      <div class="problem-num">28踰?/div>
+      <div class="problem-num">28번</div>
       <div class="problem-meta">
-        <span class="problem-type-tag">?댁슜 ?쇱튂 쨌 2??/span>
-        <span class="problem-answer-tag">?뺣떟 ??/span>
+        <span class="problem-type-tag">내용 일치 · 2점</span>
+        <span class="problem-answer-tag">정답 ④</span>
       </div>
     </div>
     <div class="problem-body">
 
-      <!-- ?덈궡臾??듭떖 ?뺣낫 ??-->
+      <!-- 안내문 핵심 정보 표 -->
       <table class="info-table">
-        <thead><tr><th>??ぉ</th><th>?덈궡臾??댁슜</th><th>寃利?/th></tr></thead>
+        <thead><tr><th>항목</th><th>안내문 내용</th><th>검증</th></tr></thead>
         <tbody>
-          <tr><td>?ъ슜 媛??吏??/td><td><strong>All</strong> branches of Bowl Heaven</td><td class="coral">??遺덉씪移????좏깮吏??"?쇰? 吏?? 二쇱옣</td></tr>
-          <tr><td>?ㅽ깲?ㅻ뱶 ?⑥뒪 ?좊컻</td><td>no discounts for shoe rentals</td><td class="coral">??遺덉씪移????좏깮吏??"?좎씤?쒕떎" 二쇱옣</td></tr>
-          <tr><td>怨⑤뱶 ?⑥뒪 寃뚯엫??/td><td>Four free games a day</td><td class="coral">??遺덉씪移????좏깮吏??"?ㅼ꽢 踰? 二쇱옣</td></tr>
-          <tr><td>援щℓ 諛⑸쾿</td><td>purchased <strong>only online</strong></td><td class="mint">???쇱튂 ??"?⑤씪??援щℓ留?媛??</td></tr>
-          <tr><td>?묐룄 媛???щ?</td><td>not transferable to another person</td><td class="coral">??遺덉씪移????좏깮吏??"?묐룄 媛?? 二쇱옣</td></tr>
+          <tr><td>사용 가능 지점</td><td><strong>All</strong> branches of Bowl Heaven</td><td class="coral">① 불일치 — 선택지는 "일부 지점" 주장</td></tr>
+          <tr><td>스탠다드 패스 신발</td><td>no discounts for shoe rentals</td><td class="coral">② 불일치 — 선택지는 "할인된다" 주장</td></tr>
+          <tr><td>골드 패스 게임수</td><td>Four free games a day</td><td class="coral">③ 불일치 — 선택지는 "다섯 번" 주장</td></tr>
+          <tr><td>구매 방법</td><td>purchased <strong>only online</strong></td><td class="mint">④ 일치 — "온라인 구매만 가능"</td></tr>
+          <tr><td>양도 가능 여부</td><td>not transferable to another person</td><td class="coral">⑤ 불일치 — 선택지는 "양도 가능" 주장</td></tr>
         </tbody>
       </table>
 
       <ul class="choices">
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">Bowl Heaven???쇰? 吏?먯뿉?쒕뒗 ?ъ슜???쒗븳?쒕떎.<br><span style="font-size:12px;color:var(--coral)">??"All branches" ??紐⑤뱺 吏?먯뿉???ъ슜 媛?? 遺덉씪移?</span></span>
-          <span class="choice-badge badge-wrong">遺덉씪移?/span>
+          <span class="choice-num">①</span>
+          <span class="choice-text">Bowl Heaven의 일부 지점에서는 사용이 제한된다.<br><span style="font-size:12px;color:var(--coral)">→ "All branches" → 모든 지점에서 사용 가능. 불일치.</span></span>
+          <span class="choice-badge badge-wrong">불일치</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">?ㅽ깲?ㅻ뱶 ?⑥뒪濡쒕뒗 ?좊컻 ??ш? ?좎씤?쒕떎.<br><span style="font-size:12px;color:var(--coral)">??"no discounts for shoe rentals" ???좎씤 ?놁쓬. 遺덉씪移?</span></span>
-          <span class="choice-badge badge-wrong">遺덉씪移?/span>
+          <span class="choice-num">②</span>
+          <span class="choice-text">스탠다드 패스로는 신발 대여가 할인된다.<br><span style="font-size:12px;color:var(--coral)">→ "no discounts for shoe rentals" → 할인 없음. 불일치.</span></span>
+          <span class="choice-badge badge-wrong">불일치</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">怨⑤뱶 ?⑥뒪濡쒕뒗 ?섎（???ㅼ꽢 踰?臾대즺濡?寃뚯엫???쒕떎.<br><span style="font-size:12px;color:var(--coral)">??"Four free games a day" ????踰? 遺덉씪移?</span></span>
-          <span class="choice-badge badge-wrong">遺덉씪移?/span>
+          <span class="choice-num">③</span>
+          <span class="choice-text">골드 패스로는 하루에 다섯 번 무료로 게임을 한다.<br><span style="font-size:12px;color:var(--coral)">→ "Four free games a day" → 네 번. 불일치.</span></span>
+          <span class="choice-badge badge-wrong">불일치</span>
         </li>
         <li class="choice match-answer">
-          <span class="choice-num">??/span>
-          <span class="choice-text">?⑤씪??援щℓ留?媛?ν븯??<br><span style="font-size:12px;color:var(--mint)">??"The pass can be purchased only online" ???쇱튂!</span></span>
-          <span class="choice-badge badge-match">???뺣떟</span>
+          <span class="choice-num">④</span>
+          <span class="choice-text">온라인 구매만 가능하다.<br><span style="font-size:12px;color:var(--mint)">→ "The pass can be purchased only online" — 일치!</span></span>
+          <span class="choice-badge badge-match">✓ 정답</span>
         </li>
         <li class="choice ok">
-          <span class="choice-num">??/span>
-          <span class="choice-text">??몄뿉寃??묐룄?????덈떎.<br><span style="font-size:12px;color:var(--coral)">??"not transferable to another person" ???묐룄 遺덇?. 遺덉씪移?</span></span>
-          <span class="choice-badge badge-wrong">遺덉씪移?/span>
+          <span class="choice-num">⑤</span>
+          <span class="choice-text">타인에게 양도할 수 있다.<br><span style="font-size:12px;color:var(--coral)">→ "not transferable to another person" → 양도 불가. 불일치.</span></span>
+          <span class="choice-badge badge-wrong">불일치</span>
         </li>
       </ul>
 
       <div class="match-box">
-        <h4>???ｋ쾲 ?쇱튂 遺꾩꽍</h4>
+        <h4>✅ ④번 일치 분석</h4>
         <p>
-          吏臾? <strong>"The pass can be purchased only online."</strong><br>
-          ?좏깮吏 ?? <strong>"?⑤씪??援щℓ留?媛?ν븯??"</strong><br><br>
-          ??"only online" = "?⑤씪??援щℓ留? ?꾨꼍???쇱튂. ?뺣떟.
+          지문: <strong>"The pass can be purchased only online."</strong><br>
+          선택지 ④: <strong>"온라인 구매만 가능하다."</strong><br><br>
+          → "only online" = "온라인 구매만" 완벽히 일치. 정답.
         </p>
       </div>
 
     </div>
   </div>
 
-  <!-- ?댄쐶 ?뺣━ -->
-  <h2 class="section-title">?듭떖 ?댄쐶 & ?ㅻ쪟 ?ъ씤??珥앹젙由?/h2>
+  <!-- 어휘 정리 -->
+  <h2 class="section-title">핵심 어휘 & 오류 포인트 총정리</h2>
   <table class="voca-table">
     <thead>
-      <tr><th>臾명빆</th><th>?ㅻ쪟 ?ъ씤??/th><th>吏臾??ㅼ젣 ?쒗쁽</th><th>?좏깮吏 蹂??/th></tr>
+      <tr><th>문항</th><th>오류 포인트</th><th>지문 실제 표현</th><th>선택지 변형</th></tr>
     </thead>
     <tbody>
-      <tr><td>26踰???/td><td>?섏긽 ?곕룄 諛붽퓭移섍린</td><td>1952 Borden / <span style="color:var(--mint)">a year later</span> Morrison</td><td class="coral">1952?꾩뿉 ????紐⑤몢 ???ㅻ쪟</td></tr>
-      <tr><td>27踰???/td><td>?レ옄 諛붽퓭移섍린</td><td><span style="color:var(--mint)">Three</span> school bell sounds</td><td class="coral">??媛????ㅻ쪟</td></tr>
-      <tr><td>28踰???/td><td>踰붿쐞 異뺤냼</td><td><span style="color:var(--mint)">All</span> branches</td><td class="coral">?쇰? 吏?????ㅻ쪟</td></tr>
-      <tr><td>28踰???/td><td>議곌굔 諛섏쟾</td><td><span style="color:var(--mint)">no discounts</span> for shoe rentals</td><td class="coral">?좎씤?쒕떎 ???ㅻ쪟</td></tr>
-      <tr><td>28踰???/td><td>?レ옄 諛붽퓭移섍린</td><td><span style="color:var(--mint)">Four</span> free games a day</td><td class="coral">?ㅼ꽢 踰????ㅻ쪟</td></tr>
-      <tr><td>28踰???/td><td>議곌굔 諛섏쟾</td><td><span style="color:var(--mint)">not transferable</span></td><td class="coral">?묐룄?????덈떎 ???ㅻ쪟</td></tr>
+      <tr><td>26번 ③</td><td>수상 연도 바꿔치기</td><td>1952 Borden / <span style="color:var(--mint)">a year later</span> Morrison</td><td class="coral">1952년에 두 상 모두 → 오류</td></tr>
+      <tr><td>27번 ④</td><td>숫자 바꿔치기</td><td><span style="color:var(--mint)">Three</span> school bell sounds</td><td class="coral">네 개 → 오류</td></tr>
+      <tr><td>28번 ①</td><td>범위 축소</td><td><span style="color:var(--mint)">All</span> branches</td><td class="coral">일부 지점 → 오류</td></tr>
+      <tr><td>28번 ②</td><td>조건 반전</td><td><span style="color:var(--mint)">no discounts</span> for shoe rentals</td><td class="coral">할인된다 → 오류</td></tr>
+      <tr><td>28번 ③</td><td>숫자 바꿔치기</td><td><span style="color:var(--mint)">Four</span> free games a day</td><td class="coral">다섯 번 → 오류</td></tr>
+      <tr><td>28번 ⑤</td><td>조건 반전</td><td><span style="color:var(--mint)">not transferable</span></td><td class="coral">양도할 수 있다 → 오류</td></tr>
     </tbody>
   </table>
 
-  <!-- 理쒖쥌 ?꾨왂 移대뱶 -->
+  <!-- 최종 전략 카드 -->
   <div class="final-card">
-    <h3>?렞 ?댁슜 ?쇱튂/遺덉씪移?理쒖쥌 ?꾨왂</h3>
+    <h3>🎯 내용 일치/불일치 최종 전략</h3>
     <div class="tip-list">
       <div class="tip-item">
-        <span class="tip-icon">?뵢</span>
-        <span class="tip-text"><strong>?レ옄쨌?좎쭨쨌?섎웾??蹂댁씠硫?利됱떆 吏臾??議?</strong> Three ????媛? 1952 ??1953泥섎읆 ?レ옄瑜??댁쭩 諛붽씀??寃껋씠 媛??鍮덈쾲???ㅻ쪟 ?⑦꽩?대떎.</span>
+        <span class="tip-icon">🔢</span>
+        <span class="tip-text"><strong>숫자·날짜·수량이 보이면 즉시 지문 대조.</strong> Three → 네 개, 1952 → 1953처럼 숫자를 살짝 바꾸는 것이 가장 빈번한 오류 패턴이다.</span>
       </div>
       <div class="tip-item">
-        <span class="tip-icon">?봽</span>
-        <span class="tip-text"><strong>議곌굔 諛섏쟾 ?쒗쁽??二쇱쓽.</strong> "no discounts ???좎씤?쒕떎", "not transferable ???묐룄 媛??泥섎읆 遺??no, not)???쒓굅?섍굅??諛섎?濡??곕뒗 ?⑥젙???먯＜ 異쒖젣?쒕떎.</span>
+        <span class="tip-icon">🔄</span>
+        <span class="tip-text"><strong>조건 반전 표현에 주의.</strong> "no discounts → 할인된다", "not transferable → 양도 가능"처럼 부정(no, not)을 제거하거나 반대로 쓰는 함정이 자주 출제된다.</span>
       </div>
       <div class="tip-item">
-        <span class="tip-icon">?뽳툘</span>
-        <span class="tip-text"><strong>28踰덉? 諛⑺뼢??諛섎?.</strong> 26쨌27踰덉? ?由?寃?李얘린, 28踰덉? 留욌뒗 寃?李얘린. 臾몄젣瑜?湲됲븯寃????諛⑺뼢???쇰룞?섏? ?딅룄濡?留ㅻ쾲 吏덈Ц 諛⑺뼢???뺤씤?섎씪.</span>
+        <span class="tip-icon">⚖️</span>
+        <span class="tip-text"><strong>28번은 방향이 반대.</strong> 26·27번은 틀린 것 찾기, 28번은 맞는 것 찾기. 문제를 급하게 풀다 방향을 혼동하지 않도록 매번 질문 방향을 확인하라.</span>
       </div>
       <div class="tip-item">
-        <span class="tip-icon">?뱥</span>
-        <span class="tip-text"><strong>?덈궡臾?27쨌28踰?? ???뺥깭濡??뺣━?섎ŉ ?쎌뼱??</strong> ?좏깮吏 ?좊????쒖꽌?濡??대떦 ?뺣낫媛 ?덈궡臾??대뒓 遺遺꾩뿉 ?덈뒗吏 ?덉쑝濡?吏싳뼱媛硫?1:1 ?議고븳??</span>
+        <span class="tip-icon">📋</span>
+        <span class="tip-text"><strong>안내문(27·28번)은 표 형태로 정리하며 읽어라.</strong> 선택지 ①부터 순서대로 해당 정보가 안내문 어느 부분에 있는지 눈으로 짚어가며 1:1 대조한다.</span>
       </div>
     </div>
   </div>
 </div>
 
-<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">??/button>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script src="../paywall.js"></script>
 <script>
 window.addEventListener('scroll',()=>{

@@ -1,17 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQB50K2MV"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQB5OK2MV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-MJQB50K2MV');
+  gtag('config', 'G-MJQB5OK2MV');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>?섎뒫?뺣낫 - Key Trend</title>
+<title>수능정보 - Key Trend</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -54,18 +54,18 @@ nav{background:rgba(15,23,42,.95);backdrop-filter:blur(20px);border-bottom:1px s
 /* ARTICLE CARD */
 .article-card{background:rgba(30,41,59,.5);border:1px solid rgba(51,65,85,.5);border-radius:16px;padding:28px 24px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;transition:all .3s;position:relative;overflow:hidden}
 .article-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s}
-.article-card[data-cat="?좏삎蹂꾪??대쾿"]::before{background:linear-gradient(90deg,#6366f1,#a855f7)}
-.article-card[data-cat="?섎뒫異쒖젣寃쏀뼢"]::before{background:linear-gradient(90deg,#34d399,#059669)}
-.article-card[data-cat="?쒗뿕?꾨왂"]::before{background:linear-gradient(90deg,#f59e0b,#ef4444)}
-.article-card[data-cat="湲고??뺣낫"]::before{background:linear-gradient(90deg,#f472b6,#ec4899)}
+.article-card[data-cat="유형별풀이법"]::before{background:linear-gradient(90deg,#6366f1,#a855f7)}
+.article-card[data-cat="수능출제경향"]::before{background:linear-gradient(90deg,#34d399,#059669)}
+.article-card[data-cat="시험전략"]::before{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+.article-card[data-cat="기타정보"]::before{background:linear-gradient(90deg,#f472b6,#ec4899)}
 .article-card:hover{border-color:rgba(99,102,241,.4);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
 .article-card:hover::before{opacity:1}
 
 .card-cat{font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:6px}
-.cat-?좏삎蹂꾪??대쾿{background:rgba(99,102,241,.15);color:var(--accent2)}
-.cat-?섎뒫異쒖젣寃쏀뼢{background:rgba(52,211,153,.15);color:var(--mint)}
-.cat-?쒗뿕?꾨왂{background:rgba(251,191,36,.15);color:var(--amber)}
-.cat-湲고??뺣낫{background:rgba(244,114,182,.15);color:var(--coral)}
+.cat-유형별풀이법{background:rgba(99,102,241,.15);color:var(--accent2)}
+.cat-수능출제경향{background:rgba(52,211,153,.15);color:var(--mint)}
+.cat-시험전략{background:rgba(251,191,36,.15);color:var(--amber)}
+.cat-기타정보{background:rgba(244,114,182,.15);color:var(--coral)}
 
 .card-tag{font-size:11px;color:var(--gray);background:rgba(51,65,85,.4);padding:2px 8px;border-radius:4px;display:inline-block}
 .card-title{font-size:16px;font-weight:700;line-height:1.5;color:var(--white)}
@@ -88,408 +88,408 @@ footer a{color:var(--accent2);text-decoration:none}
 
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="logo">?뵎 <span>Key Trend</span></a>
-    <a href="index.html" class="nav-back">???덉쑝濡??뚯븘媛湲?/a>
+    <a href="index.html" class="logo">🔑 <span>Key Trend</span></a>
+    <a href="index.html" class="nav-back">← 홈으로 돌아가기</a>
   </div>
 </nav>
 
 <div class="page-header">
-  <h1>?섎뒫 <em>?뺣낫</em></h1>
-  <p>?섎뒫 ?곸뼱 ?좏삎蹂???대쾿遺???쒗뿕 ?꾨왂源뚯?, ?⑷꺽???꾩슂??紐⑤뱺 ?뺣낫</p>
+  <h1>수능 <em>정보</em></h1>
+  <p>수능 영어 유형별 풀이법부터 시험 전략까지, 합격에 필요한 모든 정보</p>
 </div>
 
-<!-- 移댄뀒怨좊━ ??-->
+<!-- 카테고리 탭 -->
 <div class="tab-wrap">
-  <button class="tab active" onclick="filterCat('?꾩껜')">?꾩껜</button>
-  <button class="tab" onclick="filterCat('?좏삎蹂꾪??대쾿')">?뱲 ?좏삎蹂???대쾿</button>
-  <button class="tab" onclick="filterCat('?섎뒫異쒖젣寃쏀뼢')">?뱤 ?섎뒫 異쒖젣 寃쏀뼢</button>
-  <button class="tab" onclick="filterCat('?쒗뿕?꾨왂')">?렞 ?쒗뿕 ?꾨왂</button>
-  <button class="tab" onclick="filterCat('湲고??뺣낫')">?뱷 湲고? ?뺣낫</button>
+  <button class="tab active" onclick="filterCat('전체')">전체</button>
+  <button class="tab" onclick="filterCat('유형별풀이법')">📘 유형별 풀이법</button>
+  <button class="tab" onclick="filterCat('수능출제경향')">📊 수능 출제 경향</button>
+  <button class="tab" onclick="filterCat('시험전략')">🎯 시험 전략</button>
+  <button class="tab" onclick="filterCat('기타정보')">📝 기타 정보</button>
 </div>
 
-<!-- ?꾪떚??洹몃━??-->
+<!-- 아티클 그리드 -->
 <div class="grid-wrap">
   <div class="article-grid" id="grid">
 
-    <!-- ====== ?ш린?쒕???湲 移대뱶 異붽? ====== -->
+    <!-- ====== 여기서부터 글 카드 추가 ====== -->
 
-    <!-- ?섑뵆: 鍮덉뭏異붾줎 -->
-    <a href="suneung-info/article-001.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <!-- 샘플: 빈칸추론 -->
+    <a href="suneung-info/article-001.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">鍮덉뭏異붾줎</span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">빈칸추론</span>
       </div>
-      <div class="card-title">鍮덉뭏異붾줎 ?꾩쟾?뺣났 ??"not A but B" 援ъ“ 怨듭떇</div>
-      <div class="card-desc">鍮덉뭏異붾줎???듭떖? 諛섎났 ?ㅼ썙?쒖? ?議?援ъ“瑜??뚯븙?섎뒗 寃껋엯?덈떎. 5?④퀎 ???怨듭떇?쇰줈 ?뺣떟瑜좎쓣 ?믪씠?몄슂.</div>
+      <div class="card-title">빈칸추론 완전정복 — "not A but B" 구조 공식</div>
+      <div class="card-desc">빈칸추론의 핵심은 반복 키워드와 대조 구조를 파악하는 것입니다. 5단계 풀이 공식으로 정답률을 높이세요.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <!-- ?섎뒫 異쒖젣 寃쏀뼢: 5媛쒕뀈 遺꾩꽍 -->
-    <a href="suneung-info/article-002.html" class="article-card" data-cat="?섎뒫異쒖젣寃쏀뼢">
+    <!-- 수능 출제 경향: 5개년 분석 -->
+    <a href="suneung-info/article-002.html" class="article-card" data-cat="수능출제경향">
       <div>
-        <span class="card-cat cat-?섎뒫異쒖젣寃쏀뼢">?뱤 ?섎뒫 異쒖젣 寃쏀뼢</span>
-        <span class="card-tag">5媛쒕뀈 遺꾩꽍</span>
-        <span class="card-tag">1?깃툒 ?꾨왂</span>
+        <span class="card-cat cat-수능출제경향">📊 수능 출제 경향</span>
+        <span class="card-tag">5개년 분석</span>
+        <span class="card-tag">1등급 전략</span>
       </div>
-      <div class="card-title">理쒓렐 5媛쒕뀈 ?섎뒫 ?곸뼱 1?깃툒 蹂蹂?臾명빆 ?ъ링 遺꾩꽍</div>
-      <div class="card-desc">2021~2025?숇뀈???щ윭 臾명빆???⑦꽩怨?吏꾪솕 諛⑺뼢??遺꾩꽍?섍퀬, 1?깃툒 ?뺣낫瑜??꾪븳 4? ?꾨왂???쒖떆?⑸땲??</div>
+      <div class="card-title">최근 5개년 수능 영어 1등급 변별 문항 심층 분석</div>
+      <div class="card-desc">2021~2025학년도 킬러 문항의 패턴과 진화 방향을 분석하고, 1등급 확보를 위한 4대 전략을 제시합니다.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-003.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-003.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">鍮덉뭏 異붾줎</span>
-        <span class="card-tag">31~34踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">빈칸 추론</span>
+        <span class="card-tag">31~34번</span>
       </div>
-      <div class="card-title">鍮덉뭏 異붾줎 ?꾩쟾?뺣났 ??4?④퀎 ?뺣떟 ?뺤젙 怨듭떇</div>
-      <div class="card-desc">2026 ?섎뒫 31~34踰??ㅼ젣 湲곗텧??吏곸젒 遺꾩꽍?⑸땲?? 吏臾몄쓣 ?쎄퀬???由щ뒗 ?댁쑀? 4?④퀎 怨듭떇???뚯븘蹂댁꽭??</div>
+      <div class="card-title">빈칸 추론 완전정복 — 4단계 정답 확정 공식</div>
+      <div class="card-desc">2026 수능 31~34번 실제 기출을 직접 분석합니다. 지문을 읽고도 틀리는 이유와 4단계 공식을 알아보세요.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-004.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-004.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">湲???쒖꽌</span>
-        <span class="card-tag">36~37踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">글의 순서</span>
+        <span class="card-tag">36~37번</span>
       </div>
-      <div class="card-title">湲???쒖꽌 ?꾩쟾?뺣났 ???곌껐 ?⑥꽌 3醫??명듃 怨듭떇</div>
-      <div class="card-desc">2026 ?섎뒫 36~37踰?湲곗텧 ?ㅼ쟾 遺꾩꽍. 吏?쒖뼱쨌?묒냽?는룸컲蹂??댄쐶濡??쒖꽌瑜??뺤젙?섎뒗 諛⑸쾿???뚯븘蹂댁꽭??</div>
+      <div class="card-title">글의 순서 완전정복 — 연결 단서 3종 세트 공식</div>
+      <div class="card-desc">2026 수능 36~37번 기출 실전 분석. 지시어·접속어·반복 어휘로 순서를 확정하는 방법을 알아보세요.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-005.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-005.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">臾몄옣 ?쎌엯</span>
-        <span class="card-tag">38~39踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">문장 삽입</span>
+        <span class="card-tag">38~39번</span>
       </div>
-      <div class="card-title">臾몄옣 ?쎌엯 ?꾩쟾?뺣났 ???쇰━ ?먮쫫 ?딄? ?먯?踰?/div>
-      <div class="card-desc">2026 ?섎뒫 38~39踰?湲곗텧 ?ㅼ쟾 遺꾩꽍. 二쇱뼱吏?臾몄옣???좏뻾쨌?꾪뻾 議곌굔??遺꾩꽍???뺥솗???쎌엯 ?꾩튂瑜?李얜뒗 諛⑸쾿???뚯븘蹂댁꽭??</div>
+      <div class="card-title">문장 삽입 완전정복 — 논리 흐름 끊김 탐지법</div>
+      <div class="card-desc">2026 수능 38~39번 기출 실전 분석. 주어진 문장의 선행·후행 조건을 분석해 정확한 삽입 위치를 찾는 방법을 알아보세요.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-006.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-006.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?대쾿</span>
-        <span class="card-tag">29踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">어법</span>
+        <span class="card-tag">29번</span>
       </div>
-      <div class="card-title">?대쾿 ?꾩쟾?뺣났 ??5媛吏 ?⑥젙 ?좏삎 怨듭떇</div>
-      <div class="card-desc">2026 ?섎뒫 29踰?湲곗텧 ?ㅼ쟾 遺꾩꽍. being vs is, 愿怨꾩궗, ?섎룞?? ???쇱튂源뚯? 5媛???ぉ ?꾩껜瑜??꾩쟾???대??⑸땲??</div>
+      <div class="card-title">어법 완전정복 — 5가지 함정 유형 공식</div>
+      <div class="card-desc">2026 수능 29번 기출 실전 분석. being vs is, 관계사, 수동태, 수 일치까지 5개 항목 전체를 완전히 해부합니다.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-007.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-007.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">臾몃㎘???깅쭚</span>
-        <span class="card-tag">30踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">문맥상 낱말</span>
+        <span class="card-tag">30번</span>
       </div>
-      <div class="card-title">臾몃㎘???깅쭚 ?꾩쟾?뺣났 ??諛섏쓽???⑥젙 ?먯?踰?/div>
-      <div class="card-desc">2026 ?섎뒫 30踰?湲곗텧 ?ㅼ쟾 遺꾩꽍. ?뺣떟? ??긽 湲???쇰━ 諛⑺뼢怨?諛섎????⑥뼱 ?섎굹. 5媛???ぉ ?꾩껜 ?먮떒 湲곗????꾩쟾???대??⑸땲??</div>
+      <div class="card-title">문맥상 낱말 완전정복 — 반의어 함정 탐지법</div>
+      <div class="card-desc">2026 수능 30번 기출 실전 분석. 정답은 항상 글의 논리 방향과 반대인 단어 하나. 5개 항목 전체 판단 기준을 완전히 해부합니다.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-008.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-008.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">湲??紐⑹쟻</span>
-        <span class="card-tag">18踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">글의 목적</span>
+        <span class="card-tag">18번</span>
       </div>
-      <div class="card-title">湲??紐⑹쟻 ?꾩쟾?뺣났 ??泥ヂ룸걹 臾몄옣 吏묒쨷 怨듬왂踰?/div>
-      <div class="card-desc">2026 ?섎뒫 18踰?湲곗텧 ?ㅼ쟾 遺꾩꽍. 泥?臾몄옣?먯꽌 諛곌꼍, 留덉?留?臾몄옣?먯꽌 ?듭떖 ?붿껌??李얠쑝硫?30珥??덉뿉 ? ???덉뒿?덈떎.</div>
+      <div class="card-title">글의 목적 완전정복 — 첫·끝 문장 집중 공략법</div>
+      <div class="card-desc">2026 수능 18번 기출 실전 분석. 첫 문장에서 배경, 마지막 문장에서 핵심 요청을 찾으면 30초 안에 풀 수 있습니다.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-009.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-009.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?ш꼍 蹂??/span>
-        <span class="card-tag">19踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">심경 변화</span>
+        <span class="card-tag">19번</span>
       </div>
-      <div class="card-title">?ш꼍 蹂???꾩쟾?뺣났 ??媛먯젙 ?먮쫫 ?꾪솚???먯?踰?/div>
-      <div class="card-desc">2026 ?섎뒫 19踰?湲곗텧 ?ㅼ쟾 遺꾩꽍. Suddenly / At last ?꾪솚?먯쓣 李얘퀬 ?됰룞쨌?쒖젙 臾섏궗?먯꽌 媛먯젙???쎌뼱?대뒗 諛⑸쾿???뚯븘蹂댁꽭??</div>
+      <div class="card-title">심경 변화 완전정복 — 감정 흐름 전환점 탐지법</div>
+      <div class="card-desc">2026 수능 19번 기출 실전 분석. Suddenly / At last 전환점을 찾고 행동·표정 묘사에서 감정을 읽어내는 방법을 알아보세요.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-010.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-010.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?꾩옄??二쇱옣</span>
-        <span class="card-tag">20踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">필자의 주장</span>
+        <span class="card-tag">20번</span>
       </div>
-      <div class="card-title">?꾩옄??二쇱옣 ?꾩쟾?뺣났 ???듭떖 二쇱옣 臾몄옣 ?먯?踰?/div>
-      <div class="card-desc">2026 ?섎뒫 20踰?湲곗텧 ?ㅼ쟾 遺꾩꽍. must / should媛 ?덈뒗 臾몄옣???뺣떟?대떎. 臾몄젣 ?쒓린 ???議???二쇱옣??援ъ“瑜??꾩쟾???대??⑸땲??</div>
+      <div class="card-title">필자의 주장 완전정복 — 핵심 주장 문장 탐지법</div>
+      <div class="card-desc">2026 수능 20번 기출 실전 분석. must / should가 있는 문장이 정답이다. 문제 제기 → 대조 → 주장의 구조를 완전히 해부합니다.</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-011.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-011.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?⑥텞 ?섎? 異붾줎</span>
-        <span class="card-tag">21踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">함축 의미 추론</span>
+        <span class="card-tag">21번</span>
       </div>
-      <div class="card-title">?⑥텞 ?섎? 異붾줎 ?꾩쟾?뺣났 ??諛묒쨪 移??쒗쁽??鍮꾩쑀???섎? ?먯?踰?/div>
-      <div class="card-desc">諛묒쨪 ?쒗쁽??鍮꾩쑀???섎?瑜?湲 ?꾩껜 ?쇱?? ?곌껐?섎뒗 4?④퀎 怨듭떇</div>
+      <div class="card-title">함축 의미 추론 완전정복 — 밑줄 친 표현의 비유적 의미 탐지법</div>
+      <div class="card-desc">밑줄 표현의 비유적 의미를 글 전체 논지와 연결하는 4단계 공식</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-012.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-012.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?붿?</span>
-        <span class="card-tag">22踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">요지</span>
+        <span class="card-tag">22번</span>
       </div>
-      <div class="card-title">?붿? ?꾩쟾?뺣났 ???꾩옄???듭떖 硫붿떆吏 ??臾몄옣 異붿텧踰?/div>
-      <div class="card-desc">寃곕줎 臾몄옣 ?먯? + 吏?승룰낵?꾪븳 ?쇰컲???좏깮吏 ?뚭굅 4?④퀎 怨듭떇</div>
+      <div class="card-title">요지 완전정복 — 필자의 핵심 메시지 한 문장 추출법</div>
+      <div class="card-desc">결론 문장 탐지 + 지엽·과도한 일반화 선택지 소거 4단계 공식</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-013.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-013.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">二쇱젣</span>
-        <span class="card-tag">23踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">주제</span>
+        <span class="card-tag">23번</span>
       </div>
-      <div class="card-title">二쇱젣 ?꾩쟾?뺣났 ??諛섎났 ?ㅼ썙?쒕줈 湲??以묒떖 ?붿젣 ?ъ갑?섍린</div>
-      <div class="card-desc">諛섎났 ?ㅼ썙??異붿쟻 + A vs B ?由?援щ룄 遺꾩꽍?쇰줈 二쇱젣 ?좏깮吏 ?뺥솗??怨좊Ⅴ??踰?/div>
+      <div class="card-title">주제 완전정복 — 반복 키워드로 글의 중심 화제 포착하기</div>
+      <div class="card-desc">반복 키워드 추적 + A vs B 대립 구도 분석으로 주제 선택지 정확히 고르는 법</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-014.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-014.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?쒕ぉ</span>
-        <span class="card-tag">24踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">제목</span>
+        <span class="card-tag">24번</span>
       </div>
-      <div class="card-title">?쒕ぉ ?꾩쟾?뺣났 ??湲???듭떖 湲댁옣 愿怨꾨? ??以꾨줈 ?뺤텞?섎뒗 踰?/div>
-      <div class="card-desc">?議걔룹뿭?ㅽ삎 ?쒕ぉ ?⑦꽩 + 湲??湲댁옣 援ъ“ 遺꾩꽍?쇰줈 3???쒕ぉ 臾몄젣 怨듬왂</div>
+      <div class="card-title">제목 완전정복 — 글의 핵심 긴장 관계를 한 줄로 압축하는 법</div>
+      <div class="card-desc">대조·역설형 제목 패턴 + 글의 긴장 구조 분석으로 3점 제목 문제 공략</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-015.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-015.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?꾪몴</span>
-        <span class="card-tag">25踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">도표</span>
+        <span class="card-tag">25번</span>
       </div>
-      <div class="card-title">?꾪몴 ?꾩쟾?뺣났 ???レ옄 鍮꾧탳 ?⑥젙 ?먯? 3?④퀎 怨듭떇</div>
-      <div class="card-desc">?쒖쐞 諛붽퓭移섍린쨌諛곗닔 怨쇱옣쨌?????쟾 ?⑥젙???섏튂 吏곸젒 寃利앹쑝濡?寃⑺뙆?섎뒗 踰?/div>
+      <div class="card-title">도표 완전정복 — 숫자 비교 함정 탐지 3단계 공식</div>
+      <div class="card-desc">순위 바꿔치기·배수 과장·대소 역전 함정을 수치 직접 검증으로 격파하는 법</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-016.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-016.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?댁슜 ?쇱튂/遺덉씪移?/span>
-        <span class="card-tag">26~28踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">내용 일치/불일치</span>
+        <span class="card-tag">26~28번</span>
       </div>
-      <div class="card-title">?댁슜 ?쇱튂/遺덉씪移??꾩쟾?뺣났 ???좏깮吏? 吏臾몄쓽 1:1 ?議??먯?踰?/div>
-      <div class="card-desc">?レ옄 諛붽퓭移섍린쨌議곌굔 諛섏쟾쨌踰붿쐞 異뺤냼 ?⑥젙??1:1 ?議곕줈 寃⑺뙆?섎뒗 3?④퀎 怨듭떇</div>
+      <div class="card-title">내용 일치/불일치 완전정복 — 선택지와 지문의 1:1 대조 탐지법</div>
+      <div class="card-desc">숫자 바꿔치기·조건 반전·범위 축소 함정을 1:1 대조로 격파하는 3단계 공식</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-017.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-017.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">臾닿???臾몄옣</span>
-        <span class="card-tag">35踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">무관한 문장</span>
+        <span class="card-tag">35번</span>
       </div>
-      <div class="card-title">臾닿???臾몄옣 ?꾩쟾?뺣났 ???쇰━ ?먮쫫 ?딄? ?먯?踰?/div>
-      <div class="card-desc">?ㅼ썙???곌껐 異붿쟻 + ?쒓굅 ???먮쫫 ?뺤씤?쇰줈 臾닿???臾몄옣 3?④퀎 寃⑺뙆踰?/div>
+      <div class="card-title">무관한 문장 완전정복 — 논리 흐름 끊김 탐지법</div>
+      <div class="card-desc">키워드 연결 추적 + 제거 후 흐름 확인으로 무관한 문장 3단계 격파법</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-018.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-018.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?붿빟臾??꾩꽦</span>
-        <span class="card-tag">40踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">요약문 완성</span>
+        <span class="card-tag">40번</span>
       </div>
-      <div class="card-title">?붿빟臾??꾩꽦 ?꾩쟾?뺣났 ??蹂몃Ц ?듭떖?대? 鍮덉뭏???섏뼵 ??낇븯??踰?/div>
-      <div class="card-desc">吏臾??듭떖 ?쒗쁽???섏뼵 ?먯? + (A)(B) ?숈떆 寃利앹쑝濡??붿빟臾??꾩꽦 4?④퀎 怨듬왂</div>
+      <div class="card-title">요약문 완성 완전정복 — 본문 핵심어를 빈칸에 환언 대입하는 법</div>
+      <div class="card-desc">지문 핵심 표현의 환언 탐지 + (A)(B) 동시 검증으로 요약문 완성 4단계 공략</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/article-019.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
+    <a href="suneung-info/article-019.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?λЦ ?낇빐</span>
-        <span class="card-tag">41~42踰?/span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">장문 독해</span>
+        <span class="card-tag">41~42번</span>
       </div>
-      <div class="card-title">?λЦ ?낇빐 ?꾩쟾?뺣났 (41~42踰? ???쒕ぉ 異붾줎 + 臾몃㎘???깅쭚 ?숈떆 怨듬왂踰?/div>
-      <div class="card-desc">??踰??쎌뼱 ??臾몄젣 ?닿껐 ??unlikely?뭠ikely ?ㅻ쪟 ?먯? + ?쒕ぉ 異붾줎 4?④퀎</div>
+      <div class="card-title">장문 독해 완전정복 (41~42번) — 제목 추론 + 문맥상 낱말 동시 공략법</div>
+      <div class="card-desc">한 번 읽어 두 문제 해결 — unlikely→likely 오류 탐지 + 제목 추론 4단계</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
-      </div>
-    </a>
-    
-    <a href="suneung-info/article-020.html" class="article-card" data-cat="?좏삎蹂꾪??대쾿">
-      <div>
-        <span class="card-cat cat-?좏삎蹂꾪??대쾿">?뱲 ?좏삎蹂???대쾿</span>
-        <span class="card-tag">?λЦ ?낇빐</span>
-        <span class="card-tag">43~45踰?/span>
-      </div>
-      <div class="card-title">?λЦ ?낇빐 ?꾩쟾?뺣났 (43~45踰? ???쒖꽌쨌吏移?룸궡?⑹씪移?3臾몄젣 ?숈떆 怨듬왂踰?/div>
-      <div class="card-desc">?깆옣?몃Ъ ?뺣━ + ?멸낵 ?쒖꽌 + 吏移?異붿쟻?쇰줈 ?ㅽ넗由??λЦ 3臾몄젣 ??踰덉뿉</div>
-      <div class="card-footer">
-        <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
-      </div>
-    </a>
-
-    <a href="suneung-info/strategy-001.html" class="article-card" data-cat="?쒗뿕?꾨왂">
-      <div>
-        <span class="card-cat cat-?쒗뿕?꾨왂">?렞 ?쒗뿕 ?꾨왂</span>
-        <span class="card-tag">2026?숇뀈??/span>
-        <span class="card-tag">諛곗젏쨌?쒖씠??/span>
-      </div>
-      <div class="card-title">2026?숇뀈???섎뒫 ?곸뼱 ???좏삎蹂?諛곗젏쨌?쒖씠???꾩쟾 遺꾩꽍</div>
-      <div class="card-desc">45臾명빆 ?꾩껜 ?쒖씠?꽷룸같?먃룹슦?좎닚??遺꾩꽍 + 3???щ윭 6媛??꾩쟾 怨듬왂踰?/div>
-      <div class="card-footer">
-        <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
-      </div>
-    </a>
-
-    <a href="suneung-info/strategy-002.html" class="article-card" data-cat="?쒗뿕?꾨왂">
-      <div>
-        <span class="card-cat cat-?쒗뿕?꾨왂">?렞 ?쒗뿕 ?꾨왂</span>
-        <span class="card-tag">?쒓컙 諛곕텇</span>
-        <span class="card-tag">70遺??꾨왂</span>
-      </div>
-      <div class="card-title">?섎뒫 ?곸뼱 1?깃툒 ?쒓컙 諛곕텇 ?꾨왂 ??45臾명빆 70遺??꾩쟾 怨듬왂踰?/div>
-      <div class="card-desc">援ш컙蹂?紐⑺몴 ?쒓컙 + ?щ윭 3遺?而?+ ?λЦ ?꾩＜ ?먯튃?쇰줈 70遺꾩쓣 吏諛고븯??踰?/div>
-      <div class="card-footer">
-        <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
     
-    <a href="suneung-info/strategy-003.html" class="article-card" data-cat="?쒗뿕?꾨왂">
+    <a href="suneung-info/article-020.html" class="article-card" data-cat="유형별풀이법">
       <div>
-        <span class="card-cat cat-?쒗뿕?꾨왂">?렞 ?쒗뿕 ?꾨왂</span>
-        <span class="card-tag">異쒖젣 寃쏀뼢</span>
-        <span class="card-tag">蹂蹂?臾명빆 遺꾩꽍</span>
+        <span class="card-cat cat-유형별풀이법">📘 유형별 풀이법</span>
+        <span class="card-tag">장문 독해</span>
+        <span class="card-tag">43~45번</span>
       </div>
-      <div class="card-title">2026?숇뀈???섎뒫 ?곸뼱 異쒖젣 寃쏀뼢 遺꾩꽍 ???대뼡 ?좏삎???대졄寃??섏솕??/div>
-      <div class="card-desc">32쨌34쨌39踰??щ윭 吏묒쨷 ?대? + 異붿긽 ?뚯옱 ?뺣? ?몃젋??+ ?ν썑 ?鍮?諛⑺뼢 ?쒖떆</div>
+      <div class="card-title">장문 독해 완전정복 (43~45번) — 순서·지칭·내용일치 3문제 동시 공략법</div>
+      <div class="card-desc">등장인물 정리 + 인과 순서 + 지칭 추적으로 스토리 장문 3문제 한 번에</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/info-001.html" class="article-card" data-cat="湲고??뺣낫">
+    <a href="suneung-info/strategy-001.html" class="article-card" data-cat="시험전략">
       <div>
-        <span class="card-cat cat-湲고??뺣낫">?뱷 湲고? ?뺣낫</span>
-        <span class="card-tag">?꾨Ц ?댁꽍</span>
-        <span class="card-tag">18~45踰?/span>
+        <span class="card-cat cat-시험전략">🎯 시험 전략</span>
+        <span class="card-tag">2026학년도</span>
+        <span class="card-tag">배점·난이도</span>
       </div>
-      <div class="card-title">2026?숇뀈???섎뒫 ?곸뼱 ?꾨Ц ?댁꽍 ??18~45踰??낇빐 吏臾??꾩쟾 踰덉뿭</div>
-      <div class="card-desc">?낇빐 吏臾?28媛??꾩껜 ?곸뼱 ?먮Ц + ?쒓? ?꾨Ц ?댁꽍 + ?듭떖 ?ъ씤???뺣━</div>
+      <div class="card-title">2026학년도 수능 영어 — 유형별 배점·난이도 완전 분석</div>
+      <div class="card-desc">45문항 전체 난이도·배점·우선순위 분석 + 3점 킬러 6개 완전 공략법</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/info-002.html" class="article-card" data-cat="湲고??뺣낫">
+    <a href="suneung-info/strategy-002.html" class="article-card" data-cat="시험전략">
       <div>
-        <span class="card-cat cat-湲고??뺣낫">?뱷 湲고? ?뺣낫</span>
-        <span class="card-tag">?댄쐶</span>
-        <span class="card-tag">?щ윭 吏臾?/span>
+        <span class="card-cat cat-시험전략">🎯 시험 전략</span>
+        <span class="card-tag">시간 배분</span>
+        <span class="card-tag">70분 전략</span>
       </div>
-      <div class="card-title">2026?숇뀈???섎뒫 ?곸뼱 怨좊궃???댄쐶 100?????щ윭 吏臾??듭떖 ?⑥뼱 珥앹젙由?/div>
-      <div class="card-desc">18~45踰???吏臾몄뿉???꾩꽑??怨좊궃???댄쐶 100媛? ?ㅼ젣 吏臾?留λ씫 + ?댁썝 ?곸쑝濡??꾨꼍 ?뺣났.</div>
+      <div class="card-title">수능 영어 1등급 시간 배분 전략 — 45문항 70분 완전 공략법</div>
+      <div class="card-desc">구간별 목표 시간 + 킬러 3분 컷 + 장문 완주 원칙으로 70분을 지배하는 법</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
+      </div>
+    </a>
+    
+    <a href="suneung-info/strategy-003.html" class="article-card" data-cat="시험전략">
+      <div>
+        <span class="card-cat cat-시험전략">🎯 시험 전략</span>
+        <span class="card-tag">출제 경향</span>
+        <span class="card-tag">변별 문항 분석</span>
+      </div>
+      <div class="card-title">2026학년도 수능 영어 출제 경향 분석 — 어떤 유형이 어렵게 나왔나</div>
+      <div class="card-desc">32·34·39번 킬러 집중 해부 + 추상 소재 확대 트렌드 + 향후 대비 방향 제시</div>
+      <div class="card-footer">
+        <span class="card-date">2026.03.14</span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
-    <a href="suneung-info/info-003.html" class="article-card" data-cat="湲고??뺣낫">
+    <a href="suneung-info/info-001.html" class="article-card" data-cat="기타정보">
       <div>
-        <span class="card-cat cat-湲고??뺣낫">?뱷 湲고? ?뺣낫</span>
-        <span class="card-tag">?덈??됯?</span>
-        <span class="card-tag">?깃툒 怨꾩궛</span>
+        <span class="card-cat cat-기타정보">📝 기타 정보</span>
+        <span class="card-tag">전문 해석</span>
+        <span class="card-tag">18~45번</span>
       </div>
-      <div class="card-title">?섎뒫 ?곸뼱 ?덈??됯? ?꾨꼍 ?댄빐 ???깃툒 怨꾩궛踰뺣????먯젏???섏궛源뚯?</div>
-      <div class="card-desc">9?깃툒 湲곗??? ?곕룄蹂?1?깃툒 鍮꾩쑉, ?섏떆쨌?뺤떆 ?쒖슜踰? ?덈??됯? 怨듬? ?꾨왂源뚯? ??踰덉뿉 ?뺣━.</div>
+      <div class="card-title">2026학년도 수능 영어 전문 해석 — 18~45번 독해 지문 완전 번역</div>
+      <div class="card-desc">독해 지문 28개 전체 영어 원문 + 한글 전문 해석 + 핵심 포인트 정리</div>
       <div class="card-footer">
         <span class="card-date">2026.03.14</span>
-        <span class="card-arrow">?쎄린 ??/span>
+        <span class="card-arrow">읽기 →</span>
+      </div>
+    </a>
+
+    <a href="suneung-info/info-002.html" class="article-card" data-cat="기타정보">
+      <div>
+        <span class="card-cat cat-기타정보">📝 기타 정보</span>
+        <span class="card-tag">어휘</span>
+        <span class="card-tag">킬러 지문</span>
+      </div>
+      <div class="card-title">2026학년도 수능 영어 고난도 어휘 100선 — 킬러 지문 핵심 단어 총정리</div>
+      <div class="card-desc">18~45번 전 지문에서 엄선한 고난도 어휘 100개. 실제 지문 맥락 + 어원 팁으로 완벽 정복.</div>
+      <div class="card-footer">
+        <span class="card-date">2026.03.14</span>
+        <span class="card-arrow">읽기 →</span>
+      </div>
+    </a>
+
+    <a href="suneung-info/info-003.html" class="article-card" data-cat="기타정보">
+      <div>
+        <span class="card-cat cat-기타정보">📝 기타 정보</span>
+        <span class="card-tag">절대평가</span>
+        <span class="card-tag">등급 계산</span>
+      </div>
+      <div class="card-title">수능 영어 절대평가 완벽 이해 — 등급 계산법부터 원점수 환산까지</div>
+      <div class="card-desc">9등급 기준표, 연도별 1등급 비율, 수시·정시 활용법, 절대평가 공부 전략까지 한 번에 정리.</div>
+      <div class="card-footer">
+        <span class="card-date">2026.03.14</span>
+        <span class="card-arrow">읽기 →</span>
       </div>
     </a>
 
     
-    <!-- ??湲 異붽? ????移대뱶 釉붾줉??蹂듭궗?댁꽌 ?꾨옒??遺숈뿬?ｊ린 -->
-    <!-- data-cat 媛? ?좏삎蹂꾪??대쾿 / ?섎뒫異쒖젣寃쏀뼢 / ?쒗뿕?꾨왂 / 湲고??뺣낫 -->
+    <!-- 새 글 추가 시 위 카드 블록을 복사해서 아래에 붙여넣기 -->
+    <!-- data-cat 값: 유형별풀이법 / 수능출제경향 / 시험전략 / 기타정보 -->
 
-    <!-- ====== ?ш린源뚯? ====== -->
+    <!-- ====== 여기까지 ====== -->
 
   </div>
-  <div class="empty" id="empty">?대떦 移댄뀒怨좊━??湲???꾩쭅 ?놁뒿?덈떎.</div>
+  <div class="empty" id="empty">해당 카테고리의 글이 아직 없습니다.</div>
 </div>
 
 <footer>
-  <p>짤 2026 Key Trend. All rights reserved. | <a href="terms.html">?댁슜?쎄?</a> | <a href="#">媛쒖씤?뺣낫泥섎━諛⑹묠</a></p>
+  <p>© 2026 Key Trend. All rights reserved. | <a href="terms.html">이용약관</a> | <a href="#">개인정보처리방침</a></p>
 </footer>
 
 <script>
@@ -500,7 +500,7 @@ function filterCat(cat) {
   const cards = document.querySelectorAll('.article-card');
   let visible = 0;
   cards.forEach(card => {
-    const match = cat === '?꾩껜' || card.dataset.cat === cat;
+    const match = cat === '전체' || card.dataset.cat === cat;
     card.style.display = match ? 'flex' : 'none';
     if (match) visible++;
   });
