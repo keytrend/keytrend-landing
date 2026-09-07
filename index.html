@@ -434,7 +434,7 @@ body{
       <a href="#features">서비스</a>
       <a href="https://learn.keytrend.co.kr/courses">코스</a>
       <a href="#pricing">구독신청</a>
-      <a href="manual-academy.html">학원장 매뉴얼</a>
+      <a href="manual-academy.html">학교 선생님/학원장 매뉴얼</a>
       <a href="manual-student.html">학생용 매뉴얼</a>
       <a href="charge.html">충전팩</a>
       <a href="suneung-info.html">수능정보</a>
@@ -455,7 +455,7 @@ body{
   <a href="#features" onclick="this.parentElement.classList.remove('open')">서비스</a>
   <a href="https://learn.keytrend.co.kr/courses" onclick="this.parentElement.classList.remove('open')">코스</a>
   <a href="#pricing" onclick="this.parentElement.classList.remove('open')">구독신청</a>
-  <a href="manual-academy.html" onclick="this.parentElement.classList.remove('open')">학원장 매뉴얼</a>
+  <a href="manual-academy.html" onclick="this.parentElement.classList.remove('open')">학교 선생님/학원장 매뉴얼</a>
   <a href="manual-student.html" onclick="this.parentElement.classList.remove('open')">학생용 매뉴얼</a>
   <a href="charge.html" onclick="this.parentElement.classList.remove('open')">충전팩</a>
   <a href="suneung-info.html" onclick="this.parentElement.classList.remove('open')">수능정보</a>
@@ -790,7 +790,7 @@ body{
           <li>AI 튜터 풀리의 1:1 밀착 학습 관리</li>
           <li class="plan-li-sub">6문항 진단 → 목표 등급까지 부족한 점수·틀린 유형 역산</li>
           <li class="plan-li-sub">4·8·12주 맞춤 학습 계획 자동 수립, 20문항 정답률 80% 졸업 시 다음 난이도로 자동 교체</li>
-          <li class="plan-li-sub">매주 자동 점검·브리핑·미이행 재조정, 계획 완료 시 다음 계획 연속 생성</li>
+          <li class="plan-li-sub">매주 자동 점검·브리핑·미이행 재조정, 계획 완료 시 직전 난이도를 이어받아 다음 계획 생성</li>
           <li class="plan-li-sub">학습 리마인드 알림 + 오늘의 10단어 코칭</li>
           <li>AI 튜터 챗봇 (단어 뜻 질문 월 400회 + 복잡한 질문 월 150회)</li>
           <li class="plan-li-sub">지금 보고 있는 문제를 즉시 인식</li>
@@ -945,7 +945,7 @@ body{
 
 <!-- FOOTER -->
 <footer class="footer">
-  <p>© 2026 Key Trend. All rights reserved.<a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="manual-academy.html">학원장 매뉴얼</a><a href="manual-student.html">학생용 매뉴얼</a><a href="/contact.html">문의/제휴</a></p>
+  <p>© 2026 Key Trend. All rights reserved.<a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a><a href="manual-academy.html">학교 선생님/학원장 매뉴얼</a><a href="manual-student.html">학생용 매뉴얼</a><a href="/contact.html">문의/제휴</a></p>
   <p> 06775 서울 서초구 마방로 10길 25 트윈타워A동 대표: 박철 사업자등록증 번호: 541-04-02021</p>
   <p> 통신판매업 제 2021-서울서초-1962호 개인정보보호책임자: 박철(keytrend777@gmail.com) 고객문의: keytrend777@gmail.com</p>
 </footer>
@@ -1091,7 +1091,7 @@ async function doAuth(){var e=document.getElementById('co-email').value.trim(),r
 function updateCheckoutPrice(){var v=document.getElementById('co-plan').value;document.getElementById('co-display-name').textContent=CO_PRICES[v].label;document.getElementById('co-display-price').textContent=CO_PRICES[v].amount;}
 async function startCheckoutPayment(){var s=document.getElementById('co-plan').value.split('_'),pt=s[0],bc=s[1],btn=document.getElementById('co-pay-btn'),msg=document.getElementById('co-pay-msg');btn.disabled=true;btn.textContent='결제 준비 중...';msg.className='co-msg';try{var res=await fetch(API_BASE+'/api/payment/prepare',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+coToken},body:JSON.stringify({plan_type:pt,billing_cycle:bc})});var data=await res.json();if(!data.success){msg.className='co-msg error';msg.textContent='결제 준비 실패: '+(data.error||'');btn.disabled=false;btn.textContent='결제하기';return;}var p=data.payapp_params;PayApp.setDefault('userid',coPayAppUserId);PayApp.setDefault('shopname','Key Trend');PayApp.setParam('goodname',p.goodname);PayApp.setParam('price',p.price);PayApp.setParam('feedbackurl',p.feedbackurl);PayApp.setParam('returnurl',p.returnurl||'https://www.keytrend.co.kr/payment/complete/');PayApp.setParam('var1',p.var1);PayApp.setParam('var2',p.var2);PayApp.setParam('checkretry','y');PayApp.setParam('smsuse','n');PayApp.setParam('redirectpay','1');PayApp.setParam('skip_cstpage','y');PayApp.payrequest();}catch(x){msg.className='co-msg error';msg.textContent='오류: '+x.message;}btn.disabled=false;btn.textContent='결제하기';}
 </script>
-<script src="https://english-exam-chatbot.onrender.com/support-widget.js"></script>
+<script src="https://english-exam-chatbot.onrender.com/support-widget.js?v=20260907.1"></script>
 <script>
 (async function() {
   try {
