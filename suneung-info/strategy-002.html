@@ -135,6 +135,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 .time-table td{padding:12px 16px;font-size:13px;border-top:1px solid rgba(51,65,85,.25);text-align:center;vertical-align:middle}
 .time-table td:first-child{text-align:left;font-weight:600;color:var(--white)}
 .time-table tr:hover td{background:rgba(99,102,241,.04)}
+.time-table th:first-child,.time-table td:first-child:not([colspan]){white-space:nowrap}
 .tt-section td{background:rgba(99,102,241,.07);color:var(--accent2);font-size:12px;font-weight:700;text-align:left!important;letter-spacing:.5px;padding:8px 16px}
 .t-fast{color:var(--mint);font-weight:700}
 .t-mid{color:var(--amber);font-weight:700}
@@ -572,7 +573,6 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 </div>
 
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<script src="../paywall.js"></script>
 <script>
 window.addEventListener('scroll',()=>{
   document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400)

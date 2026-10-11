@@ -95,6 +95,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 .analysis-table tr:hover td{background:rgba(99,102,241,.04)}
 .num-cell{font-family:'Outfit';font-weight:800;font-size:15px;color:var(--accent2)}
 .type-cell{font-weight:600;color:var(--white)}
+.analysis-table th:nth-child(2),.analysis-table .type-cell{white-space:nowrap}
 .score-2{display:inline-block;background:rgba(99,102,241,.15);color:var(--accent2);padding:3px 10px;border-radius:6px;font-size:12px;font-weight:700}
 .score-3{display:inline-block;background:rgba(244,114,182,.15);color:var(--coral);padding:3px 10px;border-radius:6px;font-size:12px;font-weight:700}
 /* 난이도 뱃지 */
@@ -694,7 +695,6 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 0;background:rgba(1
 </div><!-- /content -->
 
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<script src="../paywall.js"></script>
 <script>
 window.addEventListener('scroll',()=>{
   document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400)
